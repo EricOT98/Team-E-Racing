@@ -1,5 +1,8 @@
 # Project Name
 TODO: Write a project description
+
+[Team Journal](https://docs.google.com/document/d/1ya9ImQhMHPgdHWxiWK-YT1KFYHf9t-UB1zWHdFtD7b8/edit?usp=sharing)
+
 ## Installation
 TODO: Describe the installation process
 ## Usage
