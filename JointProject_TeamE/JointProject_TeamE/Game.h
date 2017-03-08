@@ -2,6 +2,8 @@
  #define GAME_H
 
 #include <SFML\Graphics.hpp>
+#include "LevelLoader.h"
+#include <iostream>
 
 class Game
  {
@@ -23,6 +25,7 @@ protected:
 	};
 				
 	GameState currentGameState = GameState::Play;
+	LevelData m_level;
 };
 
 #endif

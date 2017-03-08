@@ -14,6 +14,9 @@ void Game::run()
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
 	timeSinceLastUpdate = clock.restart();
+
+	LevelLoader::load(m_level);
+	std::cout << m_level.m_playerData.position.x << ", " << m_level.m_playerData.position.y << std::endl;
 	
 		while (m_window.isOpen())
 		{
