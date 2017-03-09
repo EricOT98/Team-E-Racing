@@ -30,10 +30,10 @@
     <ClCompile Include="GUI\Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="GUI\Label.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Racer.cpp">
+    <ClCompile Include="GUI\Slider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,10 +50,10 @@
     <ClInclude Include="GUI\Widget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
+    <ClInclude Include="GUI\Label.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Racer.h">
+    <ClInclude Include="GUI\Slider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
