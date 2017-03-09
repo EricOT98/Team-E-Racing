@@ -128,12 +128,16 @@
     <ClCompile Include="Input\XboxController.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Racer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GUI\Widget.h" />
     <ClInclude Include="Input\XboxController.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Racer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
