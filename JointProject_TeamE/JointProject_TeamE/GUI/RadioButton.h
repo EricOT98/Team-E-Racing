@@ -3,7 +3,6 @@
 /// @version 1.0
 /// </summary>
 
-
 #ifndef RADIOBUTTON_H
 #define RADIOBUTTON_H
 
