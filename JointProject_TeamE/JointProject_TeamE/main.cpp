@@ -19,13 +19,11 @@
  #pragma comment(lib, "glu32.lib")
 
 #include "Game.h"
-
 int main()
 {
 	//std::cout << "All hail the PeterLowe organization" << std::endl;
 	Game game;
 	game.run();
-	
 
 	return 0;
 }
