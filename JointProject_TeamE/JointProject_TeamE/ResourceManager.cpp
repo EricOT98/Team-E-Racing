@@ -7,6 +7,13 @@ ResourceManager g_resourceMgr;
 /// </summary>
 void ResourceManager::loadAssets()
 {
-	holder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
-	// -> Load more assets here etc
+	try
+	{
+		holder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
+		// -> Load more assets here etc
+	}
+	catch (thor::ResourceLoadingException& e)
+	{
+		std::cout << "Error: " << e.what() << std::endl;
+	}
 }

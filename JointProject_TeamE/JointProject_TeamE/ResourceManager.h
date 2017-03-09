@@ -8,6 +8,7 @@
 
 #include <Thor\Resources.hpp>
 #include <SFML\Graphics.hpp>
+#include <iostream>
  
 /// Handles all loading and retrieval of assets
 /// 
