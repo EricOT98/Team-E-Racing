@@ -124,12 +124,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GUI\Widget.cpp" />
     <ClCompile Include="Input\XboxController.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GUI\Widget.h" />
     <ClInclude Include="Input\XboxController.h" />
     <ClInclude Include="LevelLoader.h" />
   </ItemGroup>
