@@ -16,7 +16,8 @@
 /// Checkbox allows the user to input a boolean value of on or off.
 /// Allows to be used as a opition that requires this.
 /// </summary>
-class CheckBox : public Label {
+class CheckBox : public Label 
+{
 public:
 	CheckBox();
 	CheckBox(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, sf::Sound &selectSoundIn, const std::string & textIn, Widget * parent, sf::Vector2f & positionIn, int characterSize = 22.f, float boxWidth = 40.f,
