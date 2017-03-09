@@ -4,12 +4,17 @@
 
 Game::Game()
  : m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default)
- {
+{
 	
 }
 
 void Game::run()
  {
+	g_resourceMgr.loadAssets();
+
+	carTexture = g_resourceMgr.holder["CarTexture"];
+	carSprite.setTexture(carTexture);
+
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
@@ -68,6 +73,7 @@ void Game::update(double dt)
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
+	m_window.draw(carSprite);
 	switch (currentGameState)
 	{
 	case GameState::Play:

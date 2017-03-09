@@ -82,6 +82,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>.\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -102,6 +103,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>.\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -124,20 +126,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GUI\Button.cpp" />
+    <ClCompile Include="GUI\CheckBox.cpp" />
+    <ClCompile Include="GUI\Gui.cpp" />
     <ClCompile Include="GUI\Label.cpp" />
+    <ClCompile Include="GUI\RadioButton.cpp" />
     <ClCompile Include="GUI\Slider.cpp" />
     <ClCompile Include="GUI\Widget.cpp" />
     <ClCompile Include="Input\XboxController.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathUtility.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GUI\Button.h" />
+    <ClInclude Include="GUI\CheckBox.h" />
+    <ClInclude Include="GUI\Gui.h" />
     <ClInclude Include="GUI\Label.h" />
+    <ClInclude Include="GUI\RadioButton.h" />
     <ClInclude Include="GUI\Slider.h" />
     <ClInclude Include="GUI\Widget.h" />
     <ClInclude Include="Input\XboxController.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="MathUtility.h" />
+    <ClInclude Include="ResourceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

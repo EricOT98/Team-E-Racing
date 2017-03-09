@@ -2,6 +2,7 @@
  #define GAME_H
 
 #include <SFML\Graphics.hpp>
+#include "ResourceManager.h"
 #include "LevelLoader.h"
 #include <iostream>
 
@@ -18,7 +19,7 @@ protected:
 	void processGameEvents(sf::Event&);
 				
 	sf::RenderWindow m_window;
-				
+
 	enum class GameState
 	{
 		Play
@@ -26,6 +27,9 @@ protected:
 				
 	GameState currentGameState = GameState::Play;
 	LevelData m_level;
+
+	sf::Texture carTexture;
+	sf::Sprite carSprite;
 };
 
 #endif

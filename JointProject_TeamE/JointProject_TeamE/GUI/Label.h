@@ -11,9 +11,9 @@
 // TODO(Darren): Implement resource manager
 
 /// <summary>
-/// Brief: Label class used to draw Labels (Text) to the screen
+/// Label class used to draw Labels (Text) to the screen
 ///
-/// Detail: Class inherits from Widget and thus is a widget.
+/// Renders text on screen based on the character size, postion and color specified
 /// </summary>
 class Label : public Widget
 {
