@@ -1,11 +1,5 @@
 /// <summary>
-/// @author Darren Sweeney and Liam Hickey
-/// @version 1.0
-/// </summary>
-
-
-/// <summary>
-/// @author Darren Sweeney and Liam Hickey
+/// @author Darren Sweeney
 /// @version 1.0
 /// </summary>
 
@@ -13,12 +7,14 @@
 #define CHECKBOX_H
 
 #include "Label.h"
-#include <functional>
+#include <SFML\Audio\Sound.hpp>
+#include <functional>	// Callback funtion
 
 /// <summary>
-/// Brief: CheckBox Class used for creating Check Boxes onscreen
+/// CheckBox Class used for creating Check Boxes onscreen
 /// 
-/// Detail: Class inherits from Label and thus is a widget
+/// Checkbox allows the user to input a boolean value of on or off.
+/// Allows to be used as a opition that requires this.
 /// </summary>
 class CheckBox : public Label {
 public:

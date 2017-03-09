@@ -28,7 +28,8 @@ CheckBox::CheckBox(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Colo
 	noFocusColor(noFocusColorIn),
 	fillColor(fillColorIn)
 {
-	widgetPos = positionIn; // Set the position in the base class
+	// Set the position in the base class
+	widgetPos = positionIn;
 	widgetStartPos = startPos;
 	widgetEndPos = endPos;
 	// Set the position, size, colours and outlines of the CheckBox
@@ -36,7 +37,8 @@ CheckBox::CheckBox(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Colo
 	m_checkBoxRect.setSize(sf::Vector2f(boxWidth, boxHeight));
 	m_checkBoxRect.setOutlineThickness(3.f);
 	// Set the position of the Label object
-	sf::Vector2f textOffset(widgetPos.x, widgetPos.y - m_checkBoxRect.getGlobalBounds().height); // We offset the Label to be directly above the CheckBox
+	// We offset the Label to be directly above the CheckBox
+	sf::Vector2f textOffset(widgetPos.x, widgetPos.y - m_checkBoxRect.getGlobalBounds().height);
 	m_checkBoxRect.setOrigin(m_checkBoxRect.getLocalBounds().width / 2.0f, m_checkBoxRect.getLocalBounds().height / 2.0f);
 	Label::setPosition(textOffset);
 }
@@ -50,7 +52,8 @@ void CheckBox::setPosition(sf::Vector2f &position)
 	widgetPos = position;
 	m_checkBoxRect.setPosition(widgetPos);
 	// Set the position of the Label object
-	sf::Vector2f textOffset(widgetPos.x, widgetPos.y - m_checkBoxRect.getGlobalBounds().height); // We offset the Label to be directly above the CheckBox
+	// We offset the Label to be directly above the CheckBox
+	sf::Vector2f textOffset(widgetPos.x, widgetPos.y - m_checkBoxRect.getGlobalBounds().height);
 	Label::setPosition(textOffset);
 }
 
@@ -63,20 +66,26 @@ bool CheckBox::processInput(XboxController & controller)
 {
 	if (!m_hasFocus)
 	{
-		m_checkBoxRect.setOutlineColor(noFocusColor); // Set the outline color to Cyan if the Widget is out of focus
+		// Set the outline color to Cyan if the Widget is out of focus
+		m_checkBoxRect.setOutlineColor(noFocusColor);
 		return false;
 	}
 	else
 	{
-		m_checkBoxRect.setOutlineColor(focusColor); // Otherwise set the color to Magenta
-		if (controller.isButtonPressed(XBOX360_UP) // Up input
+		// Otherwise set the color to Magenta
+		m_checkBoxRect.setOutlineColor(focusColor);
+		// Up input
+		if (controller.isButtonPressed(XBOX360_UP)
 			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
 			if (m_up != nullptr)
 			{
-				selectSound.play(); // Play the sound when this event occurs
-				m_up->promoteFocus(); // Set the button above *this to be in focus
-				demoteFocus(); // Set the check box to be out of focus
+				// Play the sound when this event occurs
+				selectSound.play();
+				// Set the button above *this to be in focus
+				m_up->promoteFocus();
+				// Set the check box to be out of focus
+				demoteFocus();
 				try // Try-catch used to stop a crash when the callback hasn't been bound
 				{
 					up();
@@ -85,7 +94,7 @@ bool CheckBox::processInput(XboxController & controller)
 				return true;
 			}
 		}
-		else if (controller.isButtonPressed(XBOX360_DOWN) // Down input (see up input)
+		else if (controller.isButtonPressed(XBOX360_DOWN)
 			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
 			if (m_down != nullptr)
@@ -101,7 +110,7 @@ bool CheckBox::processInput(XboxController & controller)
 				return true;
 			}
 		}
-		else if (controller.isButtonPressed(XBOX360_LEFT) // Left input (see up input)
+		else if (controller.isButtonPressed(XBOX360_LEFT)
 			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			if (m_left != nullptr)
@@ -117,7 +126,7 @@ bool CheckBox::processInput(XboxController & controller)
 				return true;
 			}
 		}
-		else if (controller.isButtonPressed(XBOX360_RIGHT) // Right input (see up input)
+		else if (controller.isButtonPressed(XBOX360_RIGHT)
 			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			if (m_right != nullptr)
@@ -133,11 +142,12 @@ bool CheckBox::processInput(XboxController & controller)
 				return true;
 			}
 		}
-		else if (controller.isButtonPressed(XBOX360_A) // A input
+		else if (controller.isButtonPressed(XBOX360_A)
 			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			selectSound.play();
-			switchState(); // Change the state of the checkbox
+			// Change the state of the checkbox
+			switchState();
 			try
 			{
 				select();
@@ -154,8 +164,10 @@ bool CheckBox::processInput(XboxController & controller)
 /// <param name="states">States used for drawing</param>
 void CheckBox::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	target.draw(m_checkBoxRect); // Draw the checkBoxRect
-	Label::draw(target, states); // Draw the inherited Label
+	// Draw the checkBoxRect
+	target.draw(m_checkBoxRect);
+	// Draw the inherited Label
+	Label::draw(target, states);
 }
 
 /// <summary>
@@ -173,14 +185,17 @@ bool CheckBox::getFocus()
 /// </summary>
 void CheckBox::switchState()
 {
-	m_state = !m_state; // Flip the state of the bool
+	// Flip the state of the bool
+	m_state = !m_state;
 	if (m_state)
 	{
-		m_checkBoxRect.setFillColor(fillColor); // Set the fill color to Blue if the box is checked
+		// Set the fill color to Blue if the box is checked
+		m_checkBoxRect.setFillColor(fillColor);
 	}
 	else
 	{
-		m_checkBoxRect.setFillColor(sf::Color::White); // Otherwise set the color White
+		// Otherwise set the color White
+		m_checkBoxRect.setFillColor(sf::Color::White);
 	}
 }
 
@@ -213,18 +228,18 @@ void CheckBox::setColors()
 {
 	if (m_state)
 	{
-		m_checkBoxRect.setFillColor(fillColor); // Otherwise set the color White
+		m_checkBoxRect.setFillColor(fillColor); 
 	}
 	else
 	{
-		m_checkBoxRect.setFillColor(sf::Color::White); // Set the fill color to Blue if the box is checked
+		m_checkBoxRect.setFillColor(sf::Color::White);
 	}
 	if (m_hasFocus)
 	{
-		m_checkBoxRect.setOutlineColor(focusColor); // Otherwise set the color to Magenta
+		m_checkBoxRect.setOutlineColor(focusColor);
 	}
 	else
 	{
-		m_checkBoxRect.setOutlineColor(noFocusColor); // Otherwise set the color to Magenta
+		m_checkBoxRect.setOutlineColor(noFocusColor);
 	}
 }
