@@ -5,11 +5,8 @@
 #include "ResourceManager.h"
 #include "LevelLoader.h"
 #include "Track.h"
-<<<<<<< 255f19abf3899f7864c4edad5d504f35bb1a01c5
 #include "Screens\ScreenManager.h"
-=======
 #include "Player.h"
->>>>>>> Added a functional player that can be controlled on the screen
 #include <iostream>
 
 class Game

@@ -31,7 +31,7 @@ void Racer::setCar()
 {
 	m_position.x = 300.f;
 	m_position.y = 300.f;
-	m_sprite.setTexture(g_resourceMgr.holder["CarTexture"]);
+	m_sprite.setTexture(g_resourceMgr.textureHolder["CarTexture"]);
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getGlobalBounds().width / 2.f, m_sprite.getGlobalBounds().height / 2.f));
 	m_acceleration = 200.f;
 	m_deceleration = 200.f;

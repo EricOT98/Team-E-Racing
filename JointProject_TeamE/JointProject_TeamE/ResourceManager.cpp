@@ -9,13 +9,10 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 {
 	try
 	{
-<<<<<<< 255f19abf3899f7864c4edad5d504f35bb1a01c5
 		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
 		fontHolder.acquire("GameFont", thor::Resources::fromFile<sf::Font>("Resources/arial.ttf"));
-=======
-		holder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Car.png"));
+		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Car.png"));
 		// -> Load more assets here etc
->>>>>>> Added a functional player that can be controlled on the screen
 
 		std::string s;
 
