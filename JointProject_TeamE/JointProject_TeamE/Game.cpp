@@ -87,7 +87,6 @@ void Game::render()
 		m_screenManager.render(m_window);
 		break;
 	case GameState::Play:
-		m_track.render(m_window);
 		break;
 	default:
 		break;
