@@ -3,16 +3,22 @@
 MainMenu::MainMenu()
 {
 	sf::Color focusColor = sf::Color::Red;
-	sf::Color nofocusColor = sf::Color::Red;
-	sf::Color fillColor = sf::Color::Red;
+	sf::Color nofocusColor = sf::Color::Magenta;
+	sf::Color fillColor = sf::Color::Blue;
 
 	// TODO(Darren): Take in screen width and height so i can do UI independent resolution
-	m_raceButton = new Button(focusColor, nofocusColor, fillColor, "Race!", nullptr, sf::Vector2f(400.0f, 100.0f));
-	m_upgradesButton = new Button(focusColor, nofocusColor, fillColor, "Upgrades", nullptr, sf::Vector2f(400.0f, 200.0f));
-	m_trophiesButton = new Button(focusColor, nofocusColor, fillColor, "Trophies", nullptr, sf::Vector2f(400.0f, 300.0f));
-	m_optionsButton = new Button(focusColor, nofocusColor, fillColor, "Options", nullptr, sf::Vector2f(400.0f, 400.0f));
-	m_creditsButton = new Button(focusColor, nofocusColor, fillColor, "Credits", nullptr, sf::Vector2f(400.0f, 500.0f));
-	m_exitButton = new Button(focusColor, nofocusColor, fillColor, "Exit", nullptr, sf::Vector2f(400.0f, 600.0f));
+	m_raceButton = new Button(focusColor, nofocusColor, fillColor, "Race!", nullptr, 
+		sf::Vector2f(400.0f, 50.0f), 18, 200.0f);
+	m_upgradesButton = new Button(focusColor, nofocusColor, fillColor, "Upgrades", nullptr, 
+		sf::Vector2f(400.0f, 150.0f), 18, 200.0f);
+	m_trophiesButton = new Button(focusColor, nofocusColor, fillColor, "Trophies", nullptr, 
+		sf::Vector2f(400.0f, 250.0f), 18, 200.0f);
+	m_optionsButton = new Button(focusColor, nofocusColor, fillColor, "Options", nullptr, 
+		sf::Vector2f(400.0f, 350.0f), 18, 200.0f);
+	m_creditsButton = new Button(focusColor, nofocusColor, fillColor, "Credits", nullptr, 
+		sf::Vector2f(400.0f, 450.0f), 18, 200.0f);
+	m_exitButton = new Button(focusColor, nofocusColor, fillColor, "Exit", nullptr, 
+		sf::Vector2f(400.0f, 550.0f), 18, 200.0f);
 
 	m_raceButton->promoteFocus();
 
@@ -37,14 +43,11 @@ MainMenu::MainMenu()
 	m_screenGUI.add(m_exitButton);
 }
 
-MainMenu::~MainMenu()
-{
-
-}
+MainMenu::~MainMenu() { }
 
 void MainMenu::update()
 {
-
+	m_screenGUI.update();
 }
 
 void MainMenu::render(sf::RenderWindow &window)

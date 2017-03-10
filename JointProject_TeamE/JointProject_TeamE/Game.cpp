@@ -3,7 +3,8 @@
 #define MS_PER_UPDATE 10.0
 
 Game::Game()
-	: m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default)
+	: m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default),
+		m_xboxController(CONTROLLER_ONE)
 {
 
 }
@@ -13,8 +14,8 @@ void Game::run()
 	LevelLoader::load(m_level);
 	g_resourceMgr.loadAssets(m_level);
 	m_track.setTrack(m_level);
-	carTexture = g_resourceMgr.holder["CarTexture"];
-	carSprite.setTexture(carTexture);
+
+	m_screenManager.init();
 
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
@@ -49,6 +50,8 @@ void Game::processEvents()
 		}
 		processGameEvents(event);
 	}
+
+	m_screenManager.processInput(m_xboxController);
 }
 
 void Game::processGameEvents(sf::Event& event)
@@ -63,6 +66,9 @@ void Game::update(double dt)
 {
 	switch (currentGameState)
 	{
+	case GameState::MainMenu:
+		m_screenManager.update();
+		break;
 	case GameState::Play:
 		break;
 	default:
@@ -73,11 +79,14 @@ void Game::update(double dt)
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
-	m_window.draw(carSprite);
-	m_track.render(m_window);
+	
 	switch (currentGameState)
 	{
+	case GameState::MainMenu:
+		m_screenManager.render(m_window);
+		break;
 	case GameState::Play:
+		m_track.render(m_window);
 		break;
 	default:
 		break;

@@ -14,8 +14,9 @@ Label::Label(const std::string& text, Widget* parent, unsigned int size, sf::Vec
 	widgetStartPos = startPos;
 	widgetEndPos = endPos;
 
-	// TODO(Darren): User resource manager to get font
-	//m_text.setFont(*g_resourceMgr.getGameFont()); // Set the font
+	m_font = g_resourceMgr.fontHolder["GameFont"];
+
+	m_text.setFont(m_font);
 	//Set the text attributes
 	setText(text);
 	setTextColor(sf::Color::White);

@@ -8,7 +8,7 @@
 
 #include <SFML\Graphics.hpp>
 #include "Widget.h"
-// TODO(Darren): Implement resource manager
+#include "..\ResourceManager.h"
 
 /// <summary>
 /// Label class used to draw Labels (Text) to the screen
@@ -30,6 +30,7 @@ public:
 private:
 	sf::FloatRect textRect;
 	sf::Text m_text;
+	sf::Font m_font;
 	float m_trueTextHeight;
 };
 

@@ -9,8 +9,8 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 {
 	try
 	{
-		holder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
-		// -> Load more assets here etc
+		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
+		fontHolder.acquire("GameFont", thor::Resources::fromFile<sf::Font>("Resources/arial.ttf"));
 
 		std::string s;
 
@@ -18,7 +18,7 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 		{
 			s = levelIn.m_textureDataVector.at(i).m_filename;
 			std::cout << s << levelIn.m_textureDataVector.size() << std::endl;
-			holder.acquire(levelIn.m_textureDataVector.at(i).m_textureName, thor::Resources::fromFile<sf::Texture>(levelIn.m_textureDataVector.at(i).m_filename));
+			textureHolder.acquire(levelIn.m_textureDataVector.at(i).m_textureName, thor::Resources::fromFile<sf::Texture>(levelIn.m_textureDataVector.at(i).m_filename));
 		}
 	}
 	catch (thor::ResourceLoadingException& e)

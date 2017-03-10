@@ -21,7 +21,7 @@ Obstacle::~Obstacle()
 /// </summary>
 void Obstacle::initialise(sf::Vector2f pos, int type)
 {
-	m_texture = g_resourceMgr.holder["Obstacles"];
+	m_texture = g_resourceMgr.textureHolder["Obstacles"];
 	m_sprite.setTexture(m_texture);
 	switch (type)
 	{

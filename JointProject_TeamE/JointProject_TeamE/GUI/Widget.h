@@ -22,7 +22,7 @@ public:
 	Widget(Widget *parent = nullptr);
 
 	virtual bool processInput(XboxController &controller);
-	virtual void update(int numFrames);
+	virtual void update();
 	virtual void updateShape();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

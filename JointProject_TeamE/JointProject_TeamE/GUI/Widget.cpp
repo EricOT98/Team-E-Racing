@@ -77,7 +77,7 @@ sf::Vector2f Widget::getEndPos()
 /// <summary>
 /// Updates the parent update method.
 /// </summary>
-void Widget::update(int numFrames)
+void Widget::update()
 {
 	if (m_parent)
 	{

@@ -142,6 +142,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Racer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SCREENMANAGER.CPP" />
+    <ClCompile Include="Screens\ScreenManager.cpp" />
     <ClCompile Include="Screens\MainMenu.cpp" />
     <ClCompile Include="Screens\Screen.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -164,6 +166,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Racer.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Screens\ScreenManager.h" />
     <ClInclude Include="Screens\MainMenu.h" />
     <ClInclude Include="Screens\Screen.h" />
     <ClInclude Include="Tile.h" />

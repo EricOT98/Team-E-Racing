@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "LevelLoader.h"
 #include "Track.h"
+#include "Screens\ScreenManager.h"
 #include <iostream>
 
 class Game
@@ -21,17 +22,19 @@ protected:
 
 	sf::RenderWindow m_window;
 
+	ScreenManager m_screenManager;
+	XboxController m_xboxController;
+
 	enum class GameState
 	{
+		MainMenu,
 		Play
 	};
 
-	GameState currentGameState = GameState::Play;
+	GameState currentGameState = GameState::MainMenu;
 	LevelData m_level;
 
-	sf::Texture carTexture;
 	Track m_track;
-	sf::Sprite carSprite;
 };
 
 #endif
