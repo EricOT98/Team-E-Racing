@@ -9,7 +9,7 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 {
 	try
 	{
-		holder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
+		holder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Car.png"));
 		// -> Load more assets here etc
 
 		std::string s;

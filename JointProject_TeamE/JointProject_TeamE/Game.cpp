@@ -3,7 +3,9 @@
 #define MS_PER_UPDATE 10.0
 
 Game::Game()
-	: m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default)
+	: m_window(sf::VideoMode(900, 600, 32), "Joint Project Team E", sf::Style::Default),
+	m_controller(CONTROLLER_ONE),
+	m_player(m_controller)
 {
 
 }
@@ -15,6 +17,7 @@ void Game::run()
 	m_track.setTrack(m_level);
 	carTexture = g_resourceMgr.holder["CarTexture"];
 	carSprite.setTexture(carTexture);
+	m_player.setCar();
 
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
@@ -64,6 +67,7 @@ void Game::update(double dt)
 	switch (currentGameState)
 	{
 	case GameState::Play:
+		m_player.update(dt);
 		break;
 	default:
 		break;
@@ -75,6 +79,7 @@ void Game::render()
 	m_window.clear(sf::Color(0, 0, 0, 0));
 	m_window.draw(carSprite);
 	m_track.render(m_window);
+	m_player.render(m_window);
 	switch (currentGameState)
 	{
 	case GameState::Play:

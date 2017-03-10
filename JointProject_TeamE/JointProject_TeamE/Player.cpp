@@ -3,7 +3,7 @@
 /// <summary>
 /// Default constructor for the player object
 /// </summary>
-Player::Player()
+Player::Player(XboxController & controllerIn) : m_controller(controllerIn)
 {
 }
 
@@ -24,31 +24,24 @@ void Player::initialise()
 /// <summary>
 /// Update the players car and race position
 /// </summary>
-void Player::update()
+void Player::update(float dt)
 {
+	if (m_controller.getRightStick().x > 20)
+	{
+		turnRight(dt / 1000.f);
+	}
+	else if (m_controller.getRightStick().x < -20)
+	{
+		turnLeft(dt / 1000.f);
+	}
+	if (m_controller.getLeftTrigger() > 30)
+	{
+		decelerate(dt / 1000.f);
+	}
+	else if (m_controller.getRightTrigger() < -30)
+	{
+		accelerate(dt / 1000.f);
+	}
+	calMovement(dt / 1000.f);
 }
 
-/// <summary>
-/// Render the players car and name
-/// </summary>
-/// <param name="window"></param>
-void Player::render(sf::RenderWindow & window)
-{
-}
-
-/// <summary>
-/// Process input from the player to control the car
-/// </summary>
-/// <param name="e"></param>
-void Player::processInput(sf::Event & e)
-{
-}
-
-/// <summary>
-/// Sets the players position in the race order ie 1st,2nd etc
-/// </summary>
-/// <param name="pos"></param>
-void Player::setRacePosition(int pos)
-{
-	m_racePosition = pos;
-}

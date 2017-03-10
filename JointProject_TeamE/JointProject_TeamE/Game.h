@@ -5,6 +5,7 @@
 #include "ResourceManager.h"
 #include "LevelLoader.h"
 #include "Track.h"
+#include "Player.h"
 #include <iostream>
 
 class Game
@@ -29,9 +30,12 @@ protected:
 	GameState currentGameState = GameState::Play;
 	LevelData m_level;
 
+	XboxController m_controller;
 	sf::Texture carTexture;
 	Track m_track;
 	sf::Sprite carSprite;
+	Player m_player;
+	
 };
 
 #endif
