@@ -24,6 +24,7 @@
     <ClCompile Include="Screens\MainMenu.cpp" />
     <ClCompile Include="Screens\Screen.cpp" />
     <ClCompile Include="Screens\Options.cpp" />
+    <ClCompile Include="Screens\SoundOptions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -48,5 +49,6 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Track.h" />
     <ClInclude Include="Screens\Options.h" />
+    <ClInclude Include="Screens\SoundOptions.h" />
   </ItemGroup>
 </Project>

@@ -15,10 +15,9 @@
 /// <param name="sliderHeight">Height of the slider</param>
 /// <param name="startPos">The start position of the transition</param>
 /// <param name="endPos">The end position of the transition</param>
-Slider::Slider(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, sf::Sound &selectSoundIn, std::string& text, Widget* parent, sf::Vector2f &position, int characterSize, float sliderWidth,
+Slider::Slider(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, const std::string& text, Widget* parent, sf::Vector2f &position, int characterSize, float sliderWidth,
 	float sliderHeight, sf::Vector2f &startPos, sf::Vector2f &endPos)
 	: Label(text, parent, characterSize), m_barBaseWidth(sliderWidth), m_barSize(m_barBaseWidth), m_barBaseHeight(sliderHeight), 
-	selectSound(selectSoundIn), 
 	focusColor(focusColorIn),
 	noFocusColor(noFocusColorIn),
 	fillColor(fillColorIn)
@@ -122,7 +121,6 @@ bool Slider::processInput(XboxController &controller)
 		{
 			if (m_up != nullptr)
 			{
-				selectSound.play();
 				// Set the button above *this to be in focus
 				m_up->promoteFocus();
 				// Set the slider to be out of focus
@@ -136,7 +134,6 @@ bool Slider::processInput(XboxController &controller)
 		{
 			if (m_down != nullptr)
 			{
-				selectSound.play();
 				m_down->promoteFocus();
 				demoteFocus();
 				return true;

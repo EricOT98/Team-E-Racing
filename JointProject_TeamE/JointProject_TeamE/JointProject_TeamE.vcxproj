@@ -144,6 +144,7 @@
     <ClCompile Include="Racer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Screens\ScreenManager.cpp" />
+    <ClCompile Include="Screens\SoundOptions.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Track.cpp" />
     <ClCompile Include="Screens\MainMenu.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Screens\ScreenManager.h" />
     <ClInclude Include="Screens\MainMenu.h" />
     <ClInclude Include="Screens\Screen.h" />
+    <ClInclude Include="Screens\SoundOptions.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Track.h" />
   </ItemGroup>
