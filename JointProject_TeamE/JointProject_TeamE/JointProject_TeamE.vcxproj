@@ -137,6 +137,7 @@
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtility.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="Input\XboxController.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MathUtility.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ResourceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

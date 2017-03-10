@@ -4,6 +4,7 @@
 #include <SFML\Graphics.hpp>
 #include "ResourceManager.h"
 #include "LevelLoader.h"
+#include "Obstacle.h"
 #include <iostream>
 
 class Game

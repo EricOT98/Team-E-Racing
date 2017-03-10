@@ -10,6 +10,7 @@ void ResourceManager::loadAssets()
 	try
 	{
 		holder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
+		holder.acquire("Obstacles", thor::Resources::fromFile<sf::Texture>("Resources/objects.png"));
 		// -> Load more assets here etc
 	}
 	catch (thor::ResourceLoadingException& e)
