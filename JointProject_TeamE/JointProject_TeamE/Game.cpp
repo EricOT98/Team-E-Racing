@@ -3,15 +3,16 @@
 #define MS_PER_UPDATE 10.0
 
 Game::Game()
- : m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default)
+	: m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default)
 {
-	
+
 }
 
 void Game::run()
- {
-	g_resourceMgr.loadAssets();
-
+{
+	LevelLoader::load(m_level);
+	g_resourceMgr.loadAssets(m_level);
+	m_track.setTrack(m_level);
 	carTexture = g_resourceMgr.holder["CarTexture"];
 	carSprite.setTexture(carTexture);
 
@@ -20,21 +21,20 @@ void Game::run()
 	sf::Clock clock;
 	timeSinceLastUpdate = clock.restart();
 
-	LevelLoader::load(m_level);
 	std::cout << m_level.m_playerData.position.x << ", " << m_level.m_playerData.position.y << std::endl;
-	
-		while (m_window.isOpen())
-		{
+
+	while (m_window.isOpen())
+	{
 		processEvents();
-		
+
 		timeSinceLastUpdate += clock.restart();
-	    if (timeSinceLastUpdate > timePerFrame)
+		if (timeSinceLastUpdate > timePerFrame)
 		{
 			update(timeSinceLastUpdate.asMilliseconds());
 			timeSinceLastUpdate = sf::Time::Zero;
 		}
-		
-			render();
+
+		render();
 	}
 }
 
@@ -52,7 +52,7 @@ void Game::processEvents()
 }
 
 void Game::processGameEvents(sf::Event& event)
- {
+{
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		m_window.close();
@@ -74,6 +74,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
 	m_window.draw(carSprite);
+	m_track.render(m_window);
 	switch (currentGameState)
 	{
 	case GameState::Play:

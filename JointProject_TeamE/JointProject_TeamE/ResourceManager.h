@@ -8,8 +8,9 @@
 
 #include <Thor\Resources.hpp>
 #include <SFML\Graphics.hpp>
+#include "LevelLoader.h"
 #include <iostream>
- 
+
 /// Handles all loading and retrieval of assets
 /// 
 /// Handles all loading and retrieval of assets using 
@@ -17,7 +18,7 @@
 class ResourceManager
 {
 public:
-	void loadAssets();
+	void loadAssets(LevelData & levelIn);
 	thor::ResourceHolder<sf::Texture, std::string> holder;
 };
 
