@@ -3,7 +3,7 @@
 /// <summary>
 /// Empty Default Constructor function
 /// </summary>
-CheckBox::CheckBox() : Label("", nullptr), selectSound(sf::Sound()) , focusColor(sf::Color()), noFocusColor(sf::Color()), fillColor(sf::Color()) {}
+CheckBox::CheckBox() : Label("", nullptr), focusColor(sf::Color()), noFocusColor(sf::Color()), fillColor(sf::Color()) {}
 
 /// <summary>
 /// Constructor function for the CheckBox class
@@ -20,10 +20,9 @@ CheckBox::CheckBox() : Label("", nullptr), selectSound(sf::Sound()) , focusColor
 /// <param name="boxHeight">Height of the Check Box</param>
 /// <param name="startPos">The start position of the transition</param>
 /// <param name="endPos">The end position of the transition</param>
-CheckBox::CheckBox(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, sf::Sound &selectSoundIn, const std::string & textIn, Widget * parent, sf::Vector2f & positionIn, int characterSize,
+CheckBox::CheckBox(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, const std::string & textIn, Widget * parent, sf::Vector2f & positionIn, int characterSize,
 		float boxWidth, float boxHeight, sf::Vector2f &startPos, sf::Vector2f &endPos) 
 	: Label(textIn, parent, characterSize),
-	selectSound(selectSoundIn),
 	focusColor(focusColorIn),
 	noFocusColor(noFocusColorIn),
 	fillColor(fillColorIn)
@@ -80,8 +79,6 @@ bool CheckBox::processInput(XboxController & controller)
 		{
 			if (m_up != nullptr)
 			{
-				// Play the sound when this event occurs
-				selectSound.play();
 				// Set the button above *this to be in focus
 				m_up->promoteFocus();
 				// Set the check box to be out of focus
@@ -99,7 +96,6 @@ bool CheckBox::processInput(XboxController & controller)
 		{
 			if (m_down != nullptr)
 			{
-				selectSound.play();
 				m_down->promoteFocus();
 				demoteFocus();
 				try
@@ -115,7 +111,6 @@ bool CheckBox::processInput(XboxController & controller)
 		{
 			if (m_left != nullptr)
 			{
-				selectSound.play();
 				m_left->promoteFocus();
 				demoteFocus();
 				try
@@ -131,7 +126,6 @@ bool CheckBox::processInput(XboxController & controller)
 		{
 			if (m_right != nullptr)
 			{
-				selectSound.play();
 				m_right->promoteFocus();
 				demoteFocus();
 				try
@@ -145,7 +139,6 @@ bool CheckBox::processInput(XboxController & controller)
 		else if (controller.isButtonPressed(XBOX360_A)
 			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
-			selectSound.play();
 			// Change the state of the checkbox
 			switchState();
 			try

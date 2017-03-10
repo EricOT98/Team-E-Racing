@@ -57,8 +57,16 @@ MainMenu::~MainMenu()
 
 void MainMenu::update()
 {
-	if(m_raceButton->pressed)
+	if (m_raceButton->pressed)
+	{
 		m_screenGUI.transitionOut(0.03f, m_interpolation);
+
+		if (m_interpolation >= 1.0f)
+		{
+			// TODO(Darren): Change next game state here
+			m_interpolation = 0.0f;
+		}
+	}
 
 	m_screenGUI.update();
 }

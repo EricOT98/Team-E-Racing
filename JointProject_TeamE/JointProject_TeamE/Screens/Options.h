@@ -14,7 +14,7 @@
 /// A menu displaying all the options avaible for the player
 /// 
 /// The Options screen handles all the neccesary widgets on screen
-/// and updates the play input and screen navigation.
+/// and updates the player input and screen navigation.
 class Options : Screen
 {
 public:

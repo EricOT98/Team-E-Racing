@@ -19,7 +19,7 @@
 class Slider : public Label
 {
 public:
-	Slider(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, sf::Sound &selectSoundIn,  std::string& text, Widget* parent, sf::Vector2f &position, int characerSize = 18.0f, float sliderWidth = 100.0f,
+	Slider(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, const std::string& text, Widget* parent, sf::Vector2f &position, int characerSize = 18.0f, float sliderWidth = 100.0f,
 		float sliderHeight = 15.0f, sf::Vector2f &startPos = sf::Vector2f(), sf::Vector2f &endPos = sf::Vector2f());
 	bool processInput(XboxController & controller);
 	virtual void setPosition(sf::Vector2f &position) override;
@@ -42,11 +42,9 @@ private:
 	float m_barBaseHeight;
 	float m_barSize;
 
-	//Sound and cColor references
-	sf::Sound &selectSound;
-	sf::Color &focusColor;
-	sf::Color &noFocusColor;
-	sf::Color &fillColor;
+	sf::Color focusColor;
+	sf::Color noFocusColor;
+	sf::Color fillColor;
 };
 
 #endif
