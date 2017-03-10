@@ -5,7 +5,11 @@
 #include "ResourceManager.h"
 #include "LevelLoader.h"
 #include "Track.h"
+<<<<<<< 255f19abf3899f7864c4edad5d504f35bb1a01c5
 #include "Screens\ScreenManager.h"
+=======
+#include "Player.h"
+>>>>>>> Added a functional player that can be controlled on the screen
 #include <iostream>
 
 class Game
@@ -34,7 +38,16 @@ protected:
 	GameState currentGameState = GameState::MainMenu;
 	LevelData m_level;
 
+<<<<<<< 255f19abf3899f7864c4edad5d504f35bb1a01c5
 	Track m_track;
+=======
+	XboxController m_controller;
+	sf::Texture carTexture;
+	Track m_track;
+	sf::Sprite carSprite;
+	Player m_player;
+	
+>>>>>>> Added a functional player that can be controlled on the screen
 };
 
 #endif

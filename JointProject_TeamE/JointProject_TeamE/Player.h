@@ -17,23 +17,20 @@
 
 #include <SFML\Graphics.hpp>
 #include <iostream>
-
 #include "Racer.h"
+#include "Input\XboxController.h"
 
 class Player : public Racer
 {
 public:
-	Player();
+	Player(XboxController & controllerIn);
 	~Player();
 	void initialise();
-	void update() override;
-	void render(sf::RenderWindow & window) override;
-	void processInput(sf::Event &e) override;
-
-	void setRacePosition(int pos);
+	void update(float dt) override;
 protected:
 	int m_racePosition;
 	bool m_alive;
+	XboxController & m_controller;
 };
 
 #endif
