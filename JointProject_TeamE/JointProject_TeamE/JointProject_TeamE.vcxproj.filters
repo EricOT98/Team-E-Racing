@@ -54,14 +54,10 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< 5724421ff56bc58a9b769b065606bdf707fc0971
     <ClCompile Include="Obstacle.cpp">
-=======
+       <Filter>Source Files</Filter>
+	</ClCompile>
     <ClCompile Include="Screens\Screen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Screens\MainMenu.cpp">
->>>>>>> Implemented the basis of the Main Menu containing the GUI widgets
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Car.cpp">
@@ -117,14 +113,13 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< 5724421ff56bc58a9b769b065606bdf707fc0971
     <ClInclude Include="Obstacle.h">
-=======
+    	<Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Screens\Screen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screens\MainMenu.h">
->>>>>>> Implemented the basis of the Main Menu containing the GUI widgets
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Car.h">
