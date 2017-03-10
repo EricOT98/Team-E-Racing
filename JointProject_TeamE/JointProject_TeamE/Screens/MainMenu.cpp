@@ -6,19 +6,21 @@ MainMenu::MainMenu()
 	sf::Color nofocusColor = sf::Color::Magenta;
 	sf::Color fillColor = sf::Color::Blue;
 
+	sf::Vector2f endTranstionPos = sf::Vector2f(1400.0f, 400.0f);
+
 	// TODO(Darren): Take in screen width and height so i can do UI independent resolution
 	m_raceButton = new Button(focusColor, nofocusColor, fillColor, "Race!", nullptr, 
-		sf::Vector2f(400.0f, 50.0f), 18, 200.0f);
+		sf::Vector2f(400.0f, 50.0f), 18, 200.0f, 40.0f, sf::Vector2f(400.0f, 50.0f), endTranstionPos);
 	m_upgradesButton = new Button(focusColor, nofocusColor, fillColor, "Upgrades", nullptr, 
-		sf::Vector2f(400.0f, 150.0f), 18, 200.0f);
+		sf::Vector2f(400.0f, 150.0f), 18, 200.0f, 40.0f, sf::Vector2f(400.0f, 150.0f), endTranstionPos);
 	m_trophiesButton = new Button(focusColor, nofocusColor, fillColor, "Trophies", nullptr, 
-		sf::Vector2f(400.0f, 250.0f), 18, 200.0f);
+		sf::Vector2f(400.0f, 250.0f), 18, 200.0f, 40.0f, sf::Vector2f(400.0f, 250.0f), endTranstionPos);
 	m_optionsButton = new Button(focusColor, nofocusColor, fillColor, "Options", nullptr, 
-		sf::Vector2f(400.0f, 350.0f), 18, 200.0f);
-	m_creditsButton = new Button(focusColor, nofocusColor, fillColor, "Credits", nullptr, 
-		sf::Vector2f(400.0f, 450.0f), 18, 200.0f);
+		sf::Vector2f(400.0f, 350.0f), 18, 200.0f, 40.0f, sf::Vector2f(400.0f, 350.0f), endTranstionPos);
+	m_creditsButton = new Button(focusColor, nofocusColor, fillColor, "Credits", nullptr,
+		sf::Vector2f(400.0f, 450.0f), 18, 200.0f, 40.0f, sf::Vector2f(400.0f, 450.0f), endTranstionPos);
 	m_exitButton = new Button(focusColor, nofocusColor, fillColor, "Exit", nullptr, 
-		sf::Vector2f(400.0f, 550.0f), 18, 200.0f);
+		sf::Vector2f(400.0f, 550.0f), 18, 200.0f, 40.0f, sf::Vector2f(400.0f, 550.0f), endTranstionPos);
 
 	m_raceButton->promoteFocus();
 
@@ -47,6 +49,9 @@ MainMenu::~MainMenu() { }
 
 void MainMenu::update()
 {
+	if(m_raceButton->pressed)
+		m_screenGUI.transitionOut(0.03f, m_interpolation);
+
 	m_screenGUI.update();
 }
 

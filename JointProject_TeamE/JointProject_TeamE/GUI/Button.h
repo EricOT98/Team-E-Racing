@@ -28,6 +28,7 @@ public:
 	// Callback function to link to external functions
 	typedef std::function<void()> Callback;
 	Callback select;
+	bool pressed;
 private:
 	sf::RectangleShape m_buttonRect;
 	// Buffer for increasing the edge of the button slightly

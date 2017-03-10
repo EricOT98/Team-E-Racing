@@ -33,6 +33,8 @@ private:
 	Button *m_optionsButton;
 	Button *m_creditsButton;
 	Button *m_exitButton;
+
+	float m_interpolation;
 };
 
 #endif 

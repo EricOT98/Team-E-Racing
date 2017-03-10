@@ -117,8 +117,10 @@ bool Button::processInput(XboxController & controller)
 			if (controller.isButtonPressed(XBOX360_A)
 				|| sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
+				pressed = true;
 				// Call the callback function
 				select();
+
 				return true;
 			}
 		}
