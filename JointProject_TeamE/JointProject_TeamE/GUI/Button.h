@@ -18,8 +18,8 @@
 class Button : public Label 
 {
 public:
-	Button(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, sf::Sound &selectSoundIn, 
-		const std::string & textIn, Widget * parent, sf::Vector2f & positionIn, int characterSize = 18.f, float buttonWidth = 100.f, 
+	Button(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, 
+		const std::string & textIn, Widget * parent, sf::Vector2f & positionIn, int characterSize = 18.f, float buttonWidth = 100.f,
 		float buttonHeight = 40.f, sf::Vector2f &startPos = sf::Vector2f(), sf::Vector2f &endPos = sf::Vector2f());
 	bool processInput(XboxController & xboxController);
 	virtual void setPosition(sf::Vector2f &position) override;
@@ -33,7 +33,6 @@ private:
 	// Buffer for increasing the edge of the button slightly
 	const int BUTTON_BUFFER = 15;
 	// Assets
-	sf::Sound &selectSound;
 	sf::Color &focusColor;
 	sf::Color &noFocusColor;
 	sf::Color &fillColor;

@@ -15,9 +15,8 @@
 /// <param name="buttonHeight">Height of the button rectangle (Maybe overrided in contructor of unsuitable)</param>
 /// <param name="startPos">The start position of the transition</param>
 /// <param name="endPos">The end position of the transition</param>
-Button::Button(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, sf::Sound &selectSoundIn, const std::string & textIn, Widget * parent, sf::Vector2f &positionIn, int characterSize, float buttonWidth, float buttonHeight, sf::Vector2f &startPos, sf::Vector2f &endPos)
+Button::Button(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, const std::string & textIn, Widget * parent, sf::Vector2f &positionIn, int characterSize, float buttonWidth, float buttonHeight, sf::Vector2f &startPos, sf::Vector2f &endPos)
 	: Label(textIn, parent, characterSize),
-	selectSound(selectSoundIn),
 	focusColor(focusColorIn),
 	noFocusColor(noFocusColorIn),
 	fillColor(fillColorIn)
@@ -74,7 +73,6 @@ bool Button::processInput(XboxController & controller)
 		{
 			if (m_up != nullptr)
 			{
-				selectSound.play();
 				// Set the button above *this to be in focus
 				m_up->promoteFocus();
 				demoteFocus(); // Set the button to be out of focus
@@ -86,7 +84,6 @@ bool Button::processInput(XboxController & controller)
 		{
 			if (m_down != nullptr)
 			{
-				selectSound.play();
 				m_down->promoteFocus();
 				demoteFocus();
 				return true;
@@ -97,7 +94,6 @@ bool Button::processInput(XboxController & controller)
 		{
 			if (m_left != nullptr)
 			{
-				selectSound.play();
 				// Set the button above *this to be in focus
 				m_left->promoteFocus();
 				// Set the button to be out of focus
@@ -110,7 +106,6 @@ bool Button::processInput(XboxController & controller)
 		{
 			if (m_right != nullptr)
 			{
-				selectSound.play();
 				m_right->promoteFocus();
 				demoteFocus();
 				return true;

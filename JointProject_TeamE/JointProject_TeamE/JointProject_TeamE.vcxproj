@@ -144,6 +144,8 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Track.cpp" />
+    <ClCompile Include="Screens\MainMenu.cpp" />
+    <ClCompile Include="Screens\Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -164,6 +166,8 @@
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Track.h" />
+    <ClInclude Include="Screens\MainMenu.h" />
+    <ClInclude Include="Screens\Screen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
