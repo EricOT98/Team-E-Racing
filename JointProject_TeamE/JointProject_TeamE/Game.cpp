@@ -7,7 +7,6 @@ Game::Game()
 	m_xboxController(CONTROLLER_ONE),
 	m_player(m_xboxController)
 {
-
 }
 
 void Game::run()

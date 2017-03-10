@@ -9,7 +9,6 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 {
 	try
 	{
-		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/TestRacer.png"));
 		fontHolder.acquire("GameFont", thor::Resources::fromFile<sf::Font>("Resources/arial.ttf"));
 		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Car.png"));
 		// -> Load more assets here etc
