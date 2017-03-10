@@ -142,12 +142,11 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Racer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="SCREENMANAGER.CPP" />
-    <ClCompile Include="Screens\ScreenManager.cpp" />
-    <ClCompile Include="Screens\MainMenu.cpp" />
-    <ClCompile Include="Screens\Screen.cpp" />
+  <ClCompile Include="Screens\ScreenManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Track.cpp" />
+    <ClCompile Include="Screens\MainMenu.cpp" />
+    <ClCompile Include="Screens\Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />

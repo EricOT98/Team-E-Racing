@@ -67,6 +67,14 @@
     <ClCompile Include="Screens\Screen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Screens\MainMenu.cpp">
+>>>>>>> Implemented the basis of the Main Menu containing the GUI widgets
+<<<<<<< HEAD
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> game_screens
     <ClCompile Include="Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -80,6 +88,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Track.cpp">
+=======
+>>>>>>> 73b3cf4bd24ec8d684de2bd30374e4e0b54ee3d0
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -127,6 +137,11 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screens\MainMenu.h">
+<<<<<<< HEAD
+=======
+>>>>>>> Implemented the basis of the Main Menu containing the GUI widgets
+<<<<<<< HEAD
+>>>>>>> game_screens
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Car.h">
@@ -142,6 +157,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Track.h">
+=======
+>>>>>>> 73b3cf4bd24ec8d684de2bd30374e4e0b54ee3d0
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
