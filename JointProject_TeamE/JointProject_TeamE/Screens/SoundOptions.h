@@ -23,7 +23,7 @@ class SoundOptions : Screen
 public:
 	SoundOptions();
 	~SoundOptions();
-
+	
 	void update();
 	void render(sf::RenderWindow &window);
 	void processInput(XboxController &controller);
