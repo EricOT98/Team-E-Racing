@@ -45,7 +45,15 @@ MainMenu::MainMenu()
 	m_screenGUI.add(m_exitButton);
 }
 
-MainMenu::~MainMenu() { }
+MainMenu::~MainMenu() 
+{ 
+	delete m_raceButton;
+	delete m_upgradesButton;
+	delete m_trophiesButton;
+	delete m_optionsButton;
+	delete m_creditsButton;
+	delete m_exitButton;
+}
 
 void MainMenu::update()
 {

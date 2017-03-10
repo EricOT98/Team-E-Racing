@@ -2,6 +2,7 @@
 #define SCREEN_MANAGER_H
 
 #include "MainMenu.h"
+#include "Options.h"
 
 class ScreenManager
 {
@@ -16,6 +17,7 @@ public:
 
 private:
 	MainMenu *m_mainMenu;
+	Options *m_optionsMenu;
 };
 
 #endif

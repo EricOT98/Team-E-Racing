@@ -139,10 +139,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtility.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="Screens\Options.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Racer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-  <ClCompile Include="Screens\ScreenManager.cpp" />
+    <ClCompile Include="Screens\ScreenManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Track.cpp" />
     <ClCompile Include="Screens\MainMenu.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Racer.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Screens\Options.h" />
     <ClInclude Include="Screens\ScreenManager.h" />
     <ClInclude Include="Screens\MainMenu.h" />
     <ClInclude Include="Screens\Screen.h" />

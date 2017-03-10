@@ -1,6 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GUI\Button.cpp" />
+    <ClCompile Include="GUI\CheckBox.cpp" />
+    <ClCompile Include="GUI\Gui.cpp" />
+    <ClCompile Include="GUI\Label.cpp" />
+    <ClCompile Include="GUI\RadioButton.cpp" />
+    <ClCompile Include="GUI\Slider.cpp" />
+    <ClCompile Include="GUI\Widget.cpp" />
+    <ClCompile Include="Input\XboxController.cpp" />
+    <ClCompile Include="LevelLoader.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathUtility.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Racer.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Screens\ScreenManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Track.cpp" />
+    <ClCompile Include="Screens\MainMenu.cpp" />
+    <ClCompile Include="Screens\Screen.cpp" />
+    <ClCompile Include="Screens\Options.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="Car.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GUI\Button.h" />
@@ -17,149 +42,11 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Racer.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Screens\ScreenManager.h" />
     <ClInclude Include="Screens\MainMenu.h" />
     <ClInclude Include="Screens\Screen.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Track.h" />
-    <ClInclude Include="Screens\ScreenManager.h" />
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input\XboxController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI\Widget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI\Label.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI\Slider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI\CheckBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI\RadioButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtility.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI\Gui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI\Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
-       <Filter>Source Files</Filter>
-	</ClCompile>
-    <ClCompile Include="Screens\Screen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-=======
-    <ClCompile Include="Screens\MainMenu.cpp">
->>>>>>> Implemented the basis of the Main Menu containing the GUI widgets
-<<<<<<< HEAD
-      <Filter>Source Files</Filter>
-    </ClCompile>
->>>>>>> game_screens
-    <ClCompile Include="Car.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Racer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Track.cpp">
-=======
->>>>>>> 73b3cf4bd24ec8d684de2bd30374e4e0b54ee3d0
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input\XboxController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI\Widget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI\Label.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI\Slider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI\CheckBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI\RadioButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MathUtility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI\Gui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI\Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstacle.h">
-    	<Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Screens\Screen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Screens\MainMenu.h">
-<<<<<<< HEAD
-=======
->>>>>>> Implemented the basis of the Main Menu containing the GUI widgets
-<<<<<<< HEAD
->>>>>>> game_screens
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Car.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Racer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Track.h">
-=======
->>>>>>> 73b3cf4bd24ec8d684de2bd30374e4e0b54ee3d0
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Screens\Options.h" />
   </ItemGroup>
 </Project>
