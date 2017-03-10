@@ -1,3 +1,64 @@
 player:
    x: 850
    y: 100
+totaltiles: 3
+tiles:
+  - texturestring: curve
+    index: {x: 0, y: 0}
+    rotation: 0
+  - texturestring: straight
+    index: {x: 1, y: 0}
+    rotation: -90
+  - texturestring: straight
+    index: {x: 2, y: 0}
+    rotation: -90
+  - texturestring: curve
+    index: {x: 3, y: 0}
+    rotation: 90
+  - texturestring: straight
+    index: {x: 0, y: 1}
+    rotation: 180
+  - texturestring: demo
+    index: {x: 1, y: 1}
+    rotation: 0
+  - texturestring: demo
+    index: {x: 2, y: 1}
+    rotation: 0
+  - texturestring: straight
+    index: {x: 3, y: 1}
+    rotation: 0
+  - texturestring: straight
+    index: {x: 0, y: 2}
+    rotation: 180
+  - texturestring: demo
+    index: {x: 1, y: 2}
+    rotation: 0
+  - texturestring: demo
+    index: {x: 2, y: 2}
+    rotation: 0
+  - texturestring: straight
+    index: {x: 3, y: 2}
+    rotation: 0
+  - texturestring: curve
+    index: {x: 0, y: 3}
+    rotation: -90
+  - texturestring: straight
+    index: {x: 1, y: 3}
+    rotation: 90
+  - texturestring: straight
+    index: {x: 2, y: 3}
+    rotation: 90
+  - texturestring: curve
+    index: {x: 3, y: 3}
+    rotation: 180
+textures:
+  - filepath: sprite.jpg
+    string: testsprite1
+  - filepath: sprite_2.png
+    string: testsprite2
+  - filepath: curve.png
+    string: curve
+  - filepath: straight.png
+    string: straight
+  - filepath: demo.png
+    string: demo
