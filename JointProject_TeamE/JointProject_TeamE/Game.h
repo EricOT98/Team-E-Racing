@@ -35,9 +35,13 @@ protected:
 	GameState currentGameState = GameState::MainMenu;
 	LevelData m_level;
 
+<<<<<<< HEAD
 	sf::Texture carTexture;
 	Track m_track;
 	sf::Sprite carSprite;
+=======
+	Track m_track;
+>>>>>>> 780c95c1f320c78d62293bee5b0c4c011ea71c8d
 	Player m_player;
 };
 

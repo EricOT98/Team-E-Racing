@@ -15,8 +15,6 @@ void Game::run()
 	g_resourceMgr.loadAssets(m_level);
 	m_track.setTrack(m_level);
 	m_screenManager.init();
-	carTexture = g_resourceMgr.textureHolder["CarTexture"];
-	carSprite.setTexture(carTexture);
 	m_player.setCar();
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
@@ -81,7 +79,6 @@ void Game::update(double dt)
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
-	m_window.draw(carSprite);
 	m_track.render(m_window);
 	m_player.render(m_window);
 	switch (currentGameState)

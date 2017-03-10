@@ -11,7 +11,6 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 	{
 		fontHolder.acquire("GameFont", thor::Resources::fromFile<sf::Font>("Resources/arial.ttf"));
 		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Car.png"));
-		// -> Load more assets here etc
 
 		std::string s;
 
