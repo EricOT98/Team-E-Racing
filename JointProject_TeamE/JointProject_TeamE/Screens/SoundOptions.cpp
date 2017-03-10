@@ -18,7 +18,7 @@ SoundOptions::SoundOptions()
 		22, 40.0f, 40.0f, sf::Vector2f(400.0f, 400.0f), endTranstionPos);
 	m_backButton = new Button(focusColor, nofocusColor, fillColor, "Back", nullptr, sf::Vector2f(400.0f, 500.0f),
 		18, 200.0f, 40.0f, sf::Vector2f(400.0f, 500.0f), endTranstionPos);
-	
+
 	m_musicSlider->promoteFocus();
 
 	m_musicSlider->m_up = m_backButton;
