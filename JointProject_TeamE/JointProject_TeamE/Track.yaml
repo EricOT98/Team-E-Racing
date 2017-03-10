@@ -51,6 +51,23 @@ tiles:
   - texturestring: curve
     index: {x: 3, y: 3}
     rotation: 180
+obstacles:
+  - texturestring: objects
+    texturerect: {left: 585, top: 345, width: 50, height: 50}
+    position: {x: 200, y: 200}
+    type: 0
+  - texturestring: objects
+    position: {x: 300, y: 200}
+    texturerect: {left: 265, top: 320, width: 55, height: 50}
+    type: 1
+  - texturestring: objects
+    position: {x: 400, y: 200}
+    texturerect: {left: 635, top: 420, width: 45, height: 40}
+    type: 2
+  - texturestring: objects
+    position: {x: 500, y: 200}
+    texturerect: {left: 265, top: 320, width: 55, height: 50}
+    type: 0
 textures:
   - filepath: sprite.jpg
     string: testsprite1
@@ -62,3 +79,5 @@ textures:
     string: straight
   - filepath: demo.png
     string: demo
+  - filepath: objects.png
+    string: objects

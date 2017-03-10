@@ -8,6 +8,23 @@ void operator >> (const YAML::Node &textureNode, TextureData &texture)
 	std::cout << texture.m_filename << " - " << texture.m_textureName << std::endl;
 }
 
+/// <summary>
+/// Overloaded operator to allow loading of obstacles
+/// </summary>
+/// <param name="obstacleNode"> The obstacle node in YAML file</param>
+/// <param name="obstacle">Obstacle object created to push back to the vector</param>
+void operator >> (const YAML::Node &obstacleNode, ObstacleData & obstacle)
+{
+	obstacle.m_textureString = obstacleNode["texturestring"].as<std::string>();
+	obstacle.m_type = obstacleNode["type"].as<int>();
+	obstacle.m_position.x = obstacleNode["position"]["x"].as<float>();
+	obstacle.m_position.y = obstacleNode["position"]["y"].as<float>();
+	obstacle.m_textureRect.left = obstacleNode["texturerect"]["left"].as<int>();
+	obstacle.m_textureRect.top = obstacleNode["texturerect"]["top"].as<int>();
+	obstacle.m_textureRect.width = obstacleNode["texturerect"]["width"].as<int>();
+	obstacle.m_textureRect.height = obstacleNode["texturerect"]["height"].as<int>();
+}
+
 void operator >> (const YAML::Node &tileNode, TileData & tile)
 {
 	tile.m_textureString = tileNode["texturestring"].as<std::string>();
@@ -31,6 +48,14 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 		TileData tile;
 		tileNode[i] >> tile;
 		levelIn.m_tileDataVector.push_back(tile);
+	}
+
+	const YAML::Node& obstaclesNode = baseNode["obstacles"].as<YAML::Node>();
+	for (unsigned i = 0; i < obstaclesNode.size(); ++i)
+	{
+		ObstacleData obstacle;
+		obstaclesNode[i] >> obstacle;
+		levelIn.m_obstacleDataVector.push_back(obstacle);
 	}
 
 	const YAML::Node& textureNode = baseNode["textures"].as<YAML::Node>();

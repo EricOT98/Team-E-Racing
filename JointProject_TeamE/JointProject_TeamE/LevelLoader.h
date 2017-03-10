@@ -11,6 +11,13 @@ struct TextureData
 	std::string m_textureName;
 };
 
+struct ObstacleData {
+	std::string m_textureString;
+	sf::Vector2f m_position;
+	sf::IntRect m_textureRect;
+	int m_type;
+};
+
 struct TileData {
 	std::string m_textureString;
 	int m_xIndex;
@@ -26,6 +33,7 @@ struct LevelData {
 	PlayerData m_playerData;
 	std::vector<TileData> m_tileDataVector;
 	std::vector<TextureData> m_textureDataVector;
+	std::vector<ObstacleData> m_obstacleDataVector;
 };
 
 class LevelLoader {

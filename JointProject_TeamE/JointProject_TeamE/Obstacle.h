@@ -14,11 +14,11 @@ enum class Type{BUSH,
 class Obstacle
 {
 public:
-	Obstacle();
+	Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f pos, int type);
 	~Obstacle();
 
-	void initialise(sf::Vector2f pos, int type);
 	void render(sf::RenderWindow & window);
+	sf::Sprite getSprite();
 
 protected:
 	sf::Sprite m_sprite;

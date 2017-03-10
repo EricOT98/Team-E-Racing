@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "LevelLoader.h"
 #include "ResourceManager.h"
+#include "Obstacle.h"
 
 class Track {
 public:
@@ -16,7 +17,9 @@ public:
 private:
 	bool checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos);
 	bool checkWindowInterscetion(Tile & tile, sf::RenderWindow & window);
+	bool checkWindowObsIntersection(Obstacle & obstacle, sf::RenderWindow & window);
 	std::vector<Tile *> m_trackTiles;
+	std::vector<Obstacle *> m_obstacles;
 };
 
 #endif
