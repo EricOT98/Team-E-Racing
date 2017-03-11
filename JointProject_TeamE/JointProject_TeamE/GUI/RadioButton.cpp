@@ -16,11 +16,10 @@
 /// <param name="characterSize">Size of the Font used for drawing the text in the Label</param>
 /// <param name="boxWidth">Width of the RadioButton Box</param>
 /// <param name="boxHeight">Height of the RadioButton box</param>
-RadioButton::RadioButton(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, sf::Sound &selectSoundIn, const std::string & textIn, Widget * parent, sf::Vector2f & positionIn,
+RadioButton::RadioButton(sf::Color & focusColorIn, sf::Color &noFocusColorIn, sf::Color &fillColorIn, const std::string & textIn, Widget * parent, sf::Vector2f & positionIn,
 	std::vector<RadioButton *> & radGroup, sf::Vector2f &startPos, sf::Vector2f &endPos, 
 	int characterSize, float boxWidth, float boxHeight)
 		: Label(textIn, parent, characterSize), m_otherButtons(radGroup),
-	selectSound(selectSoundIn),
 	focusColor(focusColorIn),
 	noFocusColor(noFocusColorIn),
 	fillColor(fillColorIn)
@@ -78,7 +77,6 @@ bool RadioButton::processInput(XboxController & controller)
 		{
 			if (m_up != nullptr)
 			{
-				selectSound.play();
 				// Set the button above *this to be in focus
 				m_up->promoteFocus();
 				// Set the check box to be out of focus
@@ -91,7 +89,6 @@ bool RadioButton::processInput(XboxController & controller)
 		{
 			if (m_down != nullptr)
 			{
-				selectSound.play();
 				m_down->promoteFocus();
 				demoteFocus();
 				return true;
@@ -102,7 +99,6 @@ bool RadioButton::processInput(XboxController & controller)
 		{
 			if (m_left != nullptr)
 			{
-				selectSound.play();
 				m_left->promoteFocus();
 				demoteFocus();
 				return true;
@@ -113,7 +109,6 @@ bool RadioButton::processInput(XboxController & controller)
 		{
 			if (m_right != nullptr)
 			{
-				selectSound.play();
 				m_right->promoteFocus();
 				demoteFocus();
 				return true;
@@ -122,7 +117,6 @@ bool RadioButton::processInput(XboxController & controller)
 		else if (controller.isButtonPressed(XBOX360_A)
 			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
-			selectSound.play();
 			for (RadioButton * radioButton : m_otherButtons)
 			{
 				// De-activate all other radio buttons in a group

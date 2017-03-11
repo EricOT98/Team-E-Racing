@@ -4,6 +4,7 @@
 #include "MainMenu.h"
 #include "Options.h"
 #include "SoundOptions.h"
+#include "DifficultyScreen.h"
 
 class ScreenManager
 {
@@ -20,7 +21,7 @@ private:
 	MainMenu *m_mainMenu;
 	Options *m_optionsMenu;
 	SoundOptions *m_soundOptions;
-
+	DifficultyScreen *m_difficultyScreen;
 };
 
 #endif

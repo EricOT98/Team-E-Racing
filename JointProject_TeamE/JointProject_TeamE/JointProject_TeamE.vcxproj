@@ -126,6 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Screens\DifficultyScreen.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GUI\Button.cpp" />
     <ClCompile Include="GUI\CheckBox.cpp" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Screens\DifficultyScreen.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\CheckBox.h" />
