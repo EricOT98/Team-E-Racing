@@ -26,6 +26,7 @@
     <ClCompile Include="Screens\Options.cpp" />
     <ClCompile Include="Screens\SoundOptions.cpp" />
     <ClCompile Include="Screens\DifficultyScreen.cpp" />
+    <ClCompile Include="Screens\HelpScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -115,6 +116,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClInclude Include="Screens\DifficultyScreen.h" />
+    <ClInclude Include="Screens\HelpScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">

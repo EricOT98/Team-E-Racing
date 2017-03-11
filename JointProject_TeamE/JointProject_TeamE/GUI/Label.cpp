@@ -11,6 +11,7 @@
 Label::Label(const std::string& text, Widget* parent, unsigned int size, sf::Vector2f &startPos, sf::Vector2f &endPos) 
 	: Widget(parent)
 {
+	m_text.setPosition(startPos);
 	widgetStartPos = startPos;
 	widgetEndPos = endPos;
 
