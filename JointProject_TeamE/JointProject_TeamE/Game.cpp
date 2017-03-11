@@ -7,6 +7,7 @@ Game::Game()
 	m_xboxController(CONTROLLER_ONE),
 	m_player(m_xboxController)
 {
+	keyboardHandler = KeyboardHandler::GetInstance();
 }
 
 void Game::run()
@@ -59,10 +60,31 @@ void Game::processGameEvents(sf::Event& event)
 	{
 		m_window.close();
 	}
+
+	if (event.key.code >= 0 && event.key.code < sf::Keyboard::Key::KeyCount)
+	{
+		if (event.KeyPressed)
+		{
+			if (!KeyboardHandler::GetInstance()->m_keysUp[event.key.code])
+			{
+				KeyboardHandler::GetInstance()->m_keysDown[event.key.code] = true;
+			}
+		}
+		if (event.KeyReleased)
+		{
+			KeyboardHandler::GetInstance()->m_keysDown[event.key.code] = false;
+			KeyboardHandler::GetInstance()->m_keysUp[event.key.code] = false;
+		}
+	}
 }
 
 void Game::update(double dt)
 {
+	if (KeyboardHandler::GetInstance()->IsKeyPressed(sf::Keyboard::Key::Up))
+	{
+		std::cout << "Key pressed" << std::endl;
+	}
+
 	switch (currentGameState)
 	{
 	case GameState::MainMenu:

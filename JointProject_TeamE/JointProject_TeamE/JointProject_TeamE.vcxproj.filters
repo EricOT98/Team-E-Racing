@@ -27,6 +27,7 @@
     <ClCompile Include="Screens\SoundOptions.cpp" />
     <ClCompile Include="Screens\DifficultyScreen.cpp" />
     <ClCompile Include="Screens\HelpScreen.cpp" />
+    <ClCompile Include="Input\KeyboardHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -117,6 +118,7 @@
     </ClCompile>
     <ClInclude Include="Screens\DifficultyScreen.h" />
     <ClInclude Include="Screens\HelpScreen.h" />
+    <ClInclude Include="Input\KeyboardHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">

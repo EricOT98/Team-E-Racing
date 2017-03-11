@@ -7,6 +7,7 @@
 #include "Track.h"
 #include "Screens\ScreenManager.h"
 #include "Player.h"
+#include "Input\KeyboardHandler.h"
 #include <iostream>
 
 class Game
@@ -24,6 +25,7 @@ protected:
 	sf::RenderWindow m_window;
 
 	ScreenManager m_screenManager;
+	KeyboardHandler *keyboardHandler;
 	XboxController m_xboxController;
 
 	enum class GameState
