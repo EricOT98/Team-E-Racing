@@ -3,7 +3,6 @@
 /// @version 1.0
 /// </summary>
 
-
 #ifndef SOUND_OPTIONS_H
 #define SOUND_OPTIONS_H
 

@@ -80,8 +80,6 @@ void Game::update(double dt)
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
-	m_track.render(m_window);
-	m_player.render(m_window);
 	switch (currentGameState)
 	{
 	case GameState::MainMenu:
@@ -89,6 +87,7 @@ void Game::render()
 		break;
 	case GameState::Play:
 		m_track.render(m_window);
+		m_player.render(m_window);
 		break;
 	default:
 		break;

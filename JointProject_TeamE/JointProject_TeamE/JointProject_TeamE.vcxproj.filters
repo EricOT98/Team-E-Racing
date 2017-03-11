@@ -25,6 +25,7 @@
     <ClCompile Include="Screens\Screen.cpp" />
     <ClCompile Include="Screens\Options.cpp" />
     <ClCompile Include="Screens\SoundOptions.cpp" />
+    <ClCompile Include="Screens\DifficultyScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -90,8 +91,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Obstacle.cpp">
-       <Filter>Source Files</Filter>
-	</ClCompile>
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Screens\Screen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -113,6 +114,7 @@
     <ClCompile Include="Track.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClInclude Include="Screens\DifficultyScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -152,7 +154,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Obstacle.h">
-    	<Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screens\Screen.h">
       <Filter>Header Files</Filter>

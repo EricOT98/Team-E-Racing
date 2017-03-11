@@ -37,14 +37,7 @@ SoundOptions::SoundOptions()
 	m_soundOpitionsGUI.add(m_backButton);
 }
 
-SoundOptions::~SoundOptions()
-{
-	delete m_titleLabel;
-	delete m_musicSlider;
-	delete m_effectSlider;
-	delete m_muteCheckBox;
-	delete m_backButton;
-}
+SoundOptions::~SoundOptions() { }
 
 void SoundOptions::update()
 {
