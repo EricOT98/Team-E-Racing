@@ -10,6 +10,7 @@ ScreenManager::~ScreenManager()
 	delete m_difficultyScreen;
 	delete m_helpScreen;
 	delete m_pauseScreen;
+	delete m_confirmationScreen;
 }
 
 void ScreenManager::init()
@@ -20,6 +21,7 @@ void ScreenManager::init()
 	m_difficultyScreen = new DifficultyScreen();
 	m_helpScreen = new HelpScreen();
 	m_pauseScreen = new PauseScreen();
+	m_confirmationScreen = new ConfirmationScreen();
 }
 
 void ScreenManager::update()
@@ -30,6 +32,7 @@ void ScreenManager::update()
 	m_difficultyScreen->update();
 	m_helpScreen->update();
 	m_pauseScreen->update();
+	m_confirmationScreen->update();
 }
 
 void ScreenManager::render(sf::RenderWindow &window)
@@ -39,7 +42,8 @@ void ScreenManager::render(sf::RenderWindow &window)
 	//m_soundOptions->render(window);
 	//m_difficultyScreen->render(window);
 	//m_helpScreen->render(window);
-	m_pauseScreen->render(window);
+	//m_pauseScreen->render(window);
+	m_confirmationScreen->render(window);
 }
 
 void ScreenManager::processInput(XboxController &controller)
@@ -49,5 +53,6 @@ void ScreenManager::processInput(XboxController &controller)
 	//m_soundOptions->processInput(controller);
 	//m_difficultyScreen->processInput(controller);
 	//m_helpScreen->processInput(controller);
-	m_pauseScreen->processInput(controller);
+	//m_pauseScreen->processInput(controller);
+	m_confirmationScreen->processInput(controller);
 }

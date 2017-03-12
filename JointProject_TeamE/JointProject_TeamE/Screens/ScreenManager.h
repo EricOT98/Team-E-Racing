@@ -7,6 +7,7 @@
 #include "DifficultyScreen.h"
 #include "HelpScreen.h"
 #include "PauseScreen.h"
+#include "ConfirmationScreen.h"
 
 class ScreenManager
 {
@@ -26,6 +27,7 @@ private:
 	DifficultyScreen *m_difficultyScreen;
 	HelpScreen *m_helpScreen;
 	PauseScreen *m_pauseScreen;
+	ConfirmationScreen *m_confirmationScreen;
 };
 
 #endif

@@ -1,5 +1,4 @@
 #ifndef CONFIRMATION_SCRREN_H
-#ifndef CONFIRMATION_SCRREN_H
 #define CONFIRMATION_SCRREN_H
 
 #include "Screen.h"
@@ -18,7 +17,8 @@ public:
 	void processInput(XboxController &controller);
 
 private:
-	Gui m_helpScreenGUI;
+	Gui m_confirmationScreenGUI;
+	Label *m_confirmationLabel;
 	Label *m_areYouSureLabel;
 	Button *m_yesButton;
 	Button *m_noButton;
