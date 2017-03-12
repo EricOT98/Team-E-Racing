@@ -11,6 +11,10 @@
 #include "..\GUI\Gui.h"
 #include "..\GUI\Button.h"
 
+/// The pause screen that the player can back into
+/// 
+/// The pause screen handles all the update and render of the widgets
+/// on screen
 class PauseScreen
 {
 public:
