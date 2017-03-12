@@ -3,6 +3,10 @@
 
 #include <SFML\Window\Keyboard.hpp>
 
+/// Managers the input from the keyboard
+/// 
+/// Using a singeton pattern for the KeyboardHandler which keeps
+/// track of the keys pressed and released.
 class KeyboardHandler
 {
 private:

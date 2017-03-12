@@ -31,18 +31,18 @@ void ScreenManager::update()
 
 void ScreenManager::render(sf::RenderWindow &window)
 {
-	//m_mainMenu->render(window);
+	m_mainMenu->render(window);
 	//m_optionsMenu->render(window);
 	//m_soundOptions->render(window);
 	//m_difficultyScreen->render(window);
-	m_helpScreen->render(window);
+	//m_helpScreen->render(window);
 }
 
 void ScreenManager::processInput(XboxController &controller)
 {
-	//m_mainMenu->processInput(controller);
+	m_mainMenu->processInput(controller);
 	//m_optionsMenu->processInput(controller);
 	//m_soundOptions->processInput(controller);
 	//m_difficultyScreen->processInput(controller);
-	m_helpScreen->processInput(controller);
+	//m_helpScreen->processInput(controller);
 }

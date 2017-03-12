@@ -2,10 +2,10 @@
 
 KeyboardHandler::KeyboardHandler()
 {
-	for (bool keyDown : m_keysDown)
+	for (bool &keyDown : m_keysDown)
 		keyDown = false;
 
-	for (bool keyUp : m_keysUp)
+	for (bool &keyUp : m_keysUp)
 		keyUp = false;
 }
 

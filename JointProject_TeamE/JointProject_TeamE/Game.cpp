@@ -63,14 +63,14 @@ void Game::processGameEvents(sf::Event& event)
 
 	if (event.key.code >= 0 && event.key.code < sf::Keyboard::Key::KeyCount)
 	{
-		if (event.KeyPressed)
+		if (event.type == event.KeyPressed)
 		{
 			if (!KeyboardHandler::GetInstance()->m_keysUp[event.key.code])
 			{
 				KeyboardHandler::GetInstance()->m_keysDown[event.key.code] = true;
 			}
 		}
-		if (event.KeyReleased)
+		else if (event.type == event.KeyReleased)
 		{
 			KeyboardHandler::GetInstance()->m_keysDown[event.key.code] = false;
 			KeyboardHandler::GetInstance()->m_keysUp[event.key.code] = false;
@@ -80,11 +80,6 @@ void Game::processGameEvents(sf::Event& event)
 
 void Game::update(double dt)
 {
-	if (KeyboardHandler::GetInstance()->IsKeyPressed(sf::Keyboard::Key::Up))
-	{
-		std::cout << "Key pressed" << std::endl;
-	}
-
 	switch (currentGameState)
 	{
 	case GameState::MainMenu:

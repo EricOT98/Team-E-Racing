@@ -7,6 +7,7 @@
 #define BUTTON_H
 
 #include "Label.h"
+#include "..\Input\KeyboardHandler.h"
 #include <SFML\Audio\Sound.hpp>
 #include <functional>
 

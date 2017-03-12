@@ -64,7 +64,7 @@ void MainMenu::update()
 		if (m_interpolation >= 1.0f)
 		{
 			// TODO(Darren): Change next game state here
-			m_interpolation = 0.0f;
+			//m_interpolation = 0.0f;
 		}
 	}
 

@@ -68,8 +68,8 @@ bool Button::processInput(XboxController & controller)
 		//  Otherwise set it to Magenta
 		m_buttonRect.setFillColor(focusColor); 
 		// Check inputs
-		if (controller.isButtonPressed(XBOX360_UP) 
-			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		if (controller.isButtonPressed(XBOX360_UP)
+			|| KeyboardHandler::GetInstance()->IsKeyPressed(sf::Keyboard::Up))
 		{
 			if (m_up != nullptr)
 			{
@@ -80,7 +80,7 @@ bool Button::processInput(XboxController & controller)
 			}
 		}
 		else if (controller.isButtonPressed(XBOX360_DOWN)
-			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			|| KeyboardHandler::GetInstance()->IsKeyPressed(sf::Keyboard::Down))
 		{
 			if (m_down != nullptr)
 			{
@@ -90,7 +90,7 @@ bool Button::processInput(XboxController & controller)
 			}
 		}
 		if (controller.isButtonPressed(XBOX360_LEFT) 
-			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			|| KeyboardHandler::GetInstance()->IsKeyPressed(sf::Keyboard::Left))
 		{
 			if (m_left != nullptr)
 			{
@@ -102,7 +102,7 @@ bool Button::processInput(XboxController & controller)
 			}
 		}
 		else if (controller.isButtonPressed(XBOX360_RIGHT)
-			|| sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			|| KeyboardHandler::GetInstance()->IsKeyPressed(sf::Keyboard::Right))
 		{
 			if (m_right != nullptr)
 			{
@@ -115,7 +115,7 @@ bool Button::processInput(XboxController & controller)
 		try
 		{
 			if (controller.isButtonPressed(XBOX360_A)
-				|| sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+				|| KeyboardHandler::GetInstance()->IsKeyPressed(sf::Keyboard::Return))
 			{
 				pressed = true;
 				// Call the callback function
