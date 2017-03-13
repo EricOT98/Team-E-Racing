@@ -63,7 +63,7 @@ void MainMenu::update()
 	}
 
 	checkScreenTransition(m_optionsButton, GameScreenState::OptionsScreen);
-	checkScreenTransition(m_raceButton, GameScreenState::OptionsScreen);
+	checkScreenTransition(m_exitButton, GameScreenState::QuitConfirmation);
 
 	m_screenGUI.update();
 }

@@ -5,30 +5,33 @@
 /// </summary>
 DifficultyScreen::DifficultyScreen()
 {
+	m_transitionOut = false;
+	m_transitionIn = true;
+
 	sf::Color focusColor = sf::Color::Red;
 	sf::Color nofocusColor = sf::Color::Magenta;
 	sf::Color fillColor = sf::Color::Blue;
 
 	sf::Vector2f endTranstionPos = sf::Vector2f(400.0f, 1400.0f);
 
-	m_difficultyLabel = new Label("Diffiuclty", nullptr, 50, sf::Vector2f(400.0f, 50.0f), endTranstionPos);
-	m_difficultyLabel->setPosition(sf::Vector2f(400.0f, 50.0f));
+	m_difficultyLabel = new Label("Difficulty", nullptr, 50, sf::Vector2f(400.0f, 50.0f), endTranstionPos);
+	m_difficultyLabel->setPosition(sf::Vector2f(-400.0f, 50.0f));
 	m_numOfOppLabel = new Label("Number of Opponents", nullptr, 30, sf::Vector2f(400.0f, 200.0f), endTranstionPos);
-	m_numOfOppLabel->setPosition(sf::Vector2f(400.0f, 200.0f));
+	m_numOfOppLabel->setPosition(sf::Vector2f(-400.0f, 200.0f));
 	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "3", nullptr,
-		sf::Vector2f(310.0f, 280.0f), m_radioButtons, sf::Vector2f(350.0f, 180.0f), endTranstionPos,
+		endTranstionPos, m_radioButtons, sf::Vector2f(290.0f, 300.0f), endTranstionPos,
 		22, 30.0f, 30.0f));
 	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "4", nullptr,
-		sf::Vector2f(370.0f, 280.0f), m_radioButtons, sf::Vector2f(380.0f, 180.0f), endTranstionPos,
+		endTranstionPos, m_radioButtons, sf::Vector2f(360.0f, 300.0f), endTranstionPos,
 		22, 30.0f, 30.0f));
 	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "5", nullptr,
-		sf::Vector2f(430.0f, 280.0f), m_radioButtons, sf::Vector2f(400.0f, 180.0f), endTranstionPos,
+		endTranstionPos, m_radioButtons, sf::Vector2f(440.0f, 300.0f), endTranstionPos,
 		22, 30.0f, 30.0f));
 	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "6", nullptr,
-		sf::Vector2f(490.0f, 280.0f), m_radioButtons, sf::Vector2f(420.0f, 180.0f), endTranstionPos,
+		endTranstionPos, m_radioButtons, sf::Vector2f(520.0f, 300.0f), endTranstionPos,
 		22, 30.0f, 30.0f));
 	m_backButton = new Button(focusColor, nofocusColor, fillColor, "Back", nullptr,
-		sf::Vector2f(400.0f, 400.0f), 18, 100.0f, 40.0f, sf::Vector2f(400.0f, 400.0f), endTranstionPos);
+		endTranstionPos, 18, 100.0f, 40.0f, sf::Vector2f(400.0f, 400.0f), endTranstionPos);
 
 	m_radioButtons.at(0)->promoteFocus();
 
@@ -63,7 +66,37 @@ DifficultyScreen::~DifficultyScreen()
 /// </summary>
 void DifficultyScreen::update()
 {
+	if (m_transitionIn)
+	{
+		m_difficultyScreenGUI.transitionIn(0.03f, m_interpolation);
+
+		if (m_interpolation >= 1.0f)
+		{
+			m_transitionIn = false;
+			m_interpolation = 0.0f;
+		}
+	}
+
+	checkScreenTransition(m_backButton, GameScreenState::OptionsScreen);
+
 	m_difficultyScreenGUI.update();
+}
+
+void DifficultyScreen::checkScreenTransition(Button *button, GameScreenState stateToChangeTo)
+{
+	if (button->pressed && button->getFocus())
+	{
+		m_difficultyScreenGUI.transitionOut(0.03f, m_interpolation);
+
+		if (m_interpolation >= 1.0f)
+		{
+			m_interpolation = 0.0f;
+			currentGameState = stateToChangeTo;
+			m_transitionOut = false;
+			m_transitionIn = true;
+			button->pressed = false;
+		}
+	}
 }
 
 /// <summary>

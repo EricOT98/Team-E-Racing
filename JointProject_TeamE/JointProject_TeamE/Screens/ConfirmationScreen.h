@@ -17,6 +17,8 @@ public:
 	void processInput(XboxController &controller);
 
 private:
+	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+
 	Gui m_confirmationScreenGUI;
 	Label *m_confirmationLabel;
 	Label *m_areYouSureLabel;

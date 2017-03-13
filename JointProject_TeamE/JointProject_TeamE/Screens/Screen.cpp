@@ -8,7 +8,7 @@ GameScreenState Screen::currentGameState;
 Screen::Screen()
 	: m_active(false)
 {
-	currentGameState = GameScreenState::MainMenuScreen;
+	currentGameState = GameScreenState::DifficultyScreen;
 }
 
 /// <summary>

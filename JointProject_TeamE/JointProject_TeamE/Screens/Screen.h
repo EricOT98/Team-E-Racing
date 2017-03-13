@@ -12,7 +12,10 @@ enum class GameScreenState
 {
 	MainMenuScreen,
 	OptionsScreen,
-	SoundOptionsScreen
+	SoundOptionsScreen,
+	DifficultyScreen,
+	QuitConfirmation,
+	QuitGame
 };
 
 /// Base class Screen for other game screen in the game

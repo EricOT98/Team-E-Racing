@@ -27,6 +27,8 @@ public:
 	void processInput(XboxController &controller);
 
 private:
+	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+
 	Gui m_difficultyScreenGUI;
 	Label *m_difficultyLabel;
 	Label *m_numOfOppLabel;

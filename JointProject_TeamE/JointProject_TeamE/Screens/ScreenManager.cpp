@@ -40,6 +40,13 @@ void ScreenManager::update()
 		m_soundOptions->update();
 		break;
 
+	case GameScreenState::DifficultyScreen:
+		m_difficultyScreen->update();
+		break;
+
+	case GameScreenState::QuitConfirmation:
+		m_confirmationScreen->update();
+		break;
 	default:
 		break;
 	}
@@ -61,6 +68,14 @@ void ScreenManager::render(sf::RenderWindow &window)
 		m_soundOptions->render(window);
 		break;
 
+	case GameScreenState::DifficultyScreen:
+		m_difficultyScreen->render(window);
+		break;
+
+	case GameScreenState::QuitConfirmation:
+		m_confirmationScreen->render(window);
+		break;
+
 	default:
 		break;
 	}
@@ -80,6 +95,14 @@ void ScreenManager::processInput(XboxController &controller)
 
 	case GameScreenState::SoundOptionsScreen:
 		m_soundOptions->processInput(controller);
+		break;
+
+	case GameScreenState::DifficultyScreen:
+		m_difficultyScreen->processInput(controller);
+		break;
+
+	case GameScreenState::QuitConfirmation:
+		m_confirmationScreen->processInput(controller);
 		break;
 
 	default:
