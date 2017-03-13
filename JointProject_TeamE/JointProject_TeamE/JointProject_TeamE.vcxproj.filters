@@ -10,7 +10,6 @@
     <ClCompile Include="GUI\RadioButton.cpp" />
     <ClCompile Include="GUI\Slider.cpp" />
     <ClCompile Include="GUI\Widget.cpp" />
-    <ClCompile Include="Input\XboxController.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtility.cpp" />
@@ -27,11 +26,16 @@
     <ClCompile Include="Screens\SoundOptions.cpp" />
     <ClCompile Include="Screens\DifficultyScreen.cpp" />
     <ClCompile Include="Screens\HelpScreen.cpp" />
-    <ClCompile Include="Input\KeyboardHandler.cpp" />
     <ClCompile Include="Screens\PauseScreen.cpp" />
     <ClCompile Include="Screens\ConfirmationScreen.cpp" />
     <ClCompile Include="Screens\DisplayOptions.cpp" />
     <ClCompile Include="Screens\TrophyScreen.cpp" />
+    <ClCompile Include="Input\KeyboardHandler.cpp">
+      <Filter>src\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\XboxController.cpp">
+      <Filter>src\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -190,5 +194,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screens\SoundOptions.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{6812763c-51bb-47ce-8216-5469d4518750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Input">
+      <UniqueIdentifier>{84efdfec-a796-4acd-a919-4f4bffba7674}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
