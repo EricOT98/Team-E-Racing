@@ -12,6 +12,7 @@ ScreenManager::~ScreenManager()
 	delete m_displayOpitions;
 	delete m_pauseScreen;
 	delete m_confirmationScreen;
+	delete m_trophyScreen;
 }
 
 void ScreenManager::init()
@@ -24,6 +25,7 @@ void ScreenManager::init()
 	m_displayOpitions = new DisplayOptions();
 	m_pauseScreen = new PauseScreen();
 	m_confirmationScreen = new ConfirmationScreen();
+	m_trophyScreen = new TrophyScreen();
 }
 
 void ScreenManager::update()
@@ -52,6 +54,10 @@ void ScreenManager::update()
 
 	case GameScreenState::DisplayOptions:
 		m_displayOpitions->update();
+		break;
+
+	case GameScreenState::TrophyScreen:
+		m_trophyScreen->update();
 		break;
 
 	case GameScreenState::QuitConfirmationScreen:
@@ -90,6 +96,10 @@ void ScreenManager::render(sf::RenderWindow &window)
 		m_displayOpitions->render(window);
 		break;
 
+	case GameScreenState::TrophyScreen:
+		m_trophyScreen->render(window);
+		break;
+
 	case GameScreenState::QuitConfirmationScreen:
 		m_confirmationScreen->render(window);
 		break;
@@ -125,6 +135,10 @@ void ScreenManager::processInput(XboxController &controller)
 
 	case GameScreenState::DisplayOptions:
 		m_displayOpitions->processInput(controller);
+		break;
+
+	case GameScreenState::TrophyScreen:
+		m_trophyScreen->processInput(controller);
 		break;
 
 	case GameScreenState::QuitConfirmationScreen:

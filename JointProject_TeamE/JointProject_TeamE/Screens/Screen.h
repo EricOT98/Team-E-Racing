@@ -17,6 +17,7 @@ enum class GameScreenState
 	HelpScreen,
 	DisplayOptions,
 	QuitConfirmationScreen,
+	TrophyScreen,
 
 	PlayGame,
 	QuitGame

@@ -9,6 +9,7 @@
 #include "PauseScreen.h"
 #include "ConfirmationScreen.h"
 #include "DisplayOptions.h"
+#include "TrophyScreen.h"
 
 class ScreenManager
 {
@@ -30,6 +31,7 @@ private:
 	DisplayOptions *m_displayOpitions;
 	PauseScreen *m_pauseScreen;
 	ConfirmationScreen *m_confirmationScreen;
+	TrophyScreen *m_trophyScreen;
 };
 
 #endif

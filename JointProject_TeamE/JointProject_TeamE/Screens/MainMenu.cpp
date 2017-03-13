@@ -65,6 +65,7 @@ void MainMenu::update()
 	checkScreenTransition(m_raceButton, GameScreenState::PlayGame);
 	checkScreenTransition(m_optionsButton, GameScreenState::OptionsScreen);
 	checkScreenTransition(m_exitButton, GameScreenState::QuitConfirmationScreen);
+	checkScreenTransition(m_trophiesButton, GameScreenState::TrophyScreen);
 
 	m_screenGUI.update();
 }

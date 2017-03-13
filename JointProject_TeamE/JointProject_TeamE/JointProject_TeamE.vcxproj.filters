@@ -31,6 +31,7 @@
     <ClCompile Include="Screens\PauseScreen.cpp" />
     <ClCompile Include="Screens\ConfirmationScreen.cpp" />
     <ClCompile Include="Screens\DisplayOptions.cpp" />
+    <ClCompile Include="Screens\TrophyScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -125,6 +126,7 @@
     <ClInclude Include="Screens\PauseScreen.h" />
     <ClInclude Include="Screens\ConfirmationScreen.h" />
     <ClInclude Include="Screens\DisplayOptions.h" />
+    <ClInclude Include="Screens\TrophyScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
