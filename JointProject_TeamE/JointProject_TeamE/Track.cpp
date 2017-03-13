@@ -14,16 +14,16 @@ void Track::setTrack(LevelData levelIn)
 	}
 }
 
-void Track::update(std::vector<Racer> & racers)
+void Track::update(std::vector<Racer *> & racers)
 {
 	for (auto & racer : racers)
 	{
 		for (auto & tile : m_trackTiles)
 		{
-			//if (checkRacerIntersection(tile, racer.getPosition())) // Needs a racer getPosition method
-			//{
-
-			//}
+			if (checkRacerIntersection(*tile, racer->getPosition())) // Needs a racer getPosition method
+			{
+				tile->checkOnTrack(racer);
+			}
 		}
 	}
 }
@@ -52,13 +52,13 @@ bool Track::checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos)
 {
 	// Localise Values
 	sf::Vector2f tilePos = tile.getSprite().getPosition();
-	float tileWidth = tile.getSprite().getGlobalBounds().width;
-	float tileHeight = tile.getSprite().getGlobalBounds().height;
+	float tileWidth = tile.getSprite().getGlobalBounds().width / 2.f;
+	float tileHeight = tile.getSprite().getGlobalBounds().height / 2.f;
 
 	// Check for an intersection
-	if (tilePos.x < racerPos.x && tilePos.x + tileWidth > racerPos.x)
+	if (tilePos.x - tileWidth < racerPos.x && tilePos.x + tileWidth > racerPos.x)
 	{
-		if (tilePos.y < racerPos.y && tilePos.y + tileHeight > racerPos.y)
+		if (tilePos.y - tileHeight < racerPos.y && tilePos.y + tileHeight > racerPos.y)
 		{
 			return true;
 		}

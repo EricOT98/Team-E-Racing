@@ -48,6 +48,11 @@ void Racer::setPosition(sf::Vector2f positonIn)
 	m_position = positonIn;
 }
 
+sf::Vector2f Racer::getPosition()
+{
+	return m_position;
+}
+
 /// <summary>
 /// Sets the current rotation of the racer
 /// </summary>

@@ -3,11 +3,12 @@
 
 #include <SFML\Graphics.hpp>
 #include "ResourceManager.h"
+#include "Racer.h"
 
 class Tile {
 public:
 	Tile(int xIndex, int yIndex, std::string texture, int rotation);
-	void checkOnTrack();
+	void checkOnTrack(Racer * racer);
 	void checkEdgeCollision();
 	void render(sf::RenderWindow & window);
 	int getIndexX();

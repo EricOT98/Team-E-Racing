@@ -28,6 +28,7 @@ public:
 	void setCar();
 	void setPosition(sf::Vector2f positionIn);
 	void setRotation(float rotationIn);
+	sf::Vector2f getPosition();
 
 protected:
 	// Protected Functions

@@ -17,6 +17,7 @@ void Game::run()
 	m_track.setTrack(m_level);
 	m_screenManager.init();
 	m_player.setCar();
+	m_racers.push_back(&m_player);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
@@ -86,6 +87,7 @@ void Game::update(double dt)
 		m_screenManager.update();
 		break;
 	case GameState::Play:
+		m_track.update(m_racers);
 		m_player.update(dt);
 		break;
 	default:

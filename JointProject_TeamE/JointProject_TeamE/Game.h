@@ -34,13 +34,14 @@ protected:
 		Play
 	};
 
-	GameState currentGameState = GameState::MainMenu;
+	GameState currentGameState = GameState::Play;
 	LevelData m_level;
 
 	sf::Texture carTexture;
 	Track m_track;
 	sf::Sprite carSprite;
 	Player m_player;
+	std::vector<Racer *> m_racers;
 };
 
 #endif

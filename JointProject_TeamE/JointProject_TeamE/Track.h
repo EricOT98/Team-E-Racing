@@ -12,7 +12,7 @@ class Track {
 public:
 	Track();
 	void setTrack(LevelData levelIn);
-	void update(std::vector<Racer> & racers);
+	void update(std::vector<Racer *> & racers);
 	void render(sf::RenderWindow & window);
 private:
 	bool checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos);
