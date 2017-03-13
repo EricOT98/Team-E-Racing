@@ -61,6 +61,7 @@ void Options::update()
 	}
 	
 	checkScreenTransition(m_backButton, GameScreenState::MainMenuScreen);
+	checkScreenTransition(m_soundButton, GameScreenState::SoundOptionsScreen);
 
 	m_optionsGUI.update();
 }

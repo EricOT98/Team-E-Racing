@@ -83,7 +83,7 @@ void Game::update(double dt)
 {
 	switch (currentGameState)
 	{
-	case GameState::MainMenu:
+	case GameState::Menu:
 		m_screenManager.update();
 		break;
 	case GameState::Play:
@@ -100,7 +100,7 @@ void Game::render()
 	m_window.clear(sf::Color(0, 0, 0, 0));
 	switch (currentGameState)
 	{
-	case GameState::MainMenu:
+	case GameState::Menu:
 		m_screenManager.render(m_window);
 		break;
 	case GameState::Play:

@@ -26,14 +26,6 @@ void ScreenManager::init()
 
 void ScreenManager::update()
 {
-	/*m_mainMenu->update();
-	m_optionsMenu->update();
-	m_soundOptions->update();
-	m_difficultyScreen->update();
-	m_helpScreen->update();
-	m_pauseScreen->update();
-	m_confirmationScreen->update();*/
-	
 	switch (Screen::currentGameState)
 	{
 	case GameScreenState::MainMenuScreen:
@@ -44,6 +36,10 @@ void ScreenManager::update()
 		m_optionsMenu->update();
 		break;
 
+	case GameScreenState::SoundOptionsScreen:
+		m_soundOptions->update();
+		break;
+
 	default:
 		break;
 	}
@@ -51,14 +47,6 @@ void ScreenManager::update()
 
 void ScreenManager::render(sf::RenderWindow &window)
 {
-	//m_mainMenu->render(window);
-	//m_optionsMenu->render(window);
-	//m_soundOptions->render(window);
-	//m_difficultyScreen->render(window);
-	//m_helpScreen->render(window);
-	//m_pauseScreen->render(window);
-	//m_confirmationScreen->render(window);
-
 	switch (Screen::currentGameState)
 	{
 	case GameScreenState::MainMenuScreen:
@@ -69,6 +57,10 @@ void ScreenManager::render(sf::RenderWindow &window)
 		m_optionsMenu->render(window);
 		break;
 
+	case GameScreenState::SoundOptionsScreen:
+		m_soundOptions->render(window);
+		break;
+
 	default:
 		break;
 	}
@@ -76,14 +68,6 @@ void ScreenManager::render(sf::RenderWindow &window)
 
 void ScreenManager::processInput(XboxController &controller)
 {
-	//m_mainMenu->processInput(controller);
-	//m_optionsMenu->processInput(controller);
-	//m_soundOptions->processInput(controller);
-	//m_difficultyScreen->processInput(controller);
-	//m_helpScreen->processInput(controller);
-	//m_pauseScreen->processInput(controller);
-	//m_confirmationScreen->processInput(controller);
-
 	switch (Screen::currentGameState)
 	{
 	case GameScreenState::MainMenuScreen:
@@ -92,6 +76,10 @@ void ScreenManager::processInput(XboxController &controller)
 
 	case GameScreenState::OptionsScreen:
 		m_optionsMenu->processInput(controller);
+		break;
+
+	case GameScreenState::SoundOptionsScreen:
+		m_soundOptions->processInput(controller);
 		break;
 
 	default:

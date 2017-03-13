@@ -28,6 +28,8 @@ public:
 	void processInput(XboxController &controller);
 
 private:
+	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+
 	Gui m_soundOpitionsGUI;
 	Label *m_titleLabel;
 	Slider *m_musicSlider;

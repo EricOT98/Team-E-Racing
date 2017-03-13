@@ -30,11 +30,11 @@ protected:
 
 	enum class GameState
 	{
-		MainMenu,
+		Menu,
 		Play
 	};
 
-	GameState currentGameState = GameState::Play;
+	GameState currentGameState = GameState::Menu;
 	LevelData m_level;
 
 	sf::Texture carTexture;
