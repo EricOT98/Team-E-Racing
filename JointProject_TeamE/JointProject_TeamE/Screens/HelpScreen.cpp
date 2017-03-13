@@ -5,6 +5,9 @@
 /// </summary>
 HelpScreen::HelpScreen()
 {
+	m_transitionOut = false;
+	m_transitionIn = true;
+
 	sf::Color focusColor = sf::Color::Red;
 	sf::Color nofocusColor = sf::Color::Magenta;
 	sf::Color fillColor = sf::Color::Blue;
@@ -23,12 +26,15 @@ HelpScreen::HelpScreen()
 	m_helpScreenText.push_back(new Label("* A to select", nullptr, 22, sf::Vector2f(228.0f, 430.0f), endTranstionPos));
 	m_helpScreenText.push_back(new Label("* B to go back", nullptr, 22, sf::Vector2f(240.0f, 460.0f), endTranstionPos));
 	m_backButton = new Button(focusColor, nofocusColor, fillColor, "Back", nullptr,
-		sf::Vector2f(400.0f, 550.0f), 18, 100.0f, 40.0f, sf::Vector2f(400.0f, 550.0f), endTranstionPos);
+		sf::Vector2f(-400.0f, 550.0f), 18, 100.0f, 40.0f, sf::Vector2f(400.0f, 550.0f), endTranstionPos);
 
 	m_backButton->promoteFocus();
 
 	for (Label *label : m_helpScreenText)
+	{
+		label->setPosition(endTranstionPos);
 		m_helpScreenGUI.add(label);
+	}
 	m_helpScreenGUI.add(m_backButton);
 }
 
@@ -42,7 +48,37 @@ HelpScreen::~HelpScreen()
 /// </summary>
 void HelpScreen::update()
 {
+	if (m_transitionIn)
+	{
+		m_helpScreenGUI.transitionIn(0.03f, m_interpolation);
+
+		if (m_interpolation >= 1.0f)
+		{
+			m_transitionIn = false;
+			m_interpolation = 0.0f;
+		}
+	}
+
+	checkScreenTransition(m_backButton, GameScreenState::OptionsScreen);
+
 	m_helpScreenGUI.update();
+}
+
+void HelpScreen::checkScreenTransition(Button *button, GameScreenState stateToChangeTo)
+{
+	if (button->pressed && button->getFocus())
+	{
+		m_helpScreenGUI.transitionOut(0.03f, m_interpolation);
+
+		if (m_interpolation >= 1.0f)
+		{
+			m_interpolation = 0.0f;
+			currentGameState = stateToChangeTo;
+			m_transitionOut = false;
+			m_transitionIn = true;
+			button->pressed = false;
+		}
+	}
 }
 
 /// <summary>

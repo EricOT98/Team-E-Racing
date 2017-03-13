@@ -44,7 +44,11 @@ void ScreenManager::update()
 		m_difficultyScreen->update();
 		break;
 
-	case GameScreenState::QuitConfirmation:
+	case GameScreenState::HelpScreen:
+		m_helpScreen->update();
+		break;
+
+	case GameScreenState::QuitConfirmationScreen:
 		m_confirmationScreen->update();
 		break;
 	default:
@@ -72,7 +76,11 @@ void ScreenManager::render(sf::RenderWindow &window)
 		m_difficultyScreen->render(window);
 		break;
 
-	case GameScreenState::QuitConfirmation:
+	case GameScreenState::HelpScreen:
+		m_helpScreen->render(window);
+		break;
+
+	case GameScreenState::QuitConfirmationScreen:
 		m_confirmationScreen->render(window);
 		break;
 
@@ -101,7 +109,11 @@ void ScreenManager::processInput(XboxController &controller)
 		m_difficultyScreen->processInput(controller);
 		break;
 
-	case GameScreenState::QuitConfirmation:
+	case GameScreenState::HelpScreen:
+		m_helpScreen->processInput(controller);
+		break;
+
+	case GameScreenState::QuitConfirmationScreen:
 		m_confirmationScreen->processInput(controller);
 		break;
 

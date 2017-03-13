@@ -26,6 +26,8 @@ public:
 	void processInput(XboxController &controller);
 
 private:
+	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+
 	Gui m_helpScreenGUI;
 	std::vector<Label*> m_helpScreenText;
 	Button *m_backButton;
