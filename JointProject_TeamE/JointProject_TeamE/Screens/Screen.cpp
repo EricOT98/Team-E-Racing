@@ -1,12 +1,14 @@
 #include "Screen.h"
 
+GameScreenState Screen::currentGameState;
+
 /// <summary>
 /// Initalizes the m_active to false which represent the screen state
 /// </summary>
 Screen::Screen()
 	: m_active(false)
 {
-
+	currentGameState = GameScreenState::MainMenuScreen;
 }
 
 /// <summary>

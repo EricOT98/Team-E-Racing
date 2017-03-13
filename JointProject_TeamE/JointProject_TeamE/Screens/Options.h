@@ -15,7 +15,7 @@
 /// 
 /// The Options screen handles all the neccesary widgets on screen
 /// and updates the player input and screen navigation.
-class Options : Screen
+class Options : public Screen
 {
 public:
 	Options();
@@ -26,6 +26,8 @@ public:
 	void processInput(XboxController &controller);
 
 private:
+	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+
 	Gui m_optionsGUI;
 	Label *m_titleLabel;
 	Button *m_soundButton;
@@ -33,8 +35,6 @@ private:
 	Button *m_helpButton;
 	Button *m_difficultyButton;
 	Button *m_backButton;
-
-	float m_interpolation;
 };
 
 #endif // !OPTIONS_H

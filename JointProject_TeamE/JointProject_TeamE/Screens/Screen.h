@@ -8,6 +8,13 @@
 
 #include <SFML\Graphics.hpp>
 
+enum class GameScreenState
+{
+	MainMenuScreen,
+	OptionsScreen,
+	SoundOptionsScreen
+};
+
 /// Base class Screen for other game screen in the game
 /// 
 /// The base class Screen provides an interfaces for other
@@ -20,10 +27,16 @@ public:
 
 	bool m_active;
 
+	static GameScreenState currentGameState;
+
 protected:
 	virtual void update();
 	virtual void render();
 	virtual void processInput(sf::Event &event);
+
+	bool m_transitionIn;
+	bool m_transitionOut;
+	float m_interpolation;
 };
 
 #endif // !SCREEN_H

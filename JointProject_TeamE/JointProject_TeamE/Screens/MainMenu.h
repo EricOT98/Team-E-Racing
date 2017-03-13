@@ -14,7 +14,7 @@
 /// The Main Menu screen that the player navigates in to other screens.
 /// 
 /// The Main Menu contains button objects that will be updated in the Gui screen
-/// manager and allows the player to navigate the menu.
+/// manager and allows the player to navigate the men
 class MainMenu : Screen
 {
 public:
@@ -26,6 +26,8 @@ public:
 	void processInput(XboxController &controller);
 
 private:
+	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+
 	Gui m_screenGUI;
 	Button *m_raceButton;
 	Button *m_upgradesButton;
@@ -33,8 +35,6 @@ private:
 	Button *m_optionsButton;
 	Button *m_creditsButton;
 	Button *m_exitButton;
-
-	float m_interpolation;
 };
 
 #endif 

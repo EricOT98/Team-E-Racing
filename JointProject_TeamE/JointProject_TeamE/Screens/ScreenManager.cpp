@@ -26,13 +26,27 @@ void ScreenManager::init()
 
 void ScreenManager::update()
 {
-	m_mainMenu->update();
+	/*m_mainMenu->update();
 	m_optionsMenu->update();
 	m_soundOptions->update();
 	m_difficultyScreen->update();
 	m_helpScreen->update();
 	m_pauseScreen->update();
-	m_confirmationScreen->update();
+	m_confirmationScreen->update();*/
+	
+	switch (Screen::currentGameState)
+	{
+	case GameScreenState::MainMenuScreen:
+		m_mainMenu->update();
+		break;
+
+	case GameScreenState::OptionsScreen:
+		m_optionsMenu->update();
+		break;
+
+	default:
+		break;
+	}
 }
 
 void ScreenManager::render(sf::RenderWindow &window)
@@ -43,7 +57,21 @@ void ScreenManager::render(sf::RenderWindow &window)
 	//m_difficultyScreen->render(window);
 	//m_helpScreen->render(window);
 	//m_pauseScreen->render(window);
-	m_confirmationScreen->render(window);
+	//m_confirmationScreen->render(window);
+
+	switch (Screen::currentGameState)
+	{
+	case GameScreenState::MainMenuScreen:
+		m_mainMenu->render(window);
+		break;
+
+	case GameScreenState::OptionsScreen:
+		m_optionsMenu->render(window);
+		break;
+
+	default:
+		break;
+	}
 }
 
 void ScreenManager::processInput(XboxController &controller)
@@ -54,5 +82,19 @@ void ScreenManager::processInput(XboxController &controller)
 	//m_difficultyScreen->processInput(controller);
 	//m_helpScreen->processInput(controller);
 	//m_pauseScreen->processInput(controller);
-	m_confirmationScreen->processInput(controller);
+	//m_confirmationScreen->processInput(controller);
+
+	switch (Screen::currentGameState)
+	{
+	case GameScreenState::MainMenuScreen:
+		m_mainMenu->processInput(controller);
+		break;
+
+	case GameScreenState::OptionsScreen:
+		m_optionsMenu->processInput(controller);
+		break;
+
+	default:
+		break;
+	}
 }

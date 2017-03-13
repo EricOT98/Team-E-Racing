@@ -39,6 +39,15 @@ void Widget::demoteFocus()
 }
 
 /// <summary>
+/// Return the m_hasFocus
+/// </summary>
+/// <returns>m_hasFocus</returns>
+bool Widget::getFocus()
+{
+	return m_hasFocus;
+}
+
+/// <summary>
 /// Simply sets the position of the inherited widget
 /// </summary>
 /// <param name="pos">position</param>

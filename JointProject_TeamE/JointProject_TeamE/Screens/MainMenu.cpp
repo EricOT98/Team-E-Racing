@@ -2,13 +2,15 @@
 
 MainMenu::MainMenu()
 {
+	m_transitionOut = false;
+	m_transitionIn = false;
+
 	sf::Color focusColor = sf::Color::Red;
 	sf::Color nofocusColor = sf::Color::Magenta;
 	sf::Color fillColor = sf::Color::Blue;
 
 	sf::Vector2f endTranstionPos = sf::Vector2f(1400.0f, 400.0f);
 
-	// TODO(Darren): Take in screen width and height so i can do UI independent resolution
 	m_raceButton = new Button(focusColor, nofocusColor, fillColor, "Race!", nullptr, 
 		sf::Vector2f(400.0f, 50.0f), 18, 200.0f, 40.0f, sf::Vector2f(400.0f, 50.0f), endTranstionPos);
 	m_upgradesButton = new Button(focusColor, nofocusColor, fillColor, "Upgrades", nullptr, 
@@ -45,25 +47,42 @@ MainMenu::MainMenu()
 	m_screenGUI.add(m_exitButton);
 }
 
-MainMenu::~MainMenu() 
-{ 
-
-}
+MainMenu::~MainMenu() { }
 
 void MainMenu::update()
 {
-	if (m_raceButton->pressed)
+	if (m_transitionIn)
+	{
+		m_screenGUI.transitionIn(0.03f, m_interpolation);
+
+		if (m_interpolation >= 1.0f)
+		{
+			m_transitionIn = false;
+			m_interpolation = 0.0f;
+		}
+	}
+
+	checkScreenTransition(m_optionsButton, GameScreenState::OptionsScreen);
+	checkScreenTransition(m_raceButton, GameScreenState::OptionsScreen);
+
+	m_screenGUI.update();
+}
+
+void MainMenu::checkScreenTransition(Button *button, GameScreenState stateToChangeTo)
+{
+	if (button->pressed && button->getFocus())
 	{
 		m_screenGUI.transitionOut(0.03f, m_interpolation);
 
 		if (m_interpolation >= 1.0f)
 		{
-			// TODO(Darren): Change next game state here
-			//m_interpolation = 0.0f;
+			m_interpolation = 0.0f;
+			currentGameState = stateToChangeTo;
+			m_transitionOut = false;
+			m_transitionIn = true;
+			button->pressed = false;
 		}
 	}
-
-	m_screenGUI.update();
 }
 
 void MainMenu::render(sf::RenderWindow &window)
