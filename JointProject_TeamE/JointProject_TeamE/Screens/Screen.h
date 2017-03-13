@@ -15,6 +15,7 @@ enum class GameScreenState
 	SoundOptionsScreen,
 	DifficultyScreen,
 	HelpScreen,
+	DisplayOptions,
 	QuitConfirmationScreen,
 
 	PlayGame,

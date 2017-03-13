@@ -9,6 +9,7 @@ ScreenManager::~ScreenManager()
 	delete m_soundOptions;
 	delete m_difficultyScreen;
 	delete m_helpScreen;
+	delete m_displayOpitions;
 	delete m_pauseScreen;
 	delete m_confirmationScreen;
 }
@@ -20,6 +21,7 @@ void ScreenManager::init()
 	m_soundOptions = new SoundOptions();
 	m_difficultyScreen = new DifficultyScreen();
 	m_helpScreen = new HelpScreen();
+	m_displayOpitions = new DisplayOptions();
 	m_pauseScreen = new PauseScreen();
 	m_confirmationScreen = new ConfirmationScreen();
 }
@@ -46,6 +48,10 @@ void ScreenManager::update()
 
 	case GameScreenState::HelpScreen:
 		m_helpScreen->update();
+		break;
+
+	case GameScreenState::DisplayOptions:
+		m_displayOpitions->update();
 		break;
 
 	case GameScreenState::QuitConfirmationScreen:
@@ -80,6 +86,10 @@ void ScreenManager::render(sf::RenderWindow &window)
 		m_helpScreen->render(window);
 		break;
 
+	case GameScreenState::DisplayOptions:
+		m_displayOpitions->render(window);
+		break;
+
 	case GameScreenState::QuitConfirmationScreen:
 		m_confirmationScreen->render(window);
 		break;
@@ -111,6 +121,10 @@ void ScreenManager::processInput(XboxController &controller)
 
 	case GameScreenState::HelpScreen:
 		m_helpScreen->processInput(controller);
+		break;
+
+	case GameScreenState::DisplayOptions:
+		m_displayOpitions->processInput(controller);
 		break;
 
 	case GameScreenState::QuitConfirmationScreen:

@@ -126,6 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Screens\DisplayOptions.cpp" />
     <ClCompile Include="Screens\ConfirmationScreen.cpp" />
     <ClCompile Include="Input\KeyboardHandler.cpp" />
     <ClCompile Include="Screens\PauseScreen.cpp" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Screens\DisplayOptions.h" />
     <ClInclude Include="Screens\ConfirmationScreen.h" />
     <ClInclude Include="Input\KeyboardHandler.h" />
     <ClInclude Include="Screens\PauseScreen.h" />

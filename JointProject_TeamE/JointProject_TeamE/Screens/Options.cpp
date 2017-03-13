@@ -64,6 +64,7 @@ void Options::update()
 	checkScreenTransition(m_soundButton, GameScreenState::SoundOptionsScreen);
 	checkScreenTransition(m_difficultyButton, GameScreenState::DifficultyScreen);
 	checkScreenTransition(m_helpButton, GameScreenState::HelpScreen);
+	checkScreenTransition(m_displayButton, GameScreenState::DisplayOptions);
 
 	m_optionsGUI.update();
 }

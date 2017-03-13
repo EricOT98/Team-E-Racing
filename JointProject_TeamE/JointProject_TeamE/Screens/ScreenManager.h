@@ -8,6 +8,7 @@
 #include "HelpScreen.h"
 #include "PauseScreen.h"
 #include "ConfirmationScreen.h"
+#include "DisplayOptions.h"
 
 class ScreenManager
 {
@@ -26,6 +27,7 @@ private:
 	SoundOptions *m_soundOptions;
 	DifficultyScreen *m_difficultyScreen;
 	HelpScreen *m_helpScreen;
+	DisplayOptions *m_displayOpitions;
 	PauseScreen *m_pauseScreen;
 	ConfirmationScreen *m_confirmationScreen;
 };
