@@ -33,3 +33,25 @@ float degreesToRad(float degrees)
 {
 	return degrees * PI / 180.0f;
 }
+
+/// <summary>
+/// 
+/// </summary>
+/// <param name="image"></param>
+/// <param name="iterations"></param>
+void rotateImage90(sf::Image & image, int iterations)
+{
+	sf::Image result;
+	result.create(image.getSize().y, image.getSize().x, sf::Color::White);
+	for (int iterator = 0; iterator < iterations; iterator++)
+	{
+		for (int i = 0; i < image.getSize().x; i++)
+		{
+			for (int j = 0; j < image.getSize().y; j++)
+			{
+				result.setPixel(image.getSize().x - j - 1, i, image.getPixel(i, j));
+			}
+		}
+		image = result;
+	}
+}

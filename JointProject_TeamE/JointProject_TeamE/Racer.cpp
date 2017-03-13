@@ -33,10 +33,13 @@ void Racer::setCar()
 	m_position.y = 300.f;
 	m_sprite.setTexture(g_resourceMgr.textureHolder["CarTexture"]);
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getGlobalBounds().width / 2.f, m_sprite.getGlobalBounds().height / 2.f));
-	m_acceleration = 200.f;
-	m_deceleration = 200.f;
+	m_acceleration = 250.f;
+	m_deceleration = 250.f;
 	m_speed = 15.f;
-	m_turnRate = 90.f;
+	m_turnRate = 150.f;
+	m_frictionHigh = 0.9f;
+	m_frictionLow = 0.99f;
+	m_currentFriction = m_frictionLow;
 }
 
 /// <summary>
@@ -70,27 +73,49 @@ void Racer::calMovement(float dt)
 	float yPosAddOn = addOnTotal * std::sin(degreesToRad(m_currentRotation));
 	m_position.x += xPosAddOn;
 	m_position.y += yPosAddOn;
+	m_velocity *= m_currentFriction;
 	m_sprite.setPosition(m_position);
 }
 
-void Racer::turnLeft(float dt)
+void Racer::turnLeft(float dt, float percentageTurn)
 {
-	m_currentRotation -= m_turnRate * dt;
+	if (m_velocity > 2.f || m_velocity < -2.f)
+	{
+		m_currentRotation -= m_turnRate * dt * (percentageTurn / 100);
+	}
 }
 
-void Racer::turnRight(float dt)
+void Racer::turnRight(float dt, float percentageTurn)
 {
-	m_currentRotation += m_turnRate * dt;
+	if (m_velocity > 2.f || m_velocity < -2.f)
+	{
+		m_currentRotation += m_turnRate * dt * (percentageTurn / 100);
+	}
 }
 
-void Racer::accelerate(float dt)
+void Racer::accelerate(float dt, float percentageThrottle)
 {
-	m_velocity += m_acceleration * dt;
+	m_velocity += m_acceleration * dt * (percentageThrottle / 100);
 }
 
-void Racer::decelerate(float dt)
+void Racer::decelerate(float dt, float percentageBrake)
 {
-	m_velocity -= m_deceleration * dt;
+	m_velocity -= m_deceleration * dt * (percentageBrake / 100);
+}
+
+float Racer::getRotation()
+{
+	return m_currentRotation;
+}
+
+void Racer::setFrictionHigh()
+{
+	m_currentFriction = m_frictionHigh;
+}
+
+void Racer::setFrictionLow()
+{
+	m_currentFriction = m_frictionLow;
 }
 
 

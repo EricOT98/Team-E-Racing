@@ -29,13 +29,17 @@ public:
 	void setPosition(sf::Vector2f positionIn);
 	void setRotation(float rotationIn);
 	sf::Vector2f getPosition();
+	float getRotation();
+
+	void setFrictionHigh();
+	void setFrictionLow();
 
 protected:
 	// Protected Functions
-	void turnLeft(float dt);
-	void turnRight(float dt);
-	void accelerate(float dt);
-	void decelerate(float dt);
+	void turnLeft(float dt, float percentageTurn);
+	void turnRight(float dt, float percentageTurn);
+	void accelerate(float dt, float percentageThrottle);
+	void decelerate(float dt, float percentageBrake);
 	void calMovement(float dt);
 
 	// Caar Attributes Copied Over
@@ -43,6 +47,10 @@ protected:
 	float m_deceleration;
 	float m_acceleration;
 	float m_turnRate;
+
+	float m_frictionHigh;
+	float m_frictionLow;
+	float m_currentFriction;
 
 	// Changeable Attributes
 	float m_currentRotation;

@@ -34,7 +34,7 @@ protected:
 		Play
 	};
 
-	GameState currentGameState = GameState::Menu;
+	GameState currentGameState = GameState::Play;
 	LevelData m_level;
 
 	sf::Texture carTexture;
@@ -42,6 +42,7 @@ protected:
 	sf::Sprite carSprite;
 	Player m_player;
 	std::vector<Racer *> m_racers;
+	sf::View raceView;
 };
 
 #endif

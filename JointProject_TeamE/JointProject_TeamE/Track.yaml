@@ -1,17 +1,17 @@
 player:
    x: 850
    y: 100
-totaltiles: 3
+totaltiles: 2
 tiles:
   - texturestring: curve
     index: {x: 0, y: 0}
     rotation: 0
   - texturestring: straight
     index: {x: 1, y: 0}
-    rotation: -90
+    rotation: 270
   - texturestring: straight
     index: {x: 2, y: 0}
-    rotation: -90
+    rotation: 270
   - texturestring: curve
     index: {x: 3, y: 0}
     rotation: 90
@@ -41,7 +41,7 @@ tiles:
     rotation: 0
   - texturestring: curve
     index: {x: 0, y: 3}
-    rotation: -90
+    rotation: 270
   - texturestring: straight
     index: {x: 1, y: 3}
     rotation: 90
@@ -54,7 +54,7 @@ tiles:
 obstacles:
   - texturestring: objects
     texturerect: {left: 585, top: 345, width: 50, height: 50}
-    position: {x: 200, y: 200}
+    position: {x: 0, y: 0}
     type: 0
   - texturestring: objects
     position: {x: 300, y: 200}

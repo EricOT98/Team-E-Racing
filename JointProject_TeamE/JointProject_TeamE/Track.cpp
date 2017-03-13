@@ -73,11 +73,11 @@ bool Track::checkWindowInterscetion(Tile & tile, sf::RenderWindow & window)
 	float viewUp = window.getView().getCenter().y - window.getSize().y / 2.f;
 	float viewDown = window.getView().getCenter().y + window.getSize().y / 2.f;
 
-	if (tile.getSprite().getPosition().x > viewRight)
+	if (tile.getSprite().getPosition().x - tile.getSprite().getGlobalBounds().width > viewRight)
 	{
 		return false;
 	}
-	else if (tile.getSprite().getPosition().y > viewDown)
+	else if (tile.getSprite().getPosition().y - tile.getSprite().getGlobalBounds().height > viewDown)
 	{
 		return false;
 	}

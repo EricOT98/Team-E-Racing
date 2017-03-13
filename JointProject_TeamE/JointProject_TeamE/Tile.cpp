@@ -5,13 +5,12 @@ Tile::Tile(int xIndex, int yIndex, std::string texture, int rotation) : m_xIndex
 {
 	m_displaySprite.setTexture(g_resourceMgr.textureHolder[texture]);
 	m_collisionImage.loadFromFile("Resources/" + texture + "back.png");
-	sf::Texture m;
-	
 	float spriteWidth = m_displaySprite.getLocalBounds().width;
 	float spriteHeight = m_displaySprite.getLocalBounds().height;
 	m_displaySprite.setPosition(spriteWidth * m_xIndex + spriteWidth / 2.f, spriteHeight * m_yIndex + spriteHeight / 2.f);
 	m_displaySprite.setOrigin(m_displaySprite.getGlobalBounds().width / 2.f, m_displaySprite.getGlobalBounds().height / 2.f);
 	m_displaySprite.setRotation(rotation);
+	rotateImage90(m_collisionImage, rotation / 90);
 }
 
 sf::Sprite Tile::getSprite()
@@ -29,11 +28,6 @@ int Tile::getIndexY()
 	return m_yIndex;
 }
 
-void Tile::checkEdgeCollision()
-{
-
-}
-
 void Tile::checkOnTrack(Racer * racer)
 {
 	sf::Vector2f relativePos = m_displaySprite.getPosition();
@@ -42,11 +36,11 @@ void Tile::checkOnTrack(Racer * racer)
 	relativePos = racer->getPosition() - relativePos;
 	if (m_collisionImage.getPixel(relativePos.x, relativePos.y).r < 20)
 	{
-		std::cout << "yes" << std::endl;
+		racer->setFrictionLow();
 	}
 	else
 	{
-		std::cout << "no" << std::endl;
+		racer->setFrictionHigh();
 	}
 }
 

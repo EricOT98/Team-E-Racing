@@ -26,21 +26,21 @@ void Player::initialise()
 /// </summary>
 void Player::update(float dt)
 {
-	if (m_controller.getRightStick().x > 20)
+	if (m_controller.getLeftStick().x > 20)
 	{
-		turnRight(dt / 1000.f);
+		turnRight(dt / 1000.f, m_controller.getLeftStick().x);
 	}
-	else if (m_controller.getRightStick().x < -20)
+	else if (m_controller.getLeftStick().x < -20)
 	{
-		turnLeft(dt / 1000.f);
+		turnLeft(dt / 1000.f, -m_controller.getLeftStick().x);
 	}
 	if (m_controller.getLeftTrigger() > 30)
 	{
-		decelerate(dt / 1000.f);
+		decelerate(dt / 1000.f, m_controller.getLeftTrigger());
 	}
 	else if (m_controller.getRightTrigger() < -30)
 	{
-		accelerate(dt / 1000.f);
+		accelerate(dt / 1000.f, -m_controller.getRightTrigger());
 	}
 	calMovement(dt / 1000.f);
 }

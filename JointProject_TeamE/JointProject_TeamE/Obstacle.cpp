@@ -14,7 +14,7 @@ Obstacle::Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f po
 	std::cout << "Obstacle Texture: " << texture << std::endl;
 	m_sprite.setOrigin(0.5f, 0.5f);
 	m_sprite.setPosition(m_position);
-	m_sprite.setTextureRect(textureRect);
+	//m_sprite.setTextureRect(textureRect);
 	switch (type)
 	{
 	case 0:

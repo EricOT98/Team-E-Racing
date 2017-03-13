@@ -104,6 +104,9 @@ void Game::render()
 		m_screenManager.render(m_window);
 		break;
 	case GameState::Play:
+		raceView.setCenter(m_player.getPosition());
+		raceView.setSize(m_window.getView().getSize());
+		m_window.setView(raceView);
 		m_track.render(m_window);
 		m_player.render(m_window);
 		break;

@@ -7,6 +7,7 @@
 #define MATH_UTIL
 
 #include <SFML\Graphics.hpp>
+#include <iostream>
 
 #define PI 3.14159265
 
@@ -24,5 +25,10 @@ float radiansToDeg(float radians);
 /// Converts from degrees to radians
 /// </summary>
 float degreesToRad(float degrees);
+
+/// <summary>
+/// Rotates the pixels of an image around by 90 degrees
+/// </summary>
+void rotateImage90(sf::Image & image, int iterations);
 
 #endif
