@@ -27,7 +27,6 @@ void AI::update(float dt)
 
 	auto currentRotation = m_currentRotation;
 
-	// Find the shortest way to rotate towards the player (clockwise or anti-clockwise)
 	if (std::round(currentRotation - dest) == 0.0)
 	{
 		m_steering.x = 0;
