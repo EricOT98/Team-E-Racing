@@ -36,6 +36,7 @@
     <ClCompile Include="Input\XboxController.cpp">
       <Filter>src\Input</Filter>
     </ClCompile>
+    <ClCompile Include="AI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Screens\ConfirmationScreen.h" />
     <ClInclude Include="Screens\DisplayOptions.h" />
     <ClInclude Include="Screens\TrophyScreen.h" />
+    <ClInclude Include="AI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">

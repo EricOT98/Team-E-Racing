@@ -21,7 +21,6 @@ class Racer
 public:
 	Racer();
 	~Racer();
-
 	
 	virtual void update(float dt) = 0;
 	void render(sf::RenderWindow & window);

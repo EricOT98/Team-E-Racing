@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Screens\DisplayOptions.cpp" />
     <ClCompile Include="Screens\ConfirmationScreen.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="Screens\TrophyScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AI.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Screens\DisplayOptions.h" />
     <ClInclude Include="Screens\ConfirmationScreen.h" />

@@ -39,6 +39,12 @@ void operator >> (YAML::Node &playerNode, PlayerData & player)
 	player.position.y = playerNode["y"].as<float>();
 }
 
+void operator >> (const YAML::Node &waypointNode, Waypoint &waypoint)
+{
+	waypoint.position.x = waypointNode["position"]["x"].as<float>();
+	waypoint.position.y = waypointNode["position"]["y"].as<float>();
+}
+
 void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 {
 	baseNode["player"] >> levelIn.m_playerData;
@@ -64,6 +70,14 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 		TextureData texture;
 		textureNode[i] >> texture;
 		levelIn.m_textureDataVector.push_back(texture);
+	}
+
+	const YAML::Node& waypointsNode = baseNode["waypoints"].as<YAML::Node>();
+	for (unsigned int i = 0; i < waypointsNode.size(); ++i)
+	{
+		Waypoint waypoint;
+		waypointsNode[i] >> waypoint;
+		levelIn.m_waypoints.push_back(waypoint);
 	}
 }
 

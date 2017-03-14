@@ -29,11 +29,18 @@ struct PlayerData {
 	sf::Vector2f position;
 };
 
+
+struct Waypoint
+{
+	sf::Vector2f position;
+};
+
 struct LevelData {
 	PlayerData m_playerData;
 	std::vector<TileData> m_tileDataVector;
 	std::vector<TextureData> m_textureDataVector;
 	std::vector<ObstacleData> m_obstacleDataVector;
+	std::vector<Waypoint> m_waypoints;
 };
 
 class LevelLoader {

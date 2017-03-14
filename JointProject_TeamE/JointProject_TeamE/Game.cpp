@@ -17,7 +17,10 @@ void Game::run()
 	m_track.setTrack(m_level);
 	m_screenManager.init();
 	m_player.setCar();
+	m_AI.setCar();
+	m_AI.setWayPoints(m_level.m_waypoints);
 	m_racers.push_back(&m_player);
+	m_racers.push_back(&m_AI);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
@@ -88,7 +91,8 @@ void Game::update(double dt)
 		break;
 	case GameState::Play:
 		m_track.update(m_racers);
-		m_player.update(dt);
+		for (Racer *racer : m_racers)
+			racer->update(dt);
 		break;
 	default:
 		break;
@@ -108,7 +112,8 @@ void Game::render()
 		raceView.setSize(m_window.getView().getSize());
 		m_window.setView(raceView);
 		m_track.render(m_window);
-		m_player.render(m_window);
+		for (Racer *racer : m_racers)
+			racer->render(m_window);
 		break;
 	default:
 		break;

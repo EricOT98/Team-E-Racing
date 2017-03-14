@@ -43,7 +43,7 @@ void Player::update(float dt)
 		accelerate(dt / 1000.f, -m_controller.getRightTrigger());
 	}
 
-	// TODO: Take this out!!
+	// TODO: Take this out!! For debug use.
 	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Left))
 	{
 		turnRight(dt / 1000.0f, 155.5f);
