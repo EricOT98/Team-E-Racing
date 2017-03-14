@@ -19,6 +19,7 @@
 #include <iostream>
 #include "Racer.h"
 #include "Input\XboxController.h"
+#include "Input\KeyboardHandler.h"
 
 class Player : public Racer
 {

@@ -42,6 +42,26 @@ void Player::update(float dt)
 	{
 		accelerate(dt / 1000.f, -m_controller.getRightTrigger());
 	}
+
+	// TODO: Take this out!!
+	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Left))
+	{
+		turnRight(dt / 1000.0f, 155.5f);
+	}
+	else if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Right))
+	{
+		turnLeft(dt / 1000.0f, 155.5f);
+	}
+
+	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Up))
+	{
+		decelerate(dt / 1000.f, 450.5f);
+	}
+	else if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Down))
+	{
+		accelerate(dt / 1000.f, 450.5f);
+	}
+
 	calMovement(dt / 1000.f);
 }
 

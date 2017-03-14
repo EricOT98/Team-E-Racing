@@ -4,13 +4,15 @@ Track::Track() {}
 
 void Track::setTrack(LevelData levelIn)
 {
-	for (int i = 0; i < 16; i++)
+	for (int i = 0; i < 36; i++)
 	{
-		m_trackTiles.push_back(new Tile(levelIn.m_tileDataVector.at(i).m_xIndex, levelIn.m_tileDataVector.at(i).m_yIndex, levelIn.m_tileDataVector.at(i).m_textureString, levelIn.m_tileDataVector.at(i).m_rotation));
+		m_trackTiles.push_back(new Tile(levelIn.m_tileDataVector.at(i).m_xIndex, levelIn.m_tileDataVector.at(i).m_yIndex, 
+			levelIn.m_tileDataVector.at(i).m_textureString, levelIn.m_tileDataVector.at(i).m_rotation));
 	}
 	for (int i = 0; i < 4; i++)
 	{
-		m_obstacles.push_back(new Obstacle(levelIn.m_obstacleDataVector.at(i).m_textureString, levelIn.m_obstacleDataVector.at(i).m_textureRect, levelIn.m_obstacleDataVector.at(i).m_position, levelIn.m_obstacleDataVector.at(i).m_type));
+		m_obstacles.push_back(new Obstacle(levelIn.m_obstacleDataVector.at(i).m_textureString, levelIn.m_obstacleDataVector.at(i).m_textureRect, 
+			levelIn.m_obstacleDataVector.at(i).m_position, levelIn.m_obstacleDataVector.at(i).m_type));
 	}
 }
 
@@ -20,7 +22,7 @@ void Track::update(std::vector<Racer *> & racers)
 	{
 		for (auto & tile : m_trackTiles)
 		{
-			if (checkRacerIntersection(*tile, racer->getPosition())) // Needs a racer getPosition method
+			if (checkRacerIntersection(*tile, racer->getPosition()))
 			{
 				tile->checkOnTrack(racer);
 			}
@@ -43,7 +45,7 @@ void Track::render(sf::RenderWindow & window)
 		int j = m_obstacles.size();
 		if (checkWindowObsIntersection(*m_obstacles.at(i), window))
 		{
-			m_obstacles.at(i)->render(window);
+			//m_obstacles.at(i)->render(window);
 		}
 	}
 }

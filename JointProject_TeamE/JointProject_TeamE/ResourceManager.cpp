@@ -13,8 +13,26 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/Car.png"));
 		textureHolder.acquire("Trophies", thor::Resources::fromFile<sf::Texture>("Resources/Trophies.png"));
 
-		std::string s;
+		for (int Row = 0; Row < 6; Row++)
+		{
+			for (int Col = 0; Col < 6; Col++)
+			{
+				std::stringstream ss;
+				ss << "Resources/TrackTiles/Row" << Row << "/TrackFinal-" << Col << "-" << Row;
+				std::string id = ss.str();
+				ss << ".png";
+				std::string path = ss.str();
+				textureHolder.acquire(id, thor::Resources::fromFile<sf::Texture>(path));
+				TileData tile;
+				tile.m_rotation = 0;
+				tile.m_textureString = id;
+				tile.m_xIndex = Col;
+				tile.m_yIndex = Row;
+				levelIn.m_tileDataVector.push_back(tile);
+			}
+		}
 
+		std::string s;
 		for (int i = 0; i < levelIn.m_textureDataVector.size(); i++)
 		{
 			s = levelIn.m_textureDataVector.at(i).m_filename;

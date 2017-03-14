@@ -43,12 +43,12 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 {
 	baseNode["player"] >> levelIn.m_playerData;
 	const YAML::Node& tileNode = baseNode["tiles"].as<YAML::Node>();
-	for (unsigned int i = 0; i < tileNode.size(); ++i)
+	/*for (unsigned int i = 0; i < tileNode.size(); ++i)
 	{
 		TileData tile;
 		tileNode[i] >> tile;
 		levelIn.m_tileDataVector.push_back(tile);
-	}
+	}*/
 
 	const YAML::Node& obstaclesNode = baseNode["obstacles"].as<YAML::Node>();
 	for (unsigned i = 0; i < obstaclesNode.size(); ++i)

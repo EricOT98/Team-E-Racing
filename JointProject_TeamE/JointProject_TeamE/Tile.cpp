@@ -1,10 +1,11 @@
 #include "Tile.h"
 #include <iostream>
 
-Tile::Tile(int xIndex, int yIndex, std::string texture, int rotation) : m_xIndex(xIndex), m_yIndex(yIndex)
+Tile::Tile(int xIndex, int yIndex, std::string texture, int rotation) 
+	: m_xIndex(xIndex), m_yIndex(yIndex)
 {
 	m_displaySprite.setTexture(g_resourceMgr.textureHolder[texture]);
-	m_collisionImage.loadFromFile("Resources/" + texture + "back.png");
+	m_collisionImage.loadFromFile(texture + ".png");// +"_back.png");
 	float spriteWidth = m_displaySprite.getLocalBounds().width;
 	float spriteHeight = m_displaySprite.getLocalBounds().height;
 	m_displaySprite.setPosition(spriteWidth * m_xIndex + spriteWidth / 2.f, spriteHeight * m_yIndex + spriteHeight / 2.f);
