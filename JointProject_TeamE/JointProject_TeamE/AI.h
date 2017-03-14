@@ -3,6 +3,7 @@
 
 #include "Racer.h"
 #include <SFML\Graphics.hpp>
+#include "MathUtility.h"
 
 struct Waypoint;
 
@@ -17,6 +18,10 @@ public:
 
 protected:
 	std::vector<Waypoint> *m_wayPoints;
+	unsigned int m_currentNode;
+	sf::Vector2f m_steering;
+
+	sf::Vector2f pathFollowing();
 };
 
 #endif

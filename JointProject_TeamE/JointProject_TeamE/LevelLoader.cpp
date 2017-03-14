@@ -41,8 +41,8 @@ void operator >> (YAML::Node &playerNode, PlayerData & player)
 
 void operator >> (const YAML::Node &waypointNode, Waypoint &waypoint)
 {
-	waypoint.position.x = waypointNode["position"]["x"].as<float>();
-	waypoint.position.y = waypointNode["position"]["y"].as<float>();
+	waypoint.m_position.x = waypointNode["position"]["x"].as<float>();
+	waypoint.m_position.y = waypointNode["position"]["y"].as<float>();
 }
 
 void operator >> (YAML::Node &baseNode, LevelData &levelIn)

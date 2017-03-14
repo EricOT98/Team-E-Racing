@@ -32,7 +32,7 @@ struct PlayerData {
 
 struct Waypoint
 {
-	sf::Vector2f position;
+	sf::Vector2f m_position;
 };
 
 struct LevelData {

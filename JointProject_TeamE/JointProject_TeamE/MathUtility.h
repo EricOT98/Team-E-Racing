@@ -31,4 +31,15 @@ float degreesToRad(float degrees);
 /// </summary>
 void rotateImage90(sf::Image & image, int iterations);
 
+/// <summary>
+/// Calculates the distance between two points
+/// </summary>
+float distance(sf::Vector2f &pos0, sf::Vector2f &pos1);
+
+float length(sf::Vector2f &v);
+
+sf::Vector2f truncate(sf::Vector2f &v, float const num);
+
+sf::Vector2f unitVector(sf::Vector2f &v);
+
 #endif

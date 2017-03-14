@@ -55,3 +55,33 @@ void rotateImage90(sf::Image & image, int iterations)
 		image = result;
 	}
 }
+
+/// <summary>
+/// Calculates the distance between two points
+/// </summary>
+/// <param name="pos0">Position from the start</param>
+/// <param name="pos1">Position at the end</param>
+/// <returns>The distance between two points</returns>
+float distance(sf::Vector2f &v1, sf::Vector2f &v2)
+{
+	return std::sqrt((v1.x - v2.x) * (v1.x - v2.x) + (v1.y - v2.y) * (v1.y - v2.y));
+}
+
+float length(sf::Vector2f &v)
+{
+	return std::sqrt((v.x * v.x) + (v.y * v.y));
+}
+
+sf::Vector2f truncate(sf::Vector2f &v, float const num)
+{
+	float i;
+	i = num / length(v);
+	i = i < 1.0 ? i : 1.0;
+	v *= i;
+	return v;
+}
+
+sf::Vector2f unitVector(sf::Vector2f &v)
+{
+	return sf::Vector2f(v.x / length(v), v.y / length(v));
+}

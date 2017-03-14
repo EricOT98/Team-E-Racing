@@ -114,6 +114,17 @@ void Game::render()
 		m_track.render(m_window);
 		for (Racer *racer : m_racers)
 			racer->render(m_window);
+
+		// DEBUG(Darren): Debug drawing the AI nodes
+		for (Waypoint waypoint : m_level.m_waypoints)
+		{
+			sf::CircleShape circle(5.0f);
+			circle.setPosition(waypoint.m_position);
+			circle.setFillColor(sf::Color::Blue);
+
+			m_window.draw(circle);
+		}
+
 		break;
 	default:
 		break;
