@@ -35,7 +35,7 @@ void Tile::checkOnTrack(Racer * racer)
 	relativePos.x -= m_displaySprite.getGlobalBounds().width / 2.f;
 	relativePos.y -= m_displaySprite.getGlobalBounds().height / 2.f;
 	relativePos = racer->getPosition() - relativePos;
-	if (m_collisionImage.getPixel(relativePos.x, relativePos.y).r < 20)
+	if (m_collisionImage.getPixel(relativePos.x, relativePos.y).r < 110)
 	{
 		racer->setFrictionLow();
 	}

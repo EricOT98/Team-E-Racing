@@ -1,45 +1,51 @@
 #include "Screen.h"
 
-GameScreenState Screen::currentGameState;
+/// <summary>
+/// Screen constructor function
+/// </summary>
+/// <param name="gameStateIn">The game state assigned to the screen</param>
+Screen::Screen(GameState gameStateIn) : m_gameState(gameStateIn), m_nextGameState(gameStateIn) {}
 
 /// <summary>
-/// Initalizes the m_active to false which represent the screen state
+/// Function draws the gui object
 /// </summary>
-Screen::Screen()
-	: m_active(false)
+/// <param name="window">The render window used to draw the game</param>
+void Screen::render(sf::RenderWindow& window)
 {
-	currentGameState = GameScreenState::MainMenuScreen;
+	window.draw(m_gui); // Draw the GUI object
 }
 
 /// <summary>
-/// Virtual deconstructor so the dervied class deconstrcutor is called 
+/// Getter function for the game state of the screen
 /// </summary>
-Screen::~Screen()
+/// <returns>The game state of the screen</returns>
+GameState Screen::getGameState()
 {
-
+	return m_gameState;
 }
 
 /// <summary>
-/// Virtual method to override for custum screen updating
+/// Getter function for the nextGameState member
 /// </summary>
-void Screen::update()
+/// <returns>The next game state for the screen manager to update</returns>
+GameState Screen::getNextGameState()
 {
-
+	return m_nextGameState;
 }
 
 /// <summary>
-/// Virtual method to override for custum screen rendering
+/// Function used to reset the next game state for the screen
 /// </summary>
-void Screen::render()
+void Screen::resetNextGameState()
 {
-
+	m_nextGameState = m_gameState;
+	reset(); // Reset this screen so it will be ready to run from the start again
 }
 
 /// <summary>
-/// 
+/// Function sets the colours for the gui object
 /// </summary>
-/// <param name="event">The events happened inside the window</param>
-void Screen::processInput(sf::Event &event)
+void Screen::setColors()
 {
-
+	m_gui.setColors(); // Set the colors of the GUI
 }

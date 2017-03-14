@@ -15,7 +15,7 @@ void Game::run()
 	LevelLoader::load(m_level);
 	g_resourceMgr.loadAssets(m_level);
 	m_track.setTrack(m_level);
-	m_screenManager.init();
+	//m_screenManager.init();
 	m_player.setCar();
 	m_racers.push_back(&m_player);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
@@ -51,8 +51,6 @@ void Game::processEvents()
 		}
 		processGameEvents(event);
 	}
-
-	m_screenManager.processInput(m_xboxController);
 }
 
 void Game::processGameEvents(sf::Event& event)
@@ -84,7 +82,7 @@ void Game::update(double dt)
 	switch (currentGameState)
 	{
 	case GameState::Menu:
-		m_screenManager.update();
+		m_screenManager.update(m_xboxController);
 		break;
 	case GameState::Play:
 		m_track.update(m_racers);
