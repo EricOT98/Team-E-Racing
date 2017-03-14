@@ -6,6 +6,7 @@
  #pragma comment(lib, "sfml-network-d.lib")
  #pragma comment(lib, "libyaml-cppmdd.lib") // YAML
  #pragma comment(lib,"thor-d.lib")			//Thor library
+ #pragma comment(lib, "sfeMovie-d.lib")		//SFE Movie library
  #else
  #pragma comment(lib, "sfml-graphics.lib")
  #pragma comment(lib, "sfml-audio.lib")
@@ -14,6 +15,7 @@
  #pragma comment(lib, "sfml-network.lib")
  #pragma comment(lib, "libyaml-cppmd.lib") // YAML
  #pragma comment(lib,"thor.lib")		   //Thor library
+ #pragma comment(lib, "sfeMovie.lib")		//SFE Movie library
  #endif
  #pragma comment(lib, "opengl32.lib")
  #pragma comment(lib, "glu32.lib")
