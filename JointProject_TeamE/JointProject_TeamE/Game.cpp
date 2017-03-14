@@ -14,10 +14,13 @@ void Game::run()
 {
 	LevelLoader::load(m_level);
 	g_resourceMgr.loadAssets(m_level);
+	m_mainMenu = new MainMenu();
+	m_confirmationScreen = new ConfirmationScreen();
 	m_track.setTrack(m_level);
-	//m_screenManager.init();
 	m_player.setCar();
 	m_racers.push_back(&m_player);
+	m_screenManager.add(m_mainMenu);
+	m_screenManager.add(m_confirmationScreen);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
@@ -34,9 +37,8 @@ void Game::run()
 		{
 			update(timeSinceLastUpdate.asMilliseconds());
 			timeSinceLastUpdate = sf::Time::Zero;
+			render();
 		}
-
-		render();
 	}
 }
 

@@ -23,12 +23,13 @@ public:
 	void reset() override;
 
 private:
-	void playButtonSelected();
-	void upgradesButtonSelected();
-	void trophiesButtonSelected();
-	void optionsButtonSelected();
-	void creditsButtonSelected();
-	void exitButtonSelected();
+	
+	void playButtonCallback();
+	void upgradesButtonCallback();
+	void trophiesButtonCallback();
+	void optionsButtonCallback();
+	void creditsButtonCallback();
+	void exitButtonCallback();
 
 	Label *m_title;
 	Button *m_playButton;
@@ -37,6 +38,13 @@ private:
 	Button *m_optionsButton;
 	Button *m_creditsButton;
 	Button *m_exitButton;
+
+	bool m_playButtonSelected;
+	bool m_upgradesButtonSelected;
+	bool m_trophiesButtonSelected;
+	bool m_optionsButtonSelected;
+	bool m_creditsButtonSelected;
+	bool m_exitButtonSelected;
 };
 
 #endif 

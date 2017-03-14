@@ -21,6 +21,10 @@ void Screen::render(sf::RenderWindow& window)
 /// <returns>The game state of the screen</returns>
 GameState Screen::getGameState()
 {
+	if (m_gameState == GameState::MainMenu)
+	{
+		std::cout << "tree" << std::endl;
+	}
 	return m_gameState;
 }
 
@@ -48,4 +52,15 @@ void Screen::resetNextGameState()
 void Screen::setColors()
 {
 	m_gui.setColors(); // Set the colors of the GUI
+}
+
+void Screen::transOut(GameState gameStateIn)
+{
+	m_gui.transitionOut(0.05f, m_interpolation);
+	if (m_interpolation >= 1.0f)
+	{
+		m_nextGameState = gameStateIn; // Change the next game state
+		m_interpolation = 0.0f; // Reset the interpolation
+		reset(); // Reset the main menu
+	}
 }

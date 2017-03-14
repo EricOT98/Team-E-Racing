@@ -3,7 +3,7 @@
 /// <summary>
 /// Default Constructor for the screen manager class
 /// </summary>
-ScreenManager::ScreenManager() : m_gameState(GameState::SplashScreen)
+ScreenManager::ScreenManager() : m_gameState(GameState::MainMenu)
 {
 	//m_backgroundSprite.setTexture(*g_resourceMgr.getBackgroundTexture());
 }
@@ -35,17 +35,17 @@ void ScreenManager::update(XboxController &controller)
 			GameState nextState = screens.at(m_currentScreen)->getNextGameState();
 			if (nextState != m_gameState) // Check if the screen wants to switch game states
 			{
-				if (GameState::Options == m_gameState)
-				{
-					for (Screen * screen : screens)
-					{
-						screen->setColors(); // We reset the colours of every screen if we have come from the options screen
-						if (screen->getGameState() == GameState::GamePlay)
-						{
-							screen->reset(); // We need to also reset the game if this is the case
-						}
-					}
-				}
+				//if (GameState::OptionsScreen == m_gameState)
+				//{
+				//	for (Screen * screen : screens)
+				//	{
+				//		screen->setColors(); // We reset the colours of every screen if we have come from the options screen
+				//		if (screen->getGameState() == GameState::GamePlay)
+				//		{
+				//			screen->reset(); // We need to also reset the game if this is the case
+				//		}
+				//	}
+				//}
 				m_gameState = nextState; // Set the current game state
 				screens.at(m_currentScreen)->resetNextGameState(); // Reset the game state of the net screen member of the current screen
 			}

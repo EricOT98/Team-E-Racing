@@ -49,7 +49,7 @@ protected:
 		Play
 	};
 
-	GameState currentGameState = GameState::Play;
+	GameState currentGameState = GameState::Menu;
 	LevelData m_level;
 
 	sf::Texture carTexture;
@@ -65,6 +65,7 @@ protected:
 	//DisplayOptions * m_displayOptions;
 	//HelpScreen * m_helpScreen;
 	MainMenu * m_mainMenu;
+	ConfirmationScreen * m_confirmationScreen;
 	//Options * m_options;
 	//PauseScreen * m_pauseScreen;
 	//SoundOptions * m_soundOptions;

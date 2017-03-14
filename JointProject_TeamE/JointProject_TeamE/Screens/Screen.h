@@ -24,10 +24,18 @@ enum class GameState
 {
 	SplashScreen,
 	MainMenu,
-	Options,
-	Quit,
+	OptionsScreen,
+	QuitScreen,
 	GamePlay,
-	EndGameState
+	EndGameState,
+	DifficultyScreen,
+	DisplayOptionsScreen,
+	HelpScreen,
+	PauseScreen,
+	SoundOptions,
+	UpgradesScreen,
+	TrophyScreen,
+	CreditsScreen
 };
 
 /// <summary>
@@ -47,12 +55,17 @@ public:
 	void setColors();
 	virtual void reset() = 0; // pure virtual reset (needs to be overrided)
 protected:
+	void transOut(GameState gameStateIn);
+
 	// GameState variables
 	GameState m_gameState;
 	GameState m_nextGameState;
 
 	// GUI object
 	Gui m_gui;
+
+	float m_interpolation;
+	bool m_transitionIn;
 };
 
 #endif
