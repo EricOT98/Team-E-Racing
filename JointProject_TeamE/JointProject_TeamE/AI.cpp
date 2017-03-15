@@ -12,7 +12,7 @@ sf::Vector2f velocity = sf::Vector2f();
 
 void AI::update(float dt)
 {
-	sf::Vector2f vectorToNode = pathFollowing();
+	/*sf::Vector2f vectorToNode = pathFollowing();
 
 	m_steering = sf::Vector2f(); 
 	m_steering = m_steering + pathFollowing();
@@ -28,7 +28,7 @@ void AI::update(float dt)
 	m_sprite.setRotation(angle);
 	m_sprite.setPosition(m_position);
 
-	std::cout << "Current Node: " << m_currentNode << std::endl;
+	std::cout << "Current Node: " << m_currentNode << std::endl;*/
 }
 
 void AI::setWayPoints(std::vector<Waypoint> &wayPoints)

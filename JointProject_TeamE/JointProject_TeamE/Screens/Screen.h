@@ -15,6 +15,7 @@
 #include "..\GUI\Button.h"
 #include "..\GUI\RadioButton.h"
 #include "..\GUI\CheckBox.h"
+#include "..\ResourceManager.h"
 
 /// <summary>
 /// Define the gamestate here as it is accessible to everything that neds it at this point

@@ -75,9 +75,9 @@ protected:
 	HelpScreen * m_helpScreen;
 	MainMenu * m_mainMenu;
 	Options * m_options;
-	//PauseScreen * m_pauseScreen;
-	//SoundOptions * m_soundOptions;
-	//TrophyScreen * m_trophyScreen;
+	PauseScreen * m_pauseScreen;
+	SoundOptions * m_soundOptions;
+	TrophyScreen * m_trophyScreen;
 
 	// Game Screens
 };
