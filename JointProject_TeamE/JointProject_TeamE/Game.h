@@ -22,6 +22,7 @@
 #include "Screens\PauseScreen.h"
 #include "Screens\SoundOptions.h"
 #include "Screens\TrophyScreen.h"
+#include "Screens\SplashScreen.h"
 //GUI
 
 // For testing
@@ -54,7 +55,7 @@ protected:
 		Play
 	};
 
-	GameState currentGameState = GameState::Play;
+	GameState currentGameState = GameState::Menu;
 	LevelData m_level;
 
 	sf::Texture carTexture;
@@ -69,6 +70,7 @@ protected:
 	Shader shader;
 
 	// Game Screens
+	SplashScreen * m_splashScreen;
 	ConfirmationScreen * m_confirmationScreen;
 	DifficultyScreen * m_difficultyScreen;
 	DisplayOptions * m_displayOptions;
@@ -78,6 +80,7 @@ protected:
 	PauseScreen * m_pauseScreen;
 	SoundOptions * m_soundOptions;
 	TrophyScreen * m_trophyScreen;
+	
 
 	// Game Screens
 };
