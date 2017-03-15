@@ -56,31 +56,24 @@ obstacles:
     texturerect: {left: 585, top: 345, width: 50, height: 50}
     position: {x: 0, y: 0}
     type: 0
-  - texturestring: objects
-    position: {x: 300, y: 200}
-    texturerect: {left: 265, top: 320, width: 55, height: 50}
-    type: 1
-  - texturestring: objects
+startPositions:
+  - type: start_pos
+    position: {x: 746, y: 800}
+  - type: start_pos
+    position: {x: 525, y: 1305}
+  - type: start_pos
     position: {x: 400, y: 200}
-    texturerect: {left: 635, top: 420, width: 45, height: 40}
-    type: 2
-  - texturestring: objects
+  - type: start_pos
     position: {x: 500, y: 200}
-    texturerect: {left: 265, top: 320, width: 55, height: 50}
-    type: 0
 textures:
-  - filepath: Resources/sprite.jpg
-    string: testsprite1
-  - filepath: Resources/sprite_2.png
-    string: testsprite2
-  - filepath: Resources/curve.png
-    string: curve
-  - filepath: Resources/straight.png
-    string: straight
-  - filepath: Resources/demo.png
-    string: demo
   - filepath: Resources/objects.png
     string: objects
+  - filepath: Resources/StartTrackPos.png
+    string: StartTrackPos
+  - filepath: Resources/Cars/CarGreen.png
+    string: CarTexture
+  - filepath: Resources/Trophies.png
+    string: Trophies
 waypoints:
   - type: ai_node
     position: {x: 750, y: 600}

@@ -10,8 +10,6 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 	try
 	{
 		fontHolder.acquire("GameFont", thor::Resources::fromFile<sf::Font>("Resources/arial.ttf"));
-		textureHolder.acquire("CarTexture", thor::Resources::fromFile<sf::Texture>("Resources/Cars/CarGreen.png"));
-		textureHolder.acquire("Trophies", thor::Resources::fromFile<sf::Texture>("Resources/Trophies.png"));
 
 		for (int Row = 0; Row < 6; Row++)
 		{

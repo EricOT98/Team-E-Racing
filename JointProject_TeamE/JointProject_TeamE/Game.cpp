@@ -42,8 +42,12 @@ void Game::run()
 	m_trophyScreen = new TrophyScreen();
 	m_track.setTrack(m_level);
 	m_player.setCar();
+	m_player.setPosition(sf::Vector2f(750.0f, 650.0f));
+	m_player.setRotation(-90.0f);
 	m_AI.setCar();
 	m_AI.setWayPoints(m_level.m_waypoints);
+	m_AI.setPosition(sf::Vector2f(720.0f, 750.0f));
+	m_AI.setRotation(-90.0f);
 	m_racers.push_back(&m_player);
 	m_racers.push_back(&m_AI);
 	m_screenManager.add(m_mainMenu);
@@ -71,8 +75,9 @@ void Game::run()
 		{
 			update(timeSinceLastUpdate.asMilliseconds());
 			timeSinceLastUpdate = sf::Time::Zero;
-			render();
 		}
+
+		render();
 	}
 }
 
