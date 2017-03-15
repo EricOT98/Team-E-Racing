@@ -148,9 +148,99 @@ obstacles:
     rotation: 0
     name: cones
     type: 0
+  - texturestring: objects
+    texturerect: {left: 390, top: 190, width: 200, height: 145}
+    position: {x: 800, y: 700}
+    rotation: 0
+    name: bush_large_3_piece
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1250, y: 640}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1310, y: 710}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1200, y: 690}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1260, y: 760}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1150, y: 740}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1210, y: 810}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1100, y: 790}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1160, y: 860}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1050, y: 840}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1110, y: 910}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1000, y: 890}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1060, y: 960}
+    rotation: 45
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 465, top: 0, width: 52, height: 177}
+    position: {x: 940, y: 930}
+    rotation: 75
+    name: barrier
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 465, top: 0, width: 52, height: 177}
+    position: {x: 1000, y: 1020}
+    rotation: 20
+    name: barrier
+    type: 0
 startPositions:
   - type: start_pos
-    position: {x: 746, y: 800}
+    position: {x: 746, y: 840}
   - type: start_pos
     position: {x: 525, y: 1305}
   - type: start_pos

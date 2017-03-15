@@ -65,7 +65,7 @@ void Track::render(sf::RenderWindow & window)
 	sf::Vector2f playerStartPos = m_startPositions.at((int)TrackType::TrackOne);
 	for (int i = 0; i < 6; i++)
 	{
-		sf::Vector2f pos = sf::Vector2f(playerStartPos.x - ((i % 2) * 30), playerStartPos.y - (i * 40));
+		sf::Vector2f pos = sf::Vector2f(playerStartPos.x - ((i % 2) * 30), playerStartPos.y - (i * 45));
 		startPosSprite.setPosition(pos);
 
 		window.draw(startPosSprite);
