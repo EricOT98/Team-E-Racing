@@ -128,6 +128,7 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="gl3w.c" />
     <ClCompile Include="Screens\DisplayOptions.cpp" />
     <ClCompile Include="Screens\ConfirmationScreen.cpp" />
     <ClCompile Include="Input\KeyboardHandler.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Screens\ScreenManager.cpp" />
     <ClCompile Include="Screens\SoundOptions.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Track.cpp" />
     <ClCompile Include="Screens\MainMenu.cpp" />
@@ -189,9 +191,14 @@
     <ClInclude Include="Screens\MainMenu.h" />
     <ClInclude Include="Screens\Screen.h" />
     <ClInclude Include="Screens\SoundOptions.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Track.h" />
     <ClInclude Include="Screens\TrophyScreen.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\shaderText.frag" />
+    <None Include="Resources\Shaders\shaderText.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

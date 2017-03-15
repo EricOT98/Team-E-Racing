@@ -44,7 +44,6 @@ sf::Vector2f AI::pathFollowing()
 	{
 		target = m_wayPoints->at(m_currentNode).m_position;
 
-		// NOTE(Darren): For now all nodes have a radius of 10.0f, we can change that if needs be.
 		if (distance(target, m_position) < WAYPOINT_RADIUS)
 		{
 			m_currentNode++;

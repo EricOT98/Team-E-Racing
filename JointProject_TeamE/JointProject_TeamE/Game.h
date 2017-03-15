@@ -24,7 +24,11 @@
 #include "Screens\TrophyScreen.h"
 //GUI
 
+// For testing
+#include "Shader.h"
 
+// Initalize gl3w
+#include "GL\gl3w.h"
 
 class Game
 {
@@ -50,7 +54,7 @@ protected:
 		Play
 	};
 
-	GameState currentGameState = GameState::Menu;
+	GameState currentGameState = GameState::Play;
 	LevelData m_level;
 
 	sf::Texture carTexture;
@@ -60,6 +64,9 @@ protected:
 	AI m_AI;
 	std::vector<Racer *> m_racers;
 	sf::View raceView;
+
+	// For testing
+	Shader shader;
 
 	// Game Screens
 	ConfirmationScreen * m_confirmationScreen;

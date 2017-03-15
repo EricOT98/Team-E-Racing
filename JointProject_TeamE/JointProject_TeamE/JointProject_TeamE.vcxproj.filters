@@ -38,6 +38,8 @@
     </ClCompile>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="gl3w.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -135,6 +137,7 @@
     <ClInclude Include="Screens\TrophyScreen.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -206,5 +209,9 @@
     <Filter Include="src\Input">
       <UniqueIdentifier>{84efdfec-a796-4acd-a919-4f4bffba7674}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\shaderText.frag" />
+    <None Include="Resources\Shaders\shaderText.vert" />
   </ItemGroup>
 </Project>

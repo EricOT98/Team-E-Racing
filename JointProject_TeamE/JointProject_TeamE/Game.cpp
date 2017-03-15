@@ -14,6 +14,23 @@ void Game::run()
 {
 	LevelLoader::load(m_level);
 	g_resourceMgr.loadAssets(m_level);
+
+	if (gl3wInit()) 
+	{
+		fprintf(stderr, "failed to initialize OpenGL\n");
+		return;
+	}
+	if (!gl3wIsSupported(3, 2)) 
+	{
+		fprintf(stderr, "OpenGL 3.2 not supported\n");
+		return;
+	}
+	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION),
+		glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+	// Maybe do shader loading in resource manager and pull them from there?
+	shader.LoadShader("Resources/Shaders/shaderText.vert", "Resources/Shaders/shaderText.frag");
+
 	m_mainMenu = new MainMenu();
 	m_confirmationScreen = new ConfirmationScreen();
 	m_difficultyScreen = new DifficultyScreen();
@@ -25,16 +42,13 @@ void Game::run()
 	m_AI.setCar();
 	m_AI.setWayPoints(m_level.m_waypoints);
 	m_racers.push_back(&m_player);
-<<<<<<< HEAD
 	m_racers.push_back(&m_AI);
-=======
 	m_screenManager.add(m_mainMenu);
 	m_screenManager.add(m_confirmationScreen);
 	m_screenManager.add(m_difficultyScreen);
 	m_screenManager.add(m_displayOptions);
 	m_screenManager.add(m_helpScreen);
 	m_screenManager.add(m_options);
->>>>>>> GameScreens
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
