@@ -83,48 +83,70 @@ textures:
     string: objects
 waypoints:
   - type: ai_node
-    position: {x: 150, y: 50}
+    position: {x: 750, y: 600}
   - type: ai_node
-    position: {x: 50, y: 150}
+    position: {x: 780, y: 550}
   - type: ai_node
-    position: {x: 50, y: 450}
+    position: {x: 850, y: 530}
   - type: ai_node
-    position: {x: 50, y: 700}
+    position: {x: 950, y: 530}
   - type: ai_node
-    position: {x: 100, y: 800}
+    position: {x: 950, y: 530}
   - type: ai_node
-    position: {x: 250, y: 850}
+    position: {x: 950, y: 530}
   - type: ai_node
-    position: {x: 400, y: 850}
+    position: {x: 1050, y: 500}
   - type: ai_node
-    position: {x: 500, y: 700}
+    position: {x: 1080, y: 300}
   - type: ai_node
-    position: {x: 400, y: 550}
+    position: {x: 1050, y: 240}
   - type: ai_node
-    position: {x: 200, y: 500}
+    position: {x: 1000, y: 200}
   - type: ai_node
-    position: {x: 100, y: 350}
+    position: {x: 930, y: 220}
   - type: ai_node
-    position: {x: 200, y: 200}
+    position: {x: 230, y: 900}
   - type: ai_node
-    position: {x: 400, y: 100}
+    position: {x: 210, y: 930}
   - type: ai_node
-    position: {x: 600, y: 200}
+    position: {x: 210, y: 1000}
   - type: ai_node
-    position: {x: 650, y: 450}
+    position: {x: 210, y: 1000}
   - type: ai_node
-    position: {x: 700, y: 700}
+    position: {x: 250, y: 1050}
   - type: ai_node
-    position: {x: 900, y: 850}
+    position: {x: 250, y: 1050}
   - type: ai_node
-    position: {x: 1200, y: 750}
+    position: {x: 350, y: 1000}
   - type: ai_node
-    position: {x: 1100, y: 500}
+    position: {x: 500, y: 850}
   - type: ai_node
-    position: {x: 1000, y: 300}
+    position: {x: 580, y: 830}
   - type: ai_node
-    position: {x: 850, y: 100}
+    position: {x: 650, y: 900}
   - type: ai_node
-    position: {x: 600, y: 50}
+    position: {x: 550, y: 1050}
   - type: ai_node
-    position: {x: 300, y: 50}
+    position: {x: 500, y: 1100}
+  - type: ai_node
+    position: {x: 500, y: 1250}
+  - type: ai_node
+    position: {x: 550, y: 1320}
+  - type: ai_node
+    position: {x: 700, y: 1250}
+  - type: ai_node
+    position: {x: 1300, y: 650}
+  - type: ai_node
+    position: {x: 1300, y: 600}
+  - type: ai_node
+    position: {x: 1250, y: 570}
+  - type: ai_node
+    position: {x: 1200, y: 580}
+  - type: ai_node
+    position: {x: 1200, y: 580}
+  - type: ai_node
+    position: {x: 900, y: 880}
+  - type: ai_node
+    position: {x: 800, y: 870}
+  - type: ai_node
+    position: {x: 720, y: 800}
