@@ -13,7 +13,7 @@ void Track::setTrack(LevelData &levelIn)
 	for (int i = 0; i < levelIn.m_obstacleDataVector.size(); i++)
 	{
 		m_obstacles.push_back(new Obstacle(levelIn.m_obstacleDataVector.at(i).m_textureString, levelIn.m_obstacleDataVector.at(i).m_textureRect, 
-			levelIn.m_obstacleDataVector.at(i).m_position, levelIn.m_obstacleDataVector.at(i).m_type));
+			levelIn.m_obstacleDataVector.at(i).m_position, levelIn.m_obstacleDataVector.at(i).m_type, levelIn.m_obstacleDataVector.at(i).m_rotation));
 	}
 
 	startPosSprite.setTexture(g_resourceMgr.textureHolder["StartTrackPos"]);

@@ -23,6 +23,8 @@ void operator >> (const YAML::Node &obstacleNode, ObstacleData & obstacle)
 	obstacle.m_textureRect.top = obstacleNode["texturerect"]["top"].as<int>();
 	obstacle.m_textureRect.width = obstacleNode["texturerect"]["width"].as<int>();
 	obstacle.m_textureRect.height = obstacleNode["texturerect"]["height"].as<int>();
+	obstacle.m_name = obstacleNode["name"].as<std::string>();
+	obstacle.m_rotation = obstacleNode["rotation"].as<float>();
 }
 
 void operator >> (const YAML::Node &tileNode, TileData & tile)

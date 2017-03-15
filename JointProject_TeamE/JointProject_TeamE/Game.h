@@ -55,7 +55,7 @@ protected:
 		Play
 	};
 
-	GameState currentGameState = GameState::Menu;
+	GameState currentGameState = GameState::Play;
 	LevelData m_level;
 
 	sf::Texture carTexture;

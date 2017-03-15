@@ -7,14 +7,17 @@
 /// <param name="textureRect">the texture rect of the sprite</param>
 /// <param name="pos">The position of the obstacle</param>
 /// <param name="type">the type of obstacle it is</param>
-Obstacle::Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f pos, int type) :
+Obstacle::Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f pos, int type, float rotation) :
 	m_position(pos)
 {
 	m_sprite.setTexture(g_resourceMgr.textureHolder[texture]);
 	std::cout << "Obstacle Texture: " << texture << std::endl;
+	m_sprite.setTextureRect(textureRect);
 	m_sprite.setOrigin(0.5f, 0.5f);
 	m_sprite.setPosition(m_position);
-	//m_sprite.setTextureRect(textureRect);
+	m_sprite.setScale(sf::Vector2f(0.4f, 0.4f));
+	m_sprite.setRotation(rotation);
+
 	switch (type)
 	{
 	case 0:

@@ -154,6 +154,7 @@ void Game::render()
 			racer->render(m_window);
 
 		// DEBUG(Darren): Debug drawing the AI nodes
+#if 0
 		for (Waypoint waypoint : m_level.m_waypoints)
 		{
 			sf::CircleShape circle(5.0f);
@@ -162,6 +163,7 @@ void Game::render()
 
 			m_window.draw(circle);
 		}
+#endif
 
 		break;
 	default:

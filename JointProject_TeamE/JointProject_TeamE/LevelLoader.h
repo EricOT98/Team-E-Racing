@@ -15,7 +15,9 @@ struct ObstacleData {
 	std::string m_textureString;
 	sf::Vector2f m_position;
 	sf::IntRect m_textureRect;
+	float m_rotation;
 	int m_type;
+	std::string m_name;
 };
 
 struct TileData {

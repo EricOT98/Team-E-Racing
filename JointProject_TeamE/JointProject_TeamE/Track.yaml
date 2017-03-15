@@ -53,8 +53,100 @@ tiles:
     rotation: 180
 obstacles:
   - texturestring: objects
-    texturerect: {left: 585, top: 345, width: 50, height: 50}
-    position: {x: 0, y: 0}
+    texturerect: {left: 350, top: 0, width: 52, height: 177}
+    position: {x: 750, y: 470}
+    rotation: 45
+    name: barrier_grey
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 350, top: 0, width: 52, height: 177}
+    position: {x: 700, y: 520}
+    rotation: 45
+    name: barrier_grey
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 350, top: 0, width: 52, height: 177}
+    position: {x: 650, y: 570}
+    rotation: 45
+    name: barrier_grey
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 350, top: 0, width: 52, height: 177}
+    position: {x: 600, y: 620}
+    rotation: 45
+    name: barrier
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 25, top: 195, width: 150, height: 145}
+    position: {x: 900, y: 720}
+    rotation: 0
+    name: bush_single_medium
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 584, top: 68, width: 50, height: 50}
+    position: {x: 1050, y: 240}
+    rotation: 0
+    name: hole_in_ground_thing
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 566, top: 11, width: 86, height: 56}
+    position: {x: 350, y: 1000}
+    rotation: 0
+    name: oil_on_ground
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 410, top: 0, width: 52, height: 177}
+    position: {x: 660, y: 820}
+    rotation: -25
+    name: barrier
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 410, top: 0, width: 52, height: 177}
+    position: {x: 680, y: 890}
+    rotation: -30
+    name: barrier
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 24, top: 44, width: 155, height: 135}
+    position: {x: 580, y: 730}
+    rotation: 0
+    name: rock_large
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 582, top: 120, width: 53, height: 53}
+    position: {x: 1400, y: 1400}
+    rotation: 0
+    name: secret_lair
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 610, top: 240, width: 94, height: 80}
+    position: {x: 800, y: 650}
+    rotation: 0
+    name: bush_small
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1110, y: 300}
+    rotation: 0
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1110, y: 400}
+    rotation: 0
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1020, y: 300}
+    rotation: 0
+    name: cones
+    type: 0
+  - texturestring: objects
+    texturerect: {left: 525, top: 0, width: 46, height: 180}
+    position: {x: 1020, y: 400}
+    rotation: 0
+    name: cones
     type: 0
 startPositions:
   - type: start_pos

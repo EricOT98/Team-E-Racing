@@ -14,7 +14,7 @@ enum class Type{BUSH,
 class Obstacle
 {
 public:
-	Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f pos, int type);
+	Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f pos, int type, float rotation);
 	~Obstacle();
 
 	void render(sf::RenderWindow & window);
