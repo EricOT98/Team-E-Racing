@@ -11,6 +11,21 @@
 #include "Input\KeyboardHandler.h"
 #include <iostream>
 
+
+//GUI
+#include "Screens\ConfirmationScreen.h"
+#include "Screens\DifficultyScreen.h"
+#include "Screens\DisplayOptions.h"
+#include "Screens\HelpScreen.h"
+#include "Screens\MainMenu.h"
+#include "Screens\Options.h"
+#include "Screens\PauseScreen.h"
+#include "Screens\SoundOptions.h"
+#include "Screens\TrophyScreen.h"
+//GUI
+
+
+
 class Game
 {
 public:
@@ -35,7 +50,7 @@ protected:
 		Play
 	};
 
-	GameState currentGameState = GameState::Play;
+	GameState currentGameState = GameState::Menu;
 	LevelData m_level;
 
 	sf::Texture carTexture;
@@ -45,6 +60,19 @@ protected:
 	AI m_AI;
 	std::vector<Racer *> m_racers;
 	sf::View raceView;
+
+	// Game Screens
+	ConfirmationScreen * m_confirmationScreen;
+	DifficultyScreen * m_difficultyScreen;
+	DisplayOptions * m_displayOptions;
+	HelpScreen * m_helpScreen;
+	MainMenu * m_mainMenu;
+	Options * m_options;
+	//PauseScreen * m_pauseScreen;
+	//SoundOptions * m_soundOptions;
+	//TrophyScreen * m_trophyScreen;
+
+	// Game Screens
 };
 
 #endif

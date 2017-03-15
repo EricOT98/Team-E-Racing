@@ -1,37 +1,32 @@
-#ifndef SCREEN_MANAGER_H
-#define SCREEN_MANAGER_H
+/// <summary>
+/// @author Darren Sweeney
+/// @version 1.0
+/// </summary>
 
-#include "MainMenu.h"
-#include "Options.h"
-#include "SoundOptions.h"
-#include "DifficultyScreen.h"
-#include "HelpScreen.h"
-#include "PauseScreen.h"
-#include "ConfirmationScreen.h"
-#include "DisplayOptions.h"
-#include "TrophyScreen.h"
+#ifndef  SCRENMANAGER_H
+#define SCREENMANAGER_H
 
+#include "Screen.h"
+
+/// <summary>
+/// Brief: Class used to manage all of the screens
+/// 
+/// Detail: Class used to update and render each 
+/// screen within the game based on the current GameState
+/// </summary>
 class ScreenManager
 {
 public:
 	ScreenManager();
 	~ScreenManager();
-
-	void init();
-	void update();
-	void render(sf::RenderWindow &window);
-	void processInput(XboxController &controller);
-
+	void update(XboxController &controller);
+	void render(sf::RenderWindow& window);
+	void add(Screen *Screen);
 private:
-	MainMenu *m_mainMenu;
-	Options *m_optionsMenu;
-	SoundOptions *m_soundOptions;
-	DifficultyScreen *m_difficultyScreen;
-	HelpScreen *m_helpScreen;
-	DisplayOptions *m_displayOpitions;
-	PauseScreen *m_pauseScreen;
-	ConfirmationScreen *m_confirmationScreen;
-	TrophyScreen *m_trophyScreen;
+	std::vector<Screen *> screens; // Screen container
+	GameState m_gameState; // Current game state
+	int m_currentScreen; // Current active screen
+	sf::Sprite m_backgroundSprite; // Background sprite to be drawn
 };
 
 #endif

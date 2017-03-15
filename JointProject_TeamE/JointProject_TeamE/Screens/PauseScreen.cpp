@@ -1,6 +1,6 @@
 #include "PauseScreen.h"
 
-PauseScreen::PauseScreen()
+PauseScreen::PauseScreen() : Screen(GameState::PauseScreen)
 {
 	sf::Color focusColor = sf::Color::Red;
 	sf::Color nofocusColor = sf::Color::Magenta;
@@ -25,25 +25,65 @@ PauseScreen::PauseScreen()
 	m_quitButton->m_up = m_optionsButton;
 	m_quitButton->m_down = m_resumeButton;
 
-	m_pauseScreenGUI.add(m_pauseScreenLabel);
-	m_pauseScreenGUI.add(m_resumeButton);
-	m_pauseScreenGUI.add(m_optionsButton);
-	m_pauseScreenGUI.add(m_quitButton);
+	m_resumeButton->select = std::bind(&PauseScreen::resumeButtonCallback, this);
+	m_optionsButton->select = std::bind(&PauseScreen::optionsButtonCallback, this);
+	m_quitButton->select = std::bind(&PauseScreen::quitButtonCallback, this);
+
+	m_gui.add(m_pauseScreenLabel);
+	m_gui.add(m_resumeButton);
+	m_gui.add(m_optionsButton);
+	m_gui.add(m_quitButton);
 }
 
 PauseScreen::~PauseScreen() { }
 
-void PauseScreen::update()
+void PauseScreen::update(XboxController & controller)
 {
-	m_pauseScreenGUI.update();
+	if (m_transitionIn)
+	{
+		m_gui.transitionIn(0.03f, m_interpolation);
+
+		if (m_interpolation >= 1.0f)
+		{
+			m_transitionIn = false;
+			m_interpolation = 0.0f;
+		}
+	}
+	else if (m_resumeSelected)
+	{
+		// Code Here...
+	}
+	else if (m_optionsSelected)
+	{
+		//Code Here...
+	}
+	else if (m_quitSelected)
+	{
+		//Code here...
+	}
+	m_gui.processInput(controller);
 }
 
-void PauseScreen::render(sf::RenderWindow &window)
+void PauseScreen::reset()
 {
-	window.draw(m_pauseScreenGUI);
+	m_interpolation = 0.f;
+	m_transitionIn = true;
+	m_resumeSelected = false;
+	m_optionsSelected = false;
+	m_quitSelected = false;
 }
 
-void PauseScreen::processInput(XboxController &controller)
+void PauseScreen::resumeButtonCallback()
 {
-	m_pauseScreenGUI.processInput(controller);
+	m_resumeSelected = true;
+}
+
+void PauseScreen::optionsButtonCallback()
+{
+	m_optionsSelected = true;
+}
+
+void PauseScreen::quitButtonCallback()
+{
+	m_quitSelected = true;
 }

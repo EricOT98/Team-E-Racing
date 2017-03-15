@@ -2,28 +2,27 @@
 #define CONFIRMATION_SCRREN_H
 
 #include "Screen.h"
-#include "..\Input\XboxController.h"
-#include "..\Gui\Gui.h"
-#include "..\GUI\Button.h"
 
-class ConfirmationScreen : Screen
+class ConfirmationScreen : public Screen
 {
 public:
 	ConfirmationScreen();
 	~ConfirmationScreen();
 
-	void update();
-	void render(sf::RenderWindow &window);
-	void processInput(XboxController &controller);
+	void update(XboxController & controller) override;
+	void reset() override;
 
 private:
-	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+	void yesButtonCallback();
+	void noButtonCallback();
 
-	Gui m_confirmationScreenGUI;
+	// GUI elements
 	Label *m_confirmationLabel;
 	Label *m_areYouSureLabel;
 	Button *m_yesButton;
 	Button *m_noButton;
+
+	bool m_noButtonSelected;
 };
 
 

@@ -3,9 +3,8 @@
 /// <summary>
 /// Initalises the help screen information and the back button
 /// </summary>
-HelpScreen::HelpScreen()
+HelpScreen::HelpScreen() : Screen(GameState::HelpScreen)
 {
-	m_transitionOut = false;
 	m_transitionIn = true;
 
 	sf::Color focusColor = sf::Color::Red;
@@ -30,12 +29,14 @@ HelpScreen::HelpScreen()
 
 	m_backButton->promoteFocus();
 
+	m_backButton->select = std::bind(&HelpScreen::backButtonCallback, this);
+
 	for (Label *label : m_helpScreenText)
 	{
 		label->setPosition(endTranstionPos);
-		m_helpScreenGUI.add(label);
+		m_gui.add(label);
 	}
-	m_helpScreenGUI.add(m_backButton);
+	m_gui.add(m_backButton);
 }
 
 HelpScreen::~HelpScreen()
@@ -46,55 +47,32 @@ HelpScreen::~HelpScreen()
 /// <summary>
 /// Updates the widgets on screen
 /// </summary>
-void HelpScreen::update()
+void HelpScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
 	{
-		m_helpScreenGUI.transitionIn(0.03f, m_interpolation);
-
+		m_gui.transitionIn(0.03f, m_interpolation);
 		if (m_interpolation >= 1.0f)
 		{
 			m_transitionIn = false;
 			m_interpolation = 0.0f;
 		}
 	}
-
-	checkScreenTransition(m_backButton, GameScreenState::OptionsScreen);
-
-	m_helpScreenGUI.update();
-}
-
-void HelpScreen::checkScreenTransition(Button *button, GameScreenState stateToChangeTo)
-{
-	if (button->pressed && button->getFocus())
+	else if (m_backButtonSelected)
 	{
-		m_helpScreenGUI.transitionOut(0.03f, m_interpolation);
-
-		if (m_interpolation >= 1.0f)
-		{
-			m_interpolation = 0.0f;
-			currentGameState = stateToChangeTo;
-			m_transitionOut = false;
-			m_transitionIn = true;
-			button->pressed = false;
-		}
+		transOut(GameState::OptionsScreen);
 	}
+	m_gui.processInput(controller);
 }
 
-/// <summary>
-/// Renders all the widgets on screen
-/// </summary>
-/// <param name="window">The window to render the widgets in</param>
-void HelpScreen::render(sf::RenderWindow &window)
+void HelpScreen::reset()
 {
-	window.draw(m_helpScreenGUI);
+	m_interpolation = 0.f;
+	m_transitionIn = true;
+	m_backButtonSelected = false;
 }
 
-/// <summary>
-/// Process all the inputs for the back button
-/// </summary>
-/// <param name="controller">A refernce to the xbox controller</param>
-void HelpScreen::processInput(XboxController &controller)
+void HelpScreen::backButtonCallback()
 {
-	m_helpScreenGUI.processInput(controller);
+	m_backButtonSelected = true;
 }

@@ -14,13 +14,27 @@ void Game::run()
 {
 	LevelLoader::load(m_level);
 	g_resourceMgr.loadAssets(m_level);
+	m_mainMenu = new MainMenu();
+	m_confirmationScreen = new ConfirmationScreen();
+	m_difficultyScreen = new DifficultyScreen();
+	m_displayOptions = new DisplayOptions();
+	m_helpScreen = new HelpScreen();
+	m_options = new Options();
 	m_track.setTrack(m_level);
-	m_screenManager.init();
 	m_player.setCar();
 	m_AI.setCar();
 	m_AI.setWayPoints(m_level.m_waypoints);
 	m_racers.push_back(&m_player);
+<<<<<<< HEAD
 	m_racers.push_back(&m_AI);
+=======
+	m_screenManager.add(m_mainMenu);
+	m_screenManager.add(m_confirmationScreen);
+	m_screenManager.add(m_difficultyScreen);
+	m_screenManager.add(m_displayOptions);
+	m_screenManager.add(m_helpScreen);
+	m_screenManager.add(m_options);
+>>>>>>> GameScreens
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
@@ -37,9 +51,8 @@ void Game::run()
 		{
 			update(timeSinceLastUpdate.asMilliseconds());
 			timeSinceLastUpdate = sf::Time::Zero;
+			render();
 		}
-
-		render();
 	}
 }
 
@@ -54,8 +67,6 @@ void Game::processEvents()
 		}
 		processGameEvents(event);
 	}
-
-	m_screenManager.processInput(m_xboxController);
 }
 
 void Game::processGameEvents(sf::Event& event)
@@ -87,7 +98,7 @@ void Game::update(double dt)
 	switch (currentGameState)
 	{
 	case GameState::Menu:
-		m_screenManager.update();
+		m_screenManager.update(m_xboxController);
 		break;
 	case GameState::Play:
 		m_track.update(m_racers);

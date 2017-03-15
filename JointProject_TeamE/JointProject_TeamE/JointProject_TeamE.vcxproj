@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="Screens\DisplayOptions.cpp" />
     <ClCompile Include="Screens\ConfirmationScreen.cpp" />
     <ClCompile Include="Input\KeyboardHandler.cpp" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Screens\DisplayOptions.h" />
     <ClInclude Include="Screens\ConfirmationScreen.h" />
     <ClInclude Include="Input\KeyboardHandler.h" />

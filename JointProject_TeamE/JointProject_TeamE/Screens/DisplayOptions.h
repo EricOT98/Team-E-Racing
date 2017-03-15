@@ -7,32 +7,27 @@
 #define DISPLAY_OPTIONS_H
 
 #include "Screen.h"
-#include "..\Input\XboxController.h"
-#include "..\GUI\Button.h"
-#include "..\GUI\Slider.h"
-#include "..\GUI\CheckBox.h"
-#include "..\GUI\Gui.h"
 
 /// A menu displaying all the options assocaite with display
 /// 
 /// The Display Options screen handles all the neccesary widgets on screen
 /// and updates the player input and screen navigation
-class DisplayOptions : Screen
+class DisplayOptions : public Screen
 {
 public:
 	DisplayOptions();
 	~DisplayOptions();
 
-	void update();
-	void render(sf::RenderWindow &window);
-	void processInput(XboxController &controller);
+	void update(XboxController & controller) override;
+	void reset() override;
 
 private:
-	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+	void backButtonCallback();
 
-	Gui m_displayOpitionsGUI;
 	Label *m_titleLabel;
 	Button *m_backButton;
+
+	bool m_backButtonSelected;
 };
 
 #endif

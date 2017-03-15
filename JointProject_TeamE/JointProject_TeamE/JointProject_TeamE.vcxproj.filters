@@ -37,6 +37,7 @@
       <Filter>src\Input</Filter>
     </ClCompile>
     <ClCompile Include="AI.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Screens\DisplayOptions.h" />
     <ClInclude Include="Screens\TrophyScreen.h" />
     <ClInclude Include="AI.h" />
+    <ClInclude Include="GameScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">

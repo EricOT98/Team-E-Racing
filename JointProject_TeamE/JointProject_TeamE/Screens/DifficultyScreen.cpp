@@ -3,9 +3,8 @@
 /// <summary>
 /// Initalises the widgets in the scene and add them to the widget manager
 /// </summary>
-DifficultyScreen::DifficultyScreen()
+DifficultyScreen::DifficultyScreen() : Screen(GameState::DifficultyScreen)
 {
-	m_transitionOut = false;
 	m_transitionIn = true;
 
 	sf::Color focusColor = sf::Color::Red;
@@ -45,30 +44,34 @@ DifficultyScreen::DifficultyScreen()
 	m_radioButtons.at(3)->m_right = m_radioButtons.at(0);
 
 	for (RadioButton *radioButton : m_radioButtons)
+	{
 		radioButton->m_down = m_backButton;
-
+		radioButton->select = std::bind(&DifficultyScreen::radioButtonSetCallback, this);
+	}
 	m_backButton->m_up = m_radioButtons.at(0);
 
-	m_difficultyScreenGUI.add(m_difficultyLabel);
-	m_difficultyScreenGUI.add(m_numOfOppLabel);
+	m_backButton->select = std::bind(&DifficultyScreen::backButtonCallback, this);
+
+	m_gui.add(m_difficultyLabel);
+	m_gui.add(m_numOfOppLabel);
 	for (RadioButton *radioButton : m_radioButtons)
-		m_difficultyScreenGUI.add(radioButton);
-	m_difficultyScreenGUI.add(m_backButton);
+		m_gui.add(radioButton);
+	m_gui.add(m_backButton);
 }
 
 DifficultyScreen::~DifficultyScreen()
 {
-
+	m_gui.clear();
 }
 
 /// <summary>
 /// Update the widgets contatined in the difficulty screen manager
 /// </summary>
-void DifficultyScreen::update()
+void DifficultyScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
 	{
-		m_difficultyScreenGUI.transitionIn(0.03f, m_interpolation);
+		m_gui.transitionIn(0.03f, m_interpolation);
 
 		if (m_interpolation >= 1.0f)
 		{
@@ -76,43 +79,26 @@ void DifficultyScreen::update()
 			m_interpolation = 0.0f;
 		}
 	}
-
-	checkScreenTransition(m_backButton, GameScreenState::OptionsScreen);
-
-	m_difficultyScreenGUI.update();
-}
-
-void DifficultyScreen::checkScreenTransition(Button *button, GameScreenState stateToChangeTo)
-{
-	if (button->pressed && button->getFocus())
+	else if (m_backButtonSelected)
 	{
-		m_difficultyScreenGUI.transitionOut(0.03f, m_interpolation);
-
-		if (m_interpolation >= 1.0f)
-		{
-			m_interpolation = 0.0f;
-			currentGameState = stateToChangeTo;
-			m_transitionOut = false;
-			m_transitionIn = true;
-			button->pressed = false;
-		}
+		transOut(GameState::OptionsScreen);
 	}
+	m_gui.processInput(controller);
 }
 
-/// <summary>
-/// Render all the widgets
-/// </summary>
-/// <param name="window">A reference to the render window</param>
-void DifficultyScreen::render(sf::RenderWindow &window)
+void DifficultyScreen::reset()
 {
-	window.draw(m_difficultyScreenGUI);
+	m_backButtonSelected = false;
+	m_transitionIn = true;
+	m_interpolation = 0.f;
 }
 
-/// <summary>
-/// Process all the input for the widgets
-/// </summary>
-/// <param name="controller">A reference to the xbox controller</param>
-void DifficultyScreen::processInput(XboxController &controller)
+void DifficultyScreen::backButtonCallback()
 {
-	m_difficultyScreenGUI.processInput(controller);
+	m_backButtonSelected = true;
+}
+
+void DifficultyScreen::radioButtonSetCallback()
+{
+	// Insert Code Here
 }

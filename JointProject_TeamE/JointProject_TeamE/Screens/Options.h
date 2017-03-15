@@ -7,9 +7,6 @@
 #define OPTIONS_H
 
 #include "Screen.h"
-#include "..\Input\XboxController.h"
-#include "..\GUI\Button.h"
-#include "..\GUI\Gui.h"
 
 /// A menu displaying all the options avaible for the player
 /// 
@@ -21,20 +18,28 @@ public:
 	Options();
 	~Options();
 
-	void update();
-	void render(sf::RenderWindow &window);
-	void processInput(XboxController &controller);
+	void update(XboxController & controller) override;
+	void reset() override;
 
 private:
-	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+	void soundButtonCallback();
+	void displayButtonCallback();
+	void helpButtonCallback();
+	void difficultyButtonCallback();
+	void backButtonCallback();
 
-	Gui m_optionsGUI;
 	Label *m_titleLabel;
 	Button *m_soundButton;
 	Button *m_displayButton;
 	Button *m_helpButton;
 	Button *m_difficultyButton;
 	Button *m_backButton;
+
+	bool m_soundButtonSelected;
+	bool m_displayButtonSelected;
+	bool m_helpButtonSelected;
+	bool m_difficultyButtonSelected;
+	bool m_backButtonSelected;
 };
 
 #endif // !OPTIONS_H

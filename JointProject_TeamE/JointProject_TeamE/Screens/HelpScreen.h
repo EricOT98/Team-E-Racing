@@ -7,30 +7,27 @@
 #define HELP_SCREEN_H
 
 #include "Screen.h"
-#include "..\Input\XboxController.h"
-#include "..\Gui\Gui.h"
-#include "..\GUI\Button.h"
 
 /// The help screen containing all the help information
 /// 
 /// The help screen contatins all the help text and the back button
 /// in the widgets that are updated and rendered
-class HelpScreen : Screen
+class HelpScreen : public Screen
 {
 public:
 	HelpScreen();
 	~HelpScreen();
 
-	void update();
-	void render(sf::RenderWindow &window);
-	void processInput(XboxController &controller);
+	void update(XboxController & controller) override;
+	void reset() override;
 
 private:
-	void checkScreenTransition(Button *button, GameScreenState stateToChangeTo);
+	void backButtonCallback();
 
-	Gui m_helpScreenGUI;
 	std::vector<Label*> m_helpScreenText;
 	Button *m_backButton;
+
+	bool m_backButtonSelected;
 };
 
 #endif

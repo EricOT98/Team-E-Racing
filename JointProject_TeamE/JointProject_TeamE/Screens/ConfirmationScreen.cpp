@@ -1,8 +1,7 @@
 #include "ConfirmationScreen.h"
 
-ConfirmationScreen::ConfirmationScreen()
+ConfirmationScreen::ConfirmationScreen() : Screen(GameState::QuitScreen)
 {
-	m_transitionOut = false;
 	m_transitionIn = true;
 
 	sf::Color focusColor = sf::Color::Red;
@@ -25,19 +24,24 @@ ConfirmationScreen::ConfirmationScreen()
 	m_yesButton->m_right = m_noButton;
 	m_noButton->m_left = m_yesButton;
 
-	m_confirmationScreenGUI.add(m_confirmationLabel);
-	m_confirmationScreenGUI.add(m_areYouSureLabel);
-	m_confirmationScreenGUI.add(m_yesButton);
-	m_confirmationScreenGUI.add(m_noButton);
+	m_yesButton->select = std::bind(&ConfirmationScreen::yesButtonCallback, this);
+	m_noButton->select = std::bind(&ConfirmationScreen::noButtonCallback, this);
+
+	m_gui.add(m_confirmationLabel);
+	m_gui.add(m_areYouSureLabel);
+	m_gui.add(m_yesButton);
+	m_gui.add(m_noButton);
+
+	m_gui.update();
 }
 
 ConfirmationScreen::~ConfirmationScreen() { }
 
-void ConfirmationScreen::update()
+void ConfirmationScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
 	{
-		m_confirmationScreenGUI.transitionIn(0.03f, m_interpolation);
+		m_gui.transitionIn(0.03f, m_interpolation);
 
 		if (m_interpolation >= 1.0f)
 		{
@@ -45,36 +49,26 @@ void ConfirmationScreen::update()
 			m_interpolation = 0.0f;
 		}
 	}
-
-	checkScreenTransition(m_yesButton, GameScreenState::QuitGame);
-	checkScreenTransition(m_noButton, GameScreenState::MainMenuScreen);
-
-	m_confirmationScreenGUI.update();
-}
-
-void ConfirmationScreen::checkScreenTransition(Button *button, GameScreenState stateToChangeTo)
-{
-	if (button->pressed && button->getFocus())
+	else if (m_noButtonSelected)
 	{
-		m_confirmationScreenGUI.transitionOut(0.03f, m_interpolation);
-
-		if (m_interpolation >= 1.0f)
-		{
-			m_interpolation = 0.0f;
-			currentGameState = stateToChangeTo;
-			m_transitionOut = false;
-			m_transitionIn = true;
-			button->pressed = false;
-		}
+		transOut(GameState::MainMenu);
 	}
+	m_gui.processInput(controller);
 }
 
-void ConfirmationScreen::render(sf::RenderWindow &window)
+void ConfirmationScreen::reset()
 {
-	window.draw(m_confirmationScreenGUI);
+	m_transitionIn = true;
+	m_interpolation = 0.f;
+	m_noButtonSelected = false;
 }
 
-void ConfirmationScreen::processInput(XboxController &controler)
+void ConfirmationScreen::yesButtonCallback()
 {
-	m_confirmationScreenGUI.processInput(controler);
+	// Code to end the game
+}
+
+void ConfirmationScreen::noButtonCallback()
+{
+	m_noButtonSelected = true;
 }

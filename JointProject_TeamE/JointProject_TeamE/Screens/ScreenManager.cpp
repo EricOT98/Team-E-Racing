@@ -1,151 +1,81 @@
 #include "ScreenManager.h"
 
-ScreenManager::ScreenManager() { }
-
-ScreenManager::~ScreenManager() 
+/// <summary>
+/// Default Constructor for the screen manager class
+/// </summary>
+ScreenManager::ScreenManager() : m_gameState(GameState::MainMenu)
 {
-	delete m_mainMenu;
-	delete m_optionsMenu;
-	delete m_soundOptions;
-	delete m_difficultyScreen;
-	delete m_helpScreen;
-	delete m_displayOpitions;
-	delete m_pauseScreen;
-	delete m_confirmationScreen;
-	delete m_trophyScreen;
+	//m_backgroundSprite.setTexture(*g_resourceMgr.getBackgroundTexture());
 }
 
-void ScreenManager::init()
+/// <summary>
+/// Default destructor function for the ScreenManager Class
+/// </summary>
+ScreenManager::~ScreenManager()
 {
-	m_mainMenu = new MainMenu();
-	m_optionsMenu = new Options();
-	m_soundOptions = new SoundOptions();
-	m_difficultyScreen = new DifficultyScreen();
-	m_helpScreen = new HelpScreen();
-	m_displayOpitions = new DisplayOptions();
-	m_pauseScreen = new PauseScreen();
-	m_confirmationScreen = new ConfirmationScreen();
-	m_trophyScreen = new TrophyScreen();
-}
-
-void ScreenManager::update()
-{
-	switch (Screen::currentGameState)
+	for (Screen *screen : screens)
 	{
-	case GameScreenState::MainMenuScreen:
-		m_mainMenu->update();
-		break;
+		delete screen; // Delete screens so as to prevent a memory leak
+	}
+	screens.clear(); // Clear the std::vector just in case
+}
 
-	case GameScreenState::OptionsScreen:
-		m_optionsMenu->update();
-		break;
-
-	case GameScreenState::SoundOptionsScreen:
-		m_soundOptions->update();
-		break;
-
-	case GameScreenState::DifficultyScreen:
-		m_difficultyScreen->update();
-		break;
-
-	case GameScreenState::HelpScreen:
-		m_helpScreen->update();
-		break;
-
-	case GameScreenState::DisplayOptions:
-		m_displayOpitions->update();
-		break;
-
-	case GameScreenState::TrophyScreen:
-		m_trophyScreen->update();
-		break;
-
-	case GameScreenState::QuitConfirmationScreen:
-		m_confirmationScreen->update();
-		break;
-	default:
-		break;
+/// <summary>
+/// update function updtes the current screen based off of the current game state
+/// </summary>
+/// <param name="controller">The controller to be passed to each screen when updating</param>
+void ScreenManager::update(XboxController &controller)
+{
+	// We use the variable m_currentScreen so as we don't have to loop through the vector again when rendering
+	for (m_currentScreen = 0; m_currentScreen < screens.size(); m_currentScreen++)
+	{
+		if (screens.at(m_currentScreen)->getGameState() == m_gameState) // Check if the game state of the screen matches the current game state
+		{
+			screens.at(m_currentScreen)->update(controller); // Update the current screen
+			GameState nextState = screens.at(m_currentScreen)->getNextGameState();
+			if (nextState != m_gameState) // Check if the screen wants to switch game states
+			{
+				//if (GameState::OptionsScreen == m_gameState)
+				//{
+				//	for (Screen * screen : screens)
+				//	{
+				//		screen->setColors(); // We reset the colours of every screen if we have come from the options screen
+				//		if (screen->getGameState() == GameState::GamePlay)
+				//		{
+				//			screen->reset(); // We need to also reset the game if this is the case
+				//		}
+				//	}
+				//}
+				m_gameState = nextState; // Set the current game state
+				screens.at(m_currentScreen)->resetNextGameState(); // Reset the game state of the net screen member of the current screen
+			}
+			break; // Break so as not to continue with the loop
+		}
 	}
 }
 
-void ScreenManager::render(sf::RenderWindow &window)
+/// <summary>
+/// render function draws the current screen which is decided in the update function
+/// </summary>
+/// <param name="window">The render window used for drawing the screens</param>
+void ScreenManager::render(sf::RenderWindow& window)
 {
-	switch (Screen::currentGameState)
-	{
-	case GameScreenState::MainMenuScreen:
-		m_mainMenu->render(window);
-		break;
-
-	case GameScreenState::OptionsScreen:
-		m_optionsMenu->render(window);
-		break;
-
-	case GameScreenState::SoundOptionsScreen:
-		m_soundOptions->render(window);
-		break;
-
-	case GameScreenState::DifficultyScreen:
-		m_difficultyScreen->render(window);
-		break;
-
-	case GameScreenState::HelpScreen:
-		m_helpScreen->render(window);
-		break;
-
-	case GameScreenState::DisplayOptions:
-		m_displayOpitions->render(window);
-		break;
-
-	case GameScreenState::TrophyScreen:
-		m_trophyScreen->render(window);
-		break;
-
-	case GameScreenState::QuitConfirmationScreen:
-		m_confirmationScreen->render(window);
-		break;
-
-	default:
-		break;
+	
+	if (m_currentScreen < screens.size())
+	{	
+		if (screens.at(m_currentScreen)->getGameState() != GameState::SplashScreen)
+		{
+			window.draw(m_backgroundSprite); // Only draw the background sprite if the screen currently beinng drawn is not the splash screen
+		}
+		screens.at(m_currentScreen)->render(window); // Draw the current screen
 	}
 }
 
-void ScreenManager::processInput(XboxController &controller)
+/// <summary>
+/// add function used to add a pointer to a screen onto the screen manager object
+/// </summary>
+/// <param name="screenIn">A pointer to a screen declared on the heap</param>
+void ScreenManager::add(Screen * screenIn)
 {
-	switch (Screen::currentGameState)
-	{
-	case GameScreenState::MainMenuScreen:
-		m_mainMenu->processInput(controller);
-		break;
-
-	case GameScreenState::OptionsScreen:
-		m_optionsMenu->processInput(controller);
-		break;
-
-	case GameScreenState::SoundOptionsScreen:
-		m_soundOptions->processInput(controller);
-		break;
-
-	case GameScreenState::DifficultyScreen:
-		m_difficultyScreen->processInput(controller);
-		break;
-
-	case GameScreenState::HelpScreen:
-		m_helpScreen->processInput(controller);
-		break;
-
-	case GameScreenState::DisplayOptions:
-		m_displayOpitions->processInput(controller);
-		break;
-
-	case GameScreenState::TrophyScreen:
-		m_trophyScreen->processInput(controller);
-		break;
-
-	case GameScreenState::QuitConfirmationScreen:
-		m_confirmationScreen->processInput(controller);
-		break;
-
-	default:
-		break;
-	}
+	screens.push_back(screenIn); // Add the screen to the vector
 }
