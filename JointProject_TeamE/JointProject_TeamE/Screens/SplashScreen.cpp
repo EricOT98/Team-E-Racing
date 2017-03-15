@@ -7,6 +7,7 @@
 SplashScreen::SplashScreen() : Screen(GameState::SplashScreen)
 {
 	m_fadeIn = true;
+	m_fadeOut = false;
 	m_foreground.setPosition(0, 0);
 	m_fadeTime = 2;
 	m_alphaStep = (MAX_ALPHA / m_fadeTime) / 60.0f;
@@ -51,9 +52,20 @@ void SplashScreen::update(XboxController & controller)
 		m_foreground.setFillColor(m_foregroundColor);
 		if (m_currentAlpha >= MAX_ALPHA)
 		{
+			m_fadeIn = false;
+			m_fadeOut = true;
+		}
+	}
+	else if(m_fadeOut)
+	{ 
+		m_currentAlpha -= m_alphaStep;
+		m_foregroundColor.a = m_currentAlpha;
+		m_foreground.setFillColor(m_foregroundColor);
+		if (m_currentAlpha <= 0)
+		{
 			m_intro.play();
 			m_playing = true;
-			m_fadeIn = false;
+			m_fadeOut = false;
 		}
 	}
 	if (m_playing)
@@ -103,5 +115,6 @@ void SplashScreen::reset()
 	m_fadeIn = true;
 	m_playing = false;
 	m_skip = false;
+	m_fadeOut = false;
 	m_currentAlpha = 0;
 }

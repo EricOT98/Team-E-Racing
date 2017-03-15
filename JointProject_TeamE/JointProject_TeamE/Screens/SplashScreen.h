@@ -25,7 +25,7 @@ protected:
 	sf::Color m_foregroundColor;
 	const int MAX_ALPHA = 255;			//Maximum alpha value of the texture
 
-	bool m_fadeIn;
+	bool m_fadeIn,m_fadeOut;
 	float m_currentAlpha = 0;
 	float m_alphaStep = 0;
 	float m_fadeTime = 0;
