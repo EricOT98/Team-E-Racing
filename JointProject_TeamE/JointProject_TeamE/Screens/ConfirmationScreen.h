@@ -22,11 +22,7 @@ private:
 	Button *m_yesButton;
 	Button *m_noButton;
 
-	bool m_yesButtonSelected;
 	bool m_noButtonSelected;
-
-	bool m_transitionIn;
-	float m_interpolation;
 };
 
 

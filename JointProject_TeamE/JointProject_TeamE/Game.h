@@ -60,13 +60,12 @@ protected:
 	sf::View raceView;
 
 	// Game Screens
-	//ConfirmationScreen * m_confirmationScreen;
-	//DifficultyScreen * m_difficultyScreen;
-	//DisplayOptions * m_displayOptions;
-	//HelpScreen * m_helpScreen;
-	MainMenu * m_mainMenu;
 	ConfirmationScreen * m_confirmationScreen;
-	//Options * m_options;
+	DifficultyScreen * m_difficultyScreen;
+	DisplayOptions * m_displayOptions;
+	HelpScreen * m_helpScreen;
+	MainMenu * m_mainMenu;
+	Options * m_options;
 	//PauseScreen * m_pauseScreen;
 	//SoundOptions * m_soundOptions;
 	//TrophyScreen * m_trophyScreen;

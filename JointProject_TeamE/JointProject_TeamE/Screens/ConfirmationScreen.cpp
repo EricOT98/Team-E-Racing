@@ -49,10 +49,6 @@ void ConfirmationScreen::update(XboxController & controller)
 			m_interpolation = 0.0f;
 		}
 	}
-	else if (m_yesButtonSelected)
-	{
-		// Code to end theg game
-	}
 	else if (m_noButtonSelected)
 	{
 		transOut(GameState::MainMenu);
@@ -64,13 +60,12 @@ void ConfirmationScreen::reset()
 {
 	m_transitionIn = true;
 	m_interpolation = 0.f;
-	m_yesButtonSelected = false;
 	m_noButtonSelected = false;
 }
 
 void ConfirmationScreen::yesButtonCallback()
 {
-	m_yesButtonSelected = true;
+	// Code to end the game
 }
 
 void ConfirmationScreen::noButtonCallback()
