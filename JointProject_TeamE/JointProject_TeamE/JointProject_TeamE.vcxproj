@@ -87,6 +87,9 @@
     <Link>
       <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /E /Y "$(SolutionDir)\dlls\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -110,6 +113,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>.\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /E /Y "$(SolutionDir)\dlls\*.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -154,6 +160,7 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Screens\ScreenManager.cpp" />
     <ClCompile Include="Screens\SoundOptions.cpp" />
+    <ClCompile Include="Screens\SplashScreen.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Track.cpp" />
@@ -191,6 +198,7 @@
     <ClInclude Include="Screens\MainMenu.h" />
     <ClInclude Include="Screens\Screen.h" />
     <ClInclude Include="Screens\SoundOptions.h" />
+    <ClInclude Include="Screens\SplashScreen.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Track.h" />

@@ -31,6 +31,7 @@ void Game::run()
 	// Maybe do shader loading in resource manager and pull them from there?
 	shader.LoadShader("Resources/Shaders/shaderText.vert", "Resources/Shaders/shaderText.frag");
 
+	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu();
 	m_confirmationScreen = new ConfirmationScreen();
 	m_difficultyScreen = new DifficultyScreen();
@@ -50,6 +51,7 @@ void Game::run()
 	m_AI.setRotation(-90.0f);
 	m_racers.push_back(&m_player);
 	m_racers.push_back(&m_AI);
+	m_screenManager.add(m_splashScreen);
 	m_screenManager.add(m_mainMenu);
 	m_screenManager.add(m_confirmationScreen);
 	m_screenManager.add(m_difficultyScreen);

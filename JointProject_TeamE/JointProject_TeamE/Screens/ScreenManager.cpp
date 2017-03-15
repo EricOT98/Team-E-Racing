@@ -3,7 +3,7 @@
 /// <summary>
 /// Default Constructor for the screen manager class
 /// </summary>
-ScreenManager::ScreenManager() : m_gameState(GameState::MainMenu)
+ScreenManager::ScreenManager() : m_gameState(GameState::SplashScreen)
 {
 	//m_backgroundSprite.setTexture(*g_resourceMgr.getBackgroundTexture());
 }
