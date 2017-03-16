@@ -78,7 +78,6 @@ void Game::run()
 			update(timeSinceLastUpdate.asMilliseconds());
 			timeSinceLastUpdate = sf::Time::Zero;
 		}
-
 		render();
 	}
 }

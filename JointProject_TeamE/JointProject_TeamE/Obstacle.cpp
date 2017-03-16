@@ -13,11 +13,14 @@ Obstacle::Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f po
 	m_sprite.setTexture(g_resourceMgr.textureHolder[texture]);
 	std::cout << "Obstacle Texture: " << texture << std::endl;
 	m_sprite.setTextureRect(textureRect);
-	m_sprite.setOrigin(m_sprite.getLocalBounds().width / 2.0f,
-		m_sprite.getLocalBounds().height / 2.0f);
+	
 	m_sprite.setPosition(m_position);
 	m_sprite.setScale(sf::Vector2f(0.4f, 0.4f));
 	m_sprite.setRotation(rotation);
+
+	/*m_sprite.setOrigin((int)(m_sprite.getGlobalBounds().width / 2.0f),
+		(int)(m_sprite.getGlobalBounds().height / 2.0f));*/
+
 
 	switch (type)
 	{

@@ -54,6 +54,7 @@ protected:
 	// Changeable Attributes
 	float m_currentRotation;
 	float m_velocity;
+	float m_currentAcceleration;
 	sf::Vector2f m_position;
 	
 	sf::Sprite m_sprite;

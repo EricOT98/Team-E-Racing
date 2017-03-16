@@ -69,18 +69,24 @@ void Racer::setRotation(float rotationIn)
 void Racer::calMovement(float dt)
 {
 	m_sprite.setRotation(m_currentRotation);
-	float addOnTotal = m_velocity * dt + 0.5f * m_acceleration * dt * dt; // formula: s = (ut) + (0.5 * at²)
+	m_velocity += m_currentAcceleration * dt;
+	float addOnTotal = m_velocity * dt + 0.5f * m_currentAcceleration * dt * dt; // formula: s = (ut) + (0.5 * at²)
 	float xPosAddOn = addOnTotal * std::cos(degreesToRad(m_currentRotation));
 	float yPosAddOn = addOnTotal * std::sin(degreesToRad(m_currentRotation));
 	m_position.x += xPosAddOn;
 	m_position.y += yPosAddOn;
 	m_velocity *= m_currentFriction;
 	m_sprite.setPosition(m_position);
+	if ((m_velocity < 10.f && m_velocity > -10.f) && m_currentAcceleration == 0)
+	{
+		m_velocity = 0;
+	}
+	m_currentAcceleration = 0;
 }
 
 void Racer::turnLeft(float dt, float percentageTurn)
 {
-	if (m_velocity > 2.f || m_velocity < -2.f)
+	if (m_velocity > 5.f || m_velocity < -5.f)
 	{
 		m_currentRotation -= m_turnRate * dt * (percentageTurn / 100);
 	}
@@ -88,7 +94,7 @@ void Racer::turnLeft(float dt, float percentageTurn)
 
 void Racer::turnRight(float dt, float percentageTurn)
 {
-	if (m_velocity > 2.f || m_velocity < -2.f)
+	if (m_velocity > 5.f || m_velocity < -5.f)
 	{
 		m_currentRotation += m_turnRate * dt * (percentageTurn / 100);
 	}
@@ -96,12 +102,12 @@ void Racer::turnRight(float dt, float percentageTurn)
 
 void Racer::accelerate(float dt, float percentageThrottle)
 {
-	m_velocity += m_acceleration * dt * (percentageThrottle / 100);
+	m_currentAcceleration += m_acceleration * (percentageThrottle / 100);
 }
 
 void Racer::decelerate(float dt, float percentageBrake)
 {
-	m_velocity -= m_deceleration * dt * (percentageBrake / 100);
+	m_currentAcceleration -= m_deceleration * (percentageBrake / 100);
 }
 
 float Racer::getRotation()

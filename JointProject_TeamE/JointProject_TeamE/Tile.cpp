@@ -10,9 +10,9 @@ Tile::Tile(int xIndex, int yIndex, std::string texture, int rotation)
 	float spriteWidth = m_displaySprite.getLocalBounds().width;
 	float spriteHeight = m_displaySprite.getLocalBounds().height;
 	m_displaySprite.setPosition(spriteWidth * m_xIndex + spriteWidth / 2.f, spriteHeight * m_yIndex + spriteHeight / 2.f);
-	m_displaySprite.setOrigin(m_displaySprite.getGlobalBounds().width / 2.f, m_displaySprite.getGlobalBounds().height / 2.f);
-	m_displaySprite.setRotation(rotation);
-	rotateImage90(m_collisionImage, rotation / 90);
+	m_displaySprite.setOrigin((int)(m_displaySprite.getGlobalBounds().width / 2.f), (int)(m_displaySprite.getGlobalBounds().height / 2.f));
+	/*m_displaySprite.setRotation(rotation);
+	rotateImage90(m_collisionImage, rotation / 90);*/
 }
 
 sf::Sprite Tile::getSprite()
