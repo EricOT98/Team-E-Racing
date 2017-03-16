@@ -45,16 +45,19 @@ void Racer::setCar()
 
 	m_tireTexture.loadFromFile("Resources/Test.png");
 	m_tireTracks.setTexture(m_tireTexture);
-	m_index = m_tireTracks.addTextureRect(sf::IntRect(12, 0, 26, 5));
+	m_index = m_tireTracks.addTextureRect(sf::IntRect(12, 0, 15, 5));
 	m_trackEmmiter.setParticleTextureIndex(m_index);
 	m_trackEmmiter.setParticlePosition(m_position);
 	m_trackEmmiter.setParticleRotation(m_currentRotation);
 	m_trackEmmiter.setParticleLifetime(sf::seconds(2));
 	m_trackEmmiter.setParticleScale(sf::Vector2f(0.2f, 1.f));
-	m_trackEmmiter.setEmissionRate(60);
+	m_trackEmmiter.setEmissionRate(0);
+	m_trackEmmiter2 = m_trackEmmiter;
 	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter));
+	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter2));
 	thor::FadeAnimation fader(0.0f, 0.1f);
 	m_tireTracks.addAffector(thor::AnimationAffector(fader));
+	
 }
 
 /// <summary>
@@ -97,11 +100,36 @@ void Racer::calMovement(float dt)
 	}
 	if (m_velocity > 0 && m_currentAcceleration < 0)
 	{
-		float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-		float newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation - 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		float newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation - 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		m_trackEmmiter.setEmissionRate(60);
 		m_trackEmmiter.setParticlePosition(sf::Vector2f(newX, newY));
 		m_trackEmmiter.setParticleRotation(m_currentRotation + 90);
+		newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation + 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation + 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		m_trackEmmiter2.setEmissionRate(60);
+		m_trackEmmiter2.setParticlePosition(sf::Vector2f(newX, newY));
+		m_trackEmmiter2.setParticleRotation(m_currentRotation + 90 );
+
+		if (m_currentFriction == m_frictionLow)
+		{
+			m_trackEmmiter.setParticleColor(sf::Color::Black);
+			m_trackEmmiter2.setParticleColor(sf::Color::Black);
+		}
+		else if(m_currentFriction == m_frictionHigh)
+		{
+			sf::Color col(100, 100, 20, 255);
+			m_trackEmmiter.setParticleColor(col);
+			m_trackEmmiter2.setParticleColor(col);
+		}
 	}
+	else
+	{
+		m_trackEmmiter.setEmissionRate(0);
+		m_trackEmmiter2.setEmissionRate(0);
+	}
+
+
 	m_currentAcceleration = 0;
 	m_tireTracks.update(m_clock.restart());
 }

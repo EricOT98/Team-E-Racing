@@ -64,6 +64,8 @@ protected:
 	sf::Texture m_tireTexture;
 	thor::ParticleSystem m_tireTracks;
 	thor::UniversalEmitter m_trackEmmiter;
+	thor::UniversalEmitter m_trackEmmiter2;
+	thor::UniversalEmitter m_smokeEmmiterLeft;
 	sf::Clock m_clock;
 	unsigned int m_index = 0;
 };
