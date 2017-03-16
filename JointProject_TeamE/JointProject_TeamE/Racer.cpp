@@ -21,6 +21,7 @@ Racer::~Racer()
 /// <param name="window"></param>
 void Racer::render(sf::RenderWindow & window)
 {
+	window.draw(m_tireTracks);
 	window.draw(m_sprite);
 }
 
@@ -41,6 +42,19 @@ void Racer::setCar()
 	m_frictionHigh = 0.9f;
 	m_frictionLow = 0.99f;
 	m_currentFriction = m_frictionLow;
+
+	m_tireTexture.loadFromFile("Resources/Test.png");
+	m_tireTracks.setTexture(m_tireTexture);
+	m_index = m_tireTracks.addTextureRect(sf::IntRect(12, 0, 26, 5));
+	m_trackEmmiter.setParticleTextureIndex(m_index);
+	m_trackEmmiter.setParticlePosition(m_position);
+	m_trackEmmiter.setParticleRotation(m_currentRotation);
+	m_trackEmmiter.setParticleLifetime(sf::seconds(2));
+	m_trackEmmiter.setParticleScale(sf::Vector2f(0.2f, 1.f));
+	m_trackEmmiter.setEmissionRate(60);
+	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter));
+	thor::FadeAnimation fader(0.0f, 0.1f);
+	m_tireTracks.addAffector(thor::AnimationAffector(fader));
 }
 
 /// <summary>
@@ -77,11 +91,15 @@ void Racer::calMovement(float dt)
 	m_position.y += yPosAddOn;
 	m_velocity *= m_currentFriction;
 	m_sprite.setPosition(m_position);
+<<<<<<< 6ed4db2dd790b3af01235137d8ea108777a85551
 	if ((m_velocity < 10.f && m_velocity > -10.f) && m_currentAcceleration == 0)
 	{
 		m_velocity = 0;
 	}
 	m_currentAcceleration = 0;
+=======
+	m_tireTracks.update(m_clock.restart());
+>>>>>>> Tire Track particles
 }
 
 void Racer::turnLeft(float dt, float percentageTurn)
@@ -107,7 +125,18 @@ void Racer::accelerate(float dt, float percentageThrottle)
 
 void Racer::decelerate(float dt, float percentageBrake)
 {
+<<<<<<< 6ed4db2dd790b3af01235137d8ea108777a85551
 	m_currentAcceleration -= m_deceleration * (percentageBrake / 100);
+=======
+	m_velocity -= m_deceleration * dt * (percentageBrake / 100);
+	if (m_velocity > 0)
+	{
+		float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		float newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		m_trackEmmiter.setParticlePosition(sf::Vector2f(newX, newY));
+		m_trackEmmiter.setParticleRotation(m_currentRotation + 90);
+	}
+>>>>>>> Tire Track particles
 }
 
 float Racer::getRotation()

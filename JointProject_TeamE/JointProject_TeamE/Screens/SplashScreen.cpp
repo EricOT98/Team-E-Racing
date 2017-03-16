@@ -50,6 +50,7 @@ void SplashScreen::update(XboxController & controller)
 		m_currentAlpha += m_alphaStep;
 		m_foregroundColor.a = m_currentAlpha;
 		m_foreground.setFillColor(m_foregroundColor);
+		
 		if (m_currentAlpha >= MAX_ALPHA)
 		{
 			m_fadeIn = false;

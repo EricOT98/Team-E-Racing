@@ -15,6 +15,9 @@
 #include "ResourceManager.h"
 #include <SFML\Graphics.hpp>
 #include "MathUtility.h"
+#include <Thor\Particles.hpp>
+#include "Thor\Animations.hpp"
+#include <Thor\Math.hpp>
 
 class Racer
 {
@@ -58,8 +61,11 @@ protected:
 	sf::Vector2f m_position;
 	
 	sf::Sprite m_sprite;
-
-
+	sf::Texture m_tireTexture;
+	thor::ParticleSystem m_tireTracks;
+	thor::UniversalEmitter m_trackEmmiter;
+	sf::Clock m_clock;
+	unsigned int m_index = 0;
 };
 
 #endif
