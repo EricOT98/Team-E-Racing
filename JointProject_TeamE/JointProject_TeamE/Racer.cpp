@@ -91,15 +91,19 @@ void Racer::calMovement(float dt)
 	m_position.y += yPosAddOn;
 	m_velocity *= m_currentFriction;
 	m_sprite.setPosition(m_position);
-<<<<<<< 6ed4db2dd790b3af01235137d8ea108777a85551
 	if ((m_velocity < 10.f && m_velocity > -10.f) && m_currentAcceleration == 0)
 	{
 		m_velocity = 0;
 	}
+	if (m_velocity > 0 && m_currentAcceleration < 0)
+	{
+		float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		float newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+		m_trackEmmiter.setParticlePosition(sf::Vector2f(newX, newY));
+		m_trackEmmiter.setParticleRotation(m_currentRotation + 90);
+	}
 	m_currentAcceleration = 0;
-=======
 	m_tireTracks.update(m_clock.restart());
->>>>>>> Tire Track particles
 }
 
 void Racer::turnLeft(float dt, float percentageTurn)
@@ -125,18 +129,8 @@ void Racer::accelerate(float dt, float percentageThrottle)
 
 void Racer::decelerate(float dt, float percentageBrake)
 {
-<<<<<<< 6ed4db2dd790b3af01235137d8ea108777a85551
 	m_currentAcceleration -= m_deceleration * (percentageBrake / 100);
-=======
-	m_velocity -= m_deceleration * dt * (percentageBrake / 100);
-	if (m_velocity > 0)
-	{
-		float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-		float newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-		m_trackEmmiter.setParticlePosition(sf::Vector2f(newX, newY));
-		m_trackEmmiter.setParticleRotation(m_currentRotation + 90);
-	}
->>>>>>> Tire Track particles
+	
 }
 
 float Racer::getRotation()
