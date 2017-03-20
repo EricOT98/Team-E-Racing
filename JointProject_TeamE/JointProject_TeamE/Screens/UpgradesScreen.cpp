@@ -26,6 +26,7 @@ UpgradesScreen::UpgradesScreen(std::vector<CarData> & carsIn, int screenWidth) :
 		18, 250.0f, 15.0f, sf::Vector2f(650.0f, 200.0f), endTranstionPos);
 	m_corneringSlider = new Slider(focusColor, nofocusColor, fillColor, "Cornering", nullptr, sf::Vector2f(400.0f, -200.0f),
 		18, 250.0f, 15.0f, sf::Vector2f(650.0f, 250.0f), endTranstionPos);
+	m_cars = carsIn;
 	int baseXPos = (screenWidth / (m_cars.size() + 1));
 	for (int i = 0; i < m_cars.size(); i++)
 	{
