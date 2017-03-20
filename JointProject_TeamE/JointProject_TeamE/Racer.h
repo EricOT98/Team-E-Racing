@@ -35,12 +35,12 @@ public:
 	sf::Vector2f getPosition();
 	float getRotation();
 	OBB m_boundingBox;
+	Projectile m_test;
 	void resolveCollision();
 
 	void setFrictionHigh();
 	void setFrictionLow();
 	void fire();
-	Projectile* getProjectile();
 protected:
 	// Protected Functions
 	void turnLeft(float dt, float percentageTurn);
@@ -73,8 +73,6 @@ protected:
 	thor::UniversalEmitter m_smokeEmmiterLeft;
 	sf::Clock m_clock;
 	unsigned int m_index = 0;
-
-	Projectile m_test;
 };
 
 #endif

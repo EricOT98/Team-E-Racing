@@ -30,6 +30,7 @@ private:
 	bool checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos);
 	bool checkRacerObstacleCollision(OBB &playerOBB);
 	bool checkProjectileObstacleCollision(OBB &projectileOBB);
+	bool checkProjectileRacerCollision(OBB &projectileOBB, OBB &racerOBB);
 	bool checkWindowInterscetion(Tile & tile, sf::RenderWindow & window);
 	bool checkWindowObsIntersection(Obstacle & obstacle, sf::RenderWindow & window);
 	std::vector<Tile *> m_trackTiles;
@@ -42,6 +43,7 @@ private:
 	unsigned int numberOfAICars = 5;
 
 	TrackType currentTrackType = TrackType::TrackThree;
+	bool collision;
 };
 
 #endif

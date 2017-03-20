@@ -194,16 +194,21 @@ void Racer::fire()
 	float totRadius = (m_sprite.getGlobalBounds().height / 2.0f) + (m_test.getSize().y / 2.0f);
 	float newX = m_position.x + (totRadius * std::cos(thor::toRadian(m_sprite.getRotation())));
 	float newY = m_position.y + (totRadius * std::sin(thor::toRadian(m_sprite.getRotation())));
-	m_test.spawnAt(sf::Vector2f(newX, newY), m_currentRotation,20, 500);
-}
-
-Projectile* Racer::getProjectile()
-{
-	if (m_test.getAlive())
+	float power = 300;
+	if (m_velocity > 0)
 	{
-		return &m_test;
+		power += m_velocity;
 	}
-	else {
-		return nullptr;
-	}
+	m_test.spawnAt(sf::Vector2f(newX, newY), m_currentRotation,10, power);
 }
+//
+//Projectile* Racer::getProjectile()
+//{
+//	if (m_test.getAlive())
+//	{
+//		return &m_test;
+//	}
+//	else {
+//		return nullptr;
+//	}
+//}

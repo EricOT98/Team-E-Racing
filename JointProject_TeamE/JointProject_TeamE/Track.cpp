@@ -52,13 +52,26 @@ void Track::update(std::vector<Racer *> & racers)
 		}
 
 		//@Projectile
-		if (racer->getProjectile() != nullptr)
+		if (racer->m_test.getAlive())
 		{
 			for (auto & obs : m_obstacles)
 			{
-				if (checkProjectileObstacleCollision(racer->getProjectile()->m_boundingBox)) {
-					racer->getProjectile()->despawn();
-					break;
+				if (racer->m_test.getElevation() < 0.5f)
+				{
+					if (checkProjectileObstacleCollision(racer->m_test.m_boundingBox)) {
+						racer->m_test.despawn();
+						break;
+					}
+				}
+			}
+			for (auto & checkedRacer : racers)
+			{
+				if (racer != checkedRacer)
+				{
+					if (checkProjectileRacerCollision(racer->m_test.m_boundingBox, checkedRacer->m_boundingBox))
+					{
+						racer->m_test.despawn();
+					}
 				}
 			}
 		}
@@ -150,6 +163,17 @@ bool Track::checkProjectileObstacleCollision(OBB & projectileOBB)
 			std::cout << "Collision with Obstacle(Projectile)" << std::endl;
 			return true;
 		}
+	}
+	return false;
+}
+
+bool Track::checkProjectileRacerCollision(OBB &projectileOBB, OBB &racerOBB)
+{
+
+	if (projectileOBB.intersects(racerOBB))
+	{
+		std::cout << "Collision with car" << std::endl;
+		return true;
 	}
 	return false;
 }

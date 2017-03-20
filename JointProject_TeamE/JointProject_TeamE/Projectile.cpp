@@ -8,7 +8,8 @@ Projectile::Projectile()
 	MAX_SPEED = 500;
 	m_rotation = 0;
 	m_position = sf::Vector2f(0, 0);
-	m_velocity = sf::Vector3f(0, 0, GRAVITY);
+	m_gravity = -9.8f * 10.f;
+	m_velocity = sf::Vector3f(0, 0, 0);
 	m_scale = sf::Vector2f(1.0f, 1.0f);
 	m_width = 0;
 	m_height = 0;
@@ -50,6 +51,18 @@ void Projectile::update(float dt)
 		m_position.x += xPosAddOn;
 		m_position.y += yPosAddOn;
 		m_sprite.setPosition(m_position);
+
+		m_velocity = m_velocity + sf::Vector3f(0, 0, m_gravity * dt);
+		//s = ut + 1/2atsqr
+		m_elevation = (m_velocity.z * dt) + 0.5f * m_gravity * (dt * dt);
+		m_scale.x = (m_elevation / 2.0f);
+		m_scale.y = (m_elevation / 2.0f);
+		setScale(m_scale);
+		std::cout << "z = " << m_elevation << std::endl;
+		if (m_elevation < 0)
+		{
+			despawn();
+		}
 		m_boundingBox.construct(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 			m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_sprite.getRotation());
 		if (m_onScreen){
@@ -138,7 +151,7 @@ void Projectile::spawnAt(sf::Vector2f pos, float direction,float pitch, int powe
 	else {
 		m_speed = MAX_SPEED;
 	}
-	m_velocity = sf::Vector3f(std::cos(m_rotation) * std::cos(m_pitch) * power, std::sin(m_rotation) * std::sin(m_pitch) * power, std::sin(m_pitch) * m_speed);
+	m_velocity = sf::Vector3f(std::cos(degreesToRad(m_rotation)) * std::cos(degreesToRad(m_pitch)) * power, std::sin(degreesToRad(m_rotation)) * std::sin(degreesToRad(m_pitch)) * power, std::sin(degreesToRad(m_pitch)) * m_speed);
 	m_alive = true;
 	m_onScreen = true;
 }
@@ -162,6 +175,11 @@ bool Projectile::getAlive()
 sf::Vector2f Projectile::getSize()
 {
 	return sf::Vector2f(m_width, m_height);
+}
+
+float Projectile::getElevation()
+{
+	return m_elevation;
 }
 
 /// <summary>

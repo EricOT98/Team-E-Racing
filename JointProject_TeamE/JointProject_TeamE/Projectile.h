@@ -12,9 +12,6 @@
 #include "..\MathUtility.h"
 #include "OBB.h"
 
-//Constants
-const float GRAVITY = 9.8f;
-
 enum class ProjectileType {
 	REGULAR,
 	BOUNCE,
@@ -41,9 +38,9 @@ public:
 	//Getter methods
 	bool getAlive();
 	sf::Vector2f getSize();
+	float getElevation();
 protected:
 	void setPhysicsData();
-	void applyVerticalImpulse();
 	//Sprite data
 	sf::Sprite m_sprite;
 	sf::Vector2f m_scale;
@@ -63,7 +60,7 @@ protected:
 	float m_height;
 	float m_radius;
 	float m_radiusSqr;
-
-	
+	float m_gravity;
+	float m_elevation;
 };
 #endif

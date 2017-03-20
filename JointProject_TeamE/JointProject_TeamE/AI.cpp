@@ -30,7 +30,7 @@ void AI::update(float dt)
 	m_sprite.setRotation(angle);
 	m_sprite.setPosition(m_position);
 
-	std::cout << "Current Node: " << m_currentNode << std::endl;
+	//std::cout << "Current Node: " << m_currentNode << std::endl;
 }
 
 void AI::setWayPoints(std::vector<Waypoint> &wayPoints)
