@@ -37,8 +37,15 @@ void Track::update(std::vector<Racer *> & racers)
 				tile->checkOnTrack(racer);
 			}
 		}
-
 		checkRacerObstacleCollision(racer->m_boundingBox);
+		//@Projectile
+		/*if (racer->getProjectile() != nullptr)
+		{
+			for (auto & obs : m_obstacles)
+			{
+				racer->getProjectile()->checkCollision(obs->getSprite());
+			}
+		}*/
 	}
 }
 

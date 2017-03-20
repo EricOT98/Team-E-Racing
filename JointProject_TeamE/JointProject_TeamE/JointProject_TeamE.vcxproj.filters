@@ -41,6 +41,7 @@
     <ClCompile Include="gl3w.c" />
     <ClCompile Include="Screens\SplashScreen.cpp" />
     <ClCompile Include="OBB.cpp" />
+    <ClCompile Include="Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Screens\SplashScreen.h" />
     <ClInclude Include="OBB.h" />
+    <ClInclude Include="Projectile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">

@@ -19,6 +19,7 @@
 #include "Thor\Animations.hpp"
 #include <Thor\Math.hpp>
 #include "OBB.h"
+#include "Projectile.h"
 
 class Racer
 {
@@ -37,7 +38,8 @@ public:
 
 	void setFrictionHigh();
 	void setFrictionLow();
-
+	void fire();
+	Projectile* getProjectile();
 protected:
 	// Protected Functions
 	void turnLeft(float dt, float percentageTurn);
@@ -70,6 +72,8 @@ protected:
 	thor::UniversalEmitter m_smokeEmmiterLeft;
 	sf::Clock m_clock;
 	unsigned int m_index = 0;
+
+	Projectile m_test;
 };
 
 #endif

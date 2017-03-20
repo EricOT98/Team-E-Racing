@@ -62,7 +62,11 @@ void Player::update(float dt)
 	{
 		accelerate(dt / 1000.f, 100.0f);
 	}
-
+	//@Projectile
+	/*if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space))
+	{
+		fire();
+	}*/
 	calMovement(dt / 1000.f);
 
 	// Construct a new OBB when the player is moving
