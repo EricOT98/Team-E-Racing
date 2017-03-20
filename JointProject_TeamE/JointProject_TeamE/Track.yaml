@@ -361,6 +361,7 @@ waypoints:
     speed: 5
   - type: ai_node
     position: {x: 720, y: 800}
+    speed: 5
 cars:
   - texture: CarTexture
     acceleration: 250
