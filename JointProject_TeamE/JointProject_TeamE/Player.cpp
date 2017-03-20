@@ -44,6 +44,11 @@ void Player::update(float dt)
 		accelerate(dt / 1000.f, -m_controller.getRightTrigger());
 	}
 
+	if (m_controller.isButtonPressed(XBOX360_A) && !m_test.getAlive())
+	{
+		fire();
+	}
+
 	// TODO: Take this out!! For debug use.
 	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Right))
 	{
@@ -63,10 +68,10 @@ void Player::update(float dt)
 		accelerate(dt / 1000.f, 100.0f);
 	}
 	//@Projectile
-	/*if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space))
+	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space) && !m_test.getAlive())
 	{
 		fire();
-	}*/
+	}
 	calMovement(dt / 1000.f);
 
 	// Construct a new OBB when the player is moving

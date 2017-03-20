@@ -18,7 +18,7 @@ void Track::setTrack(LevelData &levelIn)
 
 	startPosSprite.setTexture(g_resourceMgr.textureHolder["StartTrackPos"]);
 	startPosSprite.setScale(sf::Vector2f(0.2f, 0.2f));
-	startPosSprite.setOrigin(startPosSprite.getLocalBounds().width / 2.0f, startPosSprite.getLocalBounds().height / 2.0f);
+	startPosSprite.setOrigin(static_cast<int>(startPosSprite.getLocalBounds().width / 2.0f), static_cast<int>(startPosSprite.getLocalBounds().height / 2.0f));
 
 	for (int i = 0; i < levelIn.m_startPositionData.size(); i++)
 	{
@@ -52,13 +52,16 @@ void Track::update(std::vector<Racer *> & racers)
 		}
 
 		//@Projectile
-		/*if (racer->getProjectile() != nullptr)
+		if (racer->getProjectile() != nullptr)
 		{
 			for (auto & obs : m_obstacles)
 			{
-				racer->getProjectile()->checkCollision(obs->getSprite());
+				if (checkProjectileObstacleCollision(racer->getProjectile()->m_boundingBox)) {
+					racer->getProjectile()->despawn();
+					break;
+				}
 			}
-		}*/
+		}
 	}
 }
 
@@ -135,6 +138,19 @@ bool Track::checkRacerObstacleCollision(OBB &playerOBB)
 		}
 	}
 
+	return false;
+}
+
+bool Track::checkProjectileObstacleCollision(OBB & projectileOBB)
+{
+	for (Obstacle *obstacle : m_obstacles)
+	{
+		if (projectileOBB.intersects(obstacle->m_obstacleOBB))
+		{
+			std::cout << "Collision with Obstacle(Projectile)" << std::endl;
+			return true;
+		}
+	}
 	return false;
 }
 

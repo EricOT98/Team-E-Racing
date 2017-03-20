@@ -37,6 +37,8 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 			std::cout << s << levelIn.m_textureDataVector.size() << std::endl;
 			textureHolder.acquire(levelIn.m_textureDataVector.at(i).m_textureName, thor::Resources::fromFile<sf::Texture>(levelIn.m_textureDataVector.at(i).m_filename));
 		}
+
+		textureHolder.acquire("Bullet", thor::Resources::fromFile<sf::Texture>("Resources/Projectiles/BulletIcon.png"));
 	}
 	catch (thor::ResourceLoadingException& e)
 	{
