@@ -23,6 +23,7 @@
 #include "Screens\SoundOptions.h"
 #include "Screens\TrophyScreen.h"
 #include "Screens\SplashScreen.h"
+#include "Screens\UpgradesScreen.h"
 //GUI
 
 #include "Screens\Screen.h"
@@ -77,6 +78,7 @@ protected:
 	PauseScreen * m_pauseScreen;
 	SoundOptions * m_soundOptions;
 	TrophyScreen * m_trophyScreen;
+	UpgradesScreen * m_upgradesScreen;
 
 	bool m_reset;
 	bool m_transitionInGame;

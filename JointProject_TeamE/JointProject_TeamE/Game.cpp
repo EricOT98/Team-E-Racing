@@ -42,6 +42,7 @@ void Game::run()
 	m_pauseScreen = new PauseScreen();
 	m_soundOptions = new SoundOptions();
 	m_trophyScreen = new TrophyScreen();
+	m_upgradesScreen = new UpgradesScreen();
 	m_track.setTrack(m_level);
 	m_player.setCar();
 	m_player.setPosition(sf::Vector2f(750.0f, 650.0f));
@@ -62,6 +63,7 @@ void Game::run()
 	m_screenManager.add(m_pauseScreen);
 	m_screenManager.add(m_soundOptions);
 	m_screenManager.add(m_trophyScreen);
+	m_screenManager.add(m_upgradesScreen);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;

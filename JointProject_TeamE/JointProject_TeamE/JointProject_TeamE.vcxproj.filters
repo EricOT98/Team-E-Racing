@@ -42,6 +42,7 @@
     <ClCompile Include="Screens\SplashScreen.cpp" />
     <ClCompile Include="OBB.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Screens\UpgradesScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Screens\SplashScreen.h" />
     <ClInclude Include="OBB.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Screens\UpgradesScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
