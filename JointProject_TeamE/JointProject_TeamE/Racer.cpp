@@ -25,9 +25,9 @@ void Racer::render(sf::RenderWindow & window)
 	window.draw(m_tireTracks);
 	window.draw(m_sprite);
 	//@Projectile
-	/*if (m_test.getAlive()) {
+	if (m_test.getAlive()) {
 		m_test.render(window);
-	}*/
+	}
 }
 
 /// <summary>
@@ -64,7 +64,8 @@ void Racer::setCar()
 	m_tireTracks.addAffector(thor::AnimationAffector(fader));
 	m_boundingBox = OBB(m_position, m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 		m_sprite.getLocalBounds().height * m_sprite.getScale().y, m_currentRotation);
-	//@Projectile m_test.init("CarTexture");
+	//@Projectile 
+	m_test.init("Bullet");
 }
 
 /// <summary>
@@ -146,7 +147,8 @@ void Racer::calMovement(float dt)
 
 	m_currentAcceleration = 0;
 	m_tireTracks.update(m_clock.restart());
-	//@Projectile m_test.update(dt);
+	//@Projectile
+	m_test.update(dt);
 }
 
 void Racer::turnLeft(float dt, float percentageTurn)
@@ -193,8 +195,8 @@ void Racer::setFrictionLow()
 
 void Racer::fire()
 {
-	float newX = m_position.x + (std::cos(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-	float newY = m_position.y + (std::sin(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
+	float newX = m_position.x + (std::cos(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width) / 2.0f) - (m_sprite.getGlobalBounds().height + m_test.getSize().x)));
+	float newY = m_position.y + (std::sin(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width) / 2.0f) - (m_sprite.getGlobalBounds().height + m_test.getSize().y)));
 	m_test.spawnAt(sf::Vector2f(newX, newY), m_currentRotation, 10);
 }
 

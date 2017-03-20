@@ -18,7 +18,7 @@ void Track::setTrack(LevelData &levelIn)
 
 	startPosSprite.setTexture(g_resourceMgr.textureHolder["StartTrackPos"]);
 	startPosSprite.setScale(sf::Vector2f(0.2f, 0.2f));
-	startPosSprite.setOrigin(startPosSprite.getLocalBounds().width / 2.0f, startPosSprite.getLocalBounds().height / 2.0f);
+	startPosSprite.setOrigin(static_cast<int>(startPosSprite.getLocalBounds().width / 2.0f), static_cast<int>(startPosSprite.getLocalBounds().height / 2.0f));
 
 	for (int i = 0; i < levelIn.m_startPositionData.size(); i++)
 	{

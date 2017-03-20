@@ -23,6 +23,8 @@ Projectile::~Projectile()
 void Projectile::init(std::string texture)
 {
 	m_sprite.setTexture(g_resourceMgr.textureHolder[texture]);
+	m_sprite.setTextureRect(sf::IntRect(12, 26, 10, 25));
+	m_sprite.setOrigin(static_cast<int>(m_sprite.getLocalBounds().width / 2.0f), static_cast<int>(m_sprite.getLocalBounds().height / 2.0f));
 	m_alive = false;
 	m_onScreen = false;
 	m_collided = false;
@@ -37,7 +39,7 @@ void Projectile::update(float dt)
 {
 	if (m_alive)
 	{
-		m_sprite.setRotation(m_rotation);
+		m_sprite.setRotation(m_rotation + 90);
 		float addOnTotal = m_speed * dt + 0.5f * dt * dt; // formula: s = (ut) + (0.5 * at²)
 		float xPosAddOn = addOnTotal * std::cos(degreesToRad(m_rotation));
 		float yPosAddOn = addOnTotal * std::sin(degreesToRad(m_rotation));
@@ -146,6 +148,11 @@ void Projectile::setScale(sf::Vector2f scale)
 bool Projectile::getAlive()
 {
 	return m_alive;
+}
+
+sf::Vector2f Projectile::getSize()
+{
+	return sf::Vector2f(m_width, m_height);
 }
 
 /// <summary>

@@ -34,6 +34,7 @@ public:
 
 	//Getter methods
 	bool getAlive();
+	sf::Vector2f getSize();
 protected:
 	void setPhysicsData();
 
