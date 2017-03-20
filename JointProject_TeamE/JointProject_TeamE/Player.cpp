@@ -44,6 +44,11 @@ void Player::update(float dt)
 		accelerate(dt / 1000.f, -m_controller.getRightTrigger());
 	}
 
+	if (m_controller.isButtonPressed(XBOX360_A) && !m_test.getAlive())
+	{
+		fire();
+	}
+
 	// TODO: Take this out!! For debug use.
 	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Right))
 	{
