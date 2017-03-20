@@ -7,6 +7,7 @@
 #include "LevelLoader.h"
 #include "ResourceManager.h"
 #include "Obstacle.h"
+#include "SpotLight.h"
 
 enum class TrackType
 {
@@ -16,7 +17,8 @@ enum class TrackType
 	TrackFour
 };
 
-class Track {
+class Track 
+{
 public:
 	Track();
 	void setTrack(LevelData &levelIn);
@@ -46,6 +48,13 @@ private:
 	bool collision;
 	sf::Clock m_countdownClock;
 	float m_timer; float m_time;
+
+	sf::Texture lightTexture;
+	sf::Sprite light;
+
+	sf::RenderTexture lightMapTexture;
+	sf::Sprite lightmap;
+	std::vector<SpotLight> lights;
 };
 
 #endif

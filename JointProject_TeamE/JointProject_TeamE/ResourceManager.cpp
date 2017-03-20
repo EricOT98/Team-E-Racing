@@ -39,6 +39,7 @@ void ResourceManager::loadAssets(LevelData & levelIn)
 		}
 
 		textureHolder.acquire("Bullet", thor::Resources::fromFile<sf::Texture>("Resources/Projectiles/BulletIcon.png"));
+		textureHolder.acquire("CarLights", thor::Resources::fromFile<sf::Texture>("Resources/Cars/CarLight.png"));
 	}
 	catch (thor::ResourceLoadingException& e)
 	{

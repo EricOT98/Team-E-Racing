@@ -24,7 +24,6 @@
 #include "Screens\TrophyScreen.h"
 #include "Screens\SplashScreen.h"
 #include "Screens\UpgradesScreen.h"
-//GUI
 
 #include "Screens\Screen.h"
 
@@ -81,11 +80,6 @@ protected:
 
 	bool m_reset;
 	bool m_transitionInGame;
-
-	GLuint m_fbo;
-	GLuint quadVAO, quadVBO;
-	GLuint framebuffer;
-	GLuint textureColorbuffer;
 };
 
 #endif

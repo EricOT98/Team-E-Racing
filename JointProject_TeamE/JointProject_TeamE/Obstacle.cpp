@@ -53,7 +53,7 @@ Obstacle::~Obstacle()
 /// <param name="window"></param>
 void Obstacle::render(sf::RenderWindow & window)
 {
-	m_obstacleOBB.debugRender(window);
+	//m_obstacleOBB.debugRender(window);
 	window.draw(m_sprite);
 }
 
