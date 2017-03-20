@@ -35,6 +35,7 @@ public:
 	sf::Vector2f getPosition();
 	float getRotation();
 	OBB m_boundingBox;
+	void resolveCollision();
 
 	void setFrictionHigh();
 	void setFrictionLow();

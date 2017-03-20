@@ -59,7 +59,6 @@ protected:
 	Track m_track;
 	sf::Sprite carSprite;
 	Player m_player;
-	AI m_AI;
 	std::vector<Racer *> m_racers;
 	sf::View raceView;
 

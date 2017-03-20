@@ -15,7 +15,8 @@ Obstacle::Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f po
 	m_sprite.setTextureRect(textureRect);
 	
 	m_sprite.setPosition(m_position);
-	m_sprite.setOrigin((m_sprite.getLocalBounds().width / 2.0f), (m_sprite.getLocalBounds().height / 2.0f));
+	m_sprite.setOrigin(static_cast<int>((m_sprite.getLocalBounds().width / 2.0f)), 
+						static_cast<int>((m_sprite.getLocalBounds().height / 2.0f)));
 	m_sprite.setScale(sf::Vector2f(0.4f, 0.4f));
 	m_sprite.setRotation(rotation);
 
@@ -52,7 +53,7 @@ Obstacle::~Obstacle()
 /// <param name="window"></param>
 void Obstacle::render(sf::RenderWindow & window)
 {
-	m_obstacleOBB.debugRender(window);
+	//m_obstacleOBB.debugRender(window);
 	window.draw(m_sprite);
 }
 

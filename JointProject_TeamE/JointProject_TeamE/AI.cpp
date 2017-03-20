@@ -8,27 +8,25 @@ AI::AI()
 
 AI::~AI() { }
 
-sf::Vector2f velocity = sf::Vector2f();
-
 void AI::update(float dt)
 {
 	sf::Vector2f vectorToNode = pathFollowing();
 
 	m_steering = sf::Vector2f(); 
-	m_steering = m_steering + pathFollowing();
+	m_steering = m_steering + vectorToNode;
 
 	m_steering = truncate(m_steering, 1.1f);
 	m_steering = m_steering / 1.0f;
 
-	velocity = truncate(velocity + m_steering, SPEED);
-	m_position = m_position + velocity;
+	m_velocity = truncate(m_velocity + m_steering, SPEED);
+	m_position = m_position + m_velocity;
 	
-	double angle = atan2(velocity.y, velocity.x) / PI * 180;
+	double angle = atan2(m_velocity.y, m_velocity.x) / PI * 180;
 
 	m_sprite.setRotation(angle);
 	m_sprite.setPosition(m_position);
 
-	//std::cout << "Current Node: " << m_currentNode << std::endl;
+	std::cout << "Current Node: " << m_currentNode << std::endl;
 }
 
 void AI::setWayPoints(std::vector<Waypoint> &wayPoints)

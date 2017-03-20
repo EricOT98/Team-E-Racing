@@ -22,7 +22,15 @@ void Track::setTrack(LevelData &levelIn)
 
 	for (int i = 0; i < levelIn.m_startPositionData.size(); i++)
 	{
-		m_startPositions.push_back(levelIn.m_startPositionData.at(i).m_position);
+		m_startPlayerPositions.push_back(levelIn.m_startPositionData.at(i).m_position);
+	}
+
+	playerStartPos = m_startPlayerPositions.at((int)TrackType::TrackOne);
+
+	for (int i = 1; i <= numberOfAICars + 2; i++)
+	{
+		sf::Vector2f pos = sf::Vector2f(playerStartPos.x - ((i % 2) * 30), playerStartPos.y - (i * 45));
+		m_startAIPositions.push_back(pos);
 	}
 }
 
@@ -37,7 +45,12 @@ void Track::update(std::vector<Racer *> & racers)
 				tile->checkOnTrack(racer);
 			}
 		}
-		checkRacerObstacleCollision(racer->m_boundingBox);
+
+		if (checkRacerObstacleCollision(racer->m_boundingBox))
+		{
+			racer->resolveCollision();
+		}
+
 		//@Projectile
 		/*if (racer->getProjectile() != nullptr)
 		{
@@ -47,6 +60,16 @@ void Track::update(std::vector<Racer *> & racers)
 			}
 		}*/
 	}
+}
+
+std::vector<sf::Vector2f> *Track::getAIStartPositions()
+{
+	return &m_startAIPositions;
+}
+
+sf::Vector2f Track::getPlayerStartPosition()
+{
+	return playerStartPos;
 }
 
 void Track::render(sf::RenderWindow & window)
@@ -66,19 +89,21 @@ void Track::render(sf::RenderWindow & window)
 		if (checkWindowObsIntersection(*m_obstacles.at(i), window))
 		{
 			m_obstacles.at(i)->render(window);
-		} 
+		}
 	}
 
-	// TODO(Darren): Move this into a set track method for the positions for current track
-	//					so don't have to recalculate
-	sf::Vector2f playerStartPos = m_startPositions.at((int)TrackType::TrackOne);
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < numberOfAICars + 1; i++)
 	{
 		sf::Vector2f pos = sf::Vector2f(playerStartPos.x - ((i % 2) * 30), playerStartPos.y - (i * 45));
 		startPosSprite.setPosition(pos);
 
 		window.draw(startPosSprite);
 	}
+}
+
+unsigned int Track::getNumOfAICars()
+{
+	return numberOfAICars;
 }
 
 bool Track::checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos)

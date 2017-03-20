@@ -22,6 +22,9 @@ public:
 	void setTrack(LevelData &levelIn);
 	void update(std::vector<Racer *> & racers);
 	void render(sf::RenderWindow & window);
+	std::vector<sf::Vector2f> *getAIStartPositions();
+	sf::Vector2f getPlayerStartPosition();
+	unsigned int getNumOfAICars();
 
 private:
 	bool checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos);
@@ -32,7 +35,10 @@ private:
 	std::vector<Obstacle *> m_obstacles;
 
 	sf::Sprite startPosSprite;
-	std::vector<sf::Vector2f> m_startPositions;
+	std::vector<sf::Vector2f> m_startPlayerPositions;
+	std::vector<sf::Vector2f> m_startAIPositions;
+	sf::Vector2f playerStartPos;
+	unsigned int numberOfAICars = 5;
 
 	TrackType currentTrackType = TrackType::TrackThree;
 };

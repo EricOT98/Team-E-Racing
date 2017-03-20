@@ -21,7 +21,7 @@ Racer::~Racer()
 /// <param name="window"></param>
 void Racer::render(sf::RenderWindow & window)
 {
-	m_boundingBox.debugRender(window);
+	//m_boundingBox.debugRender(window);
 	window.draw(m_tireTracks);
 	window.draw(m_sprite);
 	//@Projectile
@@ -88,6 +88,13 @@ sf::Vector2f Racer::getPosition()
 void Racer::setRotation(float rotationIn)
 {
 	m_currentRotation = rotationIn;
+}
+
+void Racer::resolveCollision()
+{
+	// Need to get the direction of the car.
+	//m_velocity *= -1;
+	//m_velocity /= 2.0f;
 }
 
 void Racer::calMovement(float dt)

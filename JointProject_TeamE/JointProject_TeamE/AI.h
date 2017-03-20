@@ -23,6 +23,8 @@ protected:
 	const float WAYPOINT_RADIUS = 50.0f;
 	const float SPEED = 5.0f;
 
+	sf::Vector2f m_velocity;
+
 	sf::Vector2f pathFollowing();
 };
 
