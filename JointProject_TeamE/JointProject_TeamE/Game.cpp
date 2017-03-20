@@ -167,7 +167,7 @@ void Game::render()
 			for (Racer *racer : m_racers)
 				racer->render(m_window);
 			// DEBUG(Darren): Debug drawing the AI nodes
-#if 1
+#if 0
 			for (Waypoint waypoint : m_level.m_waypoints)
 			{
 				sf::CircleShape circle(5.0f);

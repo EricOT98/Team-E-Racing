@@ -93,8 +93,7 @@ void Racer::setRotation(float rotationIn)
 
 void Racer::resolveCollision()
 {
-	// Need to get the direction of the car.
-	m_velocity = 0;
+	
 }
 
 void Racer::calMovement(float dt)

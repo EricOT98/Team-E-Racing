@@ -25,7 +25,6 @@ protected:
 	float m_speed;
 
 	sf::Vector2f m_velocity;
-	float interpolation;
 
 	sf::Vector2f pathFollowing();
 };
