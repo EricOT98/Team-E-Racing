@@ -46,7 +46,6 @@ void Racer::setCar()
 	m_frictionHigh = 0.9f;
 	m_frictionLow = 0.99f;
 	m_currentFriction = m_frictionLow;
-
 	m_tireTexture.loadFromFile("Resources/Test.png");
 	m_tireTracks.setTexture(m_tireTexture);
 	m_index = m_tireTracks.addTextureRect(sf::IntRect(12, 0, 15, 5));

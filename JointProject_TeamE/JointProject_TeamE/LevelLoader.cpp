@@ -98,10 +98,10 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 	}
 
 	const YAML::Node& carsNode = baseNode["cars"].as<YAML::Node>();
-	for (unsigned int i = 0; i < startPosNode.size(); ++i)
+	for (unsigned int i = 0; i < carsNode.size(); ++i)
 	{
 		CarData carData;
-		startPosNode[i] >> carData;
+		carsNode[i] >> carData;
 		levelIn.m_carData.push_back(carData);
 	}
 }
