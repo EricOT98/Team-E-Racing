@@ -30,6 +30,9 @@ void AI::update(float dt)
 	m_sprite.setRotation(angle);
 	m_sprite.setPosition(m_position);
 
+	// Construct a new OBB when the player is moving
+	m_boundingBox.construct(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
+		m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_currentRotation);
 	//std::cout << "Current Node: " << m_currentNode << std::endl;
 }
 

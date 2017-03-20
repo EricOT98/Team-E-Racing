@@ -7,6 +7,7 @@
 
 #include <Thor\Particles.hpp>
 #include <Thor\Animations.hpp>
+#include "Thor\Math.hpp"
 #include <SFML\Graphics.hpp>
 #include "ResourceManager.h"
 #include "..\MathUtility.h"
@@ -44,10 +45,21 @@ protected:
 	//Sprite data
 	sf::Sprite m_sprite;
 	sf::Vector2f m_scale;
+	thor::ParticleSystem m_smokeTrail;
+	thor::UniversalEmitter m_trailEmmiter;
+
+	/*thor::FrameAnimation m_explosion;
+	sf::Texture m_explosionTexture;
+	sf::Sprite m_explosionSprite;
+	thor::Animator<sf::Sprite, std::string> m_explosionAnimator;*/
+	sf::Clock m_clock;
+	//sf::Vector2f m_explosionPos;
+	//float m_animationProgress = 0.0f;
 	//Culling data
 	bool m_alive;
 	bool m_onScreen;
 	bool m_collided;
+	bool m_exploded;
 
 	//Physics data
 	sf::Vector2f m_position;

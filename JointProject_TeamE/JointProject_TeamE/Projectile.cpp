@@ -13,6 +13,7 @@ Projectile::Projectile()
 	m_scale = sf::Vector2f(1.0f, 1.0f);
 	m_width = 0;
 	m_height = 0;
+	m_exploded = false;
 }
 
 /// <summary>
@@ -34,6 +35,32 @@ void Projectile::init(std::string texture)
 	setPhysicsData();
 	m_boundingBox = OBB(m_position, m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 		m_sprite.getLocalBounds().height * m_sprite.getScale().y, m_rotation);
+	m_smokeTrail.setTexture(g_resourceMgr.textureHolder[texture]);
+	m_trailEmmiter.setEmissionRate(30);
+	m_trailEmmiter.setParticleLifetime(sf::seconds(.5f));
+	m_trailEmmiter.setParticleScale(sf::Vector2f(0.1f, 0.1f));
+	m_smokeTrail.addEmitter(thor::refEmitter(m_trailEmmiter));
+
+
+	//m_explosionTexture.loadFromFile("Resources/Projectiles/Explosion.png");
+	//float animationStepX = m_explosionTexture.getSize().x / 8.0f;
+	//float animationStepY = m_explosionTexture.getSize().y / 8.0f;
+	//int x = 0, y = 0;
+	//float frameTime = 0;
+	//frameTime = 1 / 64.0f;
+	//int frameIndex = 0;
+	//for (int i = 0; i < m_explosionTexture.getSize().x; i+= animationStepX)
+	//{
+	//	for (int j = 0; j < m_explosionTexture.getSize().y; j += animationStepY)
+	//	{
+	//		sf::IntRect rect(x * i, y*i, animationStepX, animationStepY);
+	//		m_explosion.addFrame(0.5f, rect);
+	//	}
+	//}
+	//m_explosionSprite.setTexture(m_explosionTexture);
+	//m_explosionSprite.setTextureRect(sf::IntRect(0,0, animationStepX, animationStepY));
+	//m_explosion(m_explosionSprite, m_animationProgress);
+	//m_explosionAnimator.addAnimation("explode", m_explosion, sf::seconds(5.0f));
 }
 
 /// <summary>
@@ -58,7 +85,8 @@ void Projectile::update(float dt)
 		m_scale.x = (m_elevation / 2.0f);
 		m_scale.y = (m_elevation / 2.0f);
 		setScale(m_scale);
-		std::cout << "z = " << m_elevation << std::endl;
+		//@Debug
+		//std::cout << "z = " << m_elevation << std::endl;
 		if (m_elevation < 0)
 		{
 			despawn();
@@ -66,9 +94,22 @@ void Projectile::update(float dt)
 		m_boundingBox.construct(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 			m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_sprite.getRotation());
 		if (m_onScreen){
-
+			m_trailEmmiter.setEmissionRate(30);
+			m_trailEmmiter.setParticlePosition(m_position);
 		}
+		else {
+			m_trailEmmiter.setEmissionRate(0);
+		}
+		m_smokeTrail.update(m_clock.restart());
 	}
+	//m_explosionAnimator.update(m_clock.restart());
+	//m_explosionAnimator.animate(m_explosionSprite);
+	//std::cout << "Pos: " << m_explosionSprite.getPosition().x << " " << m_explosionSprite.getPosition().y << std::endl;
+	///*if (!m_explosionAnimator.isPlayingAnimation())
+	//{
+	//	m_exploded = false;
+	//}*/
+	//m_explosionSprite.setPosition(m_explosionPos);
 }
 
 /// <summary>
@@ -80,8 +121,11 @@ void Projectile::render(sf::RenderWindow & window)
 {
 	if (m_onScreen){
 		m_boundingBox.debugRender(window);
+		window.draw(m_smokeTrail);
 		window.draw(m_sprite);
 	}
+	//std::cout << "rendering explosion" << std::endl;
+	//window.draw(m_explosionSprite);
 }
 
 /// <summary>
@@ -131,6 +175,12 @@ void Projectile::despawn()
 {
 	m_alive = false;
 	m_onScreen = false;
+	m_exploded = true;
+	//m_explosionAnimator.stopAnimation();
+	//m_explosionAnimator.playAnimation("explode", false);
+	//m_explosionAnimator.animate(m_explosionSprite);
+	//m_explosionPos = m_sprite.getPosition();
+	//m_sprite.setPosition(m_position);
 }
 
 /// <summary>

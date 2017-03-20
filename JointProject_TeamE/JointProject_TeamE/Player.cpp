@@ -44,8 +44,9 @@ void Player::update(float dt)
 		accelerate(dt / 1000.f, -m_controller.getRightTrigger());
 	}
 
-	if (m_controller.isButtonPressed(XBOX360_A) && !m_test.getAlive())
+	if (m_controller.isButtonPressed(XBOX360_A))
 	{
+		std::cout << "firing" << std::endl;
 		fire();
 	}
 
@@ -68,7 +69,7 @@ void Player::update(float dt)
 		accelerate(dt / 1000.f, 100.0f);
 	}
 	//@Projectile
-	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space) && !m_test.getAlive())
+	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space))
 	{
 		fire();
 	}

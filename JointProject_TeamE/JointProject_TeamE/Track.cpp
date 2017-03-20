@@ -32,17 +32,27 @@ void Track::setTrack(LevelData &levelIn)
 		sf::Vector2f pos = sf::Vector2f(playerStartPos.x - ((i % 2) * 30), playerStartPos.y - (i * 45));
 		m_startAIPositions.push_back(pos);
 	}
+	m_timer = 5;
 }
 
 void Track::update(std::vector<Racer *> & racers)
 {
+	m_time += m_countdownClock.getElapsedTime().asSeconds();
+	if (m_time > m_timer)
+	{
+		collision = false;
+		m_time = 0;
+	}
 	for (auto & racer : racers)
 	{
 		for (auto & tile : m_trackTiles)
 		{
-			if (checkRacerIntersection(*tile, racer->getPosition()))
+			if (!collision)
 			{
-				tile->checkOnTrack(racer);
+				if (checkRacerIntersection(*tile, racer->getPosition()))
+				{
+					tile->checkOnTrack(racer);
+				}
 			}
 		}
 
@@ -52,25 +62,31 @@ void Track::update(std::vector<Racer *> & racers)
 		}
 
 		//@Projectile
-		if (racer->m_test.getAlive())
+		for (auto & proj : racer->m_projectiles)
 		{
-			for (auto & obs : m_obstacles)
+			if (proj->getAlive())
 			{
-				if (racer->m_test.getElevation() < 0.5f)
+				for (auto & obs : m_obstacles)
 				{
-					if (checkProjectileObstacleCollision(racer->m_test.m_boundingBox)) {
-						racer->m_test.despawn();
-						break;
+				if (proj->getElevation() < 0.5f)
+				{
+					if (checkProjectileObstacleCollision(proj->m_boundingBox)) {
+					proj->despawn();
+					break;
 					}
 				}
-			}
-			for (auto & checkedRacer : racers)
-			{
-				if (racer != checkedRacer)
+				}
+				for (auto & checkedRacer : racers)
 				{
-					if (checkProjectileRacerCollision(racer->m_test.m_boundingBox, checkedRacer->m_boundingBox))
+					if (racer != checkedRacer)
 					{
-						racer->m_test.despawn();
+						if (checkProjectileRacerCollision(proj->m_boundingBox, checkedRacer->m_boundingBox))
+						{
+							proj->despawn();
+							checkedRacer->resolveCollision();
+							checkedRacer->setFrictionHigh();
+							collision = true;
+						}
 					}
 				}
 			}

@@ -25,8 +25,11 @@ void Racer::render(sf::RenderWindow & window)
 	window.draw(m_tireTracks);
 	window.draw(m_sprite);
 	//@Projectile
-	if (m_test.getAlive()) {
-		m_test.render(window);
+	for (int i = 0; i < numProjectiles; i++)
+	{
+		if (m_projectiles.at(i)->getAlive()) {
+			m_projectiles.at(i)->render(window);
+		}
 	}
 }
 
@@ -63,7 +66,13 @@ void Racer::setCar()
 	m_boundingBox = OBB(m_position, m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 		m_sprite.getLocalBounds().height * m_sprite.getScale().y, m_currentRotation);
 	//@Projectile 
-	m_test.init("Bullet");
+	numProjectiles = 10;
+	for (int i = 0; i < numProjectiles; i++)
+	{
+		std::unique_ptr<Projectile> projectile(new Projectile());
+		projectile->init("Bullet");
+		m_projectiles.push_back(std::move(projectile));
+	}
 }
 
 /// <summary>
@@ -97,7 +106,10 @@ void Racer::resolveCollision()
 void Racer::calMovement(float dt)
 {
 	//@Projectile
-	m_test.update(dt);
+	for (int i = 0; i < numProjectiles; i++)
+	{
+		m_projectiles.at(i)->update(dt);
+	}
 	m_sprite.setRotation(m_currentRotation);
 	m_velocity += m_currentAcceleration * dt;
 	float addOnTotal = m_velocity * dt + 0.5f * m_currentAcceleration * dt * dt; // formula: s = (ut) + (0.5 * at²)
@@ -191,15 +203,26 @@ void Racer::setFrictionLow()
 
 void Racer::fire()
 {
-	float totRadius = (m_sprite.getGlobalBounds().height / 2.0f) + (m_test.getSize().y / 2.0f);
-	float newX = m_position.x + (totRadius * std::cos(thor::toRadian(m_sprite.getRotation())));
-	float newY = m_position.y + (totRadius * std::sin(thor::toRadian(m_sprite.getRotation())));
-	float power = 300;
-	if (m_velocity > 0)
+	for (int i = 0; i < numProjectiles; i++)
 	{
-		power += m_velocity;
+		if (!m_projectiles.at(i)->getAlive())
+		{
+			float totRadius = (m_sprite.getGlobalBounds().height / 2.0f) + (m_projectiles.at(i)->getSize().y / 2.0f);
+			float newX = m_position.x + (totRadius * std::cos(thor::toRadian(m_sprite.getRotation())));
+			float newY = m_position.y + (totRadius * std::sin(thor::toRadian(m_sprite.getRotation())));
+			float power = 300;
+			if (m_velocity > 0)
+			{
+				power += m_velocity;
+			}
+			m_projectiles.at(i)->spawnAt(sf::Vector2f(newX, newY), m_currentRotation, 10, power);
+			break;
+		}
 	}
-	m_test.spawnAt(sf::Vector2f(newX, newY), m_currentRotation,10, power);
+}
+int Racer::getNumProjectiles()
+{
+	return numProjectiles;
 }
 //
 //Projectile* Racer::getProjectile()
