@@ -53,17 +53,18 @@ void operator >> (const YAML::Node &waypointNode, StartPositionData &startPositi
 	startPositionData.m_position.y = waypointNode["position"]["y"].as<float>();
 }
 
+void operator >> (const YAML::Node & carNode, CarData & carDataIn)
+{
+	carDataIn.m_acceleration = carNode["acceleration"].as<float>();
+	carDataIn.m_deceleration = carNode["deceleration"].as<float>();
+	carDataIn.m_turnRate = carNode["turnrate"].as<float>();
+	carDataIn.m_name = carNode["name"].as<std::string>();
+	carDataIn.m_texture = carNode["texture"].as<std::string>();
+}
+
 void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 {
 	baseNode["player"] >> levelIn.m_playerData;
-	const YAML::Node& tileNode = baseNode["tiles"].as<YAML::Node>();
-	/*for (unsigned int i = 0; i < tileNode.size(); ++i)
-	{
-		TileData tile;
-		tileNode[i] >> tile;
-		levelIn.m_tileDataVector.push_back(tile);
-	}*/
-
 	const YAML::Node& obstaclesNode = baseNode["obstacles"].as<YAML::Node>();
 	for (unsigned i = 0; i < obstaclesNode.size(); ++i)
 	{
@@ -94,6 +95,14 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 		StartPositionData startPosData;
 		startPosNode[i] >> startPosData;
 		levelIn.m_startPositionData.push_back(startPosData);
+	}
+
+	const YAML::Node& carsNode = baseNode["cars"].as<YAML::Node>();
+	for (unsigned int i = 0; i < startPosNode.size(); ++i)
+	{
+		CarData carData;
+		startPosNode[i] >> carData;
+		levelIn.m_carData.push_back(carData);
 	}
 }
 

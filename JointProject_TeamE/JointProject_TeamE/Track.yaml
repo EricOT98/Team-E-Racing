@@ -325,3 +325,19 @@ waypoints:
     position: {x: 800, y: 870}
   - type: ai_node
     position: {x: 720, y: 800}
+cars:
+  - texture: objects
+    acceleration: 10
+    deceleration: 10
+    turnrate: 10
+    name: Liam
+  - texture: objects
+    acceleration: 10
+    deceleration: 10
+    turnrate: 10
+    name: Darren
+  - texture: objects
+    acceleration: 10
+    deceleration: 10
+    turnrate: 10
+    name: Eric

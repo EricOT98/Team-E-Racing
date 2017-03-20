@@ -41,6 +41,15 @@ struct StartPositionData
 	sf::Vector2f m_position;
 };
 
+struct CarData
+{
+	std::string m_name;
+	std::string m_texture;
+	float m_acceleration;
+	float m_deceleration;
+	float m_turnRate;
+};
+
 struct LevelData {
 	PlayerData m_playerData;
 	std::vector<TileData> m_tileDataVector;
@@ -48,6 +57,7 @@ struct LevelData {
 	std::vector<ObstacleData> m_obstacleDataVector;
 	std::vector<Waypoint> m_waypoints;
 	std::vector<StartPositionData> m_startPositionData;
+	std::vector<CarData> m_carData;
 };
 
 class LevelLoader {
