@@ -42,7 +42,7 @@ void Game::run()
 	m_pauseScreen = new PauseScreen();
 	m_soundOptions = new SoundOptions();
 	m_trophyScreen = new TrophyScreen();
-	m_upgradesScreen = new UpgradesScreen();
+	m_upgradesScreen = new UpgradesScreen(m_level.m_carData, m_window.getSize().x);
 	m_track.setTrack(m_level);
 	m_player.setCar();
 	m_player.setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
