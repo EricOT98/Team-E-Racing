@@ -259,69 +259,103 @@ textures:
 waypoints:
   - type: ai_node
     position: {x: 750, y: 600}
+    speed: 1
   - type: ai_node
     position: {x: 780, y: 550}
+    speed: 1
   - type: ai_node
     position: {x: 850, y: 530}
+    speed: 3
   - type: ai_node
     position: {x: 950, y: 530}
+    speed: 2
   - type: ai_node
     position: {x: 950, y: 530}
+    speed: 5
   - type: ai_node
     position: {x: 950, y: 530}
+    speed: 2
   - type: ai_node
     position: {x: 1050, y: 500}
+    speed: 1
   - type: ai_node
     position: {x: 1080, y: 300}
+    speed: 1
   - type: ai_node
     position: {x: 1050, y: 240}
+    speed: 5
   - type: ai_node
     position: {x: 1000, y: 200}
+    speed: 1
   - type: ai_node
     position: {x: 930, y: 220}
+    speed: 1
   - type: ai_node
     position: {x: 230, y: 900}
+    speed: 2
   - type: ai_node
     position: {x: 210, y: 930}
+    speed: 2
   - type: ai_node
     position: {x: 210, y: 1000}
+    speed: 3
   - type: ai_node
     position: {x: 210, y: 1000}
+    speed: 1
   - type: ai_node
     position: {x: 250, y: 1050}
+    speed: 1
   - type: ai_node
     position: {x: 250, y: 1050}
+    speed: 2
   - type: ai_node
     position: {x: 350, y: 1000}
+    speed: 3
   - type: ai_node
     position: {x: 500, y: 850}
+    speed: 2
   - type: ai_node
     position: {x: 580, y: 830}
+    speed: 1
   - type: ai_node
     position: {x: 650, y: 900}
+    speed: 2
   - type: ai_node
     position: {x: 550, y: 1050}
+    speed: 3
   - type: ai_node
     position: {x: 500, y: 1100}
+    speed: 2
   - type: ai_node
     position: {x: 500, y: 1250}
+    speed: 3
   - type: ai_node
     position: {x: 550, y: 1320}
+    speed: 5
   - type: ai_node
     position: {x: 700, y: 1250}
+    speed: 1
   - type: ai_node
     position: {x: 1300, y: 650}
+    speed: 1
   - type: ai_node
     position: {x: 1300, y: 600}
+    speed: 1
   - type: ai_node
     position: {x: 1250, y: 570}
+    speed: 1
   - type: ai_node
     position: {x: 1200, y: 580}
+    speed: 4
   - type: ai_node
     position: {x: 1200, y: 580}
+    speed: 3
   - type: ai_node
     position: {x: 900, y: 880}
+    speed: 3
   - type: ai_node
     position: {x: 800, y: 870}
+    speed: 4
   - type: ai_node
     position: {x: 720, y: 800}
+    speed: 5

@@ -14,6 +14,11 @@ sf::Vector2f lerp(sf::Vector2f &startPos, sf::Vector2f &endPos, float interpolat
 		(1.0f - interpolate) * startPos.y + (interpolate * endPos.y));
 }
 
+float lerpFloat(float start, float end, float interpolate)
+{
+	return (1.0f - interpolate) * start + (interpolate * end);
+}
+
 /// <summary>
 /// Converts a value from radians to degrees
 /// </summary>

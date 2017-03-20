@@ -45,6 +45,7 @@ void operator >> (const YAML::Node &waypointNode, Waypoint &waypoint)
 {
 	waypoint.m_position.x = waypointNode["position"]["x"].as<float>();
 	waypoint.m_position.y = waypointNode["position"]["y"].as<float>();
+	waypoint.m_speed = waypointNode["speed"].as<float>();
 }
 
 void operator >> (const YAML::Node &waypointNode, StartPositionData &startPositionData)

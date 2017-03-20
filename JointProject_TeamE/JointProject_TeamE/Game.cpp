@@ -50,7 +50,7 @@ void Game::run()
 
 	m_racers.push_back(&m_player);
 
-	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
+	for (unsigned int i = 0; i < 1; i++)
 	{
 		AI *racer = new AI();
 		racer->setCar();

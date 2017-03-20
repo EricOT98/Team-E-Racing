@@ -34,6 +34,7 @@ struct PlayerData {
 struct Waypoint
 {
 	sf::Vector2f m_position;
+	float m_speed;
 };
 
 struct StartPositionData

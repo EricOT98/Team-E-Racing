@@ -21,9 +21,11 @@ protected:
 	unsigned int m_currentNode;
 	sf::Vector2f m_steering;
 	const float WAYPOINT_RADIUS = 50.0f;
-	const float SPEED = 5.0f;
+	const float MAX_SPEED = 5.0f;
+	float m_speed;
 
 	sf::Vector2f m_velocity;
+	float interpolation;
 
 	sf::Vector2f pathFollowing();
 };
