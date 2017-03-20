@@ -64,8 +64,8 @@ protected:
 	sf::View raceView;
 
 	// For testing
-	Shader shader;
-
+	Shader m_crtShader;
+	 
 	// Game Screens
 	SplashScreen * m_splashScreen;
 	ConfirmationScreen * m_confirmationScreen;
@@ -81,9 +81,11 @@ protected:
 
 	bool m_reset;
 	bool m_transitionInGame;
-	
 
-	// Game Screens
+	GLuint m_fbo;
+	GLuint quadVAO, quadVBO;
+	GLuint framebuffer;
+	GLuint textureColorbuffer;
 };
 
 #endif

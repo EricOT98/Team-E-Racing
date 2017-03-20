@@ -217,7 +217,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\shaderText.frag" />
-    <None Include="Resources\Shaders\shaderText.vert" />
+    <None Include="Resources\Shaders\crt_shader.frag" />
+    <None Include="Resources\Shaders\crt_shader.vert" />
   </ItemGroup>
 </Project>
