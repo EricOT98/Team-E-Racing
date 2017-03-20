@@ -5,9 +5,10 @@
 /// </summary>
 Projectile::Projectile()
 {
+	MAX_SPEED = 500;
 	m_rotation = 0;
 	m_position = sf::Vector2f(0, 0);
-	m_velocity = sf::Vector2f(0, 0);
+	m_velocity = sf::Vector3f(0, 0, GRAVITY);
 	m_scale = sf::Vector2f(1.0f, 1.0f);
 	m_width = 0;
 	m_height = 0;
@@ -25,10 +26,13 @@ void Projectile::init(std::string texture)
 	m_sprite.setTexture(g_resourceMgr.textureHolder[texture]);
 	m_sprite.setTextureRect(sf::IntRect(12, 26, 10, 25));
 	m_sprite.setOrigin(static_cast<int>(m_sprite.getLocalBounds().width / 2.0f), static_cast<int>(m_sprite.getLocalBounds().height / 2.0f));
+	setScale(sf::Vector2f(0.3f, 0.3f));
 	m_alive = false;
 	m_onScreen = false;
 	m_collided = false;
 	setPhysicsData();
+	m_boundingBox = OBB(m_position, m_sprite.getLocalBounds().width * m_sprite.getScale().x,
+		m_sprite.getLocalBounds().height * m_sprite.getScale().y, m_rotation);
 }
 
 /// <summary>
@@ -46,6 +50,8 @@ void Projectile::update(float dt)
 		m_position.x += xPosAddOn;
 		m_position.y += yPosAddOn;
 		m_sprite.setPosition(m_position);
+		m_boundingBox.construct(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
+			m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_sprite.getRotation());
 		if (m_onScreen){
 
 		}
@@ -60,6 +66,7 @@ void Projectile::update(float dt)
 void Projectile::render(sf::RenderWindow & window)
 {
 	if (m_onScreen){
+		m_boundingBox.debugRender(window);
 		window.draw(m_sprite);
 	}
 }
@@ -75,7 +82,7 @@ void Projectile::render(sf::RenderWindow & window)
 /// <returns></returns>
 bool Projectile::checkCollision(sf::Sprite & sprite)
 {
-	sf::Vector2f spritePos = m_sprite.getPosition();
+	sf::Vector2f spritePos = sprite.getPosition();
 	//(x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) < (r1 + r2) * (r1 + r2)
 	float tempRadiusSqr = 0;
 	sf::FloatRect spriteBounds = sprite.getGlobalBounds();
@@ -120,16 +127,18 @@ void Projectile::despawn()
 /// <param name="pos"></param>
 /// <param name="direction"></param>
 /// <param name="power"></param>
-void Projectile::spawnAt(sf::Vector2f pos, float direction, int power)
+void Projectile::spawnAt(sf::Vector2f pos, float direction,float pitch, int power)
 {
 	m_position = pos;
 	m_rotation = direction;
+	m_pitch = pitch;
 	if (power < MAX_SPEED){
 		m_speed = power;
 	}
 	else {
 		m_speed = MAX_SPEED;
 	}
+	m_velocity = sf::Vector3f(std::cos(m_rotation) * std::cos(m_pitch) * power, std::sin(m_rotation) * std::sin(m_pitch) * power, std::sin(m_pitch) * m_speed);
 	m_alive = true;
 	m_onScreen = true;
 }

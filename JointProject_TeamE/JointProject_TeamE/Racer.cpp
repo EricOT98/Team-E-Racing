@@ -100,6 +100,8 @@ void Racer::resolveCollision()
 
 void Racer::calMovement(float dt)
 {
+	//@Projectile
+	m_test.update(dt);
 	m_sprite.setRotation(m_currentRotation);
 	m_velocity += m_currentAcceleration * dt;
 	float addOnTotal = m_velocity * dt + 0.5f * m_currentAcceleration * dt * dt; // formula: s = (ut) + (0.5 * at²)
@@ -147,8 +149,6 @@ void Racer::calMovement(float dt)
 
 	m_currentAcceleration = 0;
 	m_tireTracks.update(m_clock.restart());
-	//@Projectile
-	m_test.update(dt);
 }
 
 void Racer::turnLeft(float dt, float percentageTurn)
@@ -195,9 +195,10 @@ void Racer::setFrictionLow()
 
 void Racer::fire()
 {
-	float newX = m_position.x + (std::cos(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width) / 2.0f) - (m_sprite.getGlobalBounds().height + m_test.getSize().x)));
-	float newY = m_position.y + (std::sin(thor::toRadian(m_currentRotation)) * (((m_sprite.getGlobalBounds().width) / 2.0f) - (m_sprite.getGlobalBounds().height + m_test.getSize().y)));
-	m_test.spawnAt(sf::Vector2f(newX, newY), m_currentRotation, 10);
+	float totRadius = (m_sprite.getGlobalBounds().height / 2.0f) + (m_test.getSize().y / 2.0f);
+	float newX = m_position.x + (totRadius * std::cos(thor::toRadian(m_sprite.getRotation())));
+	float newY = m_position.y + (totRadius * std::sin(thor::toRadian(m_sprite.getRotation())));
+	m_test.spawnAt(sf::Vector2f(newX, newY), m_currentRotation, 500);
 }
 
 Projectile* Racer::getProjectile()

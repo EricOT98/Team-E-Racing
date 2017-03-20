@@ -63,7 +63,7 @@ void Player::update(float dt)
 		accelerate(dt / 1000.f, 100.0f);
 	}
 	//@Projectile
-	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space))
+	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space) && !m_test.getAlive())
 	{
 		fire();
 	}
