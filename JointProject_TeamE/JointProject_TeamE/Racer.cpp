@@ -86,11 +86,6 @@ void Racer::setRotation(float rotationIn)
 	m_currentRotation = rotationIn;
 }
 
-void Racer::resolveCollision()
-{
-	m_velocity *= -1;
-}
-
 void Racer::calMovement(float dt)
 {
 	m_sprite.setRotation(m_currentRotation);

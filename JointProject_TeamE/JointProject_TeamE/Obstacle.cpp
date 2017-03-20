@@ -15,16 +15,13 @@ Obstacle::Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f po
 	m_sprite.setTextureRect(textureRect);
 	
 	m_sprite.setPosition(m_position);
-	m_sprite.setOrigin((m_sprite.getLocalBounds().width / 2.0f),
-		(m_sprite.getLocalBounds().height / 2.0f));
+	m_sprite.setOrigin((m_sprite.getLocalBounds().width / 2.0f), (m_sprite.getLocalBounds().height / 2.0f));
 	m_sprite.setScale(sf::Vector2f(0.4f, 0.4f));
 	m_sprite.setRotation(rotation);
 
-	sf::Vector2f center = sf::Vector2f(m_sprite.getLocalBounds().width / 2.0f,
-		m_sprite.getLocalBounds().height / 2.0f);
+	sf::Vector2f center = sf::Vector2f((textureRect.width / 2.0f) * m_sprite.getScale().x, (textureRect.height / 2.0f) * m_sprite.getScale().y);
 
-	obb = OBB(pos, textureRect.width * m_sprite.getScale().x, 
-		textureRect.height * m_sprite.getScale().y, rotation);
+	m_obstacleOBB = OBB(m_position, textureRect.width * m_sprite.getScale().x, textureRect.height * m_sprite.getScale().y, rotation);
 
 	switch (type)
 	{
@@ -55,7 +52,7 @@ Obstacle::~Obstacle()
 /// <param name="window"></param>
 void Obstacle::render(sf::RenderWindow & window)
 {
-	obb.debugRender(window);
+	m_obstacleOBB.debugRender(window);
 	window.draw(m_sprite);
 }
 

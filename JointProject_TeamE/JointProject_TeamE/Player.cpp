@@ -65,7 +65,7 @@ void Player::update(float dt)
 
 	calMovement(dt / 1000.f);
 
-	m_boundingBox.update(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
+	// Construct a new OBB when the player is moving
+	m_boundingBox.construct(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 		m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_currentRotation);
 }
-

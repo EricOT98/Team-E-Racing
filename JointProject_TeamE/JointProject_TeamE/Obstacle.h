@@ -21,7 +21,7 @@ public:
 
 	void render(sf::RenderWindow & window);
 	sf::Sprite getSprite();
-	OBB obb;
+	OBB m_obstacleOBB;
 
 protected:
 	sf::Sprite m_sprite;
