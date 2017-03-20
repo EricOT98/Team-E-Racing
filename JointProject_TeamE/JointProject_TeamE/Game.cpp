@@ -24,7 +24,7 @@ void Game::run()
 	if (!gl3wIsSupported(3, 2)) 
 	{
 		fprintf(stderr, "OpenGL 3.2 not supported\n");
-		//return;
+		return;
 	}
 	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION),
 		glGetString(GL_SHADING_LANGUAGE_VERSION));
@@ -34,7 +34,7 @@ void Game::run()
 
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
-	m_confirmationScreen = new ConfirmationScreen();
+	m_confirmationScreen = new ConfirmationScreen(m_window);
 	m_difficultyScreen = new DifficultyScreen();
 	m_displayOptions = new DisplayOptions();
 	m_helpScreen = new HelpScreen();

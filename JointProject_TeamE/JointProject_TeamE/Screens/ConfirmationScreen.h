@@ -6,7 +6,7 @@
 class ConfirmationScreen : public Screen
 {
 public:
-	ConfirmationScreen();
+	ConfirmationScreen(sf::RenderWindow & windowIn);
 	~ConfirmationScreen();
 
 	void update(XboxController & controller) override;
@@ -23,6 +23,8 @@ private:
 	Button *m_noButton;
 
 	bool m_noButtonSelected;
+
+	sf::RenderWindow & m_window;
 };
 
 
