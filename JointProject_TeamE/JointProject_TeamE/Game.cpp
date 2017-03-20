@@ -236,10 +236,10 @@ void Game::render()
 		//glClear(GL_COLOR_BUFFER_BIT);
 
 		//m_crtShader.Use();
-		glBindVertexArray(quadVAO);
+		//glBindVertexArray(quadVAO);
 		//glBindTexture(GL_TEXTURE_2D, textureColorbuffer);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
-		glBindVertexArray(0);
+		//glDrawArrays(GL_TRIANGLES, 0, 6);
+		//glBindVertexArray(0);
 
 	m_window.display();
 }
