@@ -1,6 +1,6 @@
 #include "ConfirmationScreen.h"
 
-ConfirmationScreen::ConfirmationScreen() : Screen(GameState::QuitScreen)
+ConfirmationScreen::ConfirmationScreen(sf::RenderWindow & windowIn) : Screen(GameState::QuitScreen), m_window(windowIn)
 {
 	m_transitionIn = true;
 
@@ -65,7 +65,7 @@ void ConfirmationScreen::reset()
 
 void ConfirmationScreen::yesButtonCallback()
 {
-	// Code to end the game
+	m_window.close();
 }
 
 void ConfirmationScreen::noButtonCallback()

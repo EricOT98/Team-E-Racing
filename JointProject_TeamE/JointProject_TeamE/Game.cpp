@@ -24,7 +24,7 @@ void Game::run()
 	if (!gl3wIsSupported(3, 2)) 
 	{
 		fprintf(stderr, "OpenGL 3.2 not supported\n");
-		//return;
+		return;
 	}
 	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION),
 		glGetString(GL_SHADING_LANGUAGE_VERSION));
@@ -34,7 +34,7 @@ void Game::run()
 
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
-	m_confirmationScreen = new ConfirmationScreen();
+	m_confirmationScreen = new ConfirmationScreen(m_window);
 	m_difficultyScreen = new DifficultyScreen();
 	m_displayOptions = new DisplayOptions();
 	m_helpScreen = new HelpScreen();
@@ -42,6 +42,7 @@ void Game::run()
 	m_pauseScreen = new PauseScreen();
 	m_soundOptions = new SoundOptions();
 	m_trophyScreen = new TrophyScreen();
+	m_upgradesScreen = new UpgradesScreen();
 	m_track.setTrack(m_level);
 	m_player.setCar();
 	m_player.setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
@@ -68,6 +69,7 @@ void Game::run()
 	m_screenManager.add(m_pauseScreen);
 	m_screenManager.add(m_soundOptions);
 	m_screenManager.add(m_trophyScreen);
+	m_screenManager.add(m_upgradesScreen);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;

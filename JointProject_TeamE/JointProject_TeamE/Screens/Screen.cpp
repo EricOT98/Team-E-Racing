@@ -21,10 +21,6 @@ void Screen::render(sf::RenderWindow& window)
 /// <returns>The game state of the screen</returns>
 GameState Screen::getGameState()
 {
-	if (m_gameState == GameState::MainMenu)
-	{
-		std::cout << "tree" << std::endl;
-	}
 	return m_gameState;
 }
 

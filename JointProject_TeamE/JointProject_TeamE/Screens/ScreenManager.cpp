@@ -3,7 +3,7 @@
 /// <summary>
 /// Default Constructor for the screen manager class
 /// </summary>
-ScreenManager::ScreenManager() : m_gameState(GameState::SplashScreen), m_nextGameState(m_gameState), m_active(false)
+ScreenManager::ScreenManager() : m_gameState(GameState::UpgradesScreen), m_nextGameState(m_gameState), m_active(true)
 {
 	//m_backgroundSprite.setTexture(*g_resourceMgr.getBackgroundTexture());
 }
@@ -39,14 +39,15 @@ void ScreenManager::update(XboxController &controller)
 			else
 			{
 				m_gameState = m_nextGameState; // Set the current game state
+				screens.at(m_currentScreen)->resetNextGameState();
 			}
 			break; // Break so as not to continue with the loop
 		}
-		else
-		{
-			m_gameState = m_nextGameState;
-			screens.at(m_currentScreen)->resetNextGameState(); // Reset the game state of the net screen member of the current screen
-		}
+		//else
+		//{
+		//	m_gameState = m_nextGameState;
+		//	screens.at(m_currentScreen)->resetNextGameState(); // Reset the game state of the net screen member of the current screen
+		//}
 		if (GameState::GamePlay == m_gameState)
 		{
 			m_active = false;
@@ -82,6 +83,7 @@ void ScreenManager::add(Screen * screenIn)
 
 void ScreenManager::setActive(GameState gameStateIn)
 {
+	m_gameState = gameStateIn;
 	m_nextGameState = gameStateIn;
 	m_active = true;
 }
