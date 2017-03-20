@@ -359,6 +359,8 @@ waypoints:
   - type: ai_node
     position: {x: 720, y: 800}
     speed: 5
+  - type: ai_node
+    position: {x: 720, y: 800}
 cars:
   - texture: CarTexture
     acceleration: 250
@@ -374,9 +376,4 @@ cars:
     acceleration: 10
     deceleration: 10
     turnrate: 10
-    name: Eric
-  - texture: Trophies
-    acceleration: 100
-    deceleration: 75
-    turnrate: 200
     name: Eric
