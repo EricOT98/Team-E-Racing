@@ -18,6 +18,7 @@
 #include <Thor\Particles.hpp>
 #include "Thor\Animations.hpp"
 #include <Thor\Math.hpp>
+#include "OBB.h"
 
 class Racer
 {
@@ -32,6 +33,7 @@ public:
 	void setRotation(float rotationIn);
 	sf::Vector2f getPosition();
 	float getRotation();
+	OBB m_boundingBox;
 
 	void setFrictionHigh();
 	void setFrictionLow();

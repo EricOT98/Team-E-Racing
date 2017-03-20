@@ -5,7 +5,7 @@
 /// </summary>
 Racer::Racer()
 {
-	
+
 }
 
 /// <summary>
@@ -21,6 +21,7 @@ Racer::~Racer()
 /// <param name="window"></param>
 void Racer::render(sf::RenderWindow & window)
 {
+	m_boundingBox.debugRender(window);
 	window.draw(m_tireTracks);
 	window.draw(m_sprite);
 }
@@ -57,7 +58,9 @@ void Racer::setCar()
 	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter2));
 	thor::FadeAnimation fader(0.0f, 0.1f);
 	m_tireTracks.addAffector(thor::AnimationAffector(fader));
-	
+
+	m_boundingBox = OBB(m_position, m_sprite.getLocalBounds().width * m_sprite.getScale().x,
+		m_sprite.getLocalBounds().height * m_sprite.getScale().y, m_currentRotation);
 }
 
 /// <summary>
@@ -81,6 +84,11 @@ sf::Vector2f Racer::getPosition()
 void Racer::setRotation(float rotationIn)
 {
 	m_currentRotation = rotationIn;
+}
+
+void Racer::resolveCollision()
+{
+	m_velocity *= -1;
 }
 
 void Racer::calMovement(float dt)

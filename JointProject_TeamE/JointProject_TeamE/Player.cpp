@@ -5,6 +5,7 @@
 /// </summary>
 Player::Player(XboxController & controllerIn) : m_controller(controllerIn)
 {
+	
 }
 
 /// <summary>
@@ -44,24 +45,27 @@ void Player::update(float dt)
 	}
 
 	// TODO: Take this out!! For debug use.
-	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Left))
+	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Right))
 	{
-		turnRight(dt / 1000.0f, 155.5f);
+		turnRight(dt / 1000.0f, 80.0f);
 	}
-	else if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Right))
+	else if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Left))
 	{
-		turnLeft(dt / 1000.0f, 155.5f);
+		turnLeft(dt / 1000.0f, 80.0f);
 	}
 
-	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Up))
+	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Down))
 	{
-		decelerate(dt / 1000.f, 450.5f);
+		decelerate(dt / 1000.f, 100.0f);
 	}
-	else if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Down))
+	else if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Up))
 	{
-		accelerate(dt / 1000.f, 450.5f);
+		accelerate(dt / 1000.f, 100.0f);
 	}
 
 	calMovement(dt / 1000.f);
+
+	m_boundingBox.update(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
+		m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_currentRotation);
 }
 

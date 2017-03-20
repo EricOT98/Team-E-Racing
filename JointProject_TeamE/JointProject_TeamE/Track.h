@@ -22,8 +22,10 @@ public:
 	void setTrack(LevelData &levelIn);
 	void update(std::vector<Racer *> & racers);
 	void render(sf::RenderWindow & window);
+
 private:
 	bool checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos);
+	bool checkRacerObstacleCollision(OBB &playerOBB);
 	bool checkWindowInterscetion(Tile & tile, sf::RenderWindow & window);
 	bool checkWindowObsIntersection(Obstacle & obstacle, sf::RenderWindow & window);
 	std::vector<Tile *> m_trackTiles;

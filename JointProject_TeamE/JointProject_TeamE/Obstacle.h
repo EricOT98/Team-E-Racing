@@ -8,6 +8,8 @@
 
 #include <SFML\Graphics.hpp>
 #include "ResourceManager.h"
+#include "OBB.h"
+
 enum class Type{BUSH,
 				ROCK,
 				BUMPER};
@@ -19,6 +21,7 @@ public:
 
 	void render(sf::RenderWindow & window);
 	sf::Sprite getSprite();
+	OBB obb;
 
 protected:
 	sf::Sprite m_sprite;

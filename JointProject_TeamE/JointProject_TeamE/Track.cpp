@@ -1,6 +1,6 @@
 #include "Track.h"
 
-Track::Track() {}
+Track::Track() {  }
 
 void Track::setTrack(LevelData &levelIn)
 {
@@ -37,6 +37,8 @@ void Track::update(std::vector<Racer *> & racers)
 				tile->checkOnTrack(racer);
 			}
 		}
+
+		checkRacerObstacleCollision(racer->m_boundingBox);
 	}
 }
 
@@ -87,6 +89,20 @@ bool Track::checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos)
 			return true;
 		}
 	}
+	return false;
+}
+
+bool Track::checkRacerObstacleCollision(OBB &playerOBB)
+{
+	for (Obstacle *obstacle : m_obstacles)
+	{
+		if (playerOBB.intersects(obstacle->obb))
+		{
+			std::cout << "Collided" << std::endl;
+			return true;
+		}
+	}
+
 	return false;
 }
 

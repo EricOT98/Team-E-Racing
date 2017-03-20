@@ -85,3 +85,13 @@ sf::Vector2f unitVector(sf::Vector2f &v)
 {
 	return sf::Vector2f(v.x / length(v), v.y / length(v));
 }
+
+float dot(const sf::Vector2f &v1, const sf::Vector2f &v2)
+{
+	return (v1.x * v2.x) + (v1.y * v2.y);
+}
+
+float squaredLenght(const sf::Vector2f &vec)
+{
+	return (vec.x * vec.x) + (vec.y * vec.y);
+}

@@ -42,4 +42,8 @@ sf::Vector2f truncate(sf::Vector2f &v, float const num);
 
 sf::Vector2f unitVector(sf::Vector2f &v);
 
+float dot(const sf::Vector2f &v1, const sf::Vector2f &v2);
+
+float squaredLenght(const sf::Vector2f &vec);
+
 #endif
