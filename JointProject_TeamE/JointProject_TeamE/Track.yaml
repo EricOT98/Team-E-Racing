@@ -358,4 +358,23 @@ waypoints:
     speed: 4
   - type: ai_node
     position: {x: 720, y: 800}
+<<<<<<< 9252e6a4f0066ff019c5c94ed88a78a4d8ac421d
     speed: 5
+=======
+cars:
+  - texture: objects
+    acceleration: 10
+    deceleration: 10
+    turnrate: 10
+    name: Liam
+  - texture: objects
+    acceleration: 10
+    deceleration: 10
+    turnrate: 10
+    name: Darren
+  - texture: objects
+    acceleration: 10
+    deceleration: 10
+    turnrate: 10
+    name: Eric
+>>>>>>> Adding in upgrade functionality

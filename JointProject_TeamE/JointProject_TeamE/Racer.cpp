@@ -42,7 +42,6 @@ void Racer::setCar()
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getLocalBounds().width / 2.f, m_sprite.getLocalBounds().height / 2.f));
 	m_acceleration = 250.f;
 	m_deceleration = 250.f;
-	m_speed = 15.f;
 	m_turnRate = 150.f;
 	m_frictionHigh = 0.9f;
 	m_frictionLow = 0.99f;
