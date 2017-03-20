@@ -66,6 +66,9 @@ UpgradesScreen::UpgradesScreen(std::vector<CarData> & carsIn, int screenWidth) :
 	m_backButton->m_down = m_radButtons.at(0);
 
 	m_backButton->select = std::bind(&UpgradesScreen::backCallback, this);
+	m_accelerationButton->select = std::bind(&UpgradesScreen::accelerationCallback, this);
+	m_brakingButton->select = std::bind(&UpgradesScreen::brakingCallback, this);
+	m_corneringButton->select = std::bind(&UpgradesScreen::corneringCallback, this);
 
 	m_gui.add(m_title);
 	m_gui.add(m_accelerationButton);
@@ -148,17 +151,17 @@ void UpgradesScreen::radButtonCallback()
 
 void UpgradesScreen::accelerationCallback()
 {
-	m_cars.at(m_currentCarIndex).m_acceleration += 5;
+	m_cars.at(m_currentCarIndex).m_acceleration += 25;
 }
 
 void UpgradesScreen::brakingCallback()
 {
-	m_cars.at(m_currentCarIndex).m_deceleration += 5;
+	m_cars.at(m_currentCarIndex).m_deceleration += 25;
 }
 
 void UpgradesScreen::corneringCallback()
 {
-	m_cars.at(m_currentCarIndex).m_turnRate += 5;
+	m_cars.at(m_currentCarIndex).m_turnRate += 25;
 }
 
 void UpgradesScreen::setSprite()
