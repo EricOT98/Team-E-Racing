@@ -5,7 +5,8 @@
 Game::Game()
 	: m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default),
 	m_xboxController(CONTROLLER_ONE),
-	m_player(m_xboxController)
+	m_player(m_xboxController),
+	m_reset(true)
 {
 	keyboardHandler = KeyboardHandler::GetInstance();
 }
@@ -23,7 +24,7 @@ void Game::run()
 	if (!gl3wIsSupported(3, 2)) 
 	{
 		fprintf(stderr, "OpenGL 3.2 not supported\n");
-		return;
+		//return;
 	}
 	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION),
 		glGetString(GL_SHADING_LANGUAGE_VERSION));
@@ -32,7 +33,7 @@ void Game::run()
 	shader.LoadShader("Resources/Shaders/shaderText.vert", "Resources/Shaders/shaderText.frag");
 
 	m_splashScreen = new SplashScreen();
-	m_mainMenu = new MainMenu();
+	m_mainMenu = new MainMenu(m_reset);
 	m_confirmationScreen = new ConfirmationScreen();
 	m_difficultyScreen = new DifficultyScreen();
 	m_displayOptions = new DisplayOptions();
@@ -121,52 +122,60 @@ void Game::processGameEvents(sf::Event& event)
 
 void Game::update(double dt)
 {
-	switch (currentGameState)
+	if (m_screenManager.getState())
 	{
-	case GameState::Menu:
 		m_screenManager.update(m_xboxController);
-		break;
-	case GameState::Play:
+	}
+	else
+	{
+		if (m_reset)
+		{
+			resetGame();
+		}
 		m_track.update(m_racers);
 		for (Racer *racer : m_racers)
 			racer->update(dt);
-		break;
-	default:
-		break;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+		{
+			m_screenManager.setActive(GameState::MainMenu);
+			m_window.setView(m_window.getDefaultView());
+		}
 	}
 }
 
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
-	switch (currentGameState)
-	{
-	case GameState::Menu:
-		m_screenManager.render(m_window);
-		break;
-	case GameState::Play:
-		raceView.setCenter(m_player.getPosition());
-		raceView.setSize(m_window.getView().getSize());
-		m_window.setView(raceView);
-		m_track.render(m_window);
-		for (Racer *racer : m_racers)
-			racer->render(m_window);
-
-		// DEBUG(Darren): Debug drawing the AI nodes
-#if 0
-		for (Waypoint waypoint : m_level.m_waypoints)
+		if (m_screenManager.getState())
 		{
-			sf::CircleShape circle(5.0f);
-			circle.setPosition(waypoint.m_position);
-			circle.setFillColor(sf::Color::Blue);
-
-			m_window.draw(circle);
+			m_screenManager.render(m_window);
 		}
-#endif
+		else
+		{
+			raceView.setCenter(m_player.getPosition());
+			raceView.setSize(m_window.getView().getSize());
+			m_window.setView(raceView);
+			m_track.render(m_window);
+			for (Racer *racer : m_racers)
+				racer->render(m_window);
+			// DEBUG(Darren): Debug drawing the AI nodes
+#if 0
+			for (Waypoint waypoint : m_level.m_waypoints)
+			{
+				sf::CircleShape circle(5.0f);
+				circle.setPosition(waypoint.m_position);
+				circle.setFillColor(sf::Color::Blue);
 
-		break;
-	default:
-		break;
-	}
+				m_window.draw(circle);
+			}
+#endif
+		}
 	m_window.display();
+}
+
+void Game::resetGame()
+{
+	m_reset = false;
+	m_transitionInGame = true;
+	// Code Here...
 }

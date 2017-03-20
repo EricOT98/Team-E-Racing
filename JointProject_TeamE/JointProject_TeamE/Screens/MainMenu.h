@@ -15,7 +15,7 @@
 class MainMenu : public Screen
 {
 public:
-	MainMenu();
+	MainMenu(bool & gameReset);
 	~MainMenu();
 
 	void update(XboxController& controller) override;
@@ -45,6 +45,8 @@ private:
 	bool m_optionsButtonSelected;
 	bool m_creditsButtonSelected;
 	bool m_exitButtonSelected;
+
+	bool & m_gameReset;
 };
 
 #endif 

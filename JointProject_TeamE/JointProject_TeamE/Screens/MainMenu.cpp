@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu() : Screen(GameState::MainMenu)
+MainMenu::MainMenu(bool & gameReset) : Screen(GameState::MainMenu), m_gameReset(gameReset)
 {
 	m_transitionIn = true;
 
@@ -113,6 +113,7 @@ void MainMenu::reset()
 	m_upgradesButtonSelected = false;
 	m_trophiesButtonSelected = false;
 	m_transitionIn = true;
+	m_gameReset = true;
 }
 
 

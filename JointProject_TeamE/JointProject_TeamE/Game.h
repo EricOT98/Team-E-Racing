@@ -25,6 +25,8 @@
 #include "Screens\SplashScreen.h"
 //GUI
 
+#include "Screens\Screen.h"
+
 // For testing
 #include "Shader.h"
 
@@ -42,6 +44,7 @@ protected:
 	void render();
 	void processEvents();
 	void processGameEvents(sf::Event&);
+	void resetGame();
 
 	sf::RenderWindow m_window;
 
@@ -49,13 +52,7 @@ protected:
 	KeyboardHandler *keyboardHandler;
 	XboxController m_xboxController;
 
-	enum class GameState
-	{
-		Menu,
-		Play
-	};
-
-	GameState currentGameState = GameState::Play;
+	//GameState currentGameState = GameState::Play;
 	LevelData m_level;
 
 	sf::Texture carTexture;
@@ -80,6 +77,9 @@ protected:
 	PauseScreen * m_pauseScreen;
 	SoundOptions * m_soundOptions;
 	TrophyScreen * m_trophyScreen;
+
+	bool m_reset;
+	bool m_transitionInGame;
 	
 
 	// Game Screens

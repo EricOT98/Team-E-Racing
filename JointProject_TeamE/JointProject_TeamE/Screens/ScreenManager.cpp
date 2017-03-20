@@ -3,7 +3,7 @@
 /// <summary>
 /// Default Constructor for the screen manager class
 /// </summary>
-ScreenManager::ScreenManager() : m_gameState(GameState::SplashScreen)
+ScreenManager::ScreenManager() : m_gameState(GameState::SplashScreen), m_nextGameState(m_gameState), m_active(false)
 {
 	//m_backgroundSprite.setTexture(*g_resourceMgr.getBackgroundTexture());
 }
@@ -32,24 +32,24 @@ void ScreenManager::update(XboxController &controller)
 		if (screens.at(m_currentScreen)->getGameState() == m_gameState) // Check if the game state of the screen matches the current game state
 		{
 			screens.at(m_currentScreen)->update(controller); // Update the current screen
-			GameState nextState = screens.at(m_currentScreen)->getNextGameState();
-			if (nextState != m_gameState) // Check if the screen wants to switch game states
+			if (m_nextGameState == m_gameState)
 			{
-				//if (GameState::OptionsScreen == m_gameState)
-				//{
-				//	for (Screen * screen : screens)
-				//	{
-				//		screen->setColors(); // We reset the colours of every screen if we have come from the options screen
-				//		if (screen->getGameState() == GameState::GamePlay)
-				//		{
-				//			screen->reset(); // We need to also reset the game if this is the case
-				//		}
-				//	}
-				//}
-				m_gameState = nextState; // Set the current game state
-				screens.at(m_currentScreen)->resetNextGameState(); // Reset the game state of the net screen member of the current screen
+				m_nextGameState = screens.at(m_currentScreen)->getNextGameState(); // Check if the screen wants to switch game states
+			}
+			else
+			{
+				m_gameState = m_nextGameState; // Set the current game state
 			}
 			break; // Break so as not to continue with the loop
+		}
+		else
+		{
+			m_gameState = m_nextGameState;
+			screens.at(m_currentScreen)->resetNextGameState(); // Reset the game state of the net screen member of the current screen
+		}
+		if (GameState::GamePlay == m_gameState)
+		{
+			m_active = false;
 		}
 	}
 }
@@ -78,4 +78,15 @@ void ScreenManager::render(sf::RenderWindow& window)
 void ScreenManager::add(Screen * screenIn)
 {
 	screens.push_back(screenIn); // Add the screen to the vector
+}
+
+void ScreenManager::setActive(GameState gameStateIn)
+{
+	m_nextGameState = gameStateIn;
+	m_active = true;
+}
+
+bool ScreenManager::getState()
+{
+	return m_active;
 }
