@@ -89,7 +89,7 @@ void SelectCarScreen::update(XboxController & controller)
 	}
 	else if (m_confirmButtonPressed)
 	{
-		transOut(GameState::GamePlay);
+		transOut(GameState::SelectCupScreen);
 	}
 	else if (m_backButtonPressed)
 	{
@@ -110,7 +110,7 @@ void SelectCarScreen::reset()
 void SelectCarScreen::confirmButtonCallback()
 {
 	m_confirmButtonPressed = true;
-	m_player->setCar();
+	m_player->setCar(m_cars.at(m_currentCarIndex));
 }
 
 void SelectCarScreen::backButtonCallback()

@@ -5,7 +5,6 @@
 Game::Game()
 	: m_window(sf::VideoMode(800, 600, 32), "Joint Project Team E", sf::Style::Default),
 	m_xboxController(CONTROLLER_ONE),
-	m_player(m_xboxController),
 	m_reset(true)
 {
 	keyboardHandler = KeyboardHandler::GetInstance();
@@ -44,7 +43,7 @@ void Game::run()
 	light.setTexture(lightTexture);
 	light.setTextureRect(sf::IntRect(0, 0, 512, 512));
 	light.setOrigin(256.f, 256.f);
-
+	m_player = new Player(m_xboxController);
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
 	m_creditsScreen = new CreditsScreen();
@@ -57,23 +56,19 @@ void Game::run()
 	m_soundOptions = new SoundOptions();
 	m_trophyScreen = new TrophyScreen();
 	m_upgradesScreen = new UpgradesScreen(m_level.m_carData, m_window.getSize().x);
-	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, &m_player, m_window.getSize().x);
+	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, m_player, m_window.getSize().x);
+	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_racers, m_window.getSize().x);
 	m_track.setTrack(m_level);
-	m_player.setCar();
-	m_player.setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
-	m_player.setRotation(-90.0f);
-
-	m_racers.push_back(&m_player);
-
+	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
+	m_player->setRotation(-90.0f);
 	for (unsigned int i = 0; i <  m_track.getNumOfAICars(); i++)
 	{
 		AI *racer = new AI();
-		racer->setCar();
 		racer->setWayPoints(m_level.m_waypoints);
 		racer->setPosition(m_track.getAIStartPositions()->at(i) + sf::Vector2f(0.0f, 10.0f));
-
 		m_racers.push_back(racer);
 	}
+	m_racers.push_back(m_player);
 	m_screenManager.add(m_splashScreen);
 	m_screenManager.add(m_mainMenu);
 	m_screenManager.add(m_creditsScreen);
@@ -87,12 +82,11 @@ void Game::run()
 	m_screenManager.add(m_trophyScreen);
 	m_screenManager.add(m_upgradesScreen);
 	m_screenManager.add(m_selectCarScreen);
+	m_screenManager.add(m_selectCupScreen);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
 	timeSinceLastUpdate = clock.restart();
-
-	std::cout << m_level.m_playerData.position.x << ", " << m_level.m_playerData.position.y << std::endl;
 
 	while (m_window.isOpen())
 	{
@@ -191,7 +185,7 @@ void Game::render()
 		}
 		lightMapTexture.display();
 
-		raceView.setCenter(m_player.getPosition());
+		raceView.setCenter(m_player->getPosition());
 		raceView.setSize(m_window.getView().getSize());
 		m_window.setView(raceView);
 		m_track.render(m_window);

@@ -5,7 +5,36 @@
 /// </summary>
 Racer::Racer()
 {
-
+	m_tireTexture.loadFromFile("Resources/Test.png");
+	m_tireTracks.setTexture(m_tireTexture);
+	m_index = m_tireTracks.addTextureRect(sf::IntRect(12, 0, 15, 5));
+	m_trackEmmiter.setParticleTextureIndex(m_index);
+	m_trackEmmiter.setParticlePosition(m_position);
+	m_trackEmmiter.setParticleRotation(m_currentRotation);
+	m_trackEmmiter.setParticleLifetime(sf::seconds(2));
+	m_trackEmmiter.setParticleScale(sf::Vector2f(0.2f, 1.f));
+	m_trackEmmiter.setEmissionRate(0);
+	m_trackEmmiter2 = m_trackEmmiter;
+	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter));
+	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter2));
+	thor::FadeAnimation fader(0.0f, 0.1f);
+	m_tireTracks.addAffector(thor::AnimationAffector(fader));
+	m_boundingBox = OBB(m_position, m_sprite.getLocalBounds().width * m_sprite.getScale().x,
+		m_sprite.getLocalBounds().height * m_sprite.getScale().y, m_currentRotation);
+	//@Projectile 
+	numProjectiles = 10;
+	for (int i = 0; i < numProjectiles; i++)
+	{
+		std::unique_ptr<Projectile> projectile(new Projectile());
+		projectile->init("Bullet");
+		m_projectiles.push_back(std::move(projectile));
+	}
+	m_spotLight = SpotLight(m_position, sf::Vector2f(0.15f, 0.15f), sf::Color(255, 180, 130, 255));
+	m_rippleShader = std::unique_ptr<sf::Shader>(new sf::Shader());
+	m_rippleShader->loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
+	m_frictionHigh = 0.9f;
+	m_frictionLow = 0.99f;
+	m_currentFriction = m_frictionLow;
 }
 
 /// <summary>
@@ -42,46 +71,14 @@ void Racer::render(sf::RenderWindow & window)
 /// <summary>
 /// Sets the current car of the racer via pointer
 /// </summary>
-void Racer::setCar()
+void Racer::setCar(CarData carData)
 {
-	m_position.x = 300.f;
-	m_position.y = 300.f;
-	m_sprite.setTexture(g_resourceMgr.textureHolder["CarTexture"]);
+	m_sprite.setTexture(g_resourceMgr.textureHolder[carData.m_texture], true);
 	m_sprite.setScale(sf::Vector2f(0.2f, 0.2f));
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getLocalBounds().width / 2.f, m_sprite.getLocalBounds().height / 2.f));
-	m_acceleration = 250.f;
-	m_deceleration = 250.f;
-	m_turnRate = 150.f;
-	m_frictionHigh = 0.9f;
-	m_frictionLow = 0.99f;
-	m_currentFriction = m_frictionLow;
-	m_tireTexture.loadFromFile("Resources/Test.png");
-	m_tireTracks.setTexture(m_tireTexture);
-	m_index = m_tireTracks.addTextureRect(sf::IntRect(12, 0, 15, 5));
-	m_trackEmmiter.setParticleTextureIndex(m_index);
-	m_trackEmmiter.setParticlePosition(m_position);
-	m_trackEmmiter.setParticleRotation(m_currentRotation);
-	m_trackEmmiter.setParticleLifetime(sf::seconds(2));
-	m_trackEmmiter.setParticleScale(sf::Vector2f(0.2f, 1.f));
-	m_trackEmmiter.setEmissionRate(0);
-	m_trackEmmiter2 = m_trackEmmiter;
-	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter));
-	m_tireTracks.addEmitter(thor::refEmitter(m_trackEmmiter2));
-	thor::FadeAnimation fader(0.0f, 0.1f);
-	m_tireTracks.addAffector(thor::AnimationAffector(fader));
-	m_boundingBox = OBB(m_position, m_sprite.getLocalBounds().width * m_sprite.getScale().x,
-		m_sprite.getLocalBounds().height * m_sprite.getScale().y, m_currentRotation);
-	//@Projectile 
-	numProjectiles = 10;
-	for (int i = 0; i < numProjectiles; i++)
-	{
-		std::unique_ptr<Projectile> projectile(new Projectile());
-		projectile->init("Bullet");
-		m_projectiles.push_back(std::move(projectile));
-	}
-	m_spotLight = SpotLight(m_position, sf::Vector2f(0.15f, 0.15f), sf::Color(255, 180, 130, 255));
-	m_rippleShader = std::unique_ptr<sf::Shader>(new sf::Shader());
-	m_rippleShader->loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
+	m_acceleration = carData.m_acceleration;//250.f;
+	m_deceleration = carData.m_deceleration;// 250.f;
+	m_turnRate = carData.m_turnRate; // 150.f;
 }
 
 /// <summary>

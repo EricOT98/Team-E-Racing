@@ -26,6 +26,7 @@
 #include "Screens\SplashScreen.h"
 #include "Screens\UpgradesScreen.h"
 #include "Screens\SelectCarScreen.h"
+#include "Screens\SelectCupScreen.h"
 
 // For testing
 #include "Shader.h"
@@ -59,7 +60,7 @@ protected:
 	sf::Texture carTexture;
 	Track m_track;
 	sf::Sprite carSprite;
-	Player m_player;
+	Player * m_player;
 	std::vector<Racer *> m_racers;
 	sf::View raceView;
 
@@ -81,6 +82,7 @@ protected:
 	TrophyScreen * m_trophyScreen;
 	UpgradesScreen * m_upgradesScreen;
 	SelectCarScreen * m_selectCarScreen;
+	SelectCupScreen * m_selectCupScreen;
 
 	bool m_reset;
 	bool m_transitionInGame;
