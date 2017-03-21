@@ -14,6 +14,7 @@ Projectile::Projectile()
 	m_width = 0;
 	m_height = 0;
 	m_exploded = false;
+	m_lightShader.loadFromFile("Resources/Shaders/ripple_shader.vert", "Resources/Shaders/ripple_shader.frag");
 }
 
 /// <summary>
@@ -25,7 +26,8 @@ Projectile::~Projectile()
 
 void Projectile::init(std::string texture)
 {
-	m_sprite.setTexture(g_resourceMgr.textureHolder[texture]);
+	m_texture = g_resourceMgr.textureHolder[texture];
+	m_sprite.setTexture(m_texture);
 	m_sprite.setTextureRect(sf::IntRect(12, 26, 10, 25));
 	m_sprite.setOrigin(static_cast<int>(m_sprite.getLocalBounds().width / 2.0f), static_cast<int>(m_sprite.getLocalBounds().height / 2.0f));
 	setScale(sf::Vector2f(0.3f, 0.3f));
@@ -40,6 +42,10 @@ void Projectile::init(std::string texture)
 	m_trailEmmiter.setParticleLifetime(sf::seconds(.5f));
 	m_trailEmmiter.setParticleScale(sf::Vector2f(0.1f, 0.1f));
 	m_smokeTrail.addEmitter(thor::refEmitter(m_trailEmmiter));
+	m_lightShader.setParameter("uTexture", m_texture);
+	m_lightShader.setParameter("uPositionFreq", 0.01f);
+	m_lightShader.setParameter("uSpeed", 5);
+	m_lightShader.setParameter("uStrength", 0.02f);
 
 
 	//m_explosionTexture.loadFromFile("Resources/Projectiles/Explosion.png");
@@ -122,7 +128,7 @@ void Projectile::render(sf::RenderWindow & window)
 	if (m_onScreen){
 		m_boundingBox.debugRender(window);
 		window.draw(m_smokeTrail);
-		window.draw(m_sprite);
+		window.draw(m_sprite, &m_lightShader);
 	}
 	//std::cout << "rendering explosion" << std::endl;
 	//window.draw(m_explosionSprite);

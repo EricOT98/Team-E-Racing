@@ -28,11 +28,14 @@ void Game::run()
 	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION),
 		glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-	// Maybe do shader loading in resource manager and pull them from there?
-	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
-	m_crtShader.setParameter("resolution", 800, 600);
-	m_crtShader.setParameter("time", 0);	// Change this to time
-	m_gameScreenTexture.create(800, 600);
+//	// Maybe do shader loading in resource manager and pull them from there?
+//<<<<<<< 64d5bd8052d0b3e77f07129f44d768a7cb240015
+//	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
+//	m_crtShader.setParameter("resolution", 800, 600);
+//	m_crtShader.setParameter("time", 0);	// Change this to time
+//	m_gameScreenTexture.create(800, 600);
+//
+//=======
 
 	lightMapTexture.create(2000, 2000);
 	lightmap.setTexture(lightMapTexture.getTexture());
@@ -43,7 +46,20 @@ void Game::run()
 	light.setTexture(lightTexture);
 	light.setTextureRect(sf::IntRect(0, 0, 512, 512));
 	light.setOrigin(256.f, 256.f);
+
 	m_player = new Player(m_xboxController);
+
+	m_crtShader.loadFromFile("Resources/Shaders/ripple_shader.vert", "Resources/Shaders/ripple_shader.frag");
+	m_crtShader.setParameter("uTexture", m_tex);
+	m_crtShader.setParameter("uPositionFreq", 0.01f);
+	m_crtShader.setParameter("uSpeed", 5);
+	m_crtShader.setParameter("uStrength", 0.02f);
+	
+	//@ShaderTest
+	m_foreground.setTexture(m_tex);
+	m_foreground.setOrigin(m_foreground.getLocalBounds().width / 2.f, m_foreground.getLocalBounds().height / 2.f);
+	m_shaderEnabled = false;
+
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
 	m_creditsScreen = new CreditsScreen();
@@ -191,10 +207,10 @@ void Game::render()
 		m_track.render(m_window);
 		for (Racer *racer : m_racers)
 			racer->render(m_window);
-
 		lightmap.setPosition(0, 0);
 		m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
 
+		//applyShaderToScene(m_window, m_tex);
 #if 0
 		// DEBUG(Darren): Debug drawing the AI nodes
 		for (Waypoint waypoint : m_level.m_waypoints)
@@ -224,24 +240,35 @@ void Game::resetGame()
 	// Code Here...
 }
 
-void Game::applyShader(sf::RenderTarget &output)
+void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 {
+	//Coverts the screen into 4 quads and then 
+	//to a texture so a shader can be applied to it
 	sf::Vector2f outputSize = static_cast<sf::Vector2f>(output.
 		getSize());
 	sf::VertexArray vertices(sf::TrianglesStrip, 4);
-	vertices[0] = sf::Vertex(sf::Vector2f(0, 0),
+	sf::Vector2f tempPos = output.getView().getCenter();
+	m_foreground.setPosition(tempPos);
+
+	float halfWidth = outputSize.x / 2; float halfHeight = outputSize.y / 2;
+	//tl tr bl br
+	vertices[0] = sf::Vertex(m_foreground.getPosition() - (sf::Vector2f(halfWidth, halfHeight)),
 		sf::Vector2f(0, 1));
-	vertices[1] = sf::Vertex(sf::Vector2f(outputSize.x, 0),
+	vertices[1] = sf::Vertex(sf::Vector2f(m_foreground.getPosition().x + halfWidth, m_foreground.getPosition().y - halfHeight),
 		sf::Vector2f(1, 1));
-	vertices[2] = sf::Vertex(sf::Vector2f(0, outputSize.y),
+	vertices[2] = sf::Vertex(sf::Vector2f(m_foreground.getPosition().x - halfWidth, m_foreground.getPosition().y + halfHeight),
 		sf::Vector2f(0, 0));
-	vertices[3] = sf::Vertex(sf::Vector2f(outputSize),
+	vertices[3] = sf::Vertex(sf::Vector2f(m_foreground.getPosition() + (sf::Vector2f(halfWidth, halfHeight))),
 		sf::Vector2f(1, 0));
-	sf::Texture tex;
-	tex.create(outputSize.x, outputSize.y);
-	//m_crtShader.setParameter("screenTexture", )
+	m_tex.create(outputSize.x, outputSize.y);
+	m_tex.update(m_window);
+
+	//Set whatever parameters need to be updated here
+	m_crtShader.setParameter("uTime", m_clock.getElapsedTime().asSeconds());
+
+	//Render the current shader
 	sf::RenderStates states;
 	states.shader = &m_crtShader;
-	states.blendMode = sf::BlendNone;
+	states.blendMode = sf::BlendAlpha;
 	output.draw(vertices, states);
 }

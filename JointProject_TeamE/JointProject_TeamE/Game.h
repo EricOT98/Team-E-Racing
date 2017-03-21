@@ -46,7 +46,7 @@ protected:
 	void processEvents();
 	void processGameEvents(sf::Event&);
 	void resetGame();
-	void applyShader(sf::RenderTarget &output);
+	void applyShaderToScene(sf::RenderTarget &output, sf::Texture texture);
 
 	sf::RenderWindow m_window;
 
@@ -86,12 +86,15 @@ protected:
 
 	bool m_reset;
 	bool m_transitionInGame;
-
 	sf::Texture lightTexture;
 	sf::Sprite light;
 	sf::RenderTexture lightMapTexture;
 	sf::Sprite lightmap;
 	sf::RenderTexture m_gameScreenTexture;
+	sf::Clock m_clock;
+	sf::Texture m_tex;
+	sf::Sprite m_foreground;
+	bool m_shaderEnabled;
 };
 
 #endif

@@ -45,6 +45,7 @@ protected:
 	//Sprite data
 	sf::Sprite m_sprite;
 	sf::Vector2f m_scale;
+	sf::Texture m_texture;
 	thor::ParticleSystem m_smokeTrail;
 	thor::UniversalEmitter m_trailEmmiter;
 
@@ -74,5 +75,6 @@ protected:
 	float m_radiusSqr;
 	float m_gravity;
 	float m_elevation;
+	sf::Shader m_lightShader;
 };
 #endif

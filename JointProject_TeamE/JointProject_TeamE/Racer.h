@@ -83,7 +83,6 @@ protected:
 	sf::Clock m_clock;
 	unsigned int m_index = 0;
 	int numProjectiles;
-	std::unique_ptr<sf::Shader> m_rippleShader;
 };
 
 #endif
