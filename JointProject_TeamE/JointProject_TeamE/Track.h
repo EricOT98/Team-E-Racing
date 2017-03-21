@@ -48,13 +48,6 @@ private:
 	bool collision;
 	sf::Clock m_countdownClock;
 	float m_timer; float m_time;
-
-	sf::Texture lightTexture;
-	sf::Sprite light;
-
-	sf::RenderTexture lightMapTexture;
-	sf::Sprite lightmap;
-	std::vector<SpotLight> lights;
 };
 
 #endif

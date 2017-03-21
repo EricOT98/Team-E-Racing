@@ -73,6 +73,8 @@ void Racer::setCar()
 		projectile->init("Bullet");
 		m_projectiles.push_back(std::move(projectile));
 	}
+
+	m_spotLight = SpotLight(m_position, sf::Vector2f(0.15f, 0.15f), sf::Color(255, 180, 130, 255));
 }
 
 /// <summary>

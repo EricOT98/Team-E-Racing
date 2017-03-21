@@ -12,7 +12,10 @@
 class SpotLight
 {
 public:
+	SpotLight();
 	SpotLight(sf::Vector2f position, sf::Vector2f size, sf::Color color);
+
+	void update(sf::Vector2f &position);
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_size;

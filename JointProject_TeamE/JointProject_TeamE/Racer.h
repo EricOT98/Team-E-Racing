@@ -20,6 +20,7 @@
 #include <Thor\Math.hpp>
 #include "OBB.h"
 #include "Projectile.h"
+#include "SpotLight.h"
 
 class Racer
 {
@@ -35,6 +36,7 @@ public:
 	sf::Vector2f getPosition();
 	float getRotation();
 	OBB m_boundingBox;
+	SpotLight m_spotLight;
 	std::vector<std::unique_ptr<Projectile>> m_projectiles;
 	void resolveCollision();
 

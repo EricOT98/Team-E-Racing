@@ -34,6 +34,9 @@ void AI::update(float dt)
 	m_boundingBox.construct(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 		m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_currentRotation);
 	//std::cout << "Current Node: " << m_currentNode << std::endl;
+
+	m_spotLight.update(m_position + sf::Vector2f(40.0f * cos(degreesToRad(angle)),
+														40.0f * sin(degreesToRad(angle))));
 }
 
 void AI::setWayPoints(std::vector<Waypoint> &wayPoints)

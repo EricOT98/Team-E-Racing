@@ -33,18 +33,6 @@ void Track::setTrack(LevelData &levelIn)
 		m_startAIPositions.push_back(pos);
 	}
 	m_timer = 5;
-
-	lightMapTexture.create(2000, 2000);
-	lightmap.setTexture(lightMapTexture.getTexture());
-
-	lightTexture = g_resourceMgr.textureHolder["CarLights"];
-	lightTexture.setSmooth(true);
-
-	light.setTexture(lightTexture);
-	light.setTextureRect(sf::IntRect(0, 0, 512, 512));
-	light.setOrigin(256.f, 256.f);
-
-	lights.push_back(SpotLight(sf::Vector2f(720.0f, 700.0f), sf::Vector2f(0.15f, 0.15f), sf::Color(255, 180, 130, 255)));
 }
 
 void Track::update(std::vector<Racer *> & racers)
@@ -118,18 +106,6 @@ sf::Vector2f Track::getPlayerStartPosition()
 
 void Track::render(sf::RenderWindow & window)
 {
-	lightMapTexture.clear(sf::Color(50, 50, 80));
-
-	for (std::size_t i = 0; i < lights.size(); ++i)
-	{
-		light.setScale(lights[i].m_size);
-		light.setColor(lights[i].m_color);
-		light.setPosition(lights[i].m_position);
-
-		lightMapTexture.draw(light, sf::RenderStates(sf::BlendAdd));
-	}
-	lightMapTexture.display();
-
 	for (int i = 0; i < m_trackTiles.size(); i++)
 	{
 		int j = m_trackTiles.size();
@@ -155,9 +131,6 @@ void Track::render(sf::RenderWindow & window)
 
 		window.draw(startPosSprite);
 	}
-
-	lightmap.setPosition(0, 0);
-	window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
 }
 
 unsigned int Track::getNumOfAICars()

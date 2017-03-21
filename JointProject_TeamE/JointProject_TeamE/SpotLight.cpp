@@ -1,5 +1,7 @@
 #include "SpotLight.h"
 
+SpotLight::SpotLight() { };
+
 /// <summary>
 /// Initalizes the spotlight
 /// </summary>
@@ -10,4 +12,9 @@ SpotLight::SpotLight(sf::Vector2f position, sf::Vector2f size, sf::Color color)
 	: m_position(position), m_size(size), m_color(color)
 {
 
+}
+
+void SpotLight::update(sf::Vector2f &pos)
+{
+	m_position = pos;
 }
