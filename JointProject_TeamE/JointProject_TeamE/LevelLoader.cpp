@@ -70,6 +70,17 @@ void operator >> (const YAML::Node &cupNode, CupData &cupData)
 	cupData.m_texture = cupNode["texture"].as<std::string>();
 }
 
+void operator >> (const YAML::Node &checkpointNode, CheckpointData &checkpointData)
+{
+	checkpointData.m_name = checkpointNode["name"].as<std::string>();
+	checkpointData.m_texture = checkpointNode["texture"].as<std::string>();
+	checkpointData.m_textureRect.left = checkpointNode["texturerect"]["left"].as<int>();
+	checkpointData.m_textureRect.top = checkpointNode["texturerect"]["top"].as<int>();
+	checkpointData.m_textureRect.width = checkpointNode["texturerect"]["width"].as<int>();
+	checkpointData.m_textureRect.height = checkpointNode["texturerect"]["height"].as<int>();
+	checkpointData.m_rotation = checkpointNode["rotation"].as<float>();
+}
+
 void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 {
 	baseNode["player"] >> levelIn.m_playerData;
@@ -122,11 +133,19 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 	}
 
 	const YAML::Node& cupsNode = baseNode["cups"].as<YAML::Node>();
-	for (unsigned int i = 0; i < startPosNode.size(); ++i)
+	for (unsigned int i = 0; i < cupsNode.size(); ++i)
 	{
 		CupData cupData;
 		cupsNode[i] >> cupData;
 		levelIn.m_cupData.push_back(cupData);
+	}
+
+	const YAML::Node& checkpointsNode = baseNode["checkpoints"].as<YAML::Node>();
+	for (unsigned int i = 0; i < checkpointsNode.size(); ++i)
+	{
+		CheckpointData checkData;
+		checkpointsNode[i] >> checkData;
+		levelIn.m_checkpointData.push_back(checkData);
 	}
 }
 

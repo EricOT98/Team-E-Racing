@@ -58,6 +58,14 @@ struct CupData
 	std::string m_texture;
 };
 
+struct CheckpointData
+{
+	std::string m_name;
+	std::string m_texture;
+	sf::IntRect m_textureRect;
+	float m_rotation;
+};
+
 struct LevelData {
 	PlayerData m_playerData;
 	std::vector<TileData> m_tileDataVector;
@@ -68,6 +76,7 @@ struct LevelData {
 	std::vector<CarData> m_carData;
 	std::vector<CarData> m_enemyCarData;
 	std::vector<CupData> m_cupData;
+	std::vector<CheckpointData> m_checkpointData;
 };
 
 class LevelLoader {

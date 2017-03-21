@@ -41,6 +41,7 @@ private:
 	sf::Sprite startPosSprite;
 	std::vector<sf::Vector2f> m_startPlayerPositions;
 	std::vector<sf::Vector2f> m_startAIPositions;
+	std::vector<sf::RectangleShape> m_checkpointLines;
 	sf::Vector2f playerStartPos;
 	unsigned int numberOfAICars = 5;
 
