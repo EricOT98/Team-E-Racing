@@ -413,5 +413,5 @@ checkpoints:
     rotation: 0
   - name: mid
     texture: checkpoint
-    texturerect: {left: 550, top: 0, width: 46, height: 180}
-    rotation: 90
+    texturerect: {left: 512, top: 1047, width: 10, height: 60}
+    rotation: 315
