@@ -54,6 +54,7 @@ void Game::run()
 	m_trophyScreen = new TrophyScreen();
 	m_upgradesScreen = new UpgradesScreen(m_level.m_carData, m_window.getSize().x);
 	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, &m_player, m_window.getSize().x);
+	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_racers, m_window.getSize().x);
 	m_track.setTrack(m_level);
 	m_player.setCar();
 	m_player.setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
@@ -82,12 +83,11 @@ void Game::run()
 	m_screenManager.add(m_trophyScreen);
 	m_screenManager.add(m_upgradesScreen);
 	m_screenManager.add(m_selectCarScreen);
+	m_screenManager.add(m_selectCupScreen);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
 	timeSinceLastUpdate = clock.restart();
-
-	std::cout << m_level.m_playerData.position.x << ", " << m_level.m_playerData.position.y << std::endl;
 
 	while (m_window.isOpen())
 	{
