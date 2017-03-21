@@ -24,6 +24,7 @@
 #include "Screens\TrophyScreen.h"
 #include "Screens\SplashScreen.h"
 #include "Screens\UpgradesScreen.h"
+#include "Screens\SelectCarScreen.h"
 
 #include "Screens\Screen.h"
 
@@ -77,6 +78,7 @@ protected:
 	SoundOptions * m_soundOptions;
 	TrophyScreen * m_trophyScreen;
 	UpgradesScreen * m_upgradesScreen;
+	SelectCarScreen * m_selectCarScreen;
 
 	bool m_reset;
 	bool m_transitionInGame;

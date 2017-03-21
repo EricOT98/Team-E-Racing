@@ -36,7 +36,9 @@ enum class GameState
 	SoundOptions,
 	UpgradesScreen,
 	TrophyScreen,
-	CreditsScreen
+	CreditsScreen,
+	SelectCarScreen,
+	SelectCupScreen
 };
 
 /// <summary>

@@ -378,3 +378,8 @@ cars:
     deceleration: 10
     turnrate: 10
     name: Eric
+  - texture: objects
+    acceleration: 100
+    deceleration: 200
+    turnrate: 10
+    name: Eric

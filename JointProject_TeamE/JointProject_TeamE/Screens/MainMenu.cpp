@@ -74,7 +74,7 @@ void MainMenu::update(XboxController & controller)
 	}
 	else if (m_playButtonSelected)
 	{
-		transOut(GameState::GamePlay);
+		transOut(GameState::SelectCarScreen);
 	}
 	else if (m_upgradesButtonSelected)
 	{

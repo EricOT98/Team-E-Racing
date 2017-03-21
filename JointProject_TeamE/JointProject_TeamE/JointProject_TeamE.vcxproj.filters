@@ -44,6 +44,7 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Screens\UpgradesScreen.cpp" />
     <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="Screens\SelectCarScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Screens\UpgradesScreen.h" />
     <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="Screens\SelectCarScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
