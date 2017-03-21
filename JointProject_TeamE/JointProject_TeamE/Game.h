@@ -46,6 +46,7 @@ protected:
 	void processEvents();
 	void processGameEvents(sf::Event&);
 	void resetGame();
+	void applyShader(sf::RenderTarget &output);
 
 	sf::RenderWindow m_window;
 
@@ -64,7 +65,7 @@ protected:
 	sf::View raceView;
 
 	// For testing
-	Shader m_crtShader;
+	sf::Shader m_crtShader;
 	 
 	// Game Screens
 	SplashScreen * m_splashScreen;
@@ -82,12 +83,6 @@ protected:
 
 	bool m_reset;
 	bool m_transitionInGame;
-
-	sf::Texture lightTexture;
-	sf::Sprite light;
-
-	sf::RenderTexture lightMapTexture;
-	sf::Sprite lightmap;
 };
 
 #endif

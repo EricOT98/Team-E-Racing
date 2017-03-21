@@ -22,6 +22,10 @@
 #include "Projectile.h"
 #include "SpotLight.h"
 
+//auto & shader = std::unique_ptr<sf::Shader>(new sf::Shader());
+//shader->loadFromFile("Resources/Shaders/crtShader.vert", "Resources/Shaders/crtShader.frag");
+//shaderHolder.acquire("CRT", thor::Resources::fromFile<std::unique_ptr<sf::Shader>>("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag"));
+
 class Racer
 {
 public:
@@ -77,6 +81,8 @@ protected:
 	sf::Clock m_clock;
 	unsigned int m_index = 0;
 	int numProjectiles;
+
+	std::unique_ptr<sf::Shader> m_rippleShader;
 };
 
 #endif

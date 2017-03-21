@@ -30,18 +30,7 @@ void Game::run()
 		glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	// Maybe do shader loading in resource manager and pull them from there?
-	m_crtShader.LoadShader("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
-
-	lightMapTexture.create(2000, 2000);
-	lightmap.setTexture(lightMapTexture.getTexture());
-
-	lightTexture = g_resourceMgr.textureHolder["CarLights"];
-	lightTexture.setSmooth(true);
-
-	light.setTexture(lightTexture);
-	light.setTextureRect(sf::IntRect(0, 0, 512, 512));
-	light.setOrigin(256.f, 256.f);
-
+	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
 	m_confirmationScreen = new ConfirmationScreen(m_window);
@@ -61,7 +50,7 @@ void Game::run()
 
 	m_racers.push_back(&m_player);
 
-	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
+	for (unsigned int i = 0; i < 1; i++)
 	{
 		AI *racer = new AI();
 		racer->setCar();
@@ -173,28 +162,13 @@ void Game::render()
 	}
 	else
 	{
-		lightMapTexture.clear(sf::Color(50, 50, 80));
-
-		for (Racer *racer : m_racers)
-		{
-			light.setScale(racer->m_spotLight.m_size);
-			light.setColor(racer->m_spotLight.m_color);
-			light.setPosition(racer->m_spotLight.m_position);
-
-			lightMapTexture.draw(light, sf::RenderStates(sf::BlendAdd));
-		}
-		lightMapTexture.display();
-
 		raceView.setCenter(m_player.getPosition());
 		raceView.setSize(m_window.getView().getSize());
 		m_window.setView(raceView);
 		m_track.render(m_window);
 		for (Racer *racer : m_racers)
 			racer->render(m_window);
-
-		lightmap.setPosition(0, 0);
-		m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
-
+		//makeATexture(m_window);
 #if 0
 		// DEBUG(Darren): Debug drawing the AI nodes
 		for (Waypoint waypoint : m_level.m_waypoints)
@@ -216,4 +190,26 @@ void Game::resetGame()
 	m_reset = false;
 	m_transitionInGame = true;
 	// Code Here...
+}
+
+void Game::applyShader(sf::RenderTarget &output)
+{
+	sf::Vector2f outputSize = static_cast<sf::Vector2f>(output.
+		getSize());
+	sf::VertexArray vertices(sf::TrianglesStrip, 4);
+	vertices[0] = sf::Vertex(sf::Vector2f(0, 0),
+		sf::Vector2f(0, 1));
+	vertices[1] = sf::Vertex(sf::Vector2f(outputSize.x, 0),
+		sf::Vector2f(1, 1));
+	vertices[2] = sf::Vertex(sf::Vector2f(0, outputSize.y),
+		sf::Vector2f(0, 0));
+	vertices[3] = sf::Vertex(sf::Vector2f(outputSize),
+		sf::Vector2f(1, 0));
+	sf::Texture tex;
+	tex.create(outputSize.x, outputSize.y);
+	sf::RenderStates states;
+	//m_crtShader.setParameter("screenTexture", )
+	states.shader = &m_crtShader;
+	states.blendMode = sf::BlendNone;
+	output.draw(vertices, states);
 }

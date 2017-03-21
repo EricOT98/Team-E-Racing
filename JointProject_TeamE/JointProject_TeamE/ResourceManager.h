@@ -21,7 +21,6 @@ public:
 	void loadAssets(LevelData & levelIn);
 	thor::ResourceHolder<sf::Texture, std::string> textureHolder;
 	thor::ResourceHolder<sf::Font, std::string> fontHolder;
-	
 };
 
 extern ResourceManager g_resourceMgr;
