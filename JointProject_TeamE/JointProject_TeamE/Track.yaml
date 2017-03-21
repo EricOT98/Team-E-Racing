@@ -387,13 +387,13 @@ cars:
     turnrate: 10
     name: Enemy
     enemy: true
-  - texture: objects
+  - texture: CarTexture
     acceleration: 150
     deceleration: 150
     turnrate: 10
     name: Enemy
     enemy: true
-  - texture: objects
+  - texture: CarTexture
     acceleration: 250
     deceleration: 250
     turnrate: 10

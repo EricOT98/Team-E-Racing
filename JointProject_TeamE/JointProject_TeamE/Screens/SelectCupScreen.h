@@ -8,7 +8,7 @@
 class SelectCupScreen : public Screen
 {
 public:
-	SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, std::vector<Racer *> racers, int screenWidth);
+	SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, std::vector<Racer *> & racers, int screenWidth);
 	~SelectCupScreen();
 	void update(XboxController & controller) override;
 	void reset() override;

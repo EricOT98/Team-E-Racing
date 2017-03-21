@@ -61,7 +61,7 @@ protected:
 	sf::Texture carTexture;
 	Track m_track;
 	sf::Sprite carSprite;
-	Player m_player;
+	Player * m_player;
 	std::vector<Racer *> m_racers;
 	sf::View raceView;
 

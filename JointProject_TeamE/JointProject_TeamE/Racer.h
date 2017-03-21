@@ -21,6 +21,7 @@
 #include "OBB.h"
 #include "Projectile.h"
 #include "SpotLight.h"
+#include "LevelLoader.h"
 
 //auto & shader = std::unique_ptr<sf::Shader>(new sf::Shader());
 //shader->loadFromFile("Resources/Shaders/crtShader.vert", "Resources/Shaders/crtShader.frag");
@@ -34,7 +35,7 @@ public:
 	
 	virtual void update(float dt) = 0;
 	void render(sf::RenderWindow & window);
-	void setCar();
+	void setCar(CarData carData);
 	void setPosition(sf::Vector2f positionIn);
 	void setRotation(float rotationIn);
 	sf::Vector2f getPosition();

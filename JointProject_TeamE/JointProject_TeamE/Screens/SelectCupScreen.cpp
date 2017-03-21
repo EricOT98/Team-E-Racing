@@ -1,6 +1,6 @@
 #include "SelectCupScreen.h"
 
-SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, std::vector<Racer *> racers, int screenWidth) 
+SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, std::vector<Racer *> & racers, int screenWidth) 
 	: Screen(GameState::SelectCupScreen), m_cars(carsIn), m_cups(cupsIn), m_racers(racers)
 {
 	m_transitionIn = true;
@@ -92,7 +92,18 @@ void SelectCupScreen::reset()
 
 void SelectCupScreen::confirmButtonCallback()
 {
+	for (int i = 0; i < m_radButtons.size(); i++)
+	{
+		if(m_radButtons.at(i)->getState())
+		{
+			m_currentCarIndex = i;
+		}
+	}
 	m_confirmButtonPressed = true;
+	for (int i = 0; i < m_racers.size() - 1; i++)
+	{
+		m_racers.at(i)->setCar(m_cars.at(m_currentCarIndex));
+	}
 }
 
 void SelectCupScreen::backButtonCallback()
