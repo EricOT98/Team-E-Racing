@@ -1,6 +1,6 @@
-#version 330 core
-in vec2 TexCoords;
-out vec4 color;
+#version 110
+varying vec4 vColor;
+varying vec2 vTexCoord;
 
 #define enable true
 
@@ -22,18 +22,18 @@ vec2 curve(vec2 uv)
 vec4 crt(vec2 fragCoord) 
 {
     vec2 q = fragCoord.xy / resolution.xy;
-    vec2 uv = TexCoords;
+    vec2 uv = vTexCoord;
     uv = curve( uv );
-    vec3 oricol = texture(screenTexture, vec2(q.x,q.y) ).xyz;
+    vec3 oricol = texture2D(screenTexture, vec2(q.x,q.y) ).xyz;
     vec3 col;
 	float x =  sin(0.3*time+uv.y*21.0)*sin(0.7*time+uv.y*29.0)*sin(0.3+0.33*time+uv.y*31.0)*0.0017;
 
-    col.r = texture(screenTexture,vec2(x+uv.x+0.001,uv.y+0.001)).x+0.05;
-    col.g = texture(screenTexture,vec2(x+uv.x+0.000,uv.y-0.002)).y+0.05;
-    col.b = texture(screenTexture,vec2(x+uv.x-0.002,uv.y+0.000)).z+0.05;
-    col.r += 0.08*texture(screenTexture,0.75*vec2(x+0.025, -0.027)+vec2(uv.x+0.001,uv.y+0.001)).x;
-    col.g += 0.05*texture(screenTexture,0.75*vec2(x+-0.022, -0.02)+vec2(uv.x+0.000,uv.y-0.002)).y;
-    col.b += 0.08*texture(screenTexture,0.75*vec2(x+-0.02, -0.018)+vec2(uv.x-0.002,uv.y+0.000)).z;
+    col.r = texture2D(screenTexture,vec2(x+uv.x+0.001,uv.y+0.001)).x+0.05;
+    col.g = texture2D(screenTexture,vec2(x+uv.x+0.000,uv.y-0.002)).y+0.05;
+    col.b = texture2D(screenTexture,vec2(x+uv.x-0.002,uv.y+0.000)).z+0.05;
+    col.r += 0.08*texture2D(screenTexture,0.75*vec2(x+0.025, -0.027)+vec2(uv.x+0.001,uv.y+0.001)).x;
+    col.g += 0.05*texture2D(screenTexture,0.75*vec2(x+-0.022, -0.02)+vec2(uv.x+0.000,uv.y-0.002)).y;
+    col.b += 0.08*texture2D(screenTexture,0.75*vec2(x+-0.02, -0.018)+vec2(uv.x-0.002,uv.y+0.000)).z;
 
     col = clamp(col*0.6+0.4*col*col*1.0,0.0,1.0);
 
@@ -56,13 +56,15 @@ vec4 crt(vec2 fragCoord)
 
 	col*=1.0-0.65*vec3(clamp((mod(fragCoord.x, 2.0)-1.0)*2.0,0.0,1.0));
 		
-    return vec4(col,1.0);
+	return vec4(col,1.0);
+
+ return vec4(1.0, 0.0, 0.3, 1.0);
 }
 
 void main()
 {
 	if(enable)
-		color = crt(TexCoords);
+		gl_FragColor = crt(vTexCoord);
 	else 
-		color = texture(screenTexture, TexCoords);
+		gl_FragColor = texture2D(screenTexture, vTexCoord);
 }

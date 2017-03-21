@@ -28,15 +28,6 @@ void Game::run()
 	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION),
 		glGetString(GL_SHADING_LANGUAGE_VERSION));
 
-//	// Maybe do shader loading in resource manager and pull them from there?
-//<<<<<<< 64d5bd8052d0b3e77f07129f44d768a7cb240015
-//	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
-//	m_crtShader.setParameter("resolution", 800, 600);
-//	m_crtShader.setParameter("time", 0);	// Change this to time
-//	m_gameScreenTexture.create(800, 600);
-//
-//=======
-
 	lightMapTexture.create(2000, 2000);
 	lightmap.setTexture(lightMapTexture.getTexture());
 	
@@ -49,11 +40,9 @@ void Game::run()
 
 	m_player = new Player(m_xboxController);
 
-	m_crtShader.loadFromFile("Resources/Shaders/ripple_shader.vert", "Resources/Shaders/ripple_shader.frag");
-	m_crtShader.setParameter("uTexture", m_tex);
-	m_crtShader.setParameter("uPositionFreq", 0.01f);
-	m_crtShader.setParameter("uSpeed", 5);
-	m_crtShader.setParameter("uStrength", 0.02f);
+	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
+	m_crtShader.setParameter("screenTexture", m_tex);
+	m_crtShader.setParameter("resolution", 800, 600);
 	
 	//@ShaderTest
 	m_foreground.setTexture(m_tex);
@@ -194,6 +183,9 @@ void Game::render()
 	{
 		renderGame();
 	}
+
+	applyShaderToScene(m_window, m_tex);
+
 	m_window.display();
 }
 
@@ -228,7 +220,7 @@ void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 	m_tex.update(m_window);
 
 	//Set whatever parameters need to be updated here
-	m_crtShader.setParameter("uTime", m_clock.getElapsedTime().asSeconds());
+	m_crtShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
 
 	//Render the current shader
 	sf::RenderStates states;
