@@ -32,6 +32,17 @@ void Track::setTrack(LevelData &levelIn)
 		sf::Vector2f pos = sf::Vector2f(playerStartPos.x - ((i % 2) * 30), playerStartPos.y - (i * 45));
 		m_startAIPositions.push_back(pos);
 	}
+
+	for (int i = 0; i < levelIn.m_checkpointData.size(); i++)
+	{
+		sf::RectangleShape rect(sf::Vector2f(levelIn.m_checkpointData.at(i).m_textureRect.width, 
+													   levelIn.m_checkpointData.at(i).m_textureRect.height));
+		rect.setPosition(sf::Vector2f(levelIn.m_checkpointData.at(i).m_textureRect.left,
+			levelIn.m_checkpointData.at(i).m_textureRect.top));
+		rect.setTexture(&g_resourceMgr.textureHolder[levelIn.m_checkpointData.at(i).m_texture]);
+		rect.setRotation(levelIn.m_checkpointData.at(i).m_rotation);
+		m_checkpointLines.push_back(rect);
+	}
 	m_timer = 5;
 }
 
@@ -122,6 +133,11 @@ void Track::render(sf::RenderWindow & window)
 		{
 			m_obstacles.at(i)->render(window);
 		}
+	}
+
+	for (auto & check : m_checkpointLines)
+	{
+		window.draw(check);
 	}
 
 	for (int i = 0; i < numberOfAICars + 1; i++)

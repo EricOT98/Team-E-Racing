@@ -406,3 +406,12 @@ cups:
     texture: objects
   - name: Professional
     texture: objects
+checkpoints:
+  - name: start
+    texture: checkpoint
+    texturerect: {left: 702, top: 600, width: 60, height: 10}
+    rotation: 0
+  - name: mid
+    texture: checkpoint
+    texturerect: {left: 550, top: 0, width: 46, height: 180}
+    rotation: 90
