@@ -23,17 +23,14 @@ public:
 
 private:
 	void resumeButtonCallback();
-	void optionsButtonCallback();
 	void quitButtonCallback();
 
 	Label *m_pauseScreenLabel;
 	Button *m_resumeButton;
-	Button *m_optionsButton;
 	Button *m_quitButton;
 
 	bool m_resumeSelected;
 	bool m_quitSelected;
-	bool m_optionsSelected;
 };
 
 #endif

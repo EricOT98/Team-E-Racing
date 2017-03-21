@@ -47,6 +47,8 @@ protected:
 	void processGameEvents(sf::Event&);
 	void resetGame();
 	void applyShaderToScene(sf::RenderTarget &output, sf::Texture texture);
+	void renderGame();
+	void renderScreens();
 
 	sf::RenderWindow m_window;
 

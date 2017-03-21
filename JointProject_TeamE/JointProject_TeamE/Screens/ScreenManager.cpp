@@ -92,3 +92,8 @@ bool ScreenManager::getState()
 {
 	return m_active;
 }
+
+GameState ScreenManager::getGameState()
+{
+	return m_gameState;
+}

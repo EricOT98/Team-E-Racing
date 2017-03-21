@@ -70,7 +70,7 @@ void Racer::render(sf::RenderWindow & window)
 /// Sets the current car of the racer via pointer
 /// </summary>
 void Racer::setCar(CarData carData)
-{
+{ 
 	m_sprite.setTexture(g_resourceMgr.textureHolder[carData.m_texture], true);
 	m_sprite.setScale(sf::Vector2f(0.2f, 0.2f));
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getLocalBounds().width / 2.f, m_sprite.getLocalBounds().height / 2.f));

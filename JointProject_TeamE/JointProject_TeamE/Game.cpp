@@ -167,6 +167,11 @@ void Game::update(double dt)
 		{
 			resetGame();
 		}
+		if (m_xboxController.isButtonPressed(XBOX360_START))
+		{
+			m_screenManager.setActive(GameState::PauseScreen);
+			m_window.setView(m_window.getDefaultView());
+		}
 		m_track.update(m_racers);
 		for (Racer *racer : m_racers)
 			racer->update(dt);
@@ -181,55 +186,14 @@ void Game::update(double dt)
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
-
-	//m_gameScreenTexture.clear();
-
 	if (m_screenManager.getState())
 	{
-		m_screenManager.render(m_window);
+		renderScreens();
 	}
 	else
 	{
-		lightMapTexture.clear(sf::Color(50, 50, 80));
-		for (Racer *racer : m_racers)
-		{
-			light.setScale(racer->m_spotLight.m_size);
-			light.setColor(racer->m_spotLight.m_color);
-			light.setPosition(racer->m_spotLight.m_position);
-			
-			lightMapTexture.draw(light, sf::RenderStates(sf::BlendAdd));
-		}
-		lightMapTexture.display();
-
-		raceView.setCenter(m_player->getPosition());
-		raceView.setSize(m_window.getView().getSize());
-		m_window.setView(raceView);
-		m_track.render(m_window);
-		for (Racer *racer : m_racers)
-			racer->render(m_window);
-		lightmap.setPosition(0, 0);
-		m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
-
-		//applyShaderToScene(m_window, m_tex);
-#if 0
-		// DEBUG(Darren): Debug drawing the AI nodes
-		for (Waypoint waypoint : m_level.m_waypoints)
-		{
-			sf::CircleShape circle(5.0f);
-			circle.setPosition(waypoint.m_position);
-			circle.setFillColor(sf::Color::Blue);
-
-			m_window.draw(circle);
-		}
-#endif
-
+		renderGame();
 	}
-
-	//m_gameScreenTexture.display();
-
-	//m_crtShader.setParameter("screenTexture", m_gameScreenTexture.getTexture());
-	//m_window.draw(sf::RectangleShape(), &m_crtShader);
-
 	m_window.display();
 }
 
@@ -271,4 +235,50 @@ void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 	states.shader = &m_crtShader;
 	states.blendMode = sf::BlendAlpha;
 	output.draw(vertices, states);
+}
+
+void Game::renderGame()
+{
+	lightMapTexture.clear(sf::Color(50, 50, 80));
+	for (Racer *racer : m_racers)
+	{
+		light.setScale(racer->m_spotLight.m_size);
+		light.setColor(racer->m_spotLight.m_color);
+		light.setPosition(racer->m_spotLight.m_position);
+
+		lightMapTexture.draw(light, sf::RenderStates(sf::BlendAdd));
+	}
+	lightMapTexture.display();
+
+	raceView.setCenter(m_player->getPosition());
+	raceView.setSize(m_window.getView().getSize());
+	m_window.setView(raceView);
+	m_track.render(m_window);
+	for (Racer *racer : m_racers)
+		racer->render(m_window);
+
+	lightmap.setPosition(0, 0);
+	m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
+
+#if 0
+	// DEBUG(Darren): Debug drawing the AI nodes
+	for (Waypoint waypoint : m_level.m_waypoints)
+	{
+		sf::CircleShape circle(5.0f);
+		circle.setPosition(waypoint.m_position);
+		circle.setFillColor(sf::Color::Blue);
+
+		m_window.draw(circle);
+	}
+#endif
+}
+
+void Game::renderScreens()
+{
+	if (m_screenManager.getGameState() == GameState::PauseScreen || m_screenManager.getGameState() == GameState::GamePlay)
+	{
+		renderGame();
+		m_window.setView(m_window.getDefaultView());
+	}
+	m_screenManager.render(m_window);
 }

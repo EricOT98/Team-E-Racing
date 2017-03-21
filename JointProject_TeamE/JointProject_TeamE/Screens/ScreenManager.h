@@ -24,6 +24,7 @@ public:
 	void add(Screen *Screen);
 	void setActive(GameState gameStateIn);
 	bool getState();
+	GameState getGameState();
 private:
 	std::vector<Screen *> screens; // Screen container
 	GameState m_gameState; // Current game state
