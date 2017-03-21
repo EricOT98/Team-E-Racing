@@ -12,12 +12,13 @@
 #include <iostream>
 
 
-//GUI
+// Screens
 #include "Screens\ConfirmationScreen.h"
 #include "Screens\DifficultyScreen.h"
 #include "Screens\DisplayOptions.h"
 #include "Screens\HelpScreen.h"
 #include "Screens\MainMenu.h"
+#include "Screens\CreditsScreen.h"
 #include "Screens\Options.h"
 #include "Screens\PauseScreen.h"
 #include "Screens\SoundOptions.h"
@@ -25,8 +26,6 @@
 #include "Screens\SplashScreen.h"
 #include "Screens\UpgradesScreen.h"
 #include "Screens\SelectCarScreen.h"
-
-#include "Screens\Screen.h"
 
 // For testing
 #include "Shader.h"
@@ -74,6 +73,8 @@ protected:
 	DisplayOptions * m_displayOptions;
 	HelpScreen * m_helpScreen;
 	MainMenu * m_mainMenu;
+	CreditsScreen *m_creditsScreen;
+
 	Options * m_options;
 	PauseScreen * m_pauseScreen;
 	SoundOptions * m_soundOptions;
@@ -88,6 +89,7 @@ protected:
 	sf::Sprite light;
 	sf::RenderTexture lightMapTexture;
 	sf::Sprite lightmap;
+	sf::RenderTexture m_gameScreenTexture;
 };
 
 #endif

@@ -31,6 +31,9 @@ void Game::run()
 
 	// Maybe do shader loading in resource manager and pull them from there?
 	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
+	m_crtShader.setParameter("resolution", 800, 600);
+	m_crtShader.setParameter("time", 0);	// Change this to time
+	m_gameScreenTexture.create(800, 600);
 
 	lightMapTexture.create(2000, 2000);
 	lightmap.setTexture(lightMapTexture.getTexture());
@@ -44,6 +47,7 @@ void Game::run()
 
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
+	m_creditsScreen = new CreditsScreen();
 	m_confirmationScreen = new ConfirmationScreen(m_window);
 	m_difficultyScreen = new DifficultyScreen();
 	m_displayOptions = new DisplayOptions();
@@ -72,6 +76,7 @@ void Game::run()
 	}
 	m_screenManager.add(m_splashScreen);
 	m_screenManager.add(m_mainMenu);
+	m_screenManager.add(m_creditsScreen);
 	m_screenManager.add(m_confirmationScreen);
 	m_screenManager.add(m_difficultyScreen);
 	m_screenManager.add(m_displayOptions);
@@ -167,6 +172,8 @@ void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
 
+	//m_gameScreenTexture.clear();
+
 	if (m_screenManager.getState())
 	{
 		m_screenManager.render(m_window);
@@ -205,7 +212,13 @@ void Game::render()
 			m_window.draw(circle);
 		}
 #endif
+
 	}
+
+	//m_gameScreenTexture.display();
+
+	//m_crtShader.setParameter("screenTexture", m_gameScreenTexture.getTexture());
+	//m_window.draw(sf::RectangleShape(), &m_crtShader);
 
 	m_window.display();
 }

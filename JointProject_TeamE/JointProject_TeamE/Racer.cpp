@@ -24,6 +24,12 @@ void Racer::render(sf::RenderWindow & window)
 	//m_boundingBox.debugRender(window);
 	window.draw(m_tireTracks);
 	window.draw(m_sprite);
+
+	sf::VertexArray line(sf::LinesStrip, 2);
+	line[0].position = m_position;
+	line[1].position = m_position + m_direction;
+	window.draw(line);
+
 	//@Projectile
 	for (int i = 0; i < numProjectiles; i++)
 	{
@@ -115,6 +121,8 @@ void Racer::calMovement(float dt)
 	}
 	m_sprite.setRotation(m_currentRotation);
 	m_velocity += m_currentAcceleration * dt;
+	m_direction = sf::Vector2f(std::cos(degreesToRad(m_currentRotation)), std::sin(degreesToRad(m_currentRotation)));
+	unitVector(m_direction);
 	float addOnTotal = m_velocity * dt + 0.5f * m_currentAcceleration * dt * dt; // formula: s = (ut) + (0.5 * at²)
 	float xPosAddOn = addOnTotal * std::cos(degreesToRad(m_currentRotation));
 	float yPosAddOn = addOnTotal * std::sin(degreesToRad(m_currentRotation));

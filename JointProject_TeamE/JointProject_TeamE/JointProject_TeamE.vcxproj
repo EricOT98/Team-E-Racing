@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Screens\CreditsScreen.cpp" />
     <ClCompile Include="gl3w.c" />
     <ClCompile Include="Screens\SelectCarScreen.cpp" />
     <ClCompile Include="SpotLight.cpp" />
@@ -175,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="AI.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Screens\CreditsScreen.h" />
     <ClInclude Include="Screens\SelectCarScreen.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="OBB.h" />

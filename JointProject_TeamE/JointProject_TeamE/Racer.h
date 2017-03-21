@@ -71,6 +71,7 @@ protected:
 	float m_velocity;
 	float m_currentAcceleration;
 	sf::Vector2f m_position;
+	sf::Vector2f m_direction;
 	
 	sf::Sprite m_sprite;
 	sf::Texture m_tireTexture;
