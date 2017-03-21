@@ -135,6 +135,7 @@
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="gl3w.c" />
     <ClCompile Include="Screens\SelectCarScreen.cpp" />
+    <ClCompile Include="Screens\SelectCupScreen.cpp" />
     <ClCompile Include="SpotLight.cpp" />
     <ClCompile Include="OBB.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="AI.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Screens\SelectCarScreen.h" />
+    <ClInclude Include="Screens\SelectCupScreen.h" />
     <ClInclude Include="SpotLight.h" />
     <ClInclude Include="OBB.h" />
     <ClInclude Include="Projectile.h" />

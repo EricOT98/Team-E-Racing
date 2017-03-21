@@ -61,6 +61,13 @@ void operator >> (const YAML::Node & carNode, CarData & carDataIn)
 	carDataIn.m_turnRate = carNode["turnrate"].as<float>();
 	carDataIn.m_name = carNode["name"].as<std::string>();
 	carDataIn.m_texture = carNode["texture"].as<std::string>();
+	carDataIn.m_enemy = carNode["enemy"].as<bool>();
+}
+
+void operator >> (const YAML::Node &cupNode, CupData &cupData)
+{
+	cupData.m_name = cupNode["name"].as<std::string>();
+	cupData.m_texture = cupNode["texture"].as<std::string>();
 }
 
 void operator >> (YAML::Node &baseNode, LevelData &levelIn)
@@ -103,7 +110,23 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 	{
 		CarData carData;
 		carsNode[i] >> carData;
-		levelIn.m_carData.push_back(carData);
+		if (carData.m_enemy)
+		{
+			levelIn.m_enemyCarData.push_back(carData);
+		}
+		else
+		{
+			levelIn.m_carData.push_back(carData);
+		}
+		
+	}
+
+	const YAML::Node& cupsNode = baseNode["cups"].as<YAML::Node>();
+	for (unsigned int i = 0; i < startPosNode.size(); ++i)
+	{
+		CupData cupData;
+		cupsNode[i] >> cupData;
+		levelIn.m_cupData.push_back(cupData);
 	}
 }
 

@@ -49,6 +49,13 @@ struct CarData
 	float m_acceleration;
 	float m_deceleration;
 	float m_turnRate;
+	bool m_enemy;
+};
+
+struct CupData
+{
+	std::string m_name;
+	std::string m_texture;
 };
 
 struct LevelData {
@@ -59,6 +66,8 @@ struct LevelData {
 	std::vector<Waypoint> m_waypoints;
 	std::vector<StartPositionData> m_startPositionData;
 	std::vector<CarData> m_carData;
+	std::vector<CarData> m_enemyCarData;
+	std::vector<CupData> m_cupData;
 };
 
 class LevelLoader {
