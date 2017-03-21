@@ -83,6 +83,11 @@ protected:
 
 	bool m_reset;
 	bool m_transitionInGame;
+
+	sf::Texture lightTexture;
+	sf::Sprite light;
+	sf::RenderTexture lightMapTexture;
+	sf::Sprite lightmap;
 };
 
 #endif

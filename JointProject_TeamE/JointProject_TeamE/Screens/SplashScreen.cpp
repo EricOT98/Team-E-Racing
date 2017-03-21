@@ -29,7 +29,7 @@ SplashScreen::SplashScreen() : Screen(GameState::SplashScreen)
 	m_currentAlpha = 0;
 	m_intro.fit(0, 0, 800, 600);
 	m_skip = false;
-	m_rippleShader.loadFromFile("Resources/Shaders/ripple_shader.vert", "Resources/Shaders/ripple_shader.frag");
+	m_rippleShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
 	m_rippleShader.setParameter("uTexture", *m_foreground.getTexture());
 	m_rippleShader.setParameter("uPositionFreq", 0.01f);
 	m_rippleShader.setParameter("uSpeed", 5);
