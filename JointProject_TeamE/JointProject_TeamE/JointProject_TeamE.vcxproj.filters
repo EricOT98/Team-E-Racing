@@ -223,5 +223,7 @@
   <ItemGroup>
     <None Include="Resources\Shaders\crt_shader.frag" />
     <None Include="Resources\Shaders\crt_shader.vert" />
+    <None Include="Resources\Shaders\ripple_shader.frag" />
+    <None Include="Resources\Shaders\ripple_shader.vert" />
   </ItemGroup>
 </Project>

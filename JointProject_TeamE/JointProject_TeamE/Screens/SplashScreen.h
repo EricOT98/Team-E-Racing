@@ -31,5 +31,8 @@ protected:
 	float m_fadeTime = 0;
 	bool m_playing;
 	bool m_skip;
+	sf::Shader m_rippleShader;
+	sf::Sprite m_rippleSprite;
+	sf::Clock m_clock;
 };
 #endif //!SPLASHSCREEN

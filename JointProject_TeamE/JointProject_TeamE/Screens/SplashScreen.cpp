@@ -15,20 +15,25 @@ SplashScreen::SplashScreen() : Screen(GameState::SplashScreen)
 	{
 		m_intro.openFromFile("Resources/Movies/IntroAnimation.mov");
 	}
-	catch(std::exception e)
+	catch (std::exception e)
 	{
 		std::cout << typeid(*this).name() << std::endl;
 		std::cout << "ERROR: " << e.what() << std::endl;
 	}
 	m_intro.setPosition(0, 0);
 	m_foreground.setSize(sf::Vector2f(800, 600));
-	m_foreground.setTexture(&g_resourceMgr.textureHolder["objects"]);
+	m_foreground.setTexture(&g_resourceMgr.textureHolder["Flag"]);
 	m_foregroundColor = m_foreground.getFillColor();
 	int a = m_foregroundColor.a;
 	m_foreground.setFillColor(m_foregroundColor);
 	m_currentAlpha = 0;
 	m_intro.fit(0, 0, 800, 600);
 	m_skip = false;
+	m_rippleShader.loadFromFile("Resources/Shaders/ripple_shader.vert", "Resources/Shaders/ripple_shader.frag");
+	m_rippleShader.setParameter("uTexture", *m_foreground.getTexture());
+	m_rippleShader.setParameter("uPositionFreq", 0.01f);
+	m_rippleShader.setParameter("uSpeed", 5);
+	m_rippleShader.setParameter("uStrength", 0.02f);
 }
 
 /// <summary>
@@ -104,7 +109,8 @@ void SplashScreen::render(sf::RenderWindow & window)
 	}
 	else
 	{
-		window.draw(m_foreground);
+		m_rippleShader.setParameter("uTime", m_clock.getElapsedTime().asSeconds());
+		window.draw(m_foreground, &m_rippleShader);
 	}
 }
 

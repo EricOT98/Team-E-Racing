@@ -168,7 +168,6 @@ void Game::render()
 		m_track.render(m_window);
 		for (Racer *racer : m_racers)
 			racer->render(m_window);
-		//makeATexture(m_window);
 #if 0
 		// DEBUG(Darren): Debug drawing the AI nodes
 		for (Waypoint waypoint : m_level.m_waypoints)
@@ -207,8 +206,8 @@ void Game::applyShader(sf::RenderTarget &output)
 		sf::Vector2f(1, 0));
 	sf::Texture tex;
 	tex.create(outputSize.x, outputSize.y);
-	sf::RenderStates states;
 	//m_crtShader.setParameter("screenTexture", )
+	sf::RenderStates states;
 	states.shader = &m_crtShader;
 	states.blendMode = sf::BlendNone;
 	output.draw(vertices, states);

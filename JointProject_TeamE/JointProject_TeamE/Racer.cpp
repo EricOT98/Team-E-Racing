@@ -73,13 +73,9 @@ void Racer::setCar()
 		projectile->init("Bullet");
 		m_projectiles.push_back(std::move(projectile));
 	}
-<<<<<<< 1b1b048dd521f21b9874107493d9ebce9bb747be
-
 	m_spotLight = SpotLight(m_position, sf::Vector2f(0.15f, 0.15f), sf::Color(255, 180, 130, 255));
-=======
 	m_rippleShader = std::unique_ptr<sf::Shader>(new sf::Shader());
 	m_rippleShader->loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
->>>>>>> sfshader test
 }
 
 /// <summary>
@@ -231,14 +227,3 @@ int Racer::getNumProjectiles()
 {
 	return numProjectiles;
 }
-//
-//Projectile* Racer::getProjectile()
-//{
-//	if (m_test.getAlive())
-//	{
-//		return &m_test;
-//	}
-//	else {
-//		return nullptr;
-//	}
-//}
