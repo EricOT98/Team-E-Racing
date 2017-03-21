@@ -368,18 +368,41 @@ cars:
     deceleration: 250
     turnrate: 150
     name: Liam
+    enemy: false
   - texture: objects
     acceleration: 150
     deceleration: 150
     turnrate: 150
     name: Darren
+    enemy: false
   - texture: objects
     acceleration: 10
     deceleration: 10
     turnrate: 10
     name: Eric
+    enemy: false
   - texture: objects
-    acceleration: 100
-    deceleration: 200
+    acceleration: 70
+    deceleration: 70
     turnrate: 10
-    name: Eric
+    name: Enemy
+    enemy: true
+  - texture: objects
+    acceleration: 150
+    deceleration: 150
+    turnrate: 10
+    name: Enemy
+    enemy: true
+  - texture: objects
+    acceleration: 250
+    deceleration: 250
+    turnrate: 10
+    name: Enemy
+    enemy: true
+cups:
+  - name: Amateur
+    texture: objects
+  - name: Intermediate
+    texture: objects
+  - name: Professional
+    texture: objects

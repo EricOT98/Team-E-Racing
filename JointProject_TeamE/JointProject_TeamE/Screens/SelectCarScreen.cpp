@@ -89,7 +89,7 @@ void SelectCarScreen::update(XboxController & controller)
 	}
 	else if (m_confirmButtonPressed)
 	{
-		transOut(GameState::GamePlay);
+		transOut(GameState::SelectCupScreen);
 	}
 	else if (m_backButtonPressed)
 	{

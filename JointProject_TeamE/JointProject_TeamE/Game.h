@@ -25,6 +25,7 @@
 #include "Screens\SplashScreen.h"
 #include "Screens\UpgradesScreen.h"
 #include "Screens\SelectCarScreen.h"
+#include "Screens\SelectCupScreen.h"
 
 #include "Screens\Screen.h"
 
@@ -80,6 +81,7 @@ protected:
 	TrophyScreen * m_trophyScreen;
 	UpgradesScreen * m_upgradesScreen;
 	SelectCarScreen * m_selectCarScreen;
+	SelectCupScreen * m_selectCupScreen;
 
 	bool m_reset;
 	bool m_transitionInGame;
