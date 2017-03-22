@@ -26,7 +26,7 @@ Racer::Racer()
 	for (int i = 0; i < numProjectiles; i++)
 	{
 		std::unique_ptr<Projectile> projectile(new Projectile());
-		projectile->init("Bullet");
+		projectile->init("Bullet", "smoke");
 		m_projectiles.push_back(std::move(projectile));
 	}
 	m_spotLight = SpotLight(m_position, sf::Vector2f(0.15f, 0.15f), sf::Color(255, 180, 130, 255));
@@ -146,21 +146,10 @@ void Racer::calMovement(float dt)
 	{
 		m_velocity = 0;
 	}
-
 	// Calculations forthe particle emission (skid marks)
 	if (m_velocity > 0 && m_currentAcceleration < 0)
 	{
-		float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation - 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-		float newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation - 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-		m_trackEmmiter.setEmissionRate(60);
-		m_trackEmmiter.setParticlePosition(sf::Vector2f(newX, newY));
-		m_trackEmmiter.setParticleRotation(m_currentRotation + 90);
-		newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation + 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-		newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation + 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
-		m_trackEmmiter2.setEmissionRate(60);
-		m_trackEmmiter2.setParticlePosition(sf::Vector2f(newX, newY));
-		m_trackEmmiter2.setParticleRotation(m_currentRotation + 90 );
-
+		positionTracks();
 		if (m_currentFriction == m_frictionLow)
 		{
 			m_trackEmmiter.setParticleColor(sf::Color::Black);
@@ -185,6 +174,24 @@ void Racer::calMovement(float dt)
 
 	// Check nodes for AI path following as well as lap tracking
 	checkNodes();
+}
+
+void Racer::positionTracks()
+{
+	sf::Vector2f size = sf::Vector2f(m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().height);
+	float radius = (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f));
+	float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation - 30)) * radius);
+	float newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation - 30)) * radius);
+	
+	m_trackEmmiter.setParticlePosition(sf::Vector2f(newX, newY));
+	m_trackEmmiter.setParticleRotation(m_currentRotation + 90);
+	newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation + 30)) * radius);
+	newY = m_position.y - (std::sin(thor::toRadian(m_currentRotation + 30)) * radius);
+	m_trackEmmiter2.setParticlePosition(sf::Vector2f(newX, newY));
+	m_trackEmmiter2.setParticleRotation(m_currentRotation + 90);
+
+	m_trackEmmiter.setEmissionRate(60);
+	m_trackEmmiter2.setEmissionRate(60);
 }
 
 

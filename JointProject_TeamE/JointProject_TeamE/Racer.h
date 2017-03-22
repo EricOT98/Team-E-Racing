@@ -94,7 +94,7 @@ protected:
 	unsigned int m_currentNode;
 	float m_radius;
 	bool m_lastWayPointHit;
-
+	void positionTracks();
 };
 
 #endif
