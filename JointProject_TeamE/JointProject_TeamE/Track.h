@@ -46,9 +46,6 @@ private:
 	unsigned int numberOfAICars = 5;
 
 	TrackType currentTrackType = TrackType::TrackThree;
-	bool collision;
-	sf::Clock m_countdownClock;
-	float m_timer; float m_time;
 };
 
 #endif

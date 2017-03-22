@@ -47,14 +47,14 @@ void Game::run()
 	//@ShaderTest
 	m_foreground.setTexture(m_tex);
 	m_foreground.setOrigin(m_foreground.getLocalBounds().width / 2.f, m_foreground.getLocalBounds().height / 2.f);
-	m_shaderEnabled = false;
+	m_shaderEnabled = true;
 
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
 	m_creditsScreen = new CreditsScreen();
 	m_confirmationScreen = new ConfirmationScreen(m_window);
 	m_difficultyScreen = new DifficultyScreen();
-	m_displayOptions = new DisplayOptions();
+	m_displayOptions = new DisplayOptions(m_shaderEnabled);
 	m_helpScreen = new HelpScreen();
 	m_options = new Options();
 	m_pauseScreen = new PauseScreen();
@@ -184,7 +184,9 @@ void Game::render()
 		renderGame();
 	}
 
-	applyShaderToScene(m_window, m_tex);
+	if (m_shaderEnabled) {
+		applyShaderToScene(m_window, m_tex);
+	}
 
 	m_window.display();
 }

@@ -47,7 +47,7 @@ void CreditsScreen::update(XboxController & controller)
 		}
 		if (m_creditsVideo.getStatus() == sfe::Status::Paused || m_creditsVideo.getStatus() == sfe::Status::Stopped)
 		{
-			transOut(GameState::MainMenu);
+			m_nextGameState = GameState::MainMenu;
 		}
 	}
 }
@@ -62,6 +62,7 @@ void CreditsScreen::render(sf::RenderWindow &window)
 
 void CreditsScreen::reset()
 {
+	m_creditsVideo.stop();
 	m_playing = true;
 	m_skip = false;
 	m_startVideo = false;

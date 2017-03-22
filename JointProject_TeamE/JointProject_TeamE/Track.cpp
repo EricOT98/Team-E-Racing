@@ -43,28 +43,18 @@ void Track::setTrack(LevelData &levelIn)
 		rect.setRotation(levelIn.m_checkpointData.at(i).m_rotation);
 		m_checkpointLines.push_back(rect);
 	}
-	m_timer = 5;
 }
 
 void Track::update(std::vector<Racer *> & racers)
 {
-	m_time += m_countdownClock.getElapsedTime().asSeconds();
-	if (m_time > m_timer)
-	{
-		collision = false;
-		m_time = 0;
-	}
 	for (auto & racer : racers)
 	{
 		for (auto & tile : m_trackTiles)
 		{
-			if (!collision)
-			{
 				if (checkRacerIntersection(*tile, racer->getPosition()))
 				{
 					tile->checkOnTrack(racer);
 				}
-			}
 		}
 
 		if (checkRacerObstacleCollision(racer->m_boundingBox))
@@ -96,7 +86,6 @@ void Track::update(std::vector<Racer *> & racers)
 							proj->despawn();
 							checkedRacer->resolveCollision();
 							checkedRacer->setFrictionHigh();
-							collision = true;
 						}
 					}
 				}
