@@ -1,7 +1,11 @@
 #include "TrophyScreen.h"
 
-TrophyScreen::TrophyScreen() : Screen(GameState::TrophyScreen)
+TrophyScreen::TrophyScreen() 
+	: Screen(GameState::TrophyScreen)
 {
+	m_trophiesTexture = g_resourceMgr.textureHolder["Trophies"];
+	m_trophiesSprite.setTexture(m_trophiesTexture);
+
 	m_transitionIn = true;
 
 	sf::Color focusColor = sf::Color::Red;
@@ -21,8 +25,6 @@ TrophyScreen::TrophyScreen() : Screen(GameState::TrophyScreen)
 
 	m_gui.add(m_titleLabel);
 	m_gui.add(m_backButton);
-
-	// Set the textures of the spriytes using the resource manager
 }
 
 TrophyScreen::~TrophyScreen() { }
@@ -48,9 +50,11 @@ void TrophyScreen::update(XboxController & controller)
 void TrophyScreen::render(sf::RenderWindow &window)
 {
 	window.draw(m_gui);
-	window.draw(m_trophySprite1);
-	window.draw(m_trophySprite2);
-	window.draw(m_trophySprite3);
+
+	m_position = sf::Vector2f(400.0f, 400.0f);
+	m_trophiesSprite.setPosition(m_position);
+	m_trophiesSprite.setTextureRect(sf::IntRect(0, 0, 145, 76));
+	window.draw(m_trophiesSprite);
 }
 
 void TrophyScreen::reset()

@@ -24,11 +24,12 @@ private:
 	Label *m_titleLabel;
 	Button *m_backButton;
 
-	bool m_backButtonSelected;
+	sf::Texture m_trophiesTexture;
+	sf::Sprite m_trophiesSprite;
+	sf::Vector2f m_position;
+	bool m_trophyUnlocked[3];
 
-	sf::Sprite m_trophySprite1;
-	sf::Sprite m_trophySprite2;
-	sf::Sprite m_trophySprite3;
+	bool m_backButtonSelected;
 };
 
 #endif
