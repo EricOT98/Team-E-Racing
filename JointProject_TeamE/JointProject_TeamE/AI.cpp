@@ -1,7 +1,7 @@
 #include "AI.h"
 
 AI::AI()
-	: m_currentNode(0), m_steering() 
+	: m_steering() 
 {
 	m_position = sf::Vector2f(0.0f, 0.0f);
 
@@ -39,10 +39,10 @@ void AI::update(float dt)
 														40.0f * sin(degreesToRad(angle))));
 }
 
-void AI::setWayPoints(std::vector<Waypoint> &wayPoints)
-{
-	m_wayPoints = &wayPoints;
-}
+//void AI::setWayPoints(std::vector<Waypoint> &wayPoints)
+//{
+//	m_wayPoints = &wayPoints;
+//}
 
 sf::Vector2f AI::pathFollowing()
 {
@@ -51,20 +51,8 @@ sf::Vector2f AI::pathFollowing()
 	if (m_wayPoints->size() != 0)
 	{
 		target = m_wayPoints->at(m_currentNode).m_position;
-
-		float radius = rand() % int(WAYPOINT_RADIUS) + 5;
-
-		if (distance(target, m_position) < radius)
-		{
-			m_currentNode++;
-
-			//m_speed = rand() % int(m_wayPoints->at(m_currentNode).m_speed);
-
-			if (m_currentNode >= m_wayPoints->size())
-			{
-				m_currentNode = 0;
-			}
-		}
+		m_radius = rand() % int(WAYPOINT_RADIUS) + 5;
+		checkNodes();
 	}
 
 	sf::Vector2f direction = m_wayPoints->at(m_currentNode).m_position - m_position;

@@ -49,6 +49,11 @@ public:
 	void setFrictionLow();
 	void fire();
 	int getNumProjectiles();
+	void setCheckPoint(bool checkPointState);
+	void setWayPoints(std::vector<Waypoint> &wayPoints);
+	void checkNodes(); 
+	int getLap();
+	void setRadius(float radiusIn);
 protected:
 	// Protected Functions
 	void turnLeft(float dt, float percentageTurn);
@@ -83,6 +88,14 @@ protected:
 	sf::Clock m_clock;
 	unsigned int m_index = 0;
 	int numProjectiles;
+
+	int m_lapsCompleted;
+
+	std::vector<Waypoint> *m_wayPoints;
+	unsigned int m_currentNode;
+	float m_radius;
+	bool m_lastWayPointHit;
+
 };
 
 #endif

@@ -77,6 +77,9 @@ void Racer::setCar(CarData carData)
 	m_acceleration = carData.m_acceleration;//250.f;
 	m_deceleration = carData.m_deceleration;// 250.f;
 	m_turnRate = carData.m_turnRate; // 150.f;
+	m_lapsCompleted = 0;
+	m_radius = 50.f;
+	m_lastWayPointHit = false;
 }
 
 /// <summary>
@@ -110,6 +113,7 @@ void Racer::resolveCollision()
 
 void Racer::calMovement(float dt)
 {
+	std::cout << m_lapsCompleted << std::endl;
 	//@Projectile
 	for (int i = 0; i < numProjectiles; i++)
 	{
@@ -164,6 +168,7 @@ void Racer::calMovement(float dt)
 
 	m_currentAcceleration = 0;
 	m_tireTracks.update(m_clock.restart());
+	checkNodes();
 }
 
 void Racer::turnLeft(float dt, float percentageTurn)
@@ -227,7 +232,46 @@ void Racer::fire()
 		}
 	}
 }
+
 int Racer::getNumProjectiles()
 {
 	return numProjectiles;
+}
+
+void Racer::setCheckPoint(bool checkPointState)
+{
+	if (m_lastWayPointHit)
+	{
+		m_lapsCompleted++;
+		m_lastWayPointHit = false;
+	}
+}
+
+void Racer::setWayPoints(std::vector<Waypoint> & wayPoints)
+{
+	m_wayPoints = &wayPoints;
+}
+
+void Racer::checkNodes()
+{
+	if (distance(m_wayPoints->at(m_currentNode).m_position, m_position) < m_radius)
+	{
+		m_currentNode++;
+
+		if (m_currentNode >= m_wayPoints->size())
+		{
+			m_currentNode = 0;
+			m_lastWayPointHit = true;
+		}
+	}
+}
+
+void Racer::setRadius(float radiusIn)
+{
+	m_radius = radiusIn;
+}
+
+int Racer::getLap()
+{
+	return m_lapsCompleted;
 }

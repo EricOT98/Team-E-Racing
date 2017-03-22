@@ -69,6 +69,7 @@ void Game::run()
 	m_track.setTrack(m_level);
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
+	m_player->setWayPoints(m_level.m_waypoints);
 	for (unsigned int i = 0; i <  m_track.getNumOfAICars(); i++)
 	{
 		AI *racer = new AI();
@@ -265,7 +266,7 @@ void Game::renderGame()
 	m_window.setView(m_window.getDefaultView());
 	m_raceCountdown->render(m_window);
 
-#if 0
+#if 1
 	// DEBUG(Darren): Debug drawing the AI nodes
 	for (Waypoint waypoint : m_level.m_waypoints)
 	{

@@ -35,13 +35,18 @@ void Track::setTrack(LevelData &levelIn)
 
 	for (int i = 0; i < levelIn.m_checkpointData.size(); i++)
 	{
-		sf::RectangleShape rect(sf::Vector2f(levelIn.m_checkpointData.at(i).m_textureRect.width, 
-													   levelIn.m_checkpointData.at(i).m_textureRect.height));
+		sf::RectangleShape rect(sf::Vector2f(levelIn.m_checkpointData.at(i).m_textureRect.width,
+			levelIn.m_checkpointData.at(i).m_textureRect.height));
 		rect.setPosition(sf::Vector2f(levelIn.m_checkpointData.at(i).m_textureRect.left,
 			levelIn.m_checkpointData.at(i).m_textureRect.top));
 		rect.setTexture(&g_resourceMgr.textureHolder[levelIn.m_checkpointData.at(i).m_texture]);
+		rect.setOrigin(rect.getGlobalBounds().width / 2.f, rect.getGlobalBounds().height / 2.f);
 		rect.setRotation(levelIn.m_checkpointData.at(i).m_rotation);
-		m_checkpointLines.push_back(rect);
+		CheckPointLine checkPoint;
+		checkPoint.m_rect = rect;
+		checkPoint.m_obb = OBB(rect.getPosition(), rect.getLocalBounds().width, rect.getLocalBounds().height, rect.getRotation());
+		checkPoint.m_startLine = levelIn.m_checkpointData.at(i).m_start;
+		m_checkPoints.push_back(checkPoint);
 	}
 }
 
@@ -49,6 +54,13 @@ void Track::update(std::vector<Racer *> & racers)
 {
 	for (auto & racer : racers)
 	{
+		for (auto & checkPoint : m_checkPoints)
+		{
+			if (checkRacerCheckPointIntersection(checkPoint.m_obb, racer->m_boundingBox))
+			{
+				racer->setCheckPoint(checkPoint.m_startLine);
+			}
+		}
 		for (auto & tile : m_trackTiles)
 		{
 				if (checkRacerIntersection(*tile, racer->getPosition()))
@@ -124,9 +136,10 @@ void Track::render(sf::RenderWindow & window)
 		}
 	}
 
-	for (auto & check : m_checkpointLines)
+	for (auto & check : m_checkPoints)
 	{
-		window.draw(check);
+		window.draw(check.m_rect);
+		check.m_obb.debugRender(window);
 	}
 
 	for (int i = 0; i < numberOfAICars + 1; i++)
@@ -195,6 +208,16 @@ bool Track::checkProjectileRacerCollision(OBB &projectileOBB, OBB &racerOBB)
 	if (projectileOBB.intersects(racerOBB))
 	{
 		std::cout << "Collision with car" << std::endl;
+		return true;
+	}
+	return false;
+}
+
+bool Track::checkRacerCheckPointIntersection(OBB &checkPointOBB, OBB &racerOBB)
+{
+	if (checkPointOBB.intersects(racerOBB))
+	{
+		std::cout << "Checkpoint has been hit!" << std::endl;
 		return true;
 	}
 	return false;

@@ -60,7 +60,7 @@ struct CupData
 
 struct CheckpointData
 {
-	std::string m_name;
+	bool m_start;
 	std::string m_texture;
 	sf::IntRect m_textureRect;
 	float m_rotation;

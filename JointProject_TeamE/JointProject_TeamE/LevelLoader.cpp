@@ -72,7 +72,7 @@ void operator >> (const YAML::Node &cupNode, CupData &cupData)
 
 void operator >> (const YAML::Node &checkpointNode, CheckpointData &checkpointData)
 {
-	checkpointData.m_name = checkpointNode["name"].as<std::string>();
+	checkpointData.m_start = checkpointNode["start"].as<bool>();
 	checkpointData.m_texture = checkpointNode["texture"].as<std::string>();
 	checkpointData.m_textureRect.left = checkpointNode["texturerect"]["left"].as<int>();
 	checkpointData.m_textureRect.top = checkpointNode["texturerect"]["top"].as<int>();
