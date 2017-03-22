@@ -17,6 +17,12 @@ enum class TrackType
 	TrackFour
 };
 
+struct CheckPointLine {
+	bool m_startLine;
+	sf::RectangleShape m_rect;
+	OBB m_obb;
+};
+
 class Track 
 {
 public:
@@ -35,13 +41,22 @@ private:
 	bool checkProjectileRacerCollision(OBB &projectileOBB, OBB &racerOBB);
 	bool checkWindowInterscetion(Tile & tile, sf::RenderWindow & window);
 	bool checkWindowObsIntersection(Obstacle & obstacle, sf::RenderWindow & window);
+	bool checkRacerCheckPointIntersection(OBB & checkPointOBB, OBB & racerOBB);
 	std::vector<Tile *> m_trackTiles;
 	std::vector<Obstacle *> m_obstacles;
 
 	sf::Sprite startPosSprite;
 	std::vector<sf::Vector2f> m_startPlayerPositions;
 	std::vector<sf::Vector2f> m_startAIPositions;
+
+
+	//-------------------------------------------------------------------------------------------------
 	std::vector<sf::RectangleShape> m_checkpointLines;
+	std::vector<CheckPointLine> m_checkPoints;
+	//-------------------------------------------------------------------------------------------------
+
+
+
 	sf::Vector2f playerStartPos;
 	unsigned int numberOfAICars = 5;
 
