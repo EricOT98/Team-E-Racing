@@ -58,7 +58,7 @@ void Track::update(std::vector<Racer *> & racers)
 		{
 			if (checkRacerCheckPointIntersection(checkPoint.m_obb, racer->m_boundingBox))
 			{
-				racer->setCheckPoint(checkPoint.m_startLine);
+				racer->setCheckPoint();
 			}
 		}
 		for (auto & tile : m_trackTiles)

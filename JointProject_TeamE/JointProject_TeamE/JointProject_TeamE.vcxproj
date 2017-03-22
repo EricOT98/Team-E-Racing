@@ -132,7 +132,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AI.cpp" />
-    <ClCompile Include="Car.cpp" />
     <ClCompile Include="RaceCountdown.cpp" />
     <ClCompile Include="Screens\CreditsScreen.cpp" />
     <ClCompile Include="gl3w.c" />
@@ -177,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
-    <ClInclude Include="Car.h" />
     <ClInclude Include="RaceCountdown.h" />
     <ClInclude Include="Screens\CreditsScreen.h" />
     <ClInclude Include="Screens\SelectCarScreen.h" />

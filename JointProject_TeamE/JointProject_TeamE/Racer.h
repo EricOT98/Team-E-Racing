@@ -23,10 +23,9 @@
 #include "SpotLight.h"
 #include "LevelLoader.h"
 
-//auto & shader = std::unique_ptr<sf::Shader>(new sf::Shader());
-//shader->loadFromFile("Resources/Shaders/crtShader.vert", "Resources/Shaders/crtShader.frag");
-//shaderHolder.acquire("CRT", thor::Resources::fromFile<std::unique_ptr<sf::Shader>>("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag"));
-
+/// <summary>
+/// Racer base class used to process behaviour of both the Player and the AI
+/// </summary>
 class Racer
 {
 public:
@@ -44,12 +43,11 @@ public:
 	SpotLight m_spotLight;
 	std::vector<std::unique_ptr<Projectile>> m_projectiles;
 	void resolveCollision();
-
 	void setFrictionHigh();
 	void setFrictionLow();
 	void fire();
 	int getNumProjectiles();
-	void setCheckPoint(bool checkPointState);
+	void setCheckPoint();
 	void setWayPoints(std::vector<Waypoint> &wayPoints);
 	void checkNodes(); 
 	int getLap();
@@ -67,7 +65,6 @@ protected:
 	float m_deceleration;
 	float m_acceleration;
 	float m_turnRate;
-
 	float m_frictionHigh;
 	float m_frictionLow;
 	float m_currentFriction;
@@ -77,9 +74,11 @@ protected:
 	float m_velocity;
 	float m_currentAcceleration;
 	sf::Vector2f m_position;
+	sf::Vector2f m_lastPosition;
 	sf::Vector2f m_direction;
-	
 	sf::Sprite m_sprite;
+
+	// THOR Particle Emitter attributes for skid marks
 	sf::Texture m_tireTexture;
 	thor::ParticleSystem m_tireTracks;
 	thor::UniversalEmitter m_trackEmmiter;
@@ -89,8 +88,8 @@ protected:
 	unsigned int m_index = 0;
 	int numProjectiles;
 
+	// Attributes for the tracking of the Racer's laps
 	int m_lapsCompleted;
-
 	std::vector<Waypoint> *m_wayPoints;
 	unsigned int m_currentNode;
 	float m_radius;

@@ -38,9 +38,7 @@ Racer::Racer()
 /// <summary>
 /// Default destructor for a racer object
 /// </summary>
-Racer::~Racer()
-{
-}
+Racer::~Racer() {}
 
 /// <summary>
 /// Render the racers car and name
@@ -71,12 +69,14 @@ void Racer::render(sf::RenderWindow & window)
 /// </summary>
 void Racer::setCar(CarData carData)
 { 
-	m_sprite.setTexture(g_resourceMgr.textureHolder[carData.m_texture], true);
-	m_sprite.setScale(sf::Vector2f(0.2f, 0.2f));
+	m_sprite.setTexture(g_resourceMgr.textureHolder[carData.m_texture], true); // Set and resize the racer's texture
+	m_sprite.setScale(sf::Vector2f(0.2f, 0.2f)); // Set the scale of the sprite
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getLocalBounds().width / 2.f, m_sprite.getLocalBounds().height / 2.f));
-	m_acceleration = carData.m_acceleration;//250.f;
-	m_deceleration = carData.m_deceleration;// 250.f;
-	m_turnRate = carData.m_turnRate; // 150.f;
+	// Set the acceleration, deceleration and turn rate for the racer
+	m_acceleration = carData.m_acceleration;
+	m_deceleration = carData.m_deceleration;
+	m_turnRate = carData.m_turnRate;
+	// Reset the lap tracking attributes
 	m_lapsCompleted = 0;
 	m_radius = 50.f;
 	m_lastWayPointHit = false;
@@ -91,6 +91,10 @@ void Racer::setPosition(sf::Vector2f positonIn)
 	m_position = positonIn;
 }
 
+/// <summary>
+/// Simple getter function returns the Racers position
+/// </summary>
+/// <returns>Racer's position</returns>
 sf::Vector2f Racer::getPosition()
 {
 	return m_position;
@@ -105,19 +109,27 @@ void Racer::setRotation(float rotationIn)
 	m_currentRotation = rotationIn;
 }
 
+/// <summary>
+/// Function determines what happens when a racer collides with an obstacle
+/// </summary>
 void Racer::resolveCollision()
 {
-	m_velocity *= -1;
-	m_velocity -= 0.1f;
+	m_velocity *= -1; // Invert the velocity
+	m_velocity -= 0.1f; // Subtract from the velocity
+	m_position = m_lastPosition; // Reset the position to a point where the racer was not in a collision situation
 }
 
+/// <summary>
+/// Function calculates the movement of the racer and everything the racer has (eg: projectile)
+/// </summary>
+/// <param name="dt">delta time since the last update in milliseconds</param>
 void Racer::calMovement(float dt)
 {
-	std::cout << m_lapsCompleted << std::endl;
-	//@Projectile
+	m_lastPosition = m_position; // Set the last position
+	std::cout << m_lapsCompleted << std::endl; // NOTE GET RID OF THIS <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <--
 	for (int i = 0; i < numProjectiles; i++)
 	{
-		m_projectiles.at(i)->update(dt);
+		m_projectiles.at(i)->update(dt); // Update all projectiles
 	}
 	m_sprite.setRotation(m_currentRotation);
 	m_velocity += m_currentAcceleration * dt;
@@ -134,6 +146,8 @@ void Racer::calMovement(float dt)
 	{
 		m_velocity = 0;
 	}
+
+	// Calculations forthe particle emission (skid marks)
 	if (m_velocity > 0 && m_currentAcceleration < 0)
 	{
 		float newX = m_position.x - (std::cos(thor::toRadian(m_currentRotation - 30)) * (((m_sprite.getGlobalBounds().width * 0.2f) / 2.0f) + (m_sprite.getGlobalBounds().height * 0.1f)));
@@ -166,111 +180,174 @@ void Racer::calMovement(float dt)
 	}
 
 
-	m_currentAcceleration = 0;
+	m_currentAcceleration = 0; // Reset the acceleration
 	m_tireTracks.update(m_clock.restart());
+
+	// Check nodes for AI path following as well as lap tracking
 	checkNodes();
 }
 
+
+/// <summary>
+/// Function simply rotates the Racer left based on the 
+/// percentage the analog stick has been moved and based 
+/// off of time
+/// </summary>
+/// <param name="dt">delta time since last update</param>
+/// <param name="percentageTurn">how much of a turn the player / AI wants (based off of the analog stick)</param>
 void Racer::turnLeft(float dt, float percentageTurn)
 {
-	if (m_velocity > 5.f || m_velocity < -5.f)
+	if (m_velocity > 5.f || m_velocity < -5.f) // Only turn while moving at a suitable speed
 	{
-		m_currentRotation -= m_turnRate * dt * (percentageTurn / 100);
+		m_currentRotation -= m_turnRate * dt * (percentageTurn / 100); // Subtract from the current rotation
 	}
 }
 
+/// <summary>
+/// Function simply rotates the Racer right based on the 
+/// percentage the analog stick has been moved and based 
+/// off of time
+/// </summary>
+/// <param name="dt">delta time since last update</param>
+/// <param name="percentageTurn">how much of a turn the player / AI wants (based off of the analog stick)</param>
 void Racer::turnRight(float dt, float percentageTurn)
 {
-	if (m_velocity > 5.f || m_velocity < -5.f)
+	if (m_velocity > 5.f || m_velocity < -5.f) // Only turn while moving at a suitable speed
 	{
-		m_currentRotation += m_turnRate * dt * (percentageTurn / 100);
+		m_currentRotation += m_turnRate * dt * (percentageTurn / 100); // Add to the current rotation
 	}
 }
 
+/// <summary>
+/// Function increases the racer's current acceleration based off of a percentage as well as delta time
+/// </summary>
+/// <param name="dt">delta time since last update</param>
+/// <param name="percentageThrottle">percentage of the acceleration desired</param>
 void Racer::accelerate(float dt, float percentageThrottle)
 {
-	m_currentAcceleration += m_acceleration * (percentageThrottle / 100);
+	m_currentAcceleration += m_acceleration * (percentageThrottle / 100); // 
 }
 
+/// <summary>
+/// Function decreases the racer's current acceleration based off of a percentage as well as delta time
+/// </summary>
+/// <param name="dt">delta time since last update</param>
+/// <param name="percentageBrake">percentage of the deceleration desired</param>
 void Racer::decelerate(float dt, float percentageBrake)
 {
 	m_currentAcceleration -= m_deceleration * (percentageBrake / 100);
 	
 }
 
+/// <summary>
+/// Getter function simply returns the racer's rotation
+/// </summary>
+/// <returns>current rotation of the racer</returns>
 float Racer::getRotation()
 {
 	return m_currentRotation;
 }
 
+/// <summary>
+/// Function sets the friction for the racer to be high
+/// </summary>
 void Racer::setFrictionHigh()
 {
 	m_currentFriction = m_frictionHigh;
 }
 
+/// <summary>
+/// Function sets the friction for the racer to be low
+/// </summary>
 void Racer::setFrictionLow()
 {
 	m_currentFriction = m_frictionLow;
 }
 
+/// <summary>
+/// Function allows the racer to fire a projectile
+/// </summary>
 void Racer::fire()
 {
 	for (int i = 0; i < numProjectiles; i++)
 	{
-		if (!m_projectiles.at(i)->getAlive())
+		if (!m_projectiles.at(i)->getAlive()) // We first check if we have a projectile that isn't currently alive
 		{
-			float totRadius = (m_sprite.getGlobalBounds().height / 2.0f) + (m_projectiles.at(i)->getSize().y / 2.0f);
-			float newX = m_position.x + (totRadius * std::cos(thor::toRadian(m_sprite.getRotation())));
-			float newY = m_position.y + (totRadius * std::sin(thor::toRadian(m_sprite.getRotation())));
-			float power = 300;
+			float totalRadius = (m_sprite.getGlobalBounds().height / 2.0f) + (m_projectiles.at(i)->getSize().y / 2.0f); // Check the radius of where the projectile can start from
+			// Set the X and Y based off of the racer's rotation
+			float newX = m_position.x + (totalRadius * std::cos(thor::toRadian(m_sprite.getRotation())));
+			float newY = m_position.y + (totalRadius * std::sin(thor::toRadian(m_sprite.getRotation())));
+			float power = 300; // Set up the power of the projectile
 			if (m_velocity > 0)
 			{
-				power += m_velocity;
+				power += m_velocity; // Alter the power based off of the velocity
 			}
-			m_projectiles.at(i)->spawnAt(sf::Vector2f(newX, newY), m_currentRotation, 10, power);
-			break;
+			m_projectiles.at(i)->spawnAt(sf::Vector2f(newX, newY), m_currentRotation, 10, power); // Set the spawn location of the projectile
+			break; // Break out of the loop
 		}
 	}
 }
 
+/// <summary>
+/// Function gets the total number of projectiles
+/// </summary>
+/// <returns>The number of projectiles</returns>
 int Racer::getNumProjectiles()
 {
 	return numProjectiles;
 }
 
-void Racer::setCheckPoint(bool checkPointState)
+/// <summary>
+/// Function used to tell whether the racer has properly completed a lap of the track or not
+/// </summary>
+void Racer::setCheckPoint()
 {
 	if (m_lastWayPointHit)
 	{
-		m_lapsCompleted++;
-		m_lastWayPointHit = false;
+		m_lapsCompleted++; // Increment the laps completed if the player
+		m_lastWayPointHit = false; // 
 	}
 }
 
+/// <summary>
+/// Function sets the pointer for the current waypoints of the racer
+/// </summary>
+/// <param name="wayPoints"></param>
 void Racer::setWayPoints(std::vector<Waypoint> & wayPoints)
 {
 	m_wayPoints = &wayPoints;
 }
 
+/// <summary>
+/// Function used to increment the current node number if the a node has been hit
+/// </summary>
 void Racer::checkNodes()
 {
 	if (distance(m_wayPoints->at(m_currentNode).m_position, m_position) < m_radius)
 	{
-		m_currentNode++;
+		m_currentNode++; // Increment the current node if we have hit that node
 
 		if (m_currentNode >= m_wayPoints->size())
 		{
-			m_currentNode = 0;
-			m_lastWayPointHit = true;
+			m_currentNode = 0; // Reset the current node if the current node is the last node
+			m_lastWayPointHit = true; // Set the last way point bool to be hit so a lap may be completed
 		}
 	}
 }
 
+/// <summary>
+/// Function used to set the radius used to determine if a node has been hit
+/// </summary>
+/// <param name="radiusIn">The desired radius for node collision</param>
 void Racer::setRadius(float radiusIn)
 {
 	m_radius = radiusIn;
 }
 
+/// <summary>
+/// Getter function for the current lap the racer is on
+/// </summary>
+/// <returns>The amount of laps the racer has completed</returns>
 int Racer::getLap()
 {
 	return m_lapsCompleted;
