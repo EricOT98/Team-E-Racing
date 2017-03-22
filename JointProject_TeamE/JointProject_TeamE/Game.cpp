@@ -63,6 +63,9 @@ void Game::run()
 	m_upgradesScreen = new UpgradesScreen(m_level.m_carData, m_window.getSize().x);
 	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, m_player, m_window.getSize().x);
 	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_window.getSize().x);
+
+	m_raceCountdown = new RaceCountdown();
+
 	m_track.setTrack(m_level);
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
@@ -153,15 +156,19 @@ void Game::update(double dt)
 	}
 	else
 	{
+		m_raceCountdown->update();
+
 		if (m_reset)
 		{
 			resetGame();
+			m_raceCountdown->reset();
 		}
 		if (m_xboxController.isButtonPressed(XBOX360_START))
 		{
 			m_screenManager.setActive(GameState::PauseScreen);
 			m_window.setView(m_window.getDefaultView());
 		}
+		
 		m_track.update(m_racers);
 		for (Racer *racer : m_racers)
 			racer->update(dt);
@@ -254,6 +261,9 @@ void Game::renderGame()
 
 	lightmap.setPosition(0, 0);
 	m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
+
+	m_window.setView(m_window.getDefaultView());
+	m_raceCountdown->render(m_window);
 
 #if 0
 	// DEBUG(Darren): Debug drawing the AI nodes

@@ -28,6 +28,9 @@
 #include "Screens\SelectCarScreen.h"
 #include "Screens\SelectCupScreen.h"
 
+// Countdown display
+#include "RaceCountdown.h"
+
 // For testing
 #include "Shader.h"
 
@@ -85,6 +88,8 @@ protected:
 	UpgradesScreen * m_upgradesScreen;
 	SelectCarScreen * m_selectCarScreen;
 	SelectCupScreen * m_selectCupScreen;
+
+	RaceCountdown *m_raceCountdown;
 
 	bool m_reset;
 	bool m_transitionInGame;

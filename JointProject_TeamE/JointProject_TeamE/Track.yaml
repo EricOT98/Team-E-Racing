@@ -270,6 +270,8 @@ textures:
     string: CarTexture_White
   - filepath: Resources/Trophies.png
     string: Trophies
+  - filepath: Resources/Countdown.png
+    string: Countdown
 waypoints:
   - type: ai_node
     position: {x: 750, y: 600}
