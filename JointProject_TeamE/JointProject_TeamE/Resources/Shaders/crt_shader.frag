@@ -57,8 +57,6 @@ vec4 crt(vec2 fragCoord)
 	col*=1.0-0.65*vec3(clamp((mod(fragCoord.x, 2.0)-1.0)*2.0,0.0,1.0));
 		
 	return vec4(col,1.0);
-
- return vec4(1.0, 0.0, 0.3, 1.0);
 }
 
 void main()
