@@ -1,5 +1,12 @@
 #include "UpgradesScreen.h"
 
+/// <summary>
+/// Default constructor for the upgrades screen that uses a vector of CarData and 
+/// screen width to set the display positions of the car sprites. The Car data is used to display 
+/// thecorresponding statistics for the car on the upgrades screen.
+/// </summary>
+/// <param name="carsIn">Vector of car data received from the track</param>
+/// <param name="screenWidth">The width of the current screen</param>
 UpgradesScreen::UpgradesScreen(std::vector<CarData> & carsIn, int screenWidth) : Screen(GameState::UpgradesScreen), m_backButtonPressed(false), m_cars(carsIn), m_currentCarIndex(0)
 {
 	m_transitionIn = true;
@@ -86,8 +93,16 @@ UpgradesScreen::UpgradesScreen(std::vector<CarData> & carsIn, int screenWidth) :
 	setSliders();
 }
 
+/// <summary>
+/// Default destructor for the upgrades screen
+/// </summary>
 UpgradesScreen::~UpgradesScreen() {}
 
+/// <summary>
+/// if the screen is transiitoning update the screens position 
+/// else process input for the gui objects in the screen
+/// </summary>
+/// <param name="controller"></param>
 void UpgradesScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -107,6 +122,9 @@ void UpgradesScreen::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void UpgradesScreen::reset()
 {
 	m_backButtonPressed = false;
@@ -114,16 +132,24 @@ void UpgradesScreen::reset()
 	m_interpolation = 0.f;
 }
 
+/// <summary>
+/// Draw the current screen
+/// </summary>
+/// <param name="window">Current game window</param>
 void UpgradesScreen::render(sf::RenderWindow& window)
 {
 	window.draw(m_gui);
 	window.draw(m_carSprite);
 }
 
+/// <summary>
+/// Callback function for back button pressed
+/// </summary>
 void UpgradesScreen::backCallback()
 {
 	m_backButtonPressed = true;
 }
+
 
 void UpgradesScreen::setSliders()
 {
@@ -133,6 +159,10 @@ void UpgradesScreen::setSliders()
 	setSprite();
 }
 
+/// <summary>
+/// callback function for whenever a radio button is selected to change 
+/// the corresponding slider values
+/// </summary>
 void UpgradesScreen::radButtonCallback()
 {
 	for (int i = 0; i < m_radButtons.size(); i++)
@@ -146,24 +176,39 @@ void UpgradesScreen::radButtonCallback()
 	}
 }
 
+/// <summary>
+/// Callback function to set the acceleration slider value based
+/// on the selection of radio buttons
+/// </summary>
 void UpgradesScreen::accelerationCallback()
 {
 	m_cars.at(m_currentCarIndex).m_acceleration += 25;
 	setSliders();
 }
 
+/// <summary>
+/// Callback function to set the braking slider value based
+/// on the selection of radio buttons
+/// </summary>
 void UpgradesScreen::brakingCallback()
 {
 	m_cars.at(m_currentCarIndex).m_deceleration += 25;
 	setSliders();
 }
 
+/// <summary>
+/// Callback function to set the cornering slider value based
+/// on the selection of radio buttons
+/// </summary>
 void UpgradesScreen::corneringCallback()
 {
 	m_cars.at(m_currentCarIndex).m_turnRate += 25;
 	setSliders();
 }
 
+/// <summary>
+/// Set the current car sprite to be drawn on the screen
+/// </summary>
 void UpgradesScreen::setSprite()
 {
 	m_carSprite.setTexture(g_resourceMgr.textureHolder[m_cars.at(m_currentCarIndex).m_texture], true);

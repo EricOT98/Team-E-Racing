@@ -1,5 +1,9 @@
 #include "ConfirmationScreen.h"
 
+/// <summary>
+/// Default constructor of the Confirmation screen
+/// </summary>
+/// <param name="windowIn">Reference to the games render window</param>
 ConfirmationScreen::ConfirmationScreen(sf::RenderWindow & windowIn) : Screen(GameState::QuitScreen), m_window(windowIn)
 {
 	m_transitionIn = true;
@@ -35,8 +39,16 @@ ConfirmationScreen::ConfirmationScreen(sf::RenderWindow & windowIn) : Screen(Gam
 	m_gui.update();
 }
 
+/// <summary>
+/// Default destructor of the confirmation screen
+/// </summary>
 ConfirmationScreen::~ConfirmationScreen() { }
 
+/// <summary>
+/// If the screen is transitioning update the transition poisition.
+/// else process input for the gui objects
+/// </summary>
+/// <param name="controller">The current Xbox360controller</param>
 void ConfirmationScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -56,6 +68,9 @@ void ConfirmationScreen::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void ConfirmationScreen::reset()
 {
 	m_transitionIn = true;
@@ -63,11 +78,17 @@ void ConfirmationScreen::reset()
 	m_noButtonSelected = false;
 }
 
+/// <summary>
+/// Call back function for quitting the game on yes selection
+/// </summary>
 void ConfirmationScreen::yesButtonCallback()
 {
 	m_window.close();
 }
 
+/// <summary>
+/// Call back function for no button selection
+/// </summary>
 void ConfirmationScreen::noButtonCallback()
 {
 	m_noButtonSelected = true;

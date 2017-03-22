@@ -1,5 +1,13 @@
 #include "DisplayOptions.h"
 
+/// <summary>
+/// The default constructor for the display options screen.
+/// This constructor in a reference to a boolean value that is applied to the function
+/// call back of the checkbox.
+/// This is to allow the display options to toggle the passed in boolean value via 
+/// a checkbox
+/// </summary>
+/// <param name="shaderIn">Reference to a boolean that controls whether the shader will be drawn</param>
 DisplayOptions::DisplayOptions(bool & shaderIn) : Screen(GameState::DisplayOptionsScreen),
 												  m_shader(shaderIn)
 {
@@ -36,6 +44,11 @@ DisplayOptions::DisplayOptions(bool & shaderIn) : Screen(GameState::DisplayOptio
 
 DisplayOptions::~DisplayOptions() { }
 
+/// <summary>
+/// Update the transition positions of the screen if it is not already in position/
+/// else process input for the gui objects
+/// </summary>
+/// <param name="controller">Current connected Xbox360 controller</param>
 void DisplayOptions::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -55,6 +68,9 @@ void DisplayOptions::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void DisplayOptions::reset()
 {
 	m_transitionIn = true;
@@ -62,11 +78,18 @@ void DisplayOptions::reset()
 	m_backButtonSelected = false;
 }
 
+/// <summary>
+/// Callback function for the selection of the back button to change
+/// the bool value in the menu.
+/// </summary>
 void DisplayOptions::backButtonCallback()
 {
 	m_backButtonSelected = true;
 }
 
+/// <summary>
+/// Callback function to set the reference shader to the current checkbox state
+/// </summary>
 void DisplayOptions::checkboxCallback()
 {
 	m_shader = m_checkbox->getState();

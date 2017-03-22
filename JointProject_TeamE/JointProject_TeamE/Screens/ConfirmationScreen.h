@@ -1,3 +1,8 @@
+/// <summary>
+/// @authoor: Liam Hickey
+/// @version: 1.0
+/// </summary>
+
 #ifndef CONFIRMATION_SCRREN_H
 #define CONFIRMATION_SCRREN_H
 

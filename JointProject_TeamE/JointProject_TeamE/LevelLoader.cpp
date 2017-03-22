@@ -1,6 +1,11 @@
 #include "LevelLoader.h"
 #include <iostream>
 
+/// <summary>
+/// Overloaded operator to allow loading of textures via yaml
+/// </summary>
+/// <param name="textureNode">Texture node in the YAML file</param>
+/// <param name="texture">Tetxure data to be stored in the vector</param>
 void operator >> (const YAML::Node &textureNode, TextureData &texture)
 {
 	texture.m_filename = textureNode["filepath"].as<std::string>();
@@ -27,6 +32,11 @@ void operator >> (const YAML::Node &obstacleNode, ObstacleData & obstacle)
 	obstacle.m_rotation = obstacleNode["rotation"].as<float>();
 }
 
+/// <summary>
+/// Overloaded operator to allow the loading of tile data via YAML
+/// </summary>
+/// <param name="tileNode">The current tile node in the YAML file</param>
+/// <param name="tile">Tile data to be stored in the vector</param>
 void operator >> (const YAML::Node &tileNode, TileData & tile)
 {
 	tile.m_textureString = tileNode["texturestring"].as<std::string>();
@@ -35,12 +45,22 @@ void operator >> (const YAML::Node &tileNode, TileData & tile)
 	tile.m_rotation = tileNode["rotation"].as<int>();
 }
 
+/// <summary>
+/// Overloaded operator to allow loading of the player data via YAML
+/// </summary>
+/// <param name="playerNode">The players node in the YAML file</param>
+/// <param name="player">Player data to be stored</param>
 void operator >> (YAML::Node &playerNode, PlayerData & player)
 {
 	player.position.x = playerNode["x"].as<float>();
 	player.position.y = playerNode["y"].as<float>();
 }
 
+/// <summary>
+/// Overloaded operator to allow the loading of Waypoint data via YAML
+/// </summary>
+/// <param name="waypointNode">The current Waypoint node in the YAML file</param>
+/// <param name="waypoint">Waypoint data to be stored in the vector</param>
 void operator >> (const YAML::Node &waypointNode, Waypoint &waypoint)
 {
 	waypoint.m_position.x = waypointNode["position"]["x"].as<float>();
@@ -48,12 +68,22 @@ void operator >> (const YAML::Node &waypointNode, Waypoint &waypoint)
 	waypoint.m_speed = waypointNode["speed"].as<float>();
 }
 
+/// <summary>
+/// Overoaded operator to allow the loading of startPosition data from the YAML file
+/// </summary>
+/// <param name="waypointNode">The current waypoint node in the YAML file</param>
+/// <param name="startPositionData">StartPosiion data to be stored in the level</param>
 void operator >> (const YAML::Node &waypointNode, StartPositionData &startPositionData)
 {
 	startPositionData.m_position.x = waypointNode["position"]["x"].as<float>();
 	startPositionData.m_position.y = waypointNode["position"]["y"].as<float>();
 }
 
+/// <summary>
+/// Overloade operator to allow the loading of CarData via YAML
+/// </summary>
+/// <param name="carNode">The current car node in the yaml file</param>
+/// <param name="carDataIn">Car data to be stored in the vector</param>
 void operator >> (const YAML::Node & carNode, CarData & carDataIn)
 {
 	carDataIn.m_acceleration = carNode["acceleration"].as<float>();
@@ -64,12 +94,22 @@ void operator >> (const YAML::Node & carNode, CarData & carDataIn)
 	carDataIn.m_enemy = carNode["enemy"].as<bool>();
 }
 
+/// <summary>
+/// Overloaded operator to allow the loading of CupData via YAML
+/// </summary>
+/// <param name="cupNode">Current CupNode in the yaml file</param>
+/// <param name="cupData">Cupdata to be stored in the vector</param>
 void operator >> (const YAML::Node &cupNode, CupData &cupData)
 {
 	cupData.m_name = cupNode["name"].as<std::string>();
 	cupData.m_texture = cupNode["texture"].as<std::string>();
 }
 
+/// <summary>
+/// Overloaded operator to allow the loading of CheckpointData via YAML
+/// </summary>
+/// <param name="checkpointNode">Current Checkpoint in the yaml file</param>
+/// <param name="checkpointData">Checkpoint to be stored in the vector</param>
 void operator >> (const YAML::Node &checkpointNode, CheckpointData &checkpointData)
 {
 	checkpointData.m_start = checkpointNode["start"].as<bool>();
@@ -81,6 +121,11 @@ void operator >> (const YAML::Node &checkpointNode, CheckpointData &checkpointDa
 	checkpointData.m_rotation = checkpointNode["rotation"].as<float>();
 }
 
+/// <summary>
+/// Overloaded operator to allow the loading of all level data via a base YAML node
+/// </summary>
+/// <param name="baseNode">The base nodes of the yaml file</param>
+/// <param name="levelIn">The level data to be stored</param>
 void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 {
 	baseNode["player"] >> levelIn.m_playerData;
@@ -151,6 +196,10 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 
 LevelLoader::LevelLoader() {}
 
+/// <summary>
+/// Load the level data from the yaml file.
+/// </summary>
+/// <param name="levelIn"></param>
 void LevelLoader::load(LevelData & levelIn)
 {
 	try
