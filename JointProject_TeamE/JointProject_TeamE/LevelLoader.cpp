@@ -16,7 +16,7 @@ void operator >> (const YAML::Node &textureNode, TextureData &texture)
 void operator >> (const YAML::Node &obstacleNode, ObstacleData & obstacle)
 {
 	obstacle.m_textureString = obstacleNode["texturestring"].as<std::string>();
-	obstacle.m_type = obstacleNode["type"].as<int>();
+	obstacle.m_type = obstacleNode["type"].as<std::string>();
 	obstacle.m_position.x = obstacleNode["position"]["x"].as<float>();
 	obstacle.m_position.y = obstacleNode["position"]["y"].as<float>();
 	obstacle.m_textureRect.left = obstacleNode["texturerect"]["left"].as<int>();

@@ -176,7 +176,8 @@ bool Track::checkRacerObstacleCollision(OBB &playerOBB)
 {
 	for (Obstacle *obstacle : m_obstacles)
 	{
-		if (playerOBB.intersects(obstacle->m_obstacleOBB))
+		if (playerOBB.intersects(obstacle->m_obstacleOBB)
+			&& obstacle->m_type == "Obstacle")
 		{
 			std::cout << "Collided with obstacle!" << std::endl;
 			return true;

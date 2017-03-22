@@ -10,18 +10,16 @@
 #include "ResourceManager.h"
 #include "OBB.h"
 
-enum class Type{BUSH,
-				ROCK,
-				BUMPER};
 class Obstacle
 {
 public:
-	Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f pos, int type, float rotation);
+	Obstacle(std::string texture, sf::IntRect textureRect, sf::Vector2f pos, std::string type, float rotation);
 	~Obstacle();
 
 	void render(sf::RenderWindow & window);
 	sf::Sprite getSprite();
 	OBB m_obstacleOBB;
+	std::string m_type;
 
 protected:
 	sf::Sprite m_sprite;
@@ -31,6 +29,5 @@ protected:
 	int m_rotation;
 	bool m_alive;
 	bool m_collided;
-	Type m_type;
 };
 #endif;

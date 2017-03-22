@@ -132,7 +132,8 @@ void Racer::setRotation(float rotationIn)
 
 void Racer::resolveCollision()
 {
-	
+	m_velocity *= -1;
+	m_velocity -= 0.1f;
 }
 
 void Racer::calMovement(float dt)
