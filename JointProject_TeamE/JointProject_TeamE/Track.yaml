@@ -252,8 +252,22 @@ textures:
     string: objects
   - filepath: Resources/StartTrackPos.png
     string: StartTrackPos
-  - filepath: Resources/Cars/CarGreen.png
-    string: CarTexture
+  - filepath: Resources/Cars/Blue_Car.png
+    string: CarTexture_Blue
+  - filepath: Resources/Cars/Green_Car.png
+    string: CarTexture_Green
+  - filepath: Resources/Cars/Orange_Car.png
+    string: CarTexture_Orange
+  - filepath: Resources/Cars/Pink_Car.png
+    string: CarTexture_Pink
+  - filepath: Resources/Cars/Red_Car.png
+    string: CarTexture_Red
+  - filepath: Resources/Cars/RedStrip_Car.png
+    string: CarTexture_RedStrip
+  - filepath: Resources/Cars/Yellow_Car.png
+    string: CarTexture_Yellow
+  - filepath: Resources/Cars/White_Car.png
+    string: CarTexture_White
   - filepath: Resources/Trophies.png
     string: Trophies
 waypoints:
@@ -363,37 +377,49 @@ waypoints:
     position: {x: 720, y: 800}
     speed: 5
 cars:
-  - texture: CarTexture
+  - texture: CarTexture_RedStrip
     acceleration: 250
     deceleration: 250
     turnrate: 150
     name: Liam
     enemy: false
-  - texture: objects
+  - texture: CarTexture_Orange
     acceleration: 150
     deceleration: 150
     turnrate: 150
     name: Darren
     enemy: false
-  - texture: objects
+  - texture: CarTexture_Blue
     acceleration: 10
     deceleration: 10
     turnrate: 10
     name: Eric
     enemy: false
-  - texture: objects
+  - texture: CarTexture_White
     acceleration: 70
     deceleration: 70
     turnrate: 10
     name: Enemy
     enemy: true
-  - texture: CarTexture
+  - texture: CarTexture_Green
     acceleration: 150
     deceleration: 150
     turnrate: 10
     name: Enemy
     enemy: true
-  - texture: CarTexture
+  - texture: CarTexture_Yellow
+    acceleration: 250
+    deceleration: 250
+    turnrate: 10
+    name: Enemy
+    enemy: true
+  - texture: CarTexture_Pink
+    acceleration: 250
+    deceleration: 250
+    turnrate: 10
+    name: Enemy
+    enemy: true
+  - texture: CarTexture_Red
     acceleration: 250
     deceleration: 250
     turnrate: 10

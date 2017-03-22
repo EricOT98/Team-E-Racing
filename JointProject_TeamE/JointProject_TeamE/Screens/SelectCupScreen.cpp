@@ -1,7 +1,7 @@
 #include "SelectCupScreen.h"
 
-SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, std::vector<Racer *> & racers, int screenWidth) 
-	: Screen(GameState::SelectCupScreen), m_cars(carsIn), m_cups(cupsIn), m_racers(racers)
+SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, int screenWidth) 
+	: Screen(GameState::SelectCupScreen), m_cars(carsIn), m_cups(cupsIn)
 {
 	m_transitionIn = true;
 
@@ -17,8 +17,8 @@ SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupD
 		18, 100.0f, 40.0f, sf::Vector2f(320.0f, 430.0f), endTranstionPos);
 	m_confirmButton = new Button(focusColor, nofocusColor, fillColor, "Confirm", nullptr, sf::Vector2f(-320.0f, 350.0f),
 		18, 100.0f, 40.0f, sf::Vector2f(520.0f, 430.0f), endTranstionPos);
-	int baseXPos = (screenWidth / (m_cars.size() + 1));
-	for (int i = 0; i < m_cars.size(); i++)
+	int baseXPos = (screenWidth / (m_cups.size() + 1));
+	for (int i = 0; i < m_cups.size(); i++)
 	{
 		int xPos = baseXPos * (i + 1) + 15;
 		RadioButton * rad = new RadioButton(focusColor, nofocusColor, fillColor, m_cups.at(i).m_name, nullptr,
@@ -27,11 +27,11 @@ SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupD
 		m_radButtons.push_back(rad);
 		m_gui.add(rad);
 	}
-	for (int i = 0; i < m_cars.size(); i++)
+	for (int i = 0; i < m_cups.size(); i++)
 	{
 		if (i > 0)
 			m_radButtons.at(i)->m_left = m_radButtons.at((i - 1) % m_cups.size());
-		if (i < m_cars.size() - 1)
+		if (i < m_cups.size() - 1)
 			m_radButtons.at(i)->m_right = m_radButtons.at((i + 1) % m_cups.size());
 		m_radButtons.at(i)->m_down = m_confirmButton;
 		m_radButtons.at(i)->m_up = m_confirmButton;
@@ -100,10 +100,6 @@ void SelectCupScreen::confirmButtonCallback()
 		}
 	}
 	m_confirmButtonPressed = true;
-	for (int i = 0; i < m_racers.size() - 1; i++)
-	{
-		m_racers.at(i)->setCar(m_cars.at(m_currentCarIndex));
-	}
 }
 
 void SelectCupScreen::backButtonCallback()

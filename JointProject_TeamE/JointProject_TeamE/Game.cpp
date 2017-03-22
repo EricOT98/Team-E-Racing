@@ -62,7 +62,7 @@ void Game::run()
 	m_trophyScreen = new TrophyScreen();
 	m_upgradesScreen = new UpgradesScreen(m_level.m_carData, m_window.getSize().x);
 	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, m_player, m_window.getSize().x);
-	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_racers, m_window.getSize().x);
+	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_window.getSize().x);
 	m_track.setTrack(m_level);
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
@@ -71,6 +71,7 @@ void Game::run()
 		AI *racer = new AI();
 		racer->setWayPoints(m_level.m_waypoints);
 		racer->setPosition(m_track.getAIStartPositions()->at(i) + sf::Vector2f(0.0f, 10.0f));
+		racer->setCar(m_level.m_enemyCarData.at(i));
 		m_racers.push_back(racer);
 	}
 	m_racers.push_back(m_player);

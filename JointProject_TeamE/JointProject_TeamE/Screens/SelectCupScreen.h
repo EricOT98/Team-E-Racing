@@ -8,7 +8,7 @@
 class SelectCupScreen : public Screen
 {
 public:
-	SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, std::vector<Racer *> & racers, int screenWidth);
+	SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, int screenWidth);
 	~SelectCupScreen();
 	void update(XboxController & controller) override;
 	void reset() override;
@@ -24,7 +24,7 @@ private:
 	Player * m_player;
 	std::vector<CarData> & m_cars;
 	std::vector<CupData> & m_cups;
-	std::vector<Racer *> & m_racers;
+	//std::vector<Racer *> & m_racers;
 
 	bool m_backButtonPressed;
 	bool m_confirmButtonPressed;
