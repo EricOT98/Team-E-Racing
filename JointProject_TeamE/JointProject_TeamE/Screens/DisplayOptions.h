@@ -15,7 +15,7 @@
 class DisplayOptions : public Screen
 {
 public:
-	DisplayOptions();
+	DisplayOptions(bool & shaderIn);
 	~DisplayOptions();
 
 	void update(XboxController & controller) override;
@@ -23,11 +23,13 @@ public:
 
 private:
 	void backButtonCallback();
-
+	void checkboxCallback();
 	Label *m_titleLabel;
 	Button *m_backButton;
+	CheckBox *m_checkbox;
 
 	bool m_backButtonSelected;
+	bool & m_shader;
 };
 
 #endif

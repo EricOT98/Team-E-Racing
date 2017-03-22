@@ -1,6 +1,7 @@
 #include "DisplayOptions.h"
 
-DisplayOptions::DisplayOptions() : Screen(GameState::DisplayOptionsScreen)
+DisplayOptions::DisplayOptions(bool & shaderIn) : Screen(GameState::DisplayOptionsScreen),
+												  m_shader(shaderIn)
 {
 	m_transitionIn = true;
 
@@ -15,13 +16,22 @@ DisplayOptions::DisplayOptions() : Screen(GameState::DisplayOptionsScreen)
 	m_titleLabel->setPosition(endTranstionPos);
 	m_backButton = new Button(focusColor, nofocusColor, fillColor, "Back", nullptr, 
 		sf::Vector2f(-500.0f, -400.0f), 18, 100.0f, 40.0f, sf::Vector2f(400.0f, 500.0f), endTranstionPos);
-
-	m_backButton->promoteFocus();
+	m_checkbox = new CheckBox(focusColor, nofocusColor, fillColor, "Toggle Shader", nullptr, sf::Vector2f(400.0f, -400.0f),
+		22, 80.0f, 80.0f, sf::Vector2f(400.0f, 300.0f), endTranstionPos);
+	m_checkbox->promoteFocus();
 
 	m_backButton->select = std::bind(&DisplayOptions::backButtonCallback, this);
+	m_checkbox->select = std::bind(&DisplayOptions::checkboxCallback, this);
+
+	m_backButton->m_up = m_checkbox;
+	m_backButton->m_down = m_checkbox;
+	m_checkbox->m_up = m_backButton;
+	m_checkbox->m_down = m_backButton;
+	m_checkbox->setState(m_shader);
 
 	m_gui.add(m_titleLabel);
 	m_gui.add(m_backButton);
+	m_gui.add(m_checkbox);
 }
 
 DisplayOptions::~DisplayOptions() { }
@@ -55,4 +65,9 @@ void DisplayOptions::reset()
 void DisplayOptions::backButtonCallback()
 {
 	m_backButtonSelected = true;
+}
+
+void DisplayOptions::checkboxCallback()
+{
+	m_shader = m_checkbox->getState();
 }
