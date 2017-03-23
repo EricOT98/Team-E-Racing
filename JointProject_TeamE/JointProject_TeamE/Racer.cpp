@@ -126,7 +126,7 @@ void Racer::resolveCollision()
 void Racer::calMovement(float dt)
 {
 	m_lastPosition = m_position; // Set the last position
-	std::cout << m_lapsCompleted << std::endl; // NOTE GET RID OF THIS <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <--
+	//std::cout << m_lapsCompleted << std::endl; // NOTE GET RID OF THIS <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <-- <--
 	for (int i = 0; i < numProjectiles; i++)
 	{
 		m_projectiles.at(i)->update(dt); // Update all projectiles

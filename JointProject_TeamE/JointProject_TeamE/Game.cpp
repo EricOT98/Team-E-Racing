@@ -74,6 +74,7 @@ void Game::run()
 	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_window.getSize().x);
 
 	m_raceCountdown = new RaceCountdown();
+	m_hud = new HudSystem();
 
 	m_track.setTrack(m_level);
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
@@ -167,7 +168,9 @@ void Game::update(double dt)
 	else
 	{
 		m_raceCountdown->update();
-
+		if (m_raceCountdown->getFinishedCountingDown() && !m_hud->getRecording())
+			m_hud->startRecordingTime();
+		m_hud->update(*m_player);
 		if (m_reset)
 		{
 			resetGame();
@@ -272,10 +275,9 @@ void Game::renderGame()
 
 	lightmap.setPosition(0, 0);
 	m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
-
 	m_window.setView(m_window.getDefaultView());
+	m_hud->render(m_window);
 	m_raceCountdown->render(m_window);
-
 #if 1
 	// DEBUG(Darren): Debug drawing the AI nodes
 	for (Waypoint waypoint : m_level.m_waypoints)
@@ -297,6 +299,7 @@ void Game::renderScreens()
 		m_window.setView(m_window.getDefaultView());
 	}
 	m_checkerShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
+	
 	//m_checkerShader.setParameter("mouse", m_background.getPosition());
 	m_window.draw(m_background, &m_checkerShader);
 	m_screenManager.render(m_window);

@@ -47,6 +47,7 @@
     <ClCompile Include="Screens\CreditsScreen.cpp" />
     <ClCompile Include="Screens\SelectCupScreen.cpp" />
     <ClCompile Include="RaceCountdown.cpp" />
+    <ClCompile Include="HudSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -119,9 +120,6 @@
     <ClCompile Include="Screens\MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Car.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -152,6 +150,7 @@
     <ClInclude Include="Screens\CreditsScreen.h" />
     <ClInclude Include="Screens\SelectCupScreen.h" />
     <ClInclude Include="RaceCountdown.h" />
+    <ClInclude Include="HudSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -197,9 +196,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Screens\MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Car.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">

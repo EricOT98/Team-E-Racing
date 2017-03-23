@@ -31,6 +31,9 @@
 // Countdown display
 #include "RaceCountdown.h"
 
+//Hud display
+#include "HudSystem.h"
+
 // For testing
 #include "Shader.h"
 
@@ -91,6 +94,8 @@ protected:
 	SelectCupScreen * m_selectCupScreen;
 
 	RaceCountdown *m_raceCountdown;
+
+	HudSystem * m_hud;
 
 	bool m_reset;
 	bool m_transitionInGame;
