@@ -14,6 +14,7 @@ AI::~AI() { }
 
 void AI::update(float dt)
 {
+	m_lastPosition = m_position;
 	sf::Vector2f vectorToNode = pathFollowing();
 
 	m_steering = sf::Vector2f(); 

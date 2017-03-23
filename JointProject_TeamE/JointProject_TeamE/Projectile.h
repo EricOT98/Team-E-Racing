@@ -26,7 +26,7 @@ public:
 
 	OBB m_boundingBox;
 
-	void init(std::string texture);
+	void init(std::string texture, std::string particles);
 	void update(float dt);
 	void render(sf::RenderWindow & window);
 	bool checkCollision(sf::Sprite & sprite);
@@ -49,13 +49,7 @@ protected:
 	thor::ParticleSystem m_smokeTrail;
 	thor::UniversalEmitter m_trailEmmiter;
 
-	/*thor::FrameAnimation m_explosion;
-	sf::Texture m_explosionTexture;
-	sf::Sprite m_explosionSprite;
-	thor::Animator<sf::Sprite, std::string> m_explosionAnimator;*/
 	sf::Clock m_clock;
-	//sf::Vector2f m_explosionPos;
-	//float m_animationProgress = 0.0f;
 	//Culling data
 	bool m_alive;
 	bool m_onScreen;
@@ -75,6 +69,5 @@ protected:
 	float m_radiusSqr;
 	float m_gravity;
 	float m_elevation;
-	sf::Shader m_lightShader;
 };
 #endif

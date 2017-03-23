@@ -43,7 +43,16 @@ void Game::run()
 	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
 	m_crtShader.setParameter("screenTexture", m_tex);
 	m_crtShader.setParameter("resolution", 800, 600);
-	
+	m_checkerShader.loadFromFile("Resources/Shaders/checker_shader.frag", sf::Shader::Fragment);
+	m_checkerShader.setParameter("resolution", 800, 600);
+
+	if (!m_backgroundTex.loadFromFile("Resources/Background.jpg"))
+	{
+		std::cout << "Error" << std::endl;
+	}
+	m_background.setTexture(m_backgroundTex);
+	m_background.scale(sf::Vector2f(static_cast<float>(m_window.getSize().x) / m_backgroundTex.getSize().x, static_cast<float>(m_window.getSize().y) / m_backgroundTex.getSize().y));
+	m_background.setPosition(sf::Vector2f(0, 0));
 	//@ShaderTest
 	m_foreground.setTexture(m_tex);
 	m_foreground.setOrigin(m_foreground.getLocalBounds().width / 2.f, m_foreground.getLocalBounds().height / 2.f);
@@ -65,6 +74,7 @@ void Game::run()
 	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_window.getSize().x);
 
 	m_raceCountdown = new RaceCountdown();
+	m_hud = new HudSystem();
 
 	m_track.setTrack(m_level);
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
@@ -158,7 +168,9 @@ void Game::update(double dt)
 	else
 	{
 		m_raceCountdown->update();
-
+		if (m_raceCountdown->getFinishedCountingDown() && !m_hud->getRecording())
+			m_hud->startRecordingTime();
+		m_hud->update(*m_player);
 		if (m_reset)
 		{
 			resetGame();
@@ -244,6 +256,7 @@ void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 	//Set whatever parameters need to be updated here
 	m_crtShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
 
+
 	//Render the current shader
 	sf::RenderStates states;
 	states.shader = &m_crtShader;
@@ -273,10 +286,9 @@ void Game::renderGame()
 
 	lightmap.setPosition(0, 0);
 	m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
-
 	m_window.setView(m_window.getDefaultView());
+	m_hud->render(m_window);
 	m_raceCountdown->render(m_window);
-
 #if 1
 	// DEBUG(Darren): Debug drawing the AI nodes
 	for (Waypoint waypoint : m_level.m_waypoints)
@@ -297,5 +309,9 @@ void Game::renderScreens()
 		renderGame();
 		m_window.setView(m_window.getDefaultView());
 	}
+	m_checkerShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
+	
+	//m_checkerShader.setParameter("mouse", m_background.getPosition());
+	m_window.draw(m_background, &m_checkerShader);
 	m_screenManager.render(m_window);
 }

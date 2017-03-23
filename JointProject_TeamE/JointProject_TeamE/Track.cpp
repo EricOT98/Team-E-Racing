@@ -58,7 +58,7 @@ void Track::update(std::vector<Racer *> & racers)
 		{
 			if (checkRacerCheckPointIntersection(checkPoint.m_obb, racer->m_boundingBox))
 			{
-				racer->setCheckPoint(checkPoint.m_startLine);
+				racer->setCheckPoint();
 			}
 		}
 		for (auto & tile : m_trackTiles)
@@ -181,7 +181,7 @@ bool Track::checkRacerObstacleCollision(OBB &playerOBB)
 		if (playerOBB.intersects(obstacle->m_obstacleOBB)
 			&& obstacle->m_type == "Obstacle")
 		{
-			std::cout << "Collided with obstacle!" << std::endl;
+			//std::cout << "Collided with obstacle!" << std::endl;
 			return true;
 		}
 	}
@@ -195,7 +195,7 @@ bool Track::checkProjectileObstacleCollision(OBB & projectileOBB)
 	{
 		if (projectileOBB.intersects(obstacle->m_obstacleOBB))
 		{
-			std::cout << "Collision with Obstacle(Projectile)" << std::endl;
+			//std::cout << "Collision with Obstacle(Projectile)" << std::endl;
 			return true;
 		}
 	}
