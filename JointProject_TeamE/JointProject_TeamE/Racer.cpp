@@ -130,9 +130,9 @@ void Racer::setRotation(float rotationIn)
 /// </summary>
 void Racer::resolveCollision()
 {
-	m_velocity *= -1; // Invert the velocity
-	m_velocity -= 0.1f; // Subtract from the velocity
-	m_position = m_lastPosition; // Reset the position to a point where the racer was not in a collision situation
+	//m_velocity *= -1; // Invert the velocity
+	//m_velocity -= 0.1f; // Subtract from the velocity
+	//m_position = m_lastPosition; // Reset the position to a point where the racer was not in a collision situation
 }
 
 /// <summary>
