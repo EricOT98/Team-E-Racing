@@ -75,6 +75,7 @@ protected:
 
 	// Changeable Attributes
 	float m_currentRotation;
+	float m_lastRotation;
 	float m_velocity;
 	float m_currentAcceleration;
 	sf::Vector2f m_position;
@@ -104,6 +105,7 @@ protected:
 
 	sf::Vector2f m_currentAccelerationVec;
 	sf::Vector2f m_currentVelocityVec;
+	sf::Vector2f m_racerCollisionVec;
 
 	// </Test>
 	

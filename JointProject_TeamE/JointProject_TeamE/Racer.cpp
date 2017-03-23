@@ -136,29 +136,41 @@ void Racer::resolveCollision()
 	m_velocity *= -1; // Invert the velocity
 	m_velocity -= 0.1f; // Subtract from the velocity
 	m_position = m_lastPosition; // Reset the position to a point where the racer was not in a collision situation
+	m_currentRotation = m_lastRotation;
 }
 
 /// <summary>
 /// Function calculates the movement of the racer and everything the racer has (eg: projectile)
 /// </summary>
-/// <param name="dt">delta time since the last update in milliseconds</param>
+/// <param name="dt">delta time since the last update in seconds</param>
 void Racer::calMovement(float dt)
 {
 	m_lastPosition = m_position; // Set the last position
+	m_lastRotation = m_currentRotation;
 	for (int i = 0; i < numProjectiles; i++)
 	{
 		m_projectiles.at(i)->update(dt); // Update all projectiles
 	}
 	m_sprite.setRotation(m_currentRotation);
 	m_velocity += m_currentAcceleration * dt;
-	m_direction = sf::Vector2f(std::cos(degreesToRad(m_currentRotation)), std::sin(degreesToRad(m_currentRotation)));
-	unitVector(m_direction);
+	if (m_velocity >= 0)
+	{
+		m_currentVelocityVec = sf::Vector2f(std::cos(degreesToRad(m_currentRotation)), std::sin(degreesToRad(m_currentRotation))) * length(m_currentVelocityVec);
+	}
+	else
+	{
+		m_currentVelocityVec = sf::Vector2f(std::cos(degreesToRad(m_currentRotation)), std::sin(degreesToRad(m_currentRotation))) * -length(m_currentVelocityVec);
+	}
+	m_currentVelocityVec += m_racerCollisionVec;
+	m_currentVelocityVec += m_currentAccelerationVec * dt;
 	float addOnTotal = m_velocity * dt + 0.5f * m_currentAcceleration * dt * dt; // formula: s = (ut) + (0.5 * at²)
 	float xPosAddOn = addOnTotal * std::cos(degreesToRad(m_currentRotation));
 	float yPosAddOn = addOnTotal * std::sin(degreesToRad(m_currentRotation));
-	m_position.x += xPosAddOn;
-	m_position.y += yPosAddOn;
+	sf::Vector2f addOnVec = m_currentVelocityVec * dt + 0.5f * m_currentAccelerationVec * dt * dt; // formula: s = (ut) + (0.5 * at²)
+	m_position.x += addOnVec.x;
+	m_position.y += addOnVec.y;
 	m_velocity *= m_currentFriction;
+	m_currentVelocityVec *= m_currentFriction;
 	m_sprite.setPosition(m_position);
 	if ((m_velocity < 10.f && m_velocity > -10.f) && m_currentAcceleration == 0)
 	{
@@ -186,8 +198,16 @@ void Racer::calMovement(float dt)
 		m_trackEmmiter2.setEmissionRate(0);
 	}
 
-
+	m_currentVelocityVec -= m_racerCollisionVec;
 	m_currentAcceleration = 0; // Reset the acceleration
+	m_currentAccelerationVec.x = 0;
+	m_currentAccelerationVec.y = 0;
+	m_racerCollisionVec *= 0.9f;
+	if (length(m_currentVelocityVec) <= 5)
+	{
+		m_currentVelocityVec.x = 0;
+		m_currentVelocityVec.y = 0;
+	}
 	m_tireTracks.update(m_clock.restart());
 
 	// Check nodes for AI path following as well as lap tracking
@@ -259,6 +279,7 @@ void Racer::turnRight(float dt, float percentageTurn)
 void Racer::accelerate(float dt, float percentageThrottle)
 {
 	m_currentAcceleration += m_acceleration * (percentageThrottle / 100);
+	m_currentAccelerationVec += m_acceleration * sf::Vector2f(std::cos(degreesToRad(m_currentRotation)), std::sin(degreesToRad(m_currentRotation))) * (percentageThrottle / 100);
 }
 
 /// <summary>
@@ -269,6 +290,7 @@ void Racer::accelerate(float dt, float percentageThrottle)
 void Racer::decelerate(float dt, float percentageBrake)
 {
 	m_currentAcceleration -= m_deceleration * (percentageBrake / 100);
+	m_currentAccelerationVec -= m_deceleration * sf::Vector2f(std::cos(degreesToRad(m_currentRotation)), std::sin(degreesToRad(m_currentRotation))) * (percentageBrake / 100);
 	
 }
 
@@ -398,5 +420,7 @@ void Racer::setAlive(bool alive)
 
 void Racer::resolveRacerCollision(sf::Vector2f positionIn)
 {
-	// Code here ...
+	m_racerCollisionVec = 4.f * (m_position - positionIn);
+	float angle = atan2(m_racerCollisionVec.y, m_racerCollisionVec.x) / PI * 180;
+	m_currentVelocityVec = sf::Vector2f(std::cos(degreesToRad(angle)), std::sin(degreesToRad(angle))) * length(m_currentVelocityVec);
 }

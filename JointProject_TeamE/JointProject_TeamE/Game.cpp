@@ -187,9 +187,9 @@ void Game::update(double dt)
 		
 		if (m_raceCountdown->getFinishedCountingDown())
 		{
-			m_track.update(m_racers);
 			for (Racer *racer : m_racers)
 				racer->update(dt);
+			m_track.update(m_racers);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 		{

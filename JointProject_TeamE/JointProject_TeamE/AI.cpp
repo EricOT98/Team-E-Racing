@@ -26,7 +26,7 @@ void AI::update(float dt)
 {
 	if (m_alive)
 	{
-		float acceleration = m_wayPoints->at(m_currentNode).m_speed; // Check what the waypoints speed is
+		float acceleration = m_wayPoints->at(m_currentNode).m_speed * 16; // Check what the waypoints speed is
 		if (acceleration > 0) // Decide the AI's acceleration based off of this value
 		{
 			accelerate(dt, acceleration);
