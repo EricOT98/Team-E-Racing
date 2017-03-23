@@ -56,9 +56,19 @@ void Track::update(std::vector<Racer *> & racers)
 {
 	for (auto & racer : racers)
 	{
+		for (auto & racer2 : racers)
+		{
+			if (racer != racer2)
+			{
+				if (checkOBBIntersection(racer->m_boundingBox, racer2->m_boundingBox))
+				{
+					racer->resolveRacerCollision(racer2->getPosition());
+				}
+			}
+		}
 		for (auto & checkPoint : m_checkPoints)
 		{
-			if (checkRacerCheckPointIntersection(checkPoint.m_obb, racer->m_boundingBox))
+			if (checkOBBIntersection(checkPoint.m_obb, racer->m_boundingBox))
 			{
 				racer->setCheckPoint();
 			}
@@ -95,10 +105,10 @@ void Track::update(std::vector<Racer *> & racers)
 				{
 					if (racer != checkedRacer)
 					{
-						if (checkProjectileRacerCollision(proj->m_boundingBox, checkedRacer->m_boundingBox))
+						if (checkOBBIntersection(proj->m_boundingBox, checkedRacer->m_boundingBox))
 						{
 							proj->despawn();
-							checkedRacer->resolveCollision();
+							checkedRacer->projectileCollision();
 							checkedRacer->setFrictionHigh();
 						}
 					}
@@ -204,22 +214,10 @@ bool Track::checkProjectileObstacleCollision(OBB & projectileOBB)
 	return false;
 }
 
-bool Track::checkProjectileRacerCollision(OBB &projectileOBB, OBB &racerOBB)
+bool Track::checkOBBIntersection(OBB & obb1, OBB & obb2)
 {
-
-	if (projectileOBB.intersects(racerOBB))
+	if (obb1.intersects(obb2))
 	{
-		std::cout << "Collision with car" << std::endl;
-		return true;
-	}
-	return false;
-}
-
-bool Track::checkRacerCheckPointIntersection(OBB &checkPointOBB, OBB &racerOBB)
-{
-	if (checkPointOBB.intersects(racerOBB))
-	{
-		std::cout << "Checkpoint has been hit!" << std::endl;
 		return true;
 	}
 	return false;

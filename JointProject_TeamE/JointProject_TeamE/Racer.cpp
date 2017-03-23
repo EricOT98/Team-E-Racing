@@ -222,6 +222,10 @@ void Racer::turnLeft(float dt, float percentageTurn)
 	if (m_velocity > 5.f || m_velocity < -5.f) // Only turn while moving at a suitable speed
 	{
 		m_currentRotation -= m_turnRate * dt * (percentageTurn / 100); // Subtract from the current rotation
+		if (m_currentRotation < -360)
+		{
+			m_currentRotation += 360;
+		}
 	}
 }
 
@@ -237,6 +241,10 @@ void Racer::turnRight(float dt, float percentageTurn)
 	if (m_velocity > 5.f || m_velocity < -5.f) // Only turn while moving at a suitable speed
 	{
 		m_currentRotation += m_turnRate * dt * (percentageTurn / 100); // Add to the current rotation
+		if (m_currentRotation > 360)
+		{
+			m_currentRotation -= 360;
+		}
 	}
 }
 
@@ -247,7 +255,7 @@ void Racer::turnRight(float dt, float percentageTurn)
 /// <param name="percentageThrottle">percentage of the acceleration desired</param>
 void Racer::accelerate(float dt, float percentageThrottle)
 {
-	m_currentAcceleration += m_acceleration * (percentageThrottle / 100); // 
+	m_currentAcceleration += m_acceleration * (percentageThrottle / 100);
 }
 
 /// <summary>
@@ -373,4 +381,14 @@ void Racer::setRadius(float radiusIn)
 int Racer::getLap()
 {
 	return m_lapsCompleted;
+}
+
+void Racer::projectileCollision()
+{
+	m_velocity *= 0.4f;
+}
+
+void Racer::resolveRacerCollision(sf::Vector2f positionIn)
+{
+	// Code here ...
 }
