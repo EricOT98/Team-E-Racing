@@ -6,7 +6,6 @@
 /// Date Started: 09/03/17
 /// Time Taken: 20 minutes
 /// Known Errors:No known Errors
-/// TODO: Implement car class to allow
 /// </summary>
 
 #ifndef RACER_H
@@ -31,7 +30,6 @@ class Racer
 public:
 	Racer();
 	~Racer();
-	
 	virtual void update(float dt) = 0;
 	void render(sf::RenderWindow & window);
 	void setCar(CarData carData);
@@ -39,10 +37,8 @@ public:
 	void setRotation(float rotationIn);
 	sf::Vector2f getPosition();
 	float getRotation();
-	OBB m_boundingBox;
-	SpotLight m_spotLight;
-	std::vector<std::unique_ptr<Projectile>> m_projectiles;
 	void resolveCollision();
+	void resolveRacerCollision(sf::Vector2f positionIn);
 	void setFrictionHigh();
 	void setFrictionLow();
 	void fire();
@@ -52,6 +48,12 @@ public:
 	void checkNodes(); 
 	int getLap();
 	void setRadius(float radiusIn);
+	void projectileCollision();
+
+	// Public members
+	OBB m_boundingBox;
+	SpotLight m_spotLight;
+	std::vector<std::unique_ptr<Projectile>> m_projectiles;
 protected:
 	// Protected Functions
 	void turnLeft(float dt, float percentageTurn);
@@ -59,6 +61,7 @@ protected:
 	void accelerate(float dt, float percentageThrottle);
 	void decelerate(float dt, float percentageBrake);
 	void calMovement(float dt);
+	void positionTracks();
 
 	// Caar Attributes Copied Over
 	float m_speed;
@@ -94,7 +97,14 @@ protected:
 	unsigned int m_currentNode;
 	float m_radius;
 	bool m_lastWayPointHit;
-	void positionTracks();
+
+	// <Test>
+
+	sf::Vector2f m_currentAccelerationVec;
+	sf::Vector2f m_currentVelocityVec;
+
+	// </Test>
+	
 };
 
 #endif

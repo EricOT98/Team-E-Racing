@@ -22,9 +22,6 @@ protected:
 	const float MAX_SPEED = 5.0f;
 	float m_speed;
 
-	sf::Vector2f m_velocity;
-
-	sf::Vector2f pathFollowing();
 };
 
 #endif
