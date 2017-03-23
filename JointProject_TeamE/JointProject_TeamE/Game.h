@@ -110,6 +110,7 @@ protected:
 	sf::Sprite m_background;
 	sf::Sprite m_foreground;
 	bool m_shaderEnabled;
+	int m_credits;
 };
 
 #endif

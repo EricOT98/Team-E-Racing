@@ -182,7 +182,12 @@ void UpgradesScreen::radButtonCallback()
 /// </summary>
 void UpgradesScreen::accelerationCallback()
 {
-	m_cars.at(m_currentCarIndex).m_acceleration += 25;
+	if (m_cars.at(m_currentCarIndex).m_acceleration < 275){
+		m_cars.at(m_currentCarIndex).m_acceleration += 25;
+	}
+	else {
+		m_cars.at(m_currentCarIndex).m_acceleration = 300;
+	}
 	setSliders();
 }
 
@@ -192,7 +197,12 @@ void UpgradesScreen::accelerationCallback()
 /// </summary>
 void UpgradesScreen::brakingCallback()
 {
-	m_cars.at(m_currentCarIndex).m_deceleration += 25;
+	if (m_cars.at(m_currentCarIndex).m_deceleration < 275) {
+		m_cars.at(m_currentCarIndex).m_deceleration += 25;
+	}
+	else {
+		m_cars.at(m_currentCarIndex).m_deceleration = 300;
+	}
 	setSliders();
 }
 
@@ -202,7 +212,12 @@ void UpgradesScreen::brakingCallback()
 /// </summary>
 void UpgradesScreen::corneringCallback()
 {
-	m_cars.at(m_currentCarIndex).m_turnRate += 25;
+	if (m_cars.at(m_currentCarIndex).m_turnRate < 275) {
+		m_cars.at(m_currentCarIndex).m_turnRate += 25;
+	}
+	else {
+		m_cars.at(m_currentCarIndex).m_turnRate = 300;
+	}
 	setSliders();
 }
 

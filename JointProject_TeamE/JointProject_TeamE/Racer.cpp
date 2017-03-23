@@ -6,7 +6,7 @@
 Racer::Racer()
 	: m_currentRotation(-90.0f)
 {
-	m_tireTexture.loadFromFile("Resources/Test.png");
+	m_tireTexture = g_resourceMgr.textureHolder["tireTracks"];
 	m_tireTracks.setTexture(m_tireTexture);
 	m_index = m_tireTracks.addTextureRect(sf::IntRect(12, 0, 15, 5));
 	m_trackEmmiter.setParticleTextureIndex(m_index);
