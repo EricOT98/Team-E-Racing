@@ -71,6 +71,7 @@ protected:
 
 	// For testing
 	sf::Shader m_crtShader;
+	sf::Shader m_checkerShader;
 	 
 	// Game Screens
 	SplashScreen * m_splashScreen;
@@ -100,6 +101,8 @@ protected:
 	sf::RenderTexture m_gameScreenTexture;
 	sf::Clock m_clock;
 	sf::Texture m_tex;
+	sf::Texture m_backgroundTex;
+	sf::Sprite m_background;
 	sf::Sprite m_foreground;
 	bool m_shaderEnabled;
 };

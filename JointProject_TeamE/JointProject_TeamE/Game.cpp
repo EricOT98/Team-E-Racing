@@ -43,7 +43,16 @@ void Game::run()
 	m_crtShader.loadFromFile("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag");
 	m_crtShader.setParameter("screenTexture", m_tex);
 	m_crtShader.setParameter("resolution", 800, 600);
-	
+	m_checkerShader.loadFromFile("Resources/Shaders/checker_shader.frag", sf::Shader::Fragment);
+	m_checkerShader.setParameter("resolution", 800, 600);
+
+	if (!m_backgroundTex.loadFromFile("Resources/Background.jpg"))
+	{
+		std::cout << "Error" << std::endl;
+	}
+	m_background.setTexture(m_backgroundTex);
+	m_background.scale(sf::Vector2f(static_cast<float>(m_window.getSize().x) / m_backgroundTex.getSize().x, static_cast<float>(m_window.getSize().y) / m_backgroundTex.getSize().y));
+	m_background.setPosition(sf::Vector2f(0, 0));
 	//@ShaderTest
 	m_foreground.setTexture(m_tex);
 	m_foreground.setOrigin(m_foreground.getLocalBounds().width / 2.f, m_foreground.getLocalBounds().height / 2.f);
@@ -233,6 +242,7 @@ void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 	//Set whatever parameters need to be updated here
 	m_crtShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
 
+
 	//Render the current shader
 	sf::RenderStates states;
 	states.shader = &m_crtShader;
@@ -286,5 +296,8 @@ void Game::renderScreens()
 		renderGame();
 		m_window.setView(m_window.getDefaultView());
 	}
+	m_checkerShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
+	//m_checkerShader.setParameter("mouse", m_background.getPosition());
+	m_window.draw(m_background, &m_checkerShader);
 	m_screenManager.render(m_window);
 }
