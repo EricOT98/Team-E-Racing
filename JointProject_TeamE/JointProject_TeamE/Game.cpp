@@ -79,11 +79,11 @@ void Game::run()
 	m_track.setTrack(m_level, m_selectCupScreen->selectedCupIndex());
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
-	m_player->setWayPoints(m_level.m_waypointsTrackTwo);
+	m_player->setWayPoints(m_level.m_waypointsTrackThree);
 	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
 	{
 		AI *racer = new AI();
-		racer->setWayPoints(m_level.m_waypointsTrackTwo);
+		racer->setWayPoints(m_level.m_waypointsTrackThree);
 		racer->setPosition(m_track.getAIStartPositions()->at(i) + sf::Vector2f(0.0f, 10.0f));
 		racer->setCar(m_level.m_enemyCarData.at(i));
 		m_racers.push_back(racer);
@@ -287,7 +287,7 @@ void Game::renderGame()
 
 #if 1
 	// DEBUG(Darren): Debug drawing the AI nodes
-	for (Waypoint waypoint : m_level.m_waypointsTrackTwo)
+	for (Waypoint waypoint : m_level.m_waypointsTrackThree)
 	{
 		sf::CircleShape circle(5.0f);
 		circle.setPosition(waypoint.m_position);

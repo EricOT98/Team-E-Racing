@@ -460,8 +460,77 @@ waypoints_track_2:
     speed: 2
 waypoints_track_3:
   - type: ai_node
-    position: {x: 555, y: 1050}
+    position: {x: 1030, y: 190}
     speed: 1
+  - type: ai_node
+    position: {x: 945, y: 205}
+    speed: 1
+  - type: ai_node
+    position: {x: 220, y: 900}
+    speed: 2
+  - type: ai_node
+    position: {x: 185, y: 990}
+    speed: 2
+  - type: ai_node
+    position: {x: 265, y: 1070}
+    speed: 3
+  - type: ai_node
+    position: {x: 392, y: 985}
+    speed: 2
+  - type: ai_node
+    position: {x: 530, y: 830}
+    speed: 1
+  - type: ai_node
+    position: {x: 640, y: 885}
+    speed: 1
+  - type: ai_node
+    position: {x: 630, y: 990}
+    speed: 2
+  - type: ai_node
+    position: {x: 630, y: 990}
+    speed: 3
+  - type: ai_node
+    position: {x: 530, y: 1085}
+    speed: 5
+  - type: ai_node
+    position: {x: 500, y: 1290}
+    speed: 4
+  - type: ai_node
+    position: {x: 580, y: 1340}
+    speed: 2
+  - type: ai_node
+    position: {x: 674, y: 1295}
+    speed: 3
+  - type: ai_node
+    position: {x: 1318, y: 650}
+    speed: 5
+  - type: ai_node
+    position: {x: 1318, y: 650}
+    speed: 2
+  - type: ai_node
+    position: {x: 1275, y: 575}
+    speed: 2
+  - type: ai_node
+    position: {x: 1160, y: 615}
+    speed: 2
+  - type: ai_node
+    position: {x: 900, y: 880}
+    speed: 2
+  - type: ai_node
+    position: {x: 735, y: 850}
+    speed: 2
+  - type: ai_node
+    position: {x: 745, y: 610}
+    speed: 2
+  - type: ai_node
+    position: {x: 830, y: 530}
+    speed: 2
+  - type: ai_node
+    position: {x: 1060, y: 515}
+    speed: 2
+  - type: ai_node
+    position: {x: 1085, y: 320}
+    speed: 2
 cars:
   - texture: CarTexture_RedStrip
     acceleration: 250
