@@ -1,7 +1,7 @@
 #include "SelectCupScreen.h"
 
 SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, int screenWidth) 
-	: Screen(GameState::SelectCupScreen), m_cars(carsIn), m_cups(cupsIn)
+	: Screen(GameState::SelectCupScreen), m_cups(cupsIn)
 {
 	m_transitionIn = true;
 
@@ -11,7 +11,7 @@ SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupD
 
 	sf::Vector2f endTranstionPos = sf::Vector2f(1400.0f, 400.0f);
 
-	m_title = new Label("Select Car", nullptr, 50, sf::Vector2f(420.0f, 50.0f), endTranstionPos);
+	m_title = new Label("Select Cup", nullptr, 50, sf::Vector2f(420.0f, 50.0f), endTranstionPos);
 	m_title->setPosition(sf::Vector2f(-400.0f, 50.0f));
 	m_backButton = new Button(focusColor, nofocusColor, fillColor, "Back", nullptr, sf::Vector2f(-320.0f, 350.0f),
 		18, 100.0f, 40.0f, sf::Vector2f(320.0f, 430.0f), endTranstionPos);
@@ -51,6 +51,7 @@ SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupD
 	m_confirmButton->select = std::bind(&SelectCupScreen::confirmButtonCallback, this);
 	m_backButton->select = std::bind(&SelectCupScreen::backButtonCallback, this);
 
+	m_gui.add(m_title);
 	m_gui.add(m_confirmButton);
 	m_gui.add(m_backButton);
 
@@ -88,6 +89,17 @@ void SelectCupScreen::reset()
 	m_interpolation = 0.f;
 	m_confirmButtonPressed = false;
 	m_backButtonPressed = false;
+}
+
+unsigned int SelectCupScreen::selectedCupIndex()
+{
+	for (int i = 0; i < m_radButtons.size(); i++)
+	{
+		if (m_radButtons.at(i)->getState())
+		{
+			return i;
+		}
+	}
 }
 
 void SelectCupScreen::confirmButtonCallback()

@@ -2,7 +2,7 @@
 
 Track::Track() {  }
 
-void Track::setTrack(LevelData &levelIn)
+void Track::setTrack(LevelData &levelIn, int trackIndex)
 {
 	for (int i = 0; i < levelIn.m_tileDataVector.size(); i++)
 	{
@@ -25,7 +25,7 @@ void Track::setTrack(LevelData &levelIn)
 		m_startPlayerPositions.push_back(levelIn.m_startPositionData.at(i).m_position);
 	}
 
-	playerStartPos = m_startPlayerPositions.at((int)TrackType::TrackOne);
+	playerStartPos = m_startPlayerPositions.at(trackIndex);
 
 	for (int i = 1; i <= numberOfAICars + 2; i++)
 	{

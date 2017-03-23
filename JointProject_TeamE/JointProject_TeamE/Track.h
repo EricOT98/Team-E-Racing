@@ -9,14 +9,6 @@
 #include "Obstacle.h"
 #include "SpotLight.h"
 
-enum class TrackType
-{
-	TrackOne = 0,
-	TrackTwo,
-	TrackThree,
-	TrackFour
-};
-
 struct CheckPointLine {
 	bool m_startLine;
 	sf::RectangleShape m_rect;
@@ -27,7 +19,7 @@ class Track
 {
 public:
 	Track();
-	void setTrack(LevelData &levelIn);
+	void setTrack(LevelData &levelIn, int trackIndex);
 	void update(std::vector<Racer *> & racers);
 	void render(sf::RenderWindow & window);
 	std::vector<sf::Vector2f> *getAIStartPositions();
@@ -59,8 +51,6 @@ private:
 
 	sf::Vector2f playerStartPos;
 	unsigned int numberOfAICars = 5;
-
-	TrackType currentTrackType = TrackType::TrackThree;
 };
 
 #endif

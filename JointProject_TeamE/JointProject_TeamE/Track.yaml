@@ -244,9 +244,7 @@ startPositions:
   - type: start_pos
     position: {x: 525, y: 1305}
   - type: start_pos
-    position: {x: 400, y: 200}
-  - type: start_pos
-    position: {x: 500, y: 200}
+    position: {x: 1087, y: 480}
 textures:
   - filepath: Resources/objects.png
     string: objects

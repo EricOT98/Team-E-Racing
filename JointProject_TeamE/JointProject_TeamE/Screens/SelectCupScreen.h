@@ -12,6 +12,8 @@ public:
 	~SelectCupScreen();
 	void update(XboxController & controller) override;
 	void reset() override;
+	unsigned int selectedCupIndex();
+
 private:
 	void confirmButtonCallback();
 	void backButtonCallback();
@@ -22,9 +24,7 @@ private:
 	std::vector<RadioButton *> m_radButtons;
 
 	Player * m_player;
-	std::vector<CarData> & m_cars;
 	std::vector<CupData> & m_cups;
-	//std::vector<Racer *> & m_racers;
 
 	bool m_backButtonPressed;
 	bool m_confirmButtonPressed;

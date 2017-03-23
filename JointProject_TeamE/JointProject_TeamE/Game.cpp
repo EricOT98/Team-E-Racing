@@ -76,7 +76,7 @@ void Game::run()
 	m_raceCountdown = new RaceCountdown();
 	m_hud = new HudSystem();
 
-	m_track.setTrack(m_level);
+	m_track.setTrack(m_level, m_selectCupScreen->selectedCupIndex());
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
 	m_player->setWayPoints(m_level.m_waypoints);
@@ -217,6 +217,7 @@ void Game::render()
 
 void Game::resetGame()
 {
+	m_track.setTrack(m_level, m_selectCupScreen->selectedCupIndex());
 	m_reset = false;
 	m_transitionInGame = true;
 	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
