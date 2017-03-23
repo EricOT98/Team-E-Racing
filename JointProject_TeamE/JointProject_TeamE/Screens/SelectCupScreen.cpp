@@ -93,13 +93,7 @@ void SelectCupScreen::reset()
 
 unsigned int SelectCupScreen::selectedCupIndex()
 {
-	for (int i = 0; i < m_radButtons.size(); i++)
-	{
-		if (m_radButtons.at(i)->getState())
-		{
-			return i;
-		}
-	}
+	return m_currentCarIndex;
 }
 
 void SelectCupScreen::confirmButtonCallback()

@@ -30,7 +30,6 @@ public:
 	void update(float dt) override;
 protected:
 	int m_racePosition;
-	bool m_alive;
 	XboxController & m_controller;
 };
 

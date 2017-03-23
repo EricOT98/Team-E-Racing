@@ -20,6 +20,7 @@ public:
 
 	void update(XboxController & controller) override;
 	void reset() override;
+	int getNumberOfAI();
 
 private:
 	void backButtonCallback();

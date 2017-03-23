@@ -168,6 +168,11 @@ unsigned int Track::getNumOfAICars()
 	return numberOfAICars;
 }
 
+void Track::setNumOfAICars(unsigned int cars) 
+{
+	numberOfAICars = cars;
+}
+
 bool Track::checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos)
 {
 	// Localise Values

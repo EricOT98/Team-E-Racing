@@ -48,19 +48,22 @@ Racer::~Racer() {}
 void Racer::render(sf::RenderWindow & window)
 {
 	//m_boundingBox.debugRender(window);
-	window.draw(m_tireTracks);
-	window.draw(m_sprite);
-
-	sf::VertexArray line(sf::LinesStrip, 2);
-	line[0].position = m_position;
-	line[1].position = m_position + m_direction;
-	window.draw(line);
-
-	//@Projectile
-	for (int i = 0; i < numProjectiles; i++)
+	if (m_alive)
 	{
-		if (m_projectiles.at(i)->getAlive()) {
-			m_projectiles.at(i)->render(window);
+		window.draw(m_tireTracks);
+		window.draw(m_sprite);
+
+		sf::VertexArray line(sf::LinesStrip, 2);
+		line[0].position = m_position;
+		line[1].position = m_position + m_direction;
+		window.draw(line);
+
+		//@Projectile
+		for (int i = 0; i < numProjectiles; i++)
+		{
+			if (m_projectiles.at(i)->getAlive()) {
+				m_projectiles.at(i)->render(window);
+			}
 		}
 	}
 }
@@ -386,6 +389,11 @@ int Racer::getLap()
 void Racer::projectileCollision()
 {
 	m_velocity *= 0.4f;
+}
+
+void Racer::setAlive(bool alive)
+{
+	m_alive = alive;
 }
 
 void Racer::resolveRacerCollision(sf::Vector2f positionIn)

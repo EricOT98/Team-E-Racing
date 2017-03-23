@@ -25,6 +25,7 @@ public:
 	std::vector<sf::Vector2f> *getAIStartPositions();
 	sf::Vector2f getPlayerStartPosition();
 	unsigned int getNumOfAICars();
+	void setNumOfAICars(unsigned int cars);
 
 private:
 	bool checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos);

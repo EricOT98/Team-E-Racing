@@ -18,30 +18,26 @@ DifficultyScreen::DifficultyScreen() : Screen(GameState::DifficultyScreen)
 	m_numOfOppLabel = new Label("Number of Opponents", nullptr, 30, sf::Vector2f(400.0f, 200.0f), endTranstionPos);
 	m_numOfOppLabel->setPosition(sf::Vector2f(-400.0f, 200.0f));
 	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "3", nullptr,
-		endTranstionPos, m_radioButtons, sf::Vector2f(290.0f, 300.0f), endTranstionPos,
+		endTranstionPos, m_radioButtons, sf::Vector2f(300.0f, 300.0f), endTranstionPos,
 		22, 30.0f, 30.0f));
 	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "4", nullptr,
-		endTranstionPos, m_radioButtons, sf::Vector2f(360.0f, 300.0f), endTranstionPos,
+		endTranstionPos, m_radioButtons, sf::Vector2f(400.0f, 300.0f), endTranstionPos,
 		22, 30.0f, 30.0f));
 	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "5", nullptr,
-		endTranstionPos, m_radioButtons, sf::Vector2f(440.0f, 300.0f), endTranstionPos,
-		22, 30.0f, 30.0f));
-	m_radioButtons.push_back(new RadioButton(focusColor, nofocusColor, fillColor, "6", nullptr,
-		endTranstionPos, m_radioButtons, sf::Vector2f(520.0f, 300.0f), endTranstionPos,
+		endTranstionPos, m_radioButtons, sf::Vector2f(500.0f, 300.0f), endTranstionPos,
 		22, 30.0f, 30.0f));
 	m_backButton = new Button(focusColor, nofocusColor, fillColor, "Back", nullptr,
 		endTranstionPos, 18, 100.0f, 40.0f, sf::Vector2f(400.0f, 400.0f), endTranstionPos);
 
 	m_radioButtons.at(0)->promoteFocus();
 
-	m_radioButtons.at(0)->m_left = m_radioButtons.at(3);
+	m_radioButtons.at(0)->activate();
+	m_radioButtons.at(0)->m_left = m_radioButtons.at(2);
 	m_radioButtons.at(0)->m_right = m_radioButtons.at(1);
 	m_radioButtons.at(1)->m_left = m_radioButtons.at(0);
 	m_radioButtons.at(1)->m_right = m_radioButtons.at(2);
 	m_radioButtons.at(2)->m_left = m_radioButtons.at(1);
-	m_radioButtons.at(2)->m_right = m_radioButtons.at(3);
-	m_radioButtons.at(3)->m_left = m_radioButtons.at(2);
-	m_radioButtons.at(3)->m_right = m_radioButtons.at(0);
+	m_radioButtons.at(2)->m_right = m_radioButtons.at(0);
 
 	for (RadioButton *radioButton : m_radioButtons)
 	{
@@ -91,6 +87,21 @@ void DifficultyScreen::reset()
 	m_backButtonSelected = false;
 	m_transitionIn = true;
 	m_interpolation = 0.f;
+}
+
+int DifficultyScreen::getNumberOfAI()
+{
+	int aiNum = 0;
+
+	for (int i = 0; i < m_radioButtons.size(); i++)
+	{
+		if (m_radioButtons.at(i)->getState())
+		{
+			aiNum = i + 3;
+		}
+	}
+
+	return aiNum;
 }
 
 void DifficultyScreen::backButtonCallback()

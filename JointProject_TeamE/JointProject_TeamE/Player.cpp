@@ -3,9 +3,10 @@
 /// <summary>
 /// Default constructor for the player object
 /// </summary>
-Player::Player(XboxController & controllerIn) : m_controller(controllerIn)
+Player::Player(XboxController & controllerIn) 
+	: m_controller(controllerIn)
 {
-
+	m_alive = true;
 }
 
 /// <summary>

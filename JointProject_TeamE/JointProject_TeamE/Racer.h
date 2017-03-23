@@ -49,6 +49,7 @@ public:
 	int getLap();
 	void setRadius(float radiusIn);
 	void projectileCollision();
+	void setAlive(bool alive);
 
 	// Public members
 	OBB m_boundingBox;
@@ -80,6 +81,7 @@ protected:
 	sf::Vector2f m_lastPosition;
 	sf::Vector2f m_direction;
 	sf::Sprite m_sprite;
+	bool m_alive;
 
 	// THOR Particle Emitter attributes for skid marks
 	sf::Texture m_tireTexture;

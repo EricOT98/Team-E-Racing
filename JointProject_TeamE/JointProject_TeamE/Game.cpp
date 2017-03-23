@@ -76,11 +76,12 @@ void Game::run()
 	m_raceCountdown = new RaceCountdown();
 	m_hud = new HudSystem();
 
+	m_track.setNumOfAICars(m_difficultyScreen->getNumberOfAI());
 	m_track.setTrack(m_level, m_selectCupScreen->selectedCupIndex());
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
 	m_player->setWayPoints(m_level.m_waypointsTrackThree);
-	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
+	for (unsigned int i = 0; i < 5; i++)
 	{
 		AI *racer = new AI();
 		racer->setWayPoints(m_level.m_waypointsTrackThree);
@@ -184,7 +185,7 @@ void Game::update(double dt)
 			m_window.setView(m_window.getDefaultView());
 		}
 		
-		//if (m_raceCountdown->getFinishedCountingDown())
+		if (m_raceCountdown->getFinishedCountingDown())
 		{
 			m_track.update(m_racers);
 			for (Racer *racer : m_racers)
@@ -219,7 +220,8 @@ void Game::render()
 
 void Game::resetGame()
 {
-	m_track.setTrack(m_level, 2);		// m_selectCupScreen->selectedCupIndex()
+	m_track.setNumOfAICars(m_difficultyScreen->getNumberOfAI());
+	m_track.setTrack(m_level, m_selectCupScreen->selectedCupIndex());
 	m_reset = false;
 	m_transitionInGame = true;
 	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
@@ -228,6 +230,7 @@ void Game::resetGame()
 		m_racers.at(i)->setCar(m_level.m_enemyCarData.at(i));
 		AI *ai = dynamic_cast<AI*>(m_racers.at(i));
 		ai->reset();
+		ai->setAlive(true);
 	}
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
@@ -285,7 +288,7 @@ void Game::renderGame()
 	for (Racer *racer : m_racers)
 		racer->render(m_window);
 
-#if 1
+#if 0
 	// DEBUG(Darren): Debug drawing the AI nodes
 	for (Waypoint waypoint : m_level.m_waypointsTrackThree)
 	{
