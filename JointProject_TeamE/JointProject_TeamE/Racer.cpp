@@ -4,6 +4,7 @@
 /// Default constructor for a racer object
 /// </summary>
 Racer::Racer()
+	: m_currentRotation(-90.0f)
 {
 	m_tireTexture.loadFromFile("Resources/Test.png");
 	m_tireTracks.setTexture(m_tireTexture);
@@ -87,10 +88,11 @@ void Racer::setCar(CarData carData)
 	m_lastWayPointHit = false;
 	m_spotLight.update(m_position + sf::Vector2f(40.0f * cos(degreesToRad(m_currentRotation)),
 		40.0f * sin(degreesToRad(m_currentRotation))));
-	m_currentRotation = -90.0f;
 	m_currentNode = 0;
+	m_currentRotation = -90.0f;
 	m_velocity = 0;
 	m_currentAcceleration = 0;
+	m_lastWayPointHit = false;
 	m_tireTracks.clearParticles();
 }
 

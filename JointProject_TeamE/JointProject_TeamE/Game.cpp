@@ -237,8 +237,7 @@ void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 {
 	//Coverts the screen into 4 quads and then 
 	//to a texture so a shader can be applied to it
-	sf::Vector2f outputSize = static_cast<sf::Vector2f>(output.
-		getSize());
+	sf::Vector2f outputSize = static_cast<sf::Vector2f>(output.getSize());
 	sf::VertexArray vertices(sf::TrianglesStrip, 4);
 	sf::Vector2f tempPos = output.getView().getCenter();
 	m_foreground.setPosition(tempPos);
@@ -258,7 +257,6 @@ void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 
 	//Set whatever parameters need to be updated here
 	m_crtShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
-
 
 	//Render the current shader
 	sf::RenderStates states;
@@ -313,8 +311,6 @@ void Game::renderScreens()
 		m_window.setView(m_window.getDefaultView());
 	}
 	m_checkerShader.setParameter("time", m_clock.getElapsedTime().asSeconds());
-	
-	//m_checkerShader.setParameter("mouse", m_background.getPosition());
 	m_window.draw(m_background, &m_checkerShader);
 	m_screenManager.render(m_window);
 }

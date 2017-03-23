@@ -20,6 +20,8 @@ void Track::setTrack(LevelData &levelIn, int trackIndex)
 	startPosSprite.setScale(sf::Vector2f(0.2f, 0.2f));
 	startPosSprite.setOrigin(static_cast<int>(startPosSprite.getLocalBounds().width / 2.0f), static_cast<int>(startPosSprite.getLocalBounds().height / 2.0f));
 
+	m_startPlayerPositions.clear();
+	m_startAIPositions.clear();
 	for (int i = 0; i < levelIn.m_startPositionData.size(); i++)
 	{
 		m_startPlayerPositions.push_back(levelIn.m_startPositionData.at(i).m_position);
