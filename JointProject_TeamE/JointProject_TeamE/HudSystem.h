@@ -5,6 +5,8 @@
 #include "ResourceManager.h"
 #include "MathUtility.h"
 #include "Racer.h"
+#include <iomanip>
+#include <sstream>
 
 class HudSystem
 {
@@ -19,6 +21,7 @@ public:
 	void startRecordingTime();
 	bool getRecording();
 private:
+	void recordLapTime();
 	sf::Texture m_hudTexture;
 	sf::Sprite m_hudSprite;
 	sf::Clock m_clock;
@@ -27,7 +30,9 @@ private:
 
 	sf::Text m_lapText;
 	sf::Text m_lapTimeText;
+	sf::Text m_fastestLapText;
 	float m_lapTime;
+	float m_fastestLapTime;
 	bool m_raceStarted;
 	bool m_paused;
 

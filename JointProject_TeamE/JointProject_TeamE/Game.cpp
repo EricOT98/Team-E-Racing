@@ -168,13 +168,15 @@ void Game::update(double dt)
 	else
 	{
 		m_raceCountdown->update();
-		if (m_raceCountdown->getFinishedCountingDown() && !m_hud->getRecording())
+		if (m_raceCountdown->getFinishedCountingDown() && !m_hud->getRecording()) {
 			m_hud->startRecordingTime();
+		}
 		m_hud->update(*m_player);
 		if (m_reset)
 		{
 			resetGame();
 			m_raceCountdown->reset();
+			m_hud->reset();
 		}
 		if (m_xboxController.isButtonPressed(XBOX360_START))
 		{

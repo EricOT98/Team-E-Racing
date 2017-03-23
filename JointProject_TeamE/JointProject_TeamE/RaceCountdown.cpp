@@ -15,6 +15,13 @@ RaceCountdown::RaceCountdown()
 	m_countdownRec[3] = sf::IntRect(545, 0, 300, 200);	// GO!
 
 	reset();
+	m_countdownSprite.setTexture(m_countdownTexture);
+	m_countdownSprite.setTextureRect(m_countdownRec[0]);
+	// Set the position off screen
+	m_position = sf::Vector2f(900.0f, 400.0f);
+	m_countdownSprite.setPosition(m_position);
+	m_countdownSprite.setOrigin(m_countdownRec[0].width / 2, m_countdownRec[0].height / 2);
+	m_finishedCountingDown = false;
 }
 
 /// <summary>
