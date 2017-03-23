@@ -7,10 +7,12 @@
 /// </summary>
 /// <param name="carsIn">Vector of car data received from the track</param>
 /// <param name="screenWidth">The width of the current screen</param>
-UpgradesScreen::UpgradesScreen(std::vector<CarData> & carsIn, int screenWidth) : Screen(GameState::UpgradesScreen), m_backButtonPressed(false), m_cars(carsIn), m_currentCarIndex(0)
+UpgradesScreen::UpgradesScreen(std::vector<CarData> & carsIn, int & credits, int screenWidth) : Screen(GameState::UpgradesScreen), m_backButtonPressed(false), m_cars(carsIn), m_currentCarIndex(0),
+m_credits(credits)
 {
 	m_transitionIn = true;
-
+	m_upgradeCost = 0;
+	m_baseCost = 25;
 	sf::Color focusColor = sf::Color::Red;
 	sf::Color nofocusColor = sf::Color::Magenta;
 	sf::Color fillColor = sf::Color::Blue;
@@ -33,6 +35,14 @@ UpgradesScreen::UpgradesScreen(std::vector<CarData> & carsIn, int screenWidth) :
 		18, 250.0f, 15.0f, sf::Vector2f(650.0f, 200.0f), endTranstionPos);
 	m_corneringSlider = new Slider(focusColor, nofocusColor, fillColor, "Cornering", nullptr, sf::Vector2f(400.0f, -200.0f),
 		18, 250.0f, 15.0f, sf::Vector2f(650.0f, 250.0f), endTranstionPos);
+	m_costPosition = sf::Vector2f(400, -400);
+	m_creditsPosition = sf::Vector2f(400, -400);
+	m_costText.setFont(g_resourceMgr.fontHolder["GameFont"]);
+	m_costText.setPosition(sf::Vector2f(400, -200.0f));
+	m_costText.setString("Cost: ");
+	m_creditsText.setFont(g_resourceMgr.fontHolder["GameFont"]);
+	m_creditsText.setPosition(sf::Vector2f(400, -200.0f));
+	m_creditsText.setString("Credits: ");
 	int baseXPos = (screenWidth / (m_cars.size() + 1));
 	for (int i = 0; i < m_cars.size(); i++)
 	{
@@ -108,17 +118,60 @@ void UpgradesScreen::update(XboxController & controller)
 	if (m_transitionIn)
 	{
 		m_gui.transitionIn(0.03f, m_interpolation);
-
 		if (m_interpolation >= 1.0f)
 		{
 			m_transitionIn = false;
 			m_interpolation = 0.0f;
+			m_costText.setString("Cost: " + std::to_string(m_upgradeCost));
 		}
 	}
 	else if (m_backButtonPressed)
 	{
 		transOut(GameState::MainMenu);
 	}
+	m_creditsPosition = m_accelerationSlider->getPosition() - sf::Vector2f(50, 70);
+	m_costPosition = m_accelerationButton->getPosition() - sf::Vector2f(50,65);
+
+
+	if (m_accelerationButton->getFocus()) {
+		m_costPosition = sf::Vector2f(m_accelerationButton->getPosition() - sf::Vector2f(50, 65));
+		if (m_cars.at(m_currentCarIndex).m_acceleration < 300)
+		{
+			m_upgradeCost = m_baseCost * (m_cars.at(m_currentCarIndex).m_acceleration / 25.0f);
+		}
+		else {
+			m_upgradeCost = 0;
+		}
+		checkAvailable(m_accelerationUpgradeAvailable);
+		setDisplayInfo(m_accelerationUpgradeAvailable);
+	}
+	else if (m_brakingButton->getFocus()) {
+		m_costPosition = sf::Vector2f(m_brakingButton->getPosition() - sf::Vector2f(50, 65));
+		if (m_cars.at(m_currentCarIndex).m_deceleration < 300)
+		{
+			m_upgradeCost = m_baseCost * (m_cars.at(m_currentCarIndex).m_deceleration / 25.0f);
+		}
+		else {
+			m_upgradeCost = 0;
+		}
+		checkAvailable(m_brakingUpgradeAvailable);
+		setDisplayInfo(m_brakingUpgradeAvailable);
+	}
+	else if (m_corneringButton->getFocus()) {
+		m_costPosition = sf::Vector2f(m_corneringButton->getPosition() - sf::Vector2f(50, 65));
+		if (m_cars.at(m_currentCarIndex).m_turnRate < 300)
+		{
+			m_upgradeCost = m_baseCost * (m_cars.at(m_currentCarIndex).m_turnRate / 25.0f);
+		}
+		else {
+			m_upgradeCost = 0;
+		}
+		checkAvailable(m_corneringUpgradeAvailable);
+		setDisplayInfo(m_corneringUpgradeAvailable);
+	}
+	m_costText.setPosition(m_costPosition);
+	m_creditsText.setPosition(m_creditsPosition);
+	m_creditsText.setString("Credits: " + std::to_string(m_credits));
 	m_gui.processInput(controller);
 }
 
@@ -140,6 +193,8 @@ void UpgradesScreen::render(sf::RenderWindow& window)
 {
 	window.draw(m_gui);
 	window.draw(m_carSprite);
+	window.draw(m_costText);
+	window.draw(m_creditsText);
 }
 
 /// <summary>
@@ -182,13 +237,7 @@ void UpgradesScreen::radButtonCallback()
 /// </summary>
 void UpgradesScreen::accelerationCallback()
 {
-	if (m_cars.at(m_currentCarIndex).m_acceleration < 275){
-		m_cars.at(m_currentCarIndex).m_acceleration += 25;
-	}
-	else {
-		m_cars.at(m_currentCarIndex).m_acceleration = 300;
-	}
-	setSliders();
+	purchaseUpgrade(m_cars.at(m_currentCarIndex).m_acceleration);
 }
 
 /// <summary>
@@ -197,13 +246,7 @@ void UpgradesScreen::accelerationCallback()
 /// </summary>
 void UpgradesScreen::brakingCallback()
 {
-	if (m_cars.at(m_currentCarIndex).m_deceleration < 275) {
-		m_cars.at(m_currentCarIndex).m_deceleration += 25;
-	}
-	else {
-		m_cars.at(m_currentCarIndex).m_deceleration = 300;
-	}
-	setSliders();
+	purchaseUpgrade(m_cars.at(m_currentCarIndex).m_deceleration);
 }
 
 /// <summary>
@@ -212,13 +255,7 @@ void UpgradesScreen::brakingCallback()
 /// </summary>
 void UpgradesScreen::corneringCallback()
 {
-	if (m_cars.at(m_currentCarIndex).m_turnRate < 275) {
-		m_cars.at(m_currentCarIndex).m_turnRate += 25;
-	}
-	else {
-		m_cars.at(m_currentCarIndex).m_turnRate = 300;
-	}
-	setSliders();
+	purchaseUpgrade(m_cars.at(m_currentCarIndex).m_turnRate);
 }
 
 /// <summary>
@@ -230,4 +267,43 @@ void UpgradesScreen::setSprite()
 	float width = m_carSprite.getLocalBounds().width;
 	float height = m_carSprite.getLocalBounds().height;
 	m_carSprite.setScale(sf::Vector2f(300 / width, 150 / height));
+}
+
+void UpgradesScreen::checkAvailable(bool & upgradeAvailable)
+{
+	if (m_credits >= m_upgradeCost && m_upgradeCost != 0)
+		upgradeAvailable = true;
+	else
+		upgradeAvailable = false;
+}
+
+/// <summary>
+/// Method to purchase any upgrade
+/// </summary>
+/// <param name="upgradeAvailable">set the upgrade to be unavialble if you dont have enough credits</param>
+void UpgradesScreen::purchaseUpgrade(float & upgrade)
+{
+	if (m_credits >= m_upgradeCost && m_upgradeCost != 0) {
+		if (upgrade < 275) {
+			upgrade += 25;
+		}
+		else {
+			upgrade = 300;
+		}
+		m_credits -= m_upgradeCost;
+	}
+	setSliders();
+}
+
+void UpgradesScreen::setDisplayInfo(bool & upgradeAvailable)
+{
+	if (upgradeAvailable) {
+		m_costText.setString("Cost: " + std::to_string(m_upgradeCost));
+	}
+	else if (m_credits <= m_upgradeCost) {
+		m_costText.setString("Not enough Credits");
+	}
+	else{
+		m_costText.setString("Max");
+	}
 }

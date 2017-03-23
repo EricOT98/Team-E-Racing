@@ -57,7 +57,7 @@ void Game::run()
 	m_foreground.setTexture(m_tex);
 	m_foreground.setOrigin(m_foreground.getLocalBounds().width / 2.f, m_foreground.getLocalBounds().height / 2.f);
 	m_shaderEnabled = true;
-
+	m_credits = 500;
 	m_splashScreen = new SplashScreen();
 	m_mainMenu = new MainMenu(m_reset);
 	m_creditsScreen = new CreditsScreen();
@@ -69,7 +69,7 @@ void Game::run()
 	m_pauseScreen = new PauseScreen();
 	m_soundOptions = new SoundOptions();
 	m_trophyScreen = new TrophyScreen();
-	m_upgradesScreen = new UpgradesScreen(m_level.m_carData, m_window.getSize().x);
+	m_upgradesScreen = new UpgradesScreen(m_level.m_carData,m_credits, m_window.getSize().x);
 	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, m_player, m_window.getSize().x);
 	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_window.getSize().x);
 

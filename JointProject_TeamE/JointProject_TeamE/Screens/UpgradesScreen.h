@@ -8,7 +8,7 @@
 class UpgradesScreen : public Screen
 {
 public:
-	UpgradesScreen(std::vector<CarData> & carsIn, int screenWidth);
+	UpgradesScreen(std::vector<CarData> & carsIn,int & credits, int screenWidth);
 	~UpgradesScreen();
 
 	void update(XboxController & controller) override;
@@ -22,6 +22,9 @@ private:
 	void radButtonCallback();
 	void setSliders();
 	void setSprite();
+	void checkAvailable(bool & upgradeAvailable);
+	void purchaseUpgrade(float & upgrade);
+	void setDisplayInfo(bool & upgradeAvailable);
 
 	// GUI elements
 	Label * m_title;
@@ -33,6 +36,8 @@ private:
 	Slider * m_accelerationSlider;
 	Slider * m_brakingSlider;
 	Slider * m_corneringSlider;
+	sf::Text m_costText;
+	sf::Text m_creditsText;
 
 	// Sprite to be displayed
 	sf::Sprite m_carSprite;
@@ -40,6 +45,14 @@ private:
 	bool m_backButtonPressed;
 	std::vector<CarData> & m_cars;
 	int m_currentCarIndex;
+	int & m_credits;
+	bool m_accelerationUpgradeAvailable;
+	bool m_brakingUpgradeAvailable;;
+	bool m_corneringUpgradeAvailable;
+	int m_upgradeCost;
+	int m_baseCost;
+	sf::Vector2f m_costPosition;
+	sf::Vector2f m_creditsPosition;
 };
 
 #endif // !UPGRADESSCREEN_H
