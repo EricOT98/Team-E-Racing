@@ -14,11 +14,9 @@ public:
 	~AI();
 
 	void update(float dt);
-	/*void setWayPoints(std::vector<Waypoint> &m_wayPoints);*/
+	void reset();
 
 protected:
-	/*std::vector<Waypoint> *m_wayPoints;*/
-	
 	sf::Vector2f m_steering;
 	const float WAYPOINT_RADIUS = 50.0f;
 	const float MAX_SPEED = 5.0f;

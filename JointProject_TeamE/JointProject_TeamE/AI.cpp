@@ -33,16 +33,16 @@ void AI::update(float dt)
 	// Construct a new OBB when the player is moving
 	m_boundingBox.construct(m_position, sf::Vector2f(m_sprite.getLocalBounds().width * m_sprite.getScale().x,
 		m_sprite.getLocalBounds().height * m_sprite.getScale().y), m_currentRotation);
-	//std::cout << "Current Node: " << m_currentNode << std::endl;
 
 	m_spotLight.update(m_position + sf::Vector2f(40.0f * cos(degreesToRad(angle)),
 														40.0f * sin(degreesToRad(angle))));
 }
 
-//void AI::setWayPoints(std::vector<Waypoint> &wayPoints)
-//{
-//	m_wayPoints = &wayPoints;
-//}
+void AI::reset()
+{
+	m_velocity = sf::Vector2f();
+	m_steering = sf::Vector2f();
+}
 
 sf::Vector2f AI::pathFollowing()
 {

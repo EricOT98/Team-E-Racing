@@ -74,12 +74,21 @@ void Racer::setCar(CarData carData)
 	m_sprite.setTexture(g_resourceMgr.textureHolder[carData.m_texture], true);
 	m_sprite.setScale(sf::Vector2f(0.2f, 0.2f));
 	m_sprite.setOrigin(sf::Vector2f(m_sprite.getLocalBounds().width / 2.f, m_sprite.getLocalBounds().height / 2.f));
+	m_sprite.setRotation(m_currentRotation);
+	m_sprite.setPosition(m_position);
 	m_acceleration = carData.m_acceleration;//250.f;
 	m_deceleration = carData.m_deceleration;// 250.f;
 	m_turnRate = carData.m_turnRate; // 150.f;
 	m_lapsCompleted = 0;
 	m_radius = 50.f;
 	m_lastWayPointHit = false;
+	m_spotLight.update(m_position + sf::Vector2f(40.0f * cos(degreesToRad(m_currentRotation)),
+		40.0f * sin(degreesToRad(m_currentRotation))));
+	m_currentRotation = -90.0f;
+	m_currentNode = 0;
+	m_velocity = 0;
+	m_currentAcceleration = 0;
+	m_tireTracks.clearParticles();
 }
 
 /// <summary>
@@ -89,6 +98,7 @@ void Racer::setCar(CarData carData)
 void Racer::setPosition(sf::Vector2f positonIn)
 {
 	m_position = positonIn;
+	m_sprite.setPosition(m_position);
 }
 
 sf::Vector2f Racer::getPosition()
@@ -103,6 +113,7 @@ sf::Vector2f Racer::getPosition()
 void Racer::setRotation(float rotationIn)
 {
 	m_currentRotation = rotationIn;
+	m_sprite.setRotation(m_currentRotation);
 }
 
 void Racer::resolveCollision()

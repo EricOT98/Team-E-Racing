@@ -5,7 +5,7 @@
 /// </summary>
 Player::Player(XboxController & controllerIn) : m_controller(controllerIn)
 {
-	
+
 }
 
 /// <summary>

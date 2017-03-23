@@ -23,10 +23,6 @@
 #include "SpotLight.h"
 #include "LevelLoader.h"
 
-//auto & shader = std::unique_ptr<sf::Shader>(new sf::Shader());
-//shader->loadFromFile("Resources/Shaders/crtShader.vert", "Resources/Shaders/crtShader.frag");
-//shaderHolder.acquire("CRT", thor::Resources::fromFile<std::unique_ptr<sf::Shader>>("Resources/Shaders/crt_shader.vert", "Resources/Shaders/crt_shader.frag"));
-
 class Racer
 {
 public:

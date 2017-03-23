@@ -70,7 +70,7 @@ void Game::run()
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
 	m_player->setWayPoints(m_level.m_waypoints);
-	for (unsigned int i = 0; i <  m_track.getNumOfAICars(); i++)
+	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
 	{
 		AI *racer = new AI();
 		racer->setWayPoints(m_level.m_waypoints);
@@ -170,9 +170,12 @@ void Game::update(double dt)
 			m_window.setView(m_window.getDefaultView());
 		}
 		
-		m_track.update(m_racers);
-		for (Racer *racer : m_racers)
-			racer->update(dt);
+		if (m_raceCountdown->getFinishedCountingDown())
+		{
+			m_track.update(m_racers);
+			for (Racer *racer : m_racers)
+				racer->update(dt);
+		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 		{
 			m_screenManager.setActive(GameState::MainMenu);
@@ -204,7 +207,15 @@ void Game::resetGame()
 {
 	m_reset = false;
 	m_transitionInGame = true;
-	// Code Here...
+	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
+	{
+		m_racers.at(i)->setPosition(m_track.getAIStartPositions()->at(i) + sf::Vector2f(0.0f, 10.0f));
+		m_racers.at(i)->setCar(m_level.m_enemyCarData.at(i));
+		AI *ai = dynamic_cast<AI*>(m_racers.at(i));
+		ai->reset();
+	}
+	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
+	m_player->setRotation(-90.0f);
 }
 
 void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
