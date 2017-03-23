@@ -145,12 +145,28 @@ void operator >> (YAML::Node &baseNode, LevelData &levelIn)
 		levelIn.m_textureDataVector.push_back(texture);
 	}
 
-	const YAML::Node& waypointsNode = baseNode["waypoints"].as<YAML::Node>();
-	for (unsigned int i = 0; i < waypointsNode.size(); ++i)
+	const YAML::Node& waypointsNodeOne = baseNode["waypoints_track_1"].as<YAML::Node>();
+	for (unsigned int i = 0; i < waypointsNodeOne.size(); ++i)
 	{
 		Waypoint waypoint;
-		waypointsNode[i] >> waypoint;
-		levelIn.m_waypoints.push_back(waypoint);
+		waypointsNodeOne[i] >> waypoint;
+		levelIn.m_waypointsTrackOne.push_back(waypoint);
+	}
+
+	const YAML::Node& waypointsNodeTwo = baseNode["waypoints_track_2"].as<YAML::Node>();
+	for (unsigned int i = 0; i < waypointsNodeTwo.size(); ++i)
+	{
+		Waypoint waypoint;
+		waypointsNodeTwo[i] >> waypoint;
+		levelIn.m_waypointsTrackTwo.push_back(waypoint);
+	}
+
+	const YAML::Node& waypointsNodeThree = baseNode["waypoints_track_3"].as<YAML::Node>();
+	for (unsigned int i = 0; i < waypointsNodeThree.size(); ++i)
+	{
+		Waypoint waypoint;
+		waypointsNodeThree[i] >> waypoint;
+		levelIn.m_waypointsTrackThree.push_back(waypoint);
 	}
 
 	const YAML::Node& startPosNode = baseNode["startPositions"].as<YAML::Node>();

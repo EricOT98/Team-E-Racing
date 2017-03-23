@@ -79,11 +79,11 @@ void Game::run()
 	m_track.setTrack(m_level, m_selectCupScreen->selectedCupIndex());
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
-	m_player->setWayPoints(m_level.m_waypoints);
+	m_player->setWayPoints(m_level.m_waypointsTrackTwo);
 	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
 	{
 		AI *racer = new AI();
-		racer->setWayPoints(m_level.m_waypoints);
+		racer->setWayPoints(m_level.m_waypointsTrackTwo);
 		racer->setPosition(m_track.getAIStartPositions()->at(i) + sf::Vector2f(0.0f, 10.0f));
 		racer->setCar(m_level.m_enemyCarData.at(i));
 		m_racers.push_back(racer);
@@ -184,7 +184,7 @@ void Game::update(double dt)
 			m_window.setView(m_window.getDefaultView());
 		}
 		
-		if (m_raceCountdown->getFinishedCountingDown())
+		//if (m_raceCountdown->getFinishedCountingDown())
 		{
 			m_track.update(m_racers);
 			for (Racer *racer : m_racers)
@@ -219,7 +219,7 @@ void Game::render()
 
 void Game::resetGame()
 {
-	m_track.setTrack(m_level, m_selectCupScreen->selectedCupIndex());
+	m_track.setTrack(m_level, 2);		// m_selectCupScreen->selectedCupIndex()
 	m_reset = false;
 	m_transitionInGame = true;
 	for (unsigned int i = 0; i < m_track.getNumOfAICars(); i++)
@@ -285,22 +285,23 @@ void Game::renderGame()
 	for (Racer *racer : m_racers)
 		racer->render(m_window);
 
+#if 1
+	// DEBUG(Darren): Debug drawing the AI nodes
+	for (Waypoint waypoint : m_level.m_waypointsTrackTwo)
+	{
+		sf::CircleShape circle(5.0f);
+		circle.setPosition(waypoint.m_position);
+		circle.setFillColor(sf::Color::Yellow);
+
+		m_window.draw(circle);
+	}
+#endif
+
 	lightmap.setPosition(0, 0);
 	m_window.draw(lightmap, sf::RenderStates(sf::BlendMultiply));
 	m_window.setView(m_window.getDefaultView());
 	m_hud->render(m_window);
 	m_raceCountdown->render(m_window);
-#if 1
-	// DEBUG(Darren): Debug drawing the AI nodes
-	for (Waypoint waypoint : m_level.m_waypoints)
-	{
-		sf::CircleShape circle(5.0f);
-		circle.setPosition(waypoint.m_position);
-		circle.setFillColor(sf::Color::Blue);
-
-		m_window.draw(circle);
-	}
-#endif
 }
 
 void Game::renderScreens()

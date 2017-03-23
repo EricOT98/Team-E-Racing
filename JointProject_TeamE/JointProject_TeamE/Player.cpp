@@ -81,4 +81,6 @@ void Player::update(float dt)
 
 	m_spotLight.update(m_position + sf::Vector2f(40.0f * cos(degreesToRad(m_currentRotation)),
 														40.0f * sin(degreesToRad(m_currentRotation))));
+
+	std::cout << "Position-> X=" << m_position.x << " Y=" << m_position.y << std::endl;
 }

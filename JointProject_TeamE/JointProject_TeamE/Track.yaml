@@ -270,7 +270,7 @@ textures:
     string: Trophies
   - filepath: Resources/Countdown.png
     string: Countdown
-waypoints:
+waypoints_track_1:
   - type: ai_node
     position: {x: 750, y: 600}
     speed: 1
@@ -376,6 +376,92 @@ waypoints:
   - type: ai_node
     position: {x: 720, y: 800}
     speed: 5
+waypoints_track_2:
+  - type: ai_node
+    position: {x: 555, y: 1050}
+    speed: 1
+  - type: ai_node
+    position: {x: 580, y: 1000}
+    speed: 1
+  - type: ai_node
+    position: {x: 650, y: 915}
+    speed: 2
+  - type: ai_node
+    position: {x: 580, y: 845}
+    speed: 2
+  - type: ai_node
+    position: {x: 472, y: 880}
+    speed: 3
+  - type: ai_node
+    position: {x: 355, y: 1035}
+    speed: 3
+  - type: ai_node
+    position: {x: 265, y: 1055}
+    speed: 2
+  - type: ai_node
+    position: {x: 187, y: 985}
+    speed: 3
+  - type: ai_node
+    position: {x: 200, y: 915}
+    speed: 5
+  - type: ai_node
+    position: {x: 930, y: 218}
+    speed: 5
+  - type: ai_node
+    position: {x: 1055, y: 205}
+    speed: 3
+  - type: ai_node
+    position: {x: 1090, y: 430}
+    speed: 2
+  - type: ai_node
+    position: {x: 1090, y: 430}
+    speed: 2
+  - type: ai_node
+    position: {x: 1000, y: 560}
+    speed: 2
+  - type: ai_node
+    position: {x: 1000, y: 560}
+    speed: 2
+  - type: ai_node
+    position: {x: 768, y: 540}
+    speed: 2
+  - type: ai_node
+    position: {x: 720, y: 790}
+    speed: 2
+  - type: ai_node
+    position: {x: 720, y: 790}
+    speed: 2
+  - type: ai_node
+    position: {x: 781, y: 886}
+    speed: 2
+  - type: ai_node
+    position: {x: 930, y: 860}
+    speed: 2
+  - type: ai_node
+    position: {x: 1180, y: 560}
+    speed: 2
+  - type: ai_node
+    position: {x: 1270, y: 570}
+    speed: 2
+  - type: ai_node
+    position: {x: 1310, y: 640}
+    speed: 2
+  - type: ai_node
+    position: {x: 1260, y: 730}
+    speed: 2
+  - type: ai_node
+    position: {x: 615, y: 1330}
+    speed: 2
+  - type: ai_node
+    position: {x: 515, y: 1290}
+    speed: 2
+  - type: ai_node
+    position: {x: 510, y: 1140}
+    speed: 2
+waypoints_track_3:
+  - type: ai_node
+    position: {x: 555, y: 1050}
+    speed: 1
 cars:
   - texture: CarTexture_RedStrip
     acceleration: 250

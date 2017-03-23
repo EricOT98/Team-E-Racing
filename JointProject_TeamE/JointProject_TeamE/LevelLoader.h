@@ -71,7 +71,9 @@ struct LevelData {
 	std::vector<TileData> m_tileDataVector;
 	std::vector<TextureData> m_textureDataVector;
 	std::vector<ObstacleData> m_obstacleDataVector;
-	std::vector<Waypoint> m_waypoints;
+	std::vector<Waypoint> m_waypointsTrackOne;
+	std::vector<Waypoint> m_waypointsTrackTwo;
+	std::vector<Waypoint> m_waypointsTrackThree;
 	std::vector<StartPositionData> m_startPositionData;
 	std::vector<CarData> m_carData;
 	std::vector<CarData> m_enemyCarData;
