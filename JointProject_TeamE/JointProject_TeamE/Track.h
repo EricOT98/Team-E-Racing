@@ -1,5 +1,5 @@
 /// <summary>
-/// @author: Liam hickeyy
+/// @author: Liam hickey
 /// @version: 1.00
 /// </summary>
 #ifndef TRACK_H

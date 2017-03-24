@@ -296,265 +296,313 @@ textures:
     string: Countdown
 waypoints_track_1:
   - type: ai_node
-    position: {x: 750, y: 600}
+    position: {x: 736, y: 640}
+    speed: 4
+  - type: ai_node
+    position: {x: 768, y: 542}
+    speed: 3
+  - type: ai_node
+    position: {x: 920, y: 540}
+    speed: 3
+  - type: ai_node
+    position: {x: 1020, y: 540}
+    speed: 3
+  - type: ai_node
+    position: {x: 1080, y: 460}
+    speed: 2
+  - type: ai_node
+    position: {x: 1086, y: 328}
+    speed: 2
+  - type: ai_node
+    position: {x: 1060, y: 237}
+    speed: 2
+  - type: ai_node
+    position: {x: 966, y: 204}
+    speed: 2
+  - type: ai_node
+    position: {x: 770, y: 369}
     speed: 5
   - type: ai_node
-    position: {x: 780, y: 550}
+    position: {x: 467, y: 720}
     speed: 5
   - type: ai_node
-    position: {x: 850, y: 530}
+    position: {x: 296, y: 857}
+    speed: 2
+  - type: ai_node
+    position: {x: 220, y: 910}
+    speed: 1
+  - type: ai_node
+    position: {x: 200, y: 980}
+    speed: 1
+  - type: ai_node
+    position: {x: 250, y: 1040}
+    speed: 1
+  - type: ai_node
+    position: {x: 300, y: 1055}
     speed: 5
   - type: ai_node
-    position: {x: 950, y: 530}
+    position: {x: 395, y: 950}
     speed: 5
   - type: ai_node
-    position: {x: 950, y: 530}
+    position: {x: 505, y: 860}
+    speed: 1
+  - type: ai_node
+    position: {x: 580, y: 855}
+    speed: 1
+  - type: ai_node
+    position: {x: 640, y: 940}
+    speed: 3
+  - type: ai_node
+    position: {x: 530, y: 1080}
+    speed: 4
+  - type: ai_node
+    position: {x: 505, y: 1295}
+    speed: 3
+  - type: ai_node
+    position: {x: 587, y: 1340}
+    speed: 4
+  - type: ai_node
+    position: {x: 690, y: 1300}
     speed: 5
   - type: ai_node
-    position: {x: 950, y: 530}
+    position: {x: 850, y: 1100}
     speed: 5
   - type: ai_node
-    position: {x: 1050, y: 500}
+    position: {x: 960, y: 985}
     speed: 5
   - type: ai_node
-    position: {x: 1080, y: 300}
+    position: {x: 1100, y: 870}
     speed: 5
   - type: ai_node
-    position: {x: 1050, y: 240}
+    position: {x: 1270, y: 700}
+    speed: 2
+  - type: ai_node
+    position: {x: 1300, y: 620}
+    speed: 1
+  - type: ai_node
+    position: {x: 1220, y: 575}
+    speed: 2
+  - type: ai_node
+    position: {x: 1135, y: 640}
     speed: 5
   - type: ai_node
-    position: {x: 1000, y: 200}
+    position: {x: 1025, y: 765}
     speed: 5
   - type: ai_node
-    position: {x: 930, y: 220}
-    speed: 5
+    position: {x: 895, y: 880}
+    speed: 3
   - type: ai_node
-    position: {x: 230, y: 900}
-    speed: 5
+    position: {x: 760, y: 870}
+    speed: 3
   - type: ai_node
-    position: {x: 210, y: 930}
-    speed: 5
-  - type: ai_node
-    position: {x: 210, y: 1000}
-    speed: 5
-  - type: ai_node
-    position: {x: 210, y: 1000}
-    speed: 5
-  - type: ai_node
-    position: {x: 250, y: 1050}
-    speed: 5
-  - type: ai_node
-    position: {x: 250, y: 1050}
-    speed: 5
-  - type: ai_node
-    position: {x: 350, y: 1000}
-    speed: 5
-  - type: ai_node
-    position: {x: 500, y: 850}
-    speed: 5
-  - type: ai_node
-    position: {x: 580, y: 830}
-    speed: 5
-  - type: ai_node
-    position: {x: 650, y: 900}
-    speed: 5
-  - type: ai_node
-    position: {x: 550, y: 1050}
-    speed: 5
-  - type: ai_node
-    position: {x: 500, y: 1100}
-    speed: 5
-  - type: ai_node
-    position: {x: 500, y: 1250}
-    speed: 5
-  - type: ai_node
-    position: {x: 550, y: 1320}
-    speed: 5
-  - type: ai_node
-    position: {x: 700, y: 1250}
-    speed: 5
-  - type: ai_node
-    position: {x: 1300, y: 650}
-    speed: 5
-  - type: ai_node
-    position: {x: 1300, y: 600}
-    speed: 5
-  - type: ai_node
-    position: {x: 1250, y: 570}
-    speed: 5
-  - type: ai_node
-    position: {x: 1200, y: 580}
-    speed: 5
-  - type: ai_node
-    position: {x: 1200, y: 580}
-    speed: 5
-  - type: ai_node
-    position: {x: 900, y: 880}
-    speed: 5
-  - type: ai_node
-    position: {x: 800, y: 870}
-    speed: 5
-  - type: ai_node
-    position: {x: 720, y: 800}
-    speed: 5
-  - type: ai_node
-    position: {x: 720, y: 800}
-    speed: 5
+    position: {x: 730, y: 705}
+    speed: 4
 waypoints_track_2:
   - type: ai_node
-    position: {x: 0, y: 0}
+    position: {x: 1080, y: 460}
+    speed: 3
+  - type: ai_node
+    position: {x: 1086, y: 328}
+    speed: 3
+  - type: ai_node
+    position: {x: 1060, y: 237}
+    speed: 2
+  - type: ai_node
+    position: {x: 966, y: 204}
+    speed: 2
+  - type: ai_node
+    position: {x: 770, y: 369}
     speed: 5
   - type: ai_node
-    position: {x: 580, y: 1000}
+    position: {x: 467, y: 720}
     speed: 5
   - type: ai_node
-    position: {x: 650, y: 915}
+    position: {x: 296, y: 857}
+    speed: 2
+  - type: ai_node
+    position: {x: 220, y: 910}
+    speed: 1
+  - type: ai_node
+    position: {x: 200, y: 980}
+    speed: 1
+  - type: ai_node
+    position: {x: 250, y: 1040}
+    speed: 1
+  - type: ai_node
+    position: {x: 300, y: 1055}
     speed: 5
   - type: ai_node
-    position: {x: 580, y: 845}
+    position: {x: 395, y: 950}
     speed: 5
   - type: ai_node
-    position: {x: 472, y: 880}
+    position: {x: 505, y: 860}
+    speed: 1
+  - type: ai_node
+    position: {x: 580, y: 855}
+    speed: 1
+  - type: ai_node
+    position: {x: 640, y: 940}
+    speed: 3
+  - type: ai_node
+    position: {x: 530, y: 1080}
+    speed: 4
+  - type: ai_node
+    position: {x: 505, y: 1295}
+    speed: 3
+  - type: ai_node
+    position: {x: 587, y: 1340}
+    speed: 4
+  - type: ai_node
+    position: {x: 690, y: 1300}
     speed: 5
   - type: ai_node
-    position: {x: 355, y: 1035}
+    position: {x: 850, y: 1100}
     speed: 5
   - type: ai_node
-    position: {x: 265, y: 1055}
+    position: {x: 960, y: 985}
     speed: 5
   - type: ai_node
-    position: {x: 187, y: 985}
+    position: {x: 1100, y: 870}
     speed: 5
   - type: ai_node
-    position: {x: 200, y: 915}
+    position: {x: 1270, y: 700}
+    speed: 2
+  - type: ai_node
+    position: {x: 1300, y: 620}
+    speed: 1
+  - type: ai_node
+    position: {x: 1220, y: 575}
+    speed: 2
+  - type: ai_node
+    position: {x: 1135, y: 640}
     speed: 5
   - type: ai_node
-    position: {x: 930, y: 218}
+    position: {x: 1025, y: 765}
     speed: 5
   - type: ai_node
-    position: {x: 1055, y: 205}
-    speed: 5
+    position: {x: 895, y: 880}
+    speed: 3
   - type: ai_node
-    position: {x: 1090, y: 430}
-    speed: 5
+    position: {x: 760, y: 870}
+    speed: 3
   - type: ai_node
-    position: {x: 1090, y: 430}
-    speed: 5
+    position: {x: 730, y: 705}
+    speed: 4
   - type: ai_node
-    position: {x: 1000, y: 560}
-    speed: 5
+    position: {x: 736, y: 640}
+    speed: 2
   - type: ai_node
-    position: {x: 1000, y: 560}
-    speed: 5
+    position: {x: 768, y: 542}
+    speed: 2
   - type: ai_node
-    position: {x: 768, y: 540}
-    speed: 5
+    position: {x: 920, y: 540}
+    speed: 3
   - type: ai_node
-    position: {x: 720, y: 790}
-    speed: 5
-  - type: ai_node
-    position: {x: 720, y: 790}
-    speed: 5
-  - type: ai_node
-    position: {x: 781, y: 886}
-    speed: 5
-  - type: ai_node
-    position: {x: 930, y: 860}
-    speed: 5
-  - type: ai_node
-    position: {x: 1180, y: 560}
-    speed: 5
-  - type: ai_node
-    position: {x: 1270, y: 570}
-    speed: 5
-  - type: ai_node
-    position: {x: 1310, y: 640}
-    speed: 5
-  - type: ai_node
-    position: {x: 1260, y: 730}
-    speed: 5
-  - type: ai_node
-    position: {x: 615, y: 1330}
-    speed: 5
-  - type: ai_node
-    position: {x: 515, y: 1290}
-    speed: 5
-  - type: ai_node
-    position: {x: 510, y: 1140}
-    speed: 5
+    position: {x: 1020, y: 540}
+    speed: 3
 waypoints_track_3:
   - type: ai_node
-    position: {x: 1030, y: 190}
+    position: {x: 736, y: 640}
+    speed: 3
+  - type: ai_node
+    position: {x: 768, y: 542}
+    speed: 3
+  - type: ai_node
+    position: {x: 920, y: 540}
+    speed: 3
+  - type: ai_node
+    position: {x: 1020, y: 540}
+    speed: 3
+  - type: ai_node
+    position: {x: 1080, y: 460}
+    speed: 2
+  - type: ai_node
+    position: {x: 1086, y: 328}
+    speed: 2
+  - type: ai_node
+    position: {x: 1060, y: 237}
+    speed: 2
+  - type: ai_node
+    position: {x: 966, y: 204}
+    speed: 2
+  - type: ai_node
+    position: {x: 770, y: 369}
     speed: 5
   - type: ai_node
-    position: {x: 945, y: 205}
+    position: {x: 467, y: 720}
     speed: 5
   - type: ai_node
-    position: {x: 220, y: 900}
+    position: {x: 296, y: 857}
+    speed: 2
+  - type: ai_node
+    position: {x: 220, y: 910}
+    speed: 1
+  - type: ai_node
+    position: {x: 200, y: 980}
+    speed: 1
+  - type: ai_node
+    position: {x: 250, y: 1040}
+    speed: 1
+  - type: ai_node
+    position: {x: 300, y: 1055}
     speed: 5
   - type: ai_node
-    position: {x: 185, y: 990}
+    position: {x: 395, y: 950}
     speed: 5
   - type: ai_node
-    position: {x: 265, y: 1070}
+    position: {x: 505, y: 860}
+    speed: 1
+  - type: ai_node
+    position: {x: 580, y: 855}
+    speed: 1
+  - type: ai_node
+    position: {x: 640, y: 940}
+    speed: 3
+  - type: ai_node
+    position: {x: 530, y: 1080}
+    speed: 4
+  - type: ai_node
+    position: {x: 505, y: 1295}
+    speed: 3
+  - type: ai_node
+    position: {x: 587, y: 1340}
+    speed: 4
+  - type: ai_node
+    position: {x: 690, y: 1300}
     speed: 5
   - type: ai_node
-    position: {x: 392, y: 985}
+    position: {x: 850, y: 1100}
     speed: 5
   - type: ai_node
-    position: {x: 530, y: 830}
+    position: {x: 960, y: 985}
     speed: 5
   - type: ai_node
-    position: {x: 640, y: 885}
+    position: {x: 1100, y: 870}
     speed: 5
   - type: ai_node
-    position: {x: 630, y: 990}
+    position: {x: 1270, y: 700}
+    speed: 2
+  - type: ai_node
+    position: {x: 1300, y: 620}
+    speed: 1
+  - type: ai_node
+    position: {x: 1220, y: 575}
+    speed: 2
+  - type: ai_node
+    position: {x: 1135, y: 640}
     speed: 5
   - type: ai_node
-    position: {x: 630, y: 990}
+    position: {x: 1025, y: 765}
     speed: 5
   - type: ai_node
-    position: {x: 530, y: 1085}
-    speed: 5
+    position: {x: 895, y: 880}
+    speed: 3
   - type: ai_node
-    position: {x: 500, y: 1290}
-    speed: 5
+    position: {x: 760, y: 870}
+    speed: 3
   - type: ai_node
-    position: {x: 580, y: 1340}
-    speed: 5
-  - type: ai_node
-    position: {x: 674, y: 1295}
-    speed: 5
-  - type: ai_node
-    position: {x: 1318, y: 650}
-    speed: 5
-  - type: ai_node
-    position: {x: 1318, y: 650}
-    speed: 5
-  - type: ai_node
-    position: {x: 1275, y: 575}
-    speed: 5
-  - type: ai_node
-    position: {x: 1160, y: 615}
-    speed: 5
-  - type: ai_node
-    position: {x: 900, y: 880}
-    speed: 5
-  - type: ai_node
-    position: {x: 735, y: 850}
-    speed: 5
-  - type: ai_node
-    position: {x: 745, y: 610}
-    speed: 5
-  - type: ai_node
-    position: {x: 830, y: 530}
-    speed: 5
-  - type: ai_node
-    position: {x: 1060, y: 515}
-    speed: 5
-  - type: ai_node
-    position: {x: 1085, y: 320}
-    speed: 5
+    position: {x: 730, y: 705}
+    speed: 4
 cars:
   - texture: CarTexture_RedStrip
     acceleration: 250
@@ -577,31 +625,31 @@ cars:
   - texture: CarTexture_White
     acceleration: 70
     deceleration: 70
-    turnrate: 10
+    turnrate: 200
     name: Enemy
     enemy: true
   - texture: CarTexture_Green
-    acceleration: 150
-    deceleration: 150
-    turnrate: 10
+    acceleration: 100
+    deceleration: 100
+    turnrate: 200
     name: Enemy
     enemy: true
   - texture: CarTexture_Yellow
-    acceleration: 250
-    deceleration: 250
-    turnrate: 10
+    acceleration: 100
+    deceleration: 100
+    turnrate: 200
     name: Enemy
     enemy: true
   - texture: CarTexture_Pink
-    acceleration: 250
-    deceleration: 250
-    turnrate: 10
+    acceleration: 100
+    deceleration: 100
+    turnrate: 200
     name: Enemy
     enemy: true
   - texture: CarTexture_Red
-    acceleration: 250
+    acceleration: 150
     deceleration: 250
-    turnrate: 10
+    turnrate: 200
     name: Enemy
     enemy: true
 cups:
