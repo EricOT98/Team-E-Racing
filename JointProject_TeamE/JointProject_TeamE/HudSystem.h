@@ -1,3 +1,8 @@
+/// <summary>
+/// @author: eric o toole
+/// @versionn: 1.00
+/// </summary>
+
 #ifndef HUDSYSTEM_H
 #define HUDSYSTEM_H
 

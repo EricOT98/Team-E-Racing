@@ -1,3 +1,7 @@
+/// <summary>
+/// @author: Liam hickeyy
+/// @version: 1.00
+/// </summary>
 #ifndef TRACK_H
 #define TRACK_H
 

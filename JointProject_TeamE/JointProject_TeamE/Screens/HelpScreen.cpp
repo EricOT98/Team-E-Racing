@@ -18,12 +18,11 @@ HelpScreen::HelpScreen() : Screen(GameState::HelpScreen)
 	m_helpScreenText.push_back(new Label("* RT to acclerate", nullptr, 22, sf::Vector2f(250.0f, 150.0f), endTranstionPos));
 	m_helpScreenText.push_back(new Label("* LT to brake", nullptr, 22, sf::Vector2f(230.0f, 180.0f), endTranstionPos));
 	m_helpScreenText.push_back(new Label("* Left analogue stick to steer", nullptr, 22, sf::Vector2f(310.0f, 210.0f), endTranstionPos));
-	m_helpScreenText.push_back(new Label("* A to handbrake", nullptr, 22, sf::Vector2f(250.0f, 240.0f), endTranstionPos));
+	m_helpScreenText.push_back(new Label("* A to fire Projectiles", nullptr, 22, sf::Vector2f(250.0f, 240.0f), endTranstionPos));
 	m_helpScreenText.push_back(new Label("* Start to pause", nullptr, 22, sf::Vector2f(245.0f, 270.0f), endTranstionPos));
 	m_helpScreenText.push_back(new Label("In Menu", nullptr, 30, sf::Vector2f(200.0f, 350.0f), endTranstionPos));
 	m_helpScreenText.push_back(new Label("* Left Stick or D-Pad to navigate", nullptr, 22, sf::Vector2f(330.0f, 400.0f), endTranstionPos));
 	m_helpScreenText.push_back(new Label("* A to select", nullptr, 22, sf::Vector2f(228.0f, 430.0f), endTranstionPos));
-	m_helpScreenText.push_back(new Label("* B to go back", nullptr, 22, sf::Vector2f(240.0f, 460.0f), endTranstionPos));
 	m_backButton = new Button(focusColor, nofocusColor, fillColor, "Back", nullptr,
 		sf::Vector2f(-400.0f, 550.0f), 18, 100.0f, 40.0f, sf::Vector2f(400.0f, 550.0f), endTranstionPos);
 
@@ -65,6 +64,9 @@ void HelpScreen::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// reset the current screen
+/// </summary>
 void HelpScreen::reset()
 {
 	m_interpolation = 0.f;
@@ -72,6 +74,9 @@ void HelpScreen::reset()
 	m_backButtonSelected = false;
 }
 
+/// <summary>
+/// Call back function for the back button pressed
+/// </summary>
 void HelpScreen::backButtonCallback()
 {
 	m_backButtonSelected = true;

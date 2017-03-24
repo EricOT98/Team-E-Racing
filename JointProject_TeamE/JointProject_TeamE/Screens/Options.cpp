@@ -1,5 +1,8 @@
 #include "Options.h"
 
+/// <summary>
+/// Default constructor for the options screen
+/// </summary>
 Options::Options() : Screen(GameState::OptionsScreen)
 {
 	m_transitionIn = true;
@@ -52,6 +55,10 @@ Options::Options() : Screen(GameState::OptionsScreen)
 
 Options::~Options() { }
 
+/// <summary>
+/// If not transitioning process input for all gui objects
+/// </summary>
+/// <param name="controller">Current xbox 360 controller</param>
 void Options::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -87,6 +94,9 @@ void Options::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void Options::reset()
 {
 	m_backButtonSelected = false;
@@ -98,6 +108,7 @@ void Options::reset()
 	m_interpolation = 0.f;
 }
 
+//Callback functions
 void Options::backButtonCallback()
 {
 	m_backButtonSelected = true;

@@ -2,6 +2,11 @@
 
 Track::Track() {  }
 
+/// <summary>
+/// Sets the current track based on the loaded in level
+/// </summary>
+/// <param name="levelIn">Current level</param>
+/// <param name="trackIndex">Current track number</param>
 void Track::setTrack(LevelData &levelIn, int trackIndex)
 {
 	for (int i = 0; i < levelIn.m_tileDataVector.size(); i++)
@@ -52,6 +57,10 @@ void Track::setTrack(LevelData &levelIn, int trackIndex)
 	}
 }
 
+/// <summary>
+/// Update all elements handled by the track which is majority collisions and culling
+/// </summary>
+/// <param name="racers">Vector of racer objects for collision detection</param>
 void Track::update(std::vector<Racer *> & racers)
 {
 	for (auto & racer : racers)
@@ -118,16 +127,28 @@ void Track::update(std::vector<Racer *> & racers)
 	}
 }
 
+/// <summary>
+/// Get ais starting position
+/// </summary>
+/// <returns></returns>
 std::vector<sf::Vector2f> *Track::getAIStartPositions()
 {
 	return &m_startAIPositions;
 }
 
+/// <summary>
+/// Get players starting positions
+/// </summary>
+/// <returns></returns>
 sf::Vector2f Track::getPlayerStartPosition()
 {
 	return playerStartPos;
 }
 
+/// <summary>
+/// Render all objects in the track
+/// </summary>
+/// <param name="window"></param>
 void Track::render(sf::RenderWindow & window)
 {
 	for (int i = 0; i < m_trackTiles.size(); i++)
@@ -163,16 +184,30 @@ void Track::render(sf::RenderWindow & window)
 	}
 }
 
+/// <summary>
+/// Get total number of ai cars in the track
+/// </summary>
+/// <returns></returns>
 unsigned int Track::getNumOfAICars()
 {
 	return numberOfAICars;
 }
 
+/// <summary>
+/// Set the number of ai cars on tthe track
+/// </summary>
+/// <param name="cars"></param>
 void Track::setNumOfAICars(unsigned int cars) 
 {
 	numberOfAICars = cars;
 }
 
+/// <summary>
+/// Check for intersection between the racer and tiles
+/// </summary>
+/// <param name="tile"></param>
+/// <param name="racerPos"></param>
+/// <returns></returns>
 bool Track::checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos)
 {
 	// Localise Values
@@ -191,6 +226,11 @@ bool Track::checkRacerIntersection(Tile & tile, sf::Vector2f & racerPos)
 	return false;
 }
 
+/// <summary>
+/// Check collision between racer and obstacle
+/// </summary>
+/// <param name="playerOBB"></param>
+/// <returns></returns>
 bool Track::checkRacerObstacleCollision(OBB &playerOBB)
 {
 	for (Obstacle *obstacle : m_obstacles)
@@ -206,6 +246,11 @@ bool Track::checkRacerObstacleCollision(OBB &playerOBB)
 	return false;
 }
 
+/// <summary>
+/// Check collision between racer and projectile
+/// </summary>
+/// <param name="projectileOBB"></param>
+/// <returns></returns>
 bool Track::checkProjectileObstacleCollision(OBB & projectileOBB)
 {
 	for (Obstacle *obstacle : m_obstacles)
@@ -219,6 +264,12 @@ bool Track::checkProjectileObstacleCollision(OBB & projectileOBB)
 	return false;
 }
 
+/// <summary>
+/// Check any Bounding box intersection
+/// </summary>
+/// <param name="obb1"></param>
+/// <param name="obb2"></param>
+/// <returns></returns>
 bool Track::checkOBBIntersection(OBB & obb1, OBB & obb2)
 {
 	if (obb1.intersects(obb2))
@@ -228,6 +279,12 @@ bool Track::checkOBBIntersection(OBB & obb1, OBB & obb2)
 	return false;
 }
 
+/// <summary>
+/// Check track tile intersection with window for culling
+/// </summary>
+/// <param name="tile"></param>
+/// <param name="window"></param>
+/// <returns></returns>
 bool Track::checkWindowInterscetion(Tile & tile, sf::RenderWindow & window)
 {
 	float viewLeft = window.getView().getCenter().x - window.getSize().x / 2.f;
@@ -254,6 +311,12 @@ bool Track::checkWindowInterscetion(Tile & tile, sf::RenderWindow & window)
 	return true;
 }
 
+/// <summary>
+/// Check obstacle window intersection for culling
+/// </summary>
+/// <param name="obstacle"></param>
+/// <param name="window"></param>
+/// <returns></returns>
 bool Track::checkWindowObsIntersection(Obstacle & obstacle, sf::RenderWindow & window)
 {
 	float viewLeft = window.getView().getCenter().x - window.getSize().x / 2.f;

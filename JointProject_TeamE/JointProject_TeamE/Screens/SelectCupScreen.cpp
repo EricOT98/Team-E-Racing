@@ -1,5 +1,12 @@
 #include "SelectCupScreen.h"
 
+/// <summary>
+/// Default constructor for the set cars screen which allows the user to 
+/// select a race type which then sets the level data in turn
+/// </summary>
+/// <param name="carsIn">Vector of car data stored in the level</param>
+/// <param name="cupsIn">Cup datat in the level</param>
+/// <param name="screenWidth">Screen widtth for display purposes</param>
 SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupData> & cupsIn, int screenWidth) 
 	: Screen(GameState::SelectCupScreen), m_cups(cupsIn)
 {
@@ -60,6 +67,10 @@ SelectCupScreen::SelectCupScreen(std::vector<CarData> & carsIn, std::vector<CupD
 
 SelectCupScreen::~SelectCupScreen() {}
 
+/// <summary>
+/// If not transitiionig process input for all gui objects
+/// </summary>
+/// <param name="controller"></param>
 void SelectCupScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -83,6 +94,9 @@ void SelectCupScreen::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// resetthe current screen
+/// </summary>
 void SelectCupScreen::reset()
 {
 	m_transitionIn = true;
@@ -90,12 +104,15 @@ void SelectCupScreen::reset()
 	m_confirmButtonPressed = false;
 	m_backButtonPressed = false;
 }
-
+/// <summary>
+/// Get the current cup index
+/// </summary>
+/// <returns></returns>
 unsigned int SelectCupScreen::selectedCupIndex()
 {
 	return m_currentCarIndex;
 }
-
+//Callback functions
 void SelectCupScreen::confirmButtonCallback()
 {
 	for (int i = 0; i < m_radButtons.size(); i++)

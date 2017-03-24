@@ -55,6 +55,9 @@ DifficultyScreen::DifficultyScreen() : Screen(GameState::DifficultyScreen)
 	m_gui.add(m_backButton);
 }
 
+/// <summary>
+/// Clear the difficaluty screen on destruction
+/// </summary>
 DifficultyScreen::~DifficultyScreen()
 {
 	m_gui.clear();
@@ -82,6 +85,9 @@ void DifficultyScreen::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void DifficultyScreen::reset()
 {
 	m_backButtonSelected = false;
@@ -89,6 +95,10 @@ void DifficultyScreen::reset()
 	m_interpolation = 0.f;
 }
 
+/// <summary>
+/// Gets the number of ai racers currently available
+/// </summary>
+/// <returns>integer value of number of AIracera</returns>
 int DifficultyScreen::getNumberOfAI()
 {
 	int aiNum = 0;
@@ -104,11 +114,17 @@ int DifficultyScreen::getNumberOfAI()
 	return aiNum;
 }
 
+/// <summary>
+/// Callback function for the back button
+/// </summary>
 void DifficultyScreen::backButtonCallback()
 {
 	m_backButtonSelected = true;
 }
 
+/// <summary>
+/// Call back function for the radio buttons
+/// </summary>
 void DifficultyScreen::radioButtonSetCallback()
 {
 	// Insert Code Here

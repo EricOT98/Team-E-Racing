@@ -10,6 +10,9 @@ Game::Game()
 	keyboardHandler = KeyboardHandler::GetInstance();
 }
 
+/// <summary>
+/// initialise the game then run the main game loop
+/// </summary>
 void Game::run()
 {
 	LevelLoader::load(m_level);
@@ -124,6 +127,9 @@ void Game::run()
 	}
 }
 
+/// <summary>
+/// Process all events for the game
+/// </summary>
 void Game::processEvents()
 {
 	sf::Event event;
@@ -137,6 +143,10 @@ void Game::processEvents()
 	}
 }
 
+/// <summary>
+/// Process all game events
+/// </summary>
+/// <param name="event"></param>
 void Game::processGameEvents(sf::Event& event)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -161,6 +171,10 @@ void Game::processGameEvents(sf::Event& event)
 	}
 }
 
+/// <summary>
+/// Update the current screen or state
+/// </summary>
+/// <param name="dt">time in milliseconds</param>
 void Game::update(double dt)
 {
 	if (m_screenManager.getState())
@@ -204,6 +218,9 @@ void Game::update(double dt)
 	}
 }
 
+/// <summary>
+/// Render all the scene
+/// </summary>
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0, 0));
@@ -223,6 +240,9 @@ void Game::render()
 	m_window.display();
 }
 
+/// <summary>
+/// Reset the game for reuse
+/// </summary>
 void Game::resetGame()
 {
 	m_track.setNumOfAICars(m_difficultyScreen->getNumberOfAI());
@@ -240,7 +260,11 @@ void Game::resetGame()
 	m_player->setPosition(m_track.getPlayerStartPosition() + sf::Vector2f(0.0f, 10.0f));
 	m_player->setRotation(-90.0f);
 }
-
+/// <summary>
+/// Apply a shader object to the entire scene via 4 quads and a texture creation
+/// </summary>
+/// <param name="output">Output the shader to</param>
+/// <param name="texture">The texture to map the shader to</param>
 void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 {
 	//Coverts the screen into 4 quads and then 
@@ -272,7 +296,9 @@ void Game::applyShaderToScene(sf::RenderTarget &output, sf::Texture texture)
 	states.blendMode = sf::BlendAlpha;
 	output.draw(vertices, states);
 }
-
+/// <summary>
+/// Render all objects used in the gameplay of the game
+/// </summary>
 void Game::renderGame()
 {
 	lightMapTexture.clear(sf::Color(50, 50, 80));
@@ -312,6 +338,9 @@ void Game::renderGame()
 	m_raceCountdown->render(m_window);
 }
 
+/// <summary>
+/// Render all screens in the game
+/// </summary>
 void Game::renderScreens()
 {
 	if (m_screenManager.getGameState() == GameState::PauseScreen || m_screenManager.getGameState() == GameState::GamePlay || m_screenManager.getGameState() == GameState::EndGameState)

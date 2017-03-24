@@ -1,3 +1,7 @@
+/// <summary>
+/// @author: Liam Hickey
+/// @version: 1.0
+/// </summary>
 #ifndef SELECTCARSCREEN_H
 #define SELECTCARSCREEN_H
 

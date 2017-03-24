@@ -61,6 +61,10 @@ MainMenu::MainMenu(bool & gameReset) : Screen(GameState::MainMenu), m_gameReset(
 
 MainMenu::~MainMenu() { }
 
+/// <summary>
+/// If not transitioning in process input for all gui objects
+/// </summary>
+/// <param name="controller">current xbox360 controller</param>
 void MainMenu::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -104,6 +108,9 @@ void MainMenu::render(sf::RenderWindow &window)
 	window.draw(m_gui); // Draw the GUI object
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void MainMenu::reset()
 {
 	m_creditsButtonSelected = false;
@@ -117,7 +124,7 @@ void MainMenu::reset()
 }
 
 
-
+//Callback functions
 void MainMenu::playButtonCallback()
 {
 	m_playButtonSelected = true;

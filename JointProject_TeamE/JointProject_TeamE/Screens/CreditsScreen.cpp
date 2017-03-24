@@ -1,5 +1,8 @@
 #include "CreditsScreen.h"
 
+/// <summary>
+/// Default constructor for the credits screen
+/// </summary>
 CreditsScreen::CreditsScreen()
 	: Screen(GameState::CreditsScreen), m_playing(true)
 {
@@ -17,11 +20,19 @@ CreditsScreen::CreditsScreen()
 	m_creditsVideo.fit(0, 0, 800, 600);
 }
 
+/// <summary>
+/// default destructor for the credits screen
+/// </summary>
 CreditsScreen::~CreditsScreen()
 {
 
 }
 
+/// <summary>
+/// Update the credits screen to allow playing of the sfeMovie
+/// file loaded in
+/// </summary>
+/// <param name="controller"></param>
 void CreditsScreen::update(XboxController & controller)
 {
 	if (!m_startVideo)
@@ -52,6 +63,10 @@ void CreditsScreen::update(XboxController & controller)
 	}
 }
 
+/// <summary>
+/// Render the credits movie to the screen
+/// </summary>
+/// <param name="window">Current render window</param>
 void CreditsScreen::render(sf::RenderWindow &window)
 {
 	if (m_playing)
@@ -60,6 +75,9 @@ void CreditsScreen::render(sf::RenderWindow &window)
 	}
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void CreditsScreen::reset()
 {
 	m_creditsVideo.stop();

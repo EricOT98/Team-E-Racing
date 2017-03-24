@@ -1,5 +1,9 @@
 #include "HudSystem.h"
 
+/// <summary>
+/// Default constructor of the in game hud to display
+/// all relevant information to the player
+/// </summary>
 HudSystem::HudSystem()
 {
 	m_interpolation = 0;
@@ -26,6 +30,11 @@ HudSystem::HudSystem()
 	m_fastestLapText.setString("Fastest Lap Time: ");
 }
 
+/// <summary>
+/// If not transitioned in transition the hud into position
+/// else record the players times
+/// </summary>
+/// <param name="player"></param>
 void HudSystem::update(Racer & player)
 {
 	m_time = m_clock.getElapsedTime();
@@ -62,6 +71,10 @@ void HudSystem::update(Racer & player)
 	m_lapTimeText.setString("Lap Time: " + std::to_string(static_cast<int>(m_lapTime)));
 }
 
+/// <summary>
+/// Render the hud to the screen
+/// </summary>
+/// <param name="window">The current render window</param>
 void HudSystem::render(sf::RenderWindow & window)
 {
 	//window.draw(m_hudSprite);
@@ -70,6 +83,9 @@ void HudSystem::render(sf::RenderWindow & window)
 	window.draw(m_fastestLapText);
 }
 
+/// <summary>
+/// Reset the hud to be used again
+/// </summary>
 void HudSystem::reset()
 {
 	m_clock.restart();
@@ -78,16 +94,25 @@ void HudSystem::reset()
 	m_paused = false;
 }
 
+/// <summary>
+/// Pause the huds time recording
+/// </summary>
 void HudSystem::pauseTimer()
 {
 	m_paused = true;
 }
 
+/// <summary>
+/// Resume the huds timer
+/// </summary>
 void HudSystem::resumeTimer()
 {
 	m_paused = false;
 }
 
+/// <summary>
+/// Start recording the huds time
+/// </summary>
 void HudSystem::startRecordingTime()
 {
 	m_clock.restart();
@@ -96,19 +121,30 @@ void HudSystem::startRecordingTime()
 	m_paused = false;
 }
 
+/// <summary>
+/// Get if the hud is currently recording players time
+/// </summary>
+/// <returns>Bool for recording started</returns>
 bool HudSystem::getRecording()
 {
 	return m_raceStarted;
 }
 
+/// <summary>
+/// Boolean for checking if the race has finished
+/// </summary>
+/// <returns></returns>
 bool HudSystem::raceFinished()
 {
-	if (m_currentLap == 0) 
+	if (m_currentLap == 3) 
 	return true;
 	else
 	return false;
 }
 
+/// <summary>
+/// Records the fastest lap time
+/// </summary>
 void HudSystem::recordLapTime()
 {
 	if (m_fastestLapTime == 0)

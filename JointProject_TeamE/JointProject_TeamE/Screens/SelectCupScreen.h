@@ -1,3 +1,7 @@
+/// <summary>
+/// @author: Liam Hickey
+/// @version: 1.0
+/// </summary>
 #ifndef SELECTCUPSCREEN_H
 #define SELECTCUPSCREEN_H
 

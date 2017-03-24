@@ -1,5 +1,8 @@
 #include "SoundOptions.h"
 
+/// <summary>
+/// Default constructor for the sound objects screen
+/// </summary>
 SoundOptions::SoundOptions() : Screen(GameState::SoundOptions)
 {
 	m_transitionIn = true;
@@ -48,6 +51,10 @@ SoundOptions::SoundOptions() : Screen(GameState::SoundOptions)
 
 SoundOptions::~SoundOptions() { }
 
+/// <summary>
+/// if not transitioning process all gui objects
+/// </summary>
+/// <param name="controller"></param>
 void SoundOptions::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -67,13 +74,16 @@ void SoundOptions::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// reset the current screen
+/// </summary>
 void SoundOptions::reset()
 {
 	m_interpolation = 0.f;
 	m_transitionIn = true;
 	m_backButtonSelected = false;
 }
-
+//callback functions
 void SoundOptions::backButtonCallback()
 {
 	m_backButtonSelected = true;

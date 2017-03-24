@@ -1,5 +1,12 @@
 #include "SelectCarScreen.h"
 
+/// <summary>
+/// Default constructor for selectingCar screen that reads in car data from the level 
+/// and displays that relative information to the player
+/// </summary>
+/// <param name="carsIn">Car data stored in the level</param>
+/// <param name="playerIn">The current player</param>
+/// <param name="screenWidth">width of the screen for positioning purposes</param>
 SelectCarScreen::SelectCarScreen(std::vector<CarData> & carsIn, Player * playerIn, int screenWidth) : Screen(GameState::SelectCarScreen), m_player(playerIn), m_cars(carsIn)
 {
 	m_transitionIn = true;
@@ -69,7 +76,10 @@ SelectCarScreen::SelectCarScreen(std::vector<CarData> & carsIn, Player * playerI
 }
 
 SelectCarScreen::~SelectCarScreen() {}
-
+/// <summary>
+/// if not transitioning process input for all gui objects
+/// </summary>
+/// <param name="controller"></param>
 void SelectCarScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -98,6 +108,9 @@ void SelectCarScreen::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void SelectCarScreen::reset()
 {
 	m_interpolation = 0.f;
@@ -106,7 +119,7 @@ void SelectCarScreen::reset()
 	m_confirmButtonPressed = false;
 	m_resetSliders = true;
 }
-
+//Callback functions
 void SelectCarScreen::confirmButtonCallback()
 {
 	m_confirmButtonPressed = true;
@@ -130,6 +143,9 @@ void SelectCarScreen::radButtonCallback()
 	setSliders();
 }
 
+/// <summary>
+/// Set the display proportins for the sliders
+/// </summary>
 void SelectCarScreen::setSliders()
 {
 	m_accelerationSlider->setPercentageFull(m_cars.at(m_currentCarIndex).m_acceleration / 300.f);

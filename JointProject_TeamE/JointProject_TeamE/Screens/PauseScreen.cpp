@@ -1,5 +1,8 @@
 #include "PauseScreen.h"
 
+/// <summary>
+/// Default constructor for the pause screen
+/// </summary>
 PauseScreen::PauseScreen() : Screen(GameState::PauseScreen)
 {
 	sf::Color focusColor = sf::Color::Red;
@@ -33,6 +36,10 @@ PauseScreen::PauseScreen() : Screen(GameState::PauseScreen)
 
 PauseScreen::~PauseScreen() { }
 
+/// <summary>
+/// If not transitioning process input for all gui objects
+/// </summary>
+/// <param name="controller">Current xbox 360 controller</param>
 void PauseScreen::update(XboxController & controller)
 {
 	if (m_transitionIn)
@@ -56,6 +63,9 @@ void PauseScreen::update(XboxController & controller)
 	m_gui.processInput(controller);
 }
 
+/// <summary>
+/// Reset the current screen
+/// </summary>
 void PauseScreen::reset()
 {
 	m_interpolation = 0.f;
@@ -64,6 +74,7 @@ void PauseScreen::reset()
 	m_quitSelected = false;
 }
 
+//Callback functions
 void PauseScreen::resumeButtonCallback()
 {
 	m_resumeSelected = true;
