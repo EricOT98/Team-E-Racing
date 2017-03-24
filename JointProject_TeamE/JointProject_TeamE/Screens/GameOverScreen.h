@@ -16,7 +16,7 @@
 class GameOverScreen : public Screen
 {
 public:
-	GameOverScreen();
+	GameOverScreen(sf::RenderWindow & window);
 	~GameOverScreen();
 
 	void update(XboxController & controller) override;
@@ -33,5 +33,7 @@ private:
 
 	bool m_quitButtonSelected;
 	bool m_backButtonSelected;
+
+	sf::RenderWindow & m_window;
 };
 #endif;

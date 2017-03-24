@@ -3,7 +3,8 @@
 /// <summary>
 /// Initialise the gui objects for teh gae over screen
 /// </summary>
-GameOverScreen::GameOverScreen() : Screen(GameState::EndGameState)
+GameOverScreen::GameOverScreen(sf::RenderWindow & window) : Screen(GameState::EndGameState),
+														    m_window(window)
 {
 	m_transitionIn = true;
 
@@ -60,13 +61,10 @@ void GameOverScreen::update(XboxController & controller)
 			m_interpolation = 0.0f;
 		}
 	}
-	else if (m_backButtonSelected) {
+	else if (m_backButtonSelected)
 		transOut(GameState::MainMenu);
-	}
-	else if (m_quitButtonSelected) {
-		transOut(GameState::MainMenu);
-		std::cout << "Quit" << std::endl;
-	}
+	else if (m_quitButtonSelected) 
+		transOut(GameState::QuitScreen);
 	m_gui.processInput(controller);
 }
 

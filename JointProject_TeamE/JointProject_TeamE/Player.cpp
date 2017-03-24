@@ -72,7 +72,7 @@ void Player::update(float dt)
 	//@Projectile
 	if (KeyboardHandler::GetInstance()->IsKeyDown(sf::Keyboard::Key::Space))
 	{
-		fire();
+		resetToNearestNode();
 	}
 	calMovement(dt / 1000.f);
 

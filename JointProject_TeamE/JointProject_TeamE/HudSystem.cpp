@@ -17,13 +17,13 @@ HudSystem::HudSystem()
 	m_lapTimeText.setColor(sf::Color::Magenta);
 	m_fastestLapText.setColor(sf::Color::Magenta);
 
-	m_lapText.setString("Lap: ");
-	m_lapTimeText.setString("Lap Time: ");
-	m_fastestLapText.setString("Fastest Lap Time: ");
 	m_timeCounter = 0;
 	m_currentLap = 0;
 	m_lapTime = 0;   
 	m_fastestLapTime = 0;
+	m_lapText.setString("Lap: " + std::to_string(m_currentLap + 1) + "/3");
+	m_lapTimeText.setString("Lap Time: ");
+	m_fastestLapText.setString("Fastest Lap Time: ");
 }
 
 void HudSystem::update(Racer & player)
@@ -50,7 +50,9 @@ void HudSystem::update(Racer & player)
 	int newLap = player.getLap();
 	if (m_currentLap != newLap) {
 		m_currentLap = newLap;
-		m_lapText.setString("Lap: " + std::to_string(m_currentLap));
+		if(newLap!= 3)
+		m_lapText.setString("Lap: " + std::to_string(m_currentLap + 1) + "/3");
+
 		recordLapTime();
 		std::stringstream stream;
 		stream << std::setprecision(4) << m_fastestLapTime;

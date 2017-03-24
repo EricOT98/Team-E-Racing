@@ -232,6 +232,18 @@ void Racer::positionTracks()
 	m_trackEmmiter2.setEmissionRate(60);
 }
 
+/// <summary>
+/// Reset the racer to the last node they have hit
+/// </summary>
+void Racer::resetToNearestNode()
+{
+	if (m_currentNode > 1)
+		setPosition(m_wayPoints->at(m_currentNode - 1).m_position);
+	/*else
+		setPosition(m_wayPoints->at(m_wayPoints->size() - 1).m_position);*/
+	m_velocity = 0;
+}
+
 
 /// <summary>
 /// Function simply rotates the Racer left based on the 

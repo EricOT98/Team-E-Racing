@@ -108,7 +108,7 @@ protected:
 	sf::Vector2f m_racerCollisionVec;
 
 	// </Test>
-	
+	void resetToNearestNode();
 };
 
 #endif

@@ -72,7 +72,7 @@ void Game::run()
 	m_upgradesScreen = new UpgradesScreen(m_level.m_carData,m_credits, m_window.getSize().x);
 	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, m_player, m_window.getSize().x);
 	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_window.getSize().x);
-	m_gameOverScreen = new GameOverScreen();
+	m_gameOverScreen = new GameOverScreen(m_window);
 	m_raceCountdown = new RaceCountdown();
 	m_hud = new HudSystem();
 
