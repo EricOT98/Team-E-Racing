@@ -27,6 +27,7 @@
 #include "Screens\UpgradesScreen.h"
 #include "Screens\SelectCarScreen.h"
 #include "Screens\SelectCupScreen.h"
+#include "Screens\GameOverScreen.h"
 
 // Countdown display
 #include "RaceCountdown.h"
@@ -92,6 +93,7 @@ protected:
 	UpgradesScreen * m_upgradesScreen;
 	SelectCarScreen * m_selectCarScreen;
 	SelectCupScreen * m_selectCupScreen;
+	GameOverScreen * m_gameOverScreen;
 
 	RaceCountdown *m_raceCountdown;
 

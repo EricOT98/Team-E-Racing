@@ -99,6 +99,14 @@ bool HudSystem::getRecording()
 	return m_raceStarted;
 }
 
+bool HudSystem::raceFinished()
+{
+	if (m_currentLap == 0) 
+	return true;
+	else
+	return false;
+}
+
 void HudSystem::recordLapTime()
 {
 	if (m_fastestLapTime == 0)

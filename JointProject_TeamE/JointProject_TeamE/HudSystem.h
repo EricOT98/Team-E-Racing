@@ -20,6 +20,7 @@ public:
 	void resumeTimer();
 	void startRecordingTime();
 	bool getRecording();
+	bool raceFinished();
 private:
 	void recordLapTime();
 	sf::Texture m_hudTexture;

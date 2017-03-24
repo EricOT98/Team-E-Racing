@@ -72,7 +72,7 @@ void Game::run()
 	m_upgradesScreen = new UpgradesScreen(m_level.m_carData,m_credits, m_window.getSize().x);
 	m_selectCarScreen = new SelectCarScreen(m_level.m_carData, m_player, m_window.getSize().x);
 	m_selectCupScreen = new SelectCupScreen(m_level.m_enemyCarData, m_level.m_cupData, m_window.getSize().x);
-
+	m_gameOverScreen = new GameOverScreen();
 	m_raceCountdown = new RaceCountdown();
 	m_hud = new HudSystem();
 
@@ -104,6 +104,7 @@ void Game::run()
 	m_screenManager.add(m_upgradesScreen);
 	m_screenManager.add(m_selectCarScreen);
 	m_screenManager.add(m_selectCupScreen);
+	m_screenManager.add(m_gameOverScreen);
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 60.f);
 	sf::Clock clock;
@@ -173,6 +174,10 @@ void Game::update(double dt)
 			m_hud->startRecordingTime();
 		}
 		m_hud->update(*m_player);
+		if (m_hud->raceFinished()) {
+			m_screenManager.setActive(GameState::EndGameState);
+			m_window.setView(m_window.getDefaultView());
+		}
 		if (m_reset)
 		{
 			resetGame();
@@ -309,7 +314,7 @@ void Game::renderGame()
 
 void Game::renderScreens()
 {
-	if (m_screenManager.getGameState() == GameState::PauseScreen || m_screenManager.getGameState() == GameState::GamePlay)
+	if (m_screenManager.getGameState() == GameState::PauseScreen || m_screenManager.getGameState() == GameState::GamePlay || m_screenManager.getGameState() == GameState::EndGameState)
 	{
 		renderGame();
 		m_window.setView(m_window.getDefaultView());

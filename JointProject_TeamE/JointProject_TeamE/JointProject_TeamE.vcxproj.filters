@@ -48,6 +48,7 @@
     <ClCompile Include="Screens\SelectCupScreen.cpp" />
     <ClCompile Include="RaceCountdown.cpp" />
     <ClCompile Include="HudSystem.cpp" />
+    <ClCompile Include="Screens\GameOverScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Screens\SelectCupScreen.h" />
     <ClInclude Include="RaceCountdown.h" />
     <ClInclude Include="HudSystem.h" />
+    <ClInclude Include="Screens\GameOverScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
