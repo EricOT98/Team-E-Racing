@@ -1,12 +1,13 @@
-# Project Name
-TODO: Write a project description
+# Racing Game
+Racing Game is a game created by Darren Sweeney, Eric O' Toole and Liam Hickey.
+
+![alt tag](https://dsweeneyblog.files.wordpress.com/2017/03/fuck_this_game.png)
 
 [Team Journal](https://docs.google.com/document/d/1ya9ImQhMHPgdHWxiWK-YT1KFYHf9t-UB1zWHdFtD7b8/edit?usp=sharing)
 
 ## Installation
-TODO: Describe the installation process
-## Usage
-TODO: Write usage instructions
+The code compiles out of the box.
+
 ## Suggested git Workflow 
 1. Clone the remote repository (once-off operation).
 2. Create your a branch for the feature you are working on: `git checkout -b feature-name`
@@ -24,5 +25,6 @@ TODO: Write usage instructions
 8.3 Push to the remote master branch: `git push origin master`
 
 ## Credits
-TODO: Write credits
-
+ Darren Sweeney
+ Eric O' Toole
+ Liam Hickey.
