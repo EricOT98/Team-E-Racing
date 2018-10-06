@@ -8,7 +8,7 @@ AI::AI()
 {
 	m_position = sf::Vector2f(0.0f, 0.0f);
 
-	srand(time(NULL));
+	     srand(time(NULL));
 
 	m_speed = rand() % int(MAX_SPEED) + 2;
 }
@@ -44,11 +44,11 @@ void AI::update(float dt)
 			decelerate(dt, acceleration);
 		}
 
-		sf::Vector2f vectorToNode = (m_wayPoints->at(m_currentNode).m_position - m_position); // Find the vector from the racer to the current node / waypoint
-		float angle = (atan2(vectorToNode.y, vectorToNode.x) / PI * 180) - m_currentRotation; // Calculate how much the AI needs to turn
-		if (angle < -180) // If else makes sure the AI does not turn the long way around to the target node
+		    sf::Vector2f vectorToNode = (m_wayPoints->at(m_currentNode).m_position - m_position); // Find the vector from the racer to the current node / waypoint
+		    float angle = (atan2(vectorToNode.y, vectorToNode.x) / PI * 180) - m_currentRotation; // Calculate how much the AI needs to turn
+		    if (angle < -180) // If else makes sure the AI does not turn the long way around to the target node
 		{
-			angle += 360;
+ 			angle += 360;
 		}
 		else if (angle > 180)
 		{
